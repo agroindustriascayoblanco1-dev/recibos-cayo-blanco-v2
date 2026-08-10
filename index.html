@@ -15,14 +15,18 @@
     </title>
 
 
-    <!-- PDF.JS -->
+    <!-- ==========================================
+         PDF.JS
+    =========================================== -->
 
     <script
         src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js">
     </script>
 
 
-    <!-- ESTILOS -->
+    <!-- ==========================================
+         ESTILOS
+    =========================================== -->
 
     <link
         rel="stylesheet"
@@ -35,9 +39,9 @@
 <body>
 
 
-    <!-- =====================================
+    <!-- ==========================================
          ENCABEZADO
-    ====================================== -->
+    =========================================== -->
 
     <header class="encabezado">
 
@@ -73,16 +77,16 @@
 
 
 
-    <!-- =====================================
-         CONTENIDO
-    ====================================== -->
+    <!-- ==========================================
+         CONTENIDO PRINCIPAL
+    =========================================== -->
 
     <main class="contenedor">
 
 
-        <!-- =================================
-             BIENVENIDA
-        ================================== -->
+        <!-- ======================================
+             SECCIÓN DE CONSULTA
+        ======================================= -->
 
         <section class="bienvenida">
 
@@ -108,8 +112,8 @@
                 <p>
 
                     Ingresa tu código de empleado
-                    para consultar tus recibos de
-                    pago de forma rápida, sencilla
+                    para consultar tu recibo de pago
+                    de forma rápida, sencilla
                     y confidencial.
 
                 </p>
@@ -119,14 +123,91 @@
 
 
 
-            <!-- =============================
+            <!-- ==================================
                  BUSCADOR
-            ============================== -->
+            =================================== -->
 
             <div class="buscador">
 
 
-                <label for="codigo">
+                <!-- ==============================
+                     SELECTOR DE QUINCENA
+                =============================== -->
+
+                <div class="selector-quincena">
+
+
+                    <label class="titulo-selector">
+
+                        Selecciona la quincena
+
+                    </label>
+
+
+                    <div class="opciones-quincena">
+
+
+                        <!-- QUINCENA 1 -->
+
+                        <label class="opcion-quincena">
+
+
+                            <input
+                                type="radio"
+                                name="quincena"
+                                value="q1"
+                                checked
+                            >
+
+
+                            <span>
+
+                                Quincena 1
+
+                            </span>
+
+
+                        </label>
+
+
+
+                        <!-- QUINCENA 2 -->
+
+                        <label class="opcion-quincena">
+
+
+                            <input
+                                type="radio"
+                                name="quincena"
+                                value="q2"
+                            >
+
+
+                            <span>
+
+                                Quincena 2
+
+                            </span>
+
+
+                        </label>
+
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- ==============================
+                     CÓDIGO DE EMPLEADO
+                =============================== -->
+
+                <label
+                    for="codigo"
+                    class="label-codigo"
+                >
 
                     Código de empleado
 
@@ -139,7 +220,7 @@
                     <input
                         type="text"
                         id="codigo"
-                        placeholder="Ejemplo: CBEP0572"
+                        placeholder="Ejemplo: CBEP0016"
                         autocomplete="off"
                     >
 
@@ -159,11 +240,13 @@
 
                 <p class="ayuda">
 
-                    Ingrese su código de empleado
-                    para continuar.
+                    Selecciona la quincena e ingresa
+                    tu código de empleado.
 
                 </p>
 
+
+                <!-- MENSAJE -->
 
                 <div id="mensaje"></div>
 
@@ -175,15 +258,19 @@
 
 
 
-        <!-- =================================
+        <!-- ==========================================
              RESULTADO DEL EMPLEADO
-        ================================== -->
+        =========================================== -->
 
         <section
             id="resultado"
             class="resultado oculto"
         >
 
+
+            <!-- ======================================
+                 DATOS DEL COLABORADOR
+            ======================================= -->
 
             <div class="empleado">
 
@@ -243,9 +330,9 @@
 
 
 
-            <!-- =================================
-                 TÍTULO RECIBOS
-            ================================== -->
+            <!-- ======================================
+                 INFORMACIÓN DEL RECIBO
+            ======================================= -->
 
             <div class="titulo-seccion">
 
@@ -255,14 +342,14 @@
 
                     <span class="etiqueta">
 
-                        MIS RECIBOS
+                        MI RECIBO
 
                     </span>
 
 
                     <h2>
 
-                        Selecciona un período
+                        Recibo seleccionado
 
                     </h2>
 
@@ -270,9 +357,12 @@
                 </div>
 
 
-                <span class="periodo">
+                <span
+                    id="periodoSeleccionado"
+                    class="periodo"
+                >
 
-                    PERÍODO ACTUAL
+                    QUINCENA 1
 
                 </span>
 
@@ -281,14 +371,12 @@
 
 
 
-            <!-- =================================
-                 TARJETAS DE RECIBOS
-            ================================== -->
+            <!-- ======================================
+                 BOTÓN PARA VER RECIBO
+            ======================================= -->
 
             <div class="recibos">
 
-
-                <!-- QUINCENA 1 -->
 
                 <article class="recibo">
 
@@ -303,7 +391,7 @@
                     <div class="informacion-recibo">
 
 
-                        <span>
+                        <span id="textoQuincena">
 
                             QUINCENA 1
 
@@ -312,16 +400,15 @@
 
                         <h3>
 
-                            Primera quincena
+                            Recibo de pago
 
                         </h3>
 
 
                         <p>
 
-                            Consulta tu recibo
-                            correspondiente a la
-                            primera quincena.
+                            Tu recibo correspondiente
+                            a la quincena seleccionada.
 
                         </p>
 
@@ -330,64 +417,9 @@
 
 
                     <button
+                        id="verRecibo"
                         class="ver-recibo"
                         data-quincena="1"
-                        type="button"
-                    >
-
-                        Ver recibo
-
-                    </button>
-
-
-                </article>
-
-
-
-                <!-- QUINCENA 2 -->
-
-                <article class="recibo">
-
-
-                    <div class="icono-recibo">
-
-                        🧾
-
-                    </div>
-
-
-                    <div class="informacion-recibo">
-
-
-                        <span>
-
-                            QUINCENA 2
-
-                        </span>
-
-
-                        <h3>
-
-                            Segunda quincena
-
-                        </h3>
-
-
-                        <p>
-
-                            Consulta tu recibo
-                            correspondiente a la
-                            segunda quincena.
-
-                        </p>
-
-
-                    </div>
-
-
-                    <button
-                        class="ver-recibo"
-                        data-quincena="2"
                         type="button"
                     >
 
@@ -406,9 +438,9 @@
 
 
 
-        <!-- =================================
+        <!-- ==========================================
              VISOR DEL RECIBO
-        ================================== -->
+        =========================================== -->
 
         <section
             id="visor"
@@ -424,14 +456,14 @@
 
                     <span class="etiqueta">
 
-                        RECIBO SELECCIONADO
+                        RECIBO DE PAGO
 
                     </span>
 
 
                     <h2 id="visorTitulo">
 
-                        Recibo de pago
+                        Recibo
 
                     </h2>
 
@@ -454,33 +486,25 @@
 
 
 
-            <!-- =================================
-                 PDF
-            ================================== -->
+            <!-- ==================================
+                 AQUÍ SE MOSTRARÁ SOLO LA PÁGINA
+                 DEL RECIBO
+            =================================== -->
 
             <div class="visor-pdf">
 
 
-                <div class="icono-pdf">
+                <div
+                    style="
+                        text-align:center;
+                        padding:50px;
+                        color:#08743b;
+                    "
+                >
 
-                    📄
+                    Selecciona tu recibo para visualizarlo.
 
                 </div>
-
-
-                <h3>
-
-                    Recibo de pago
-
-                </h3>
-
-
-                <p>
-
-                    Selecciona una quincena
-                    para visualizar tu recibo.
-
-                </p>
 
 
             </div>
@@ -490,9 +514,9 @@
 
 
 
-        <!-- =================================
-             AVISO
-        ================================== -->
+        <!-- ==========================================
+             AVISO DE CONFIDENCIALIDAD
+        =========================================== -->
 
         <section class="aviso">
 
@@ -534,9 +558,9 @@
 
 
 
-    <!-- =====================================
+    <!-- ==========================================
          PIE DE PÁGINA
-    ====================================== -->
+    =========================================== -->
 
     <footer>
 
@@ -552,11 +576,11 @@
 
 
 
-    <!-- =====================================
-         JAVASCRIPT DE LA APLICACIÓN
-    ====================================== -->
+    <!-- ==========================================
+         JAVASCRIPT
+    =========================================== -->
 
-    <script src="script.js?v=3"></script>
+    <script src="script.js?v=4"></script>
 
 
 </body>

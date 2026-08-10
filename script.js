@@ -2,7 +2,6 @@
 // RECIBOS COA - VERSIÓN 2
 // ==========================================
 
-// Nombres EXACTOS de los PDF que están en GitHub
 const PDFS = {
     q1: "recibos-q1.pdf.pdf",
     q2: "recibos-q2.pdf.pdf"
@@ -10,7 +9,7 @@ const PDFS = {
 
 
 // ==========================================
-// ELEMENTOS DE LA PÁGINA
+// ELEMENTOS
 // ==========================================
 
 const codigoInput = document.getElementById("codigo");
@@ -51,7 +50,21 @@ let paginasEncontradas = {
 
 
 // ==========================================
-// MOSTRAR MENSAJE
+// NORMALIZAR TEXTO
+// ==========================================
+
+function normalizarTexto(texto) {
+
+    return texto
+        .toUpperCase()
+        .replace(/\s+/g, "")
+        .replace(/[^A-Z0-9]/g, "");
+
+}
+
+
+// ==========================================
+// MENSAJES
 // ==========================================
 
 function mostrarMensaje(texto, tipo) {
@@ -67,19 +80,36 @@ function mostrarMensaje(texto, tipo) {
         mensaje.style.color = "#08743b";
 
     }
+
 }
 
 
 // ==========================================
-// BUSCAR CÓDIGO EN UN PDF
+// BUSCAR EN PDF
 // ==========================================
 
 async function buscarEnPDF(url, codigo) {
 
+    console.log("Abriendo PDF:", url);
+
     const pdf =
         await pdfjsLib
-            .getDocument(url)
+            .getDocument({
+                url: url,
+                disableAutoFetch: false,
+                disableStream: false
+            })
             .promise;
+
+
+    console.log(
+        "PDF cargado. Páginas:",
+        pdf.numPages
+    );
+
+
+    const codigoNormalizado =
+        normalizarTexto(codigo);
 
 
     for (
@@ -102,11 +132,31 @@ async function buscarEnPDF(url, codigo) {
                 .join(" ");
 
 
+        const textoNormalizado =
+            normalizarTexto(texto);
+
+
+        // ==================================
+        // COMPROBAR CÓDIGO
+        // ==================================
+
         if (
-            texto
-                .toUpperCase()
-                .includes(codigo)
+            textoNormalizado.includes(
+                codigoNormalizado
+            )
         ) {
+
+            console.log(
+                "ENCONTRADO:",
+                codigo,
+                "Página:",
+                paginaNumero
+            );
+
+
+            // ==============================
+            // OBTENER NOMBRE
+            // ==============================
 
             const encontrado =
                 texto.match(
@@ -114,21 +164,41 @@ async function buscarEnPDF(url, codigo) {
                 );
 
 
+            const nombre =
+                encontrado
+                    ? encontrado[1].trim()
+                    : "Colaborador";
+
+
             return {
 
                 pagina: paginaNumero,
 
-                nombre: encontrado
-                    ? encontrado[1].trim()
-                    : "Colaborador"
+                nombre: nombre
 
             };
 
         }
 
+
+        // Mostrar progreso cada 25 páginas
+
+        if (paginaNumero % 25 === 0) {
+
+            console.log(
+                "Revisadas",
+                paginaNumero,
+                "páginas de",
+                pdf.numPages
+            );
+
+        }
+
     }
 
+
     return null;
+
 }
 
 
@@ -152,6 +222,7 @@ async function buscarEmpleado() {
         );
 
         return;
+
     }
 
 
@@ -167,6 +238,8 @@ async function buscarEmpleado() {
     );
 
 
+    resultado.classList.add("oculto");
+
     paginasEncontradas = {
         q1: null,
         q2: null
@@ -175,7 +248,16 @@ async function buscarEmpleado() {
 
     try {
 
-        // Buscar en Q1
+        // ==================================
+        // QUINCENA 1
+        // ==================================
+
+        mostrarMensaje(
+            "🔎 Revisando Quincena 1...",
+            "exito"
+        );
+
+
         const q1 =
             await buscarEnPDF(
                 PDFS.q1,
@@ -183,7 +265,16 @@ async function buscarEmpleado() {
             );
 
 
-        // Buscar en Q2
+        // ==================================
+        // QUINCENA 2
+        // ==================================
+
+        mostrarMensaje(
+            "🔎 Revisando Quincena 2...",
+            "exito"
+        );
+
+
         const q2 =
             await buscarEnPDF(
                 PDFS.q2,
@@ -191,9 +282,9 @@ async function buscarEmpleado() {
             );
 
 
-        // ----------------------------------
+        // ==================================
         // NO ENCONTRADO
-        // ----------------------------------
+        // ==================================
 
         if (!q1 && !q2) {
 
@@ -202,26 +293,30 @@ async function buscarEmpleado() {
                 "error"
             );
 
-            resultado.classList.add("oculto");
-
             return;
+
         }
 
 
-        // ----------------------------------
+        // ==================================
         // GUARDAR PÁGINAS
-        // ----------------------------------
+        // ==================================
 
         paginasEncontradas.q1 =
-            q1 ? q1.pagina : null;
+            q1
+                ? q1.pagina
+                : null;
+
 
         paginasEncontradas.q2 =
-            q2 ? q2.pagina : null;
+            q2
+                ? q2.pagina
+                : null;
 
 
-        // ----------------------------------
-        // DATOS DEL EMPLEADO
-        // ----------------------------------
+        // ==================================
+        // DATOS EMPLEADO
+        // ==================================
 
         empleadoActual = {
 
@@ -238,15 +333,22 @@ async function buscarEmpleado() {
         nombreEmpleado.textContent =
             empleadoActual.nombre;
 
+
         codigoEmpleado.textContent =
             empleadoActual.codigo;
 
 
-        resultado.classList.remove("oculto");
+        // ==================================
+        // MOSTRAR RESULTADO
+        // ==================================
+
+        resultado.classList.remove(
+            "oculto"
+        );
 
 
         mostrarMensaje(
-            "✓ Empleado encontrado.",
+            "✓ Empleado encontrado correctamente.",
             "exito"
         );
 
@@ -259,10 +361,14 @@ async function buscarEmpleado() {
 
     } catch (error) {
 
-        console.error(error);
+        console.error(
+            "ERROR:",
+            error
+        );
+
 
         mostrarMensaje(
-            "❌ No se pudo consultar el recibo. Verifique que los PDF estén disponibles.",
+            "❌ Ocurrió un error al leer los PDF.",
             "error"
         );
 
@@ -291,16 +397,17 @@ function abrirRecibo(quincena) {
     if (!pagina) {
 
         alert(
-            "No encontramos un recibo para esta quincena."
+            "Este empleado no tiene recibo disponible para esta quincena."
         );
 
         return;
+
     }
 
 
-    // ----------------------------------
+    // ==================================
     // TÍTULO
-    // ----------------------------------
+    // ==================================
 
     if (quincena === "q1") {
 
@@ -315,12 +422,14 @@ function abrirRecibo(quincena) {
     }
 
 
-    // ----------------------------------
-    // MOSTRAR PDF EN LA PÁGINA EXACTA
-    // ----------------------------------
+    // ==================================
+    // PDF
+    // ==================================
 
     const visorPDF =
-        document.querySelector(".visor-pdf");
+        document.querySelector(
+            ".visor-pdf"
+        );
 
 
     visorPDF.innerHTML = `
@@ -340,7 +449,9 @@ function abrirRecibo(quincena) {
     `;
 
 
-    visor.classList.remove("oculto");
+    visor.classList.remove(
+        "oculto"
+    );
 
 
     visor.scrollIntoView({
@@ -352,37 +463,41 @@ function abrirRecibo(quincena) {
 
 
 // ==========================================
-// BOTONES DE QUINCENA
+// BOTONES QUINCENA
 // ==========================================
 
 const botonesRecibo =
-    document.querySelectorAll(".ver-recibo");
-
-
-botonesRecibo.forEach(boton => {
-
-    boton.addEventListener(
-        "click",
-        function () {
-
-            const quincena =
-                boton.dataset.quincena;
-
-
-            if (quincena === "1") {
-
-                abrirRecibo("q1");
-
-            } else {
-
-                abrirRecibo("q2");
-
-            }
-
-        }
+    document.querySelectorAll(
+        ".ver-recibo"
     );
 
-});
+
+botonesRecibo.forEach(
+    boton => {
+
+        boton.addEventListener(
+            "click",
+            function () {
+
+                const quincena =
+                    boton.dataset.quincena;
+
+
+                if (quincena === "1") {
+
+                    abrirRecibo("q1");
+
+                } else {
+
+                    abrirRecibo("q2");
+
+                }
+
+            }
+        );
+
+    }
+);
 
 
 // ==========================================
@@ -393,7 +508,9 @@ cerrarVisor.addEventListener(
     "click",
     function () {
 
-        visor.classList.add("oculto");
+        visor.classList.add(
+            "oculto"
+        );
 
     }
 );
@@ -411,9 +528,13 @@ nuevaConsulta.addEventListener(
 
         mensaje.textContent = "";
 
-        resultado.classList.add("oculto");
+        resultado.classList.add(
+            "oculto"
+        );
 
-        visor.classList.add("oculto");
+        visor.classList.add(
+            "oculto"
+        );
 
 
         paginasEncontradas = {

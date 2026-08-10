@@ -14,23 +14,15 @@
         Recibos de Pago | Agroindustrias Cayo Blanco
     </title>
 
-
-    <!-- ==========================================
-         PDF.JS
-    =========================================== -->
-
+    <!-- PDF.JS -->
     <script
         src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js">
     </script>
 
-
-    <!-- ==========================================
-         ESTILOS
-    =========================================== -->
-
+    <!-- ESTILOS -->
     <link
         rel="stylesheet"
-        href="style.css"
+        href="style.css?v=6"
     >
 
 </head>
@@ -39,9 +31,9 @@
 <body>
 
 
-    <!-- ==========================================
+    <!-- ==================================================
          ENCABEZADO
-    =========================================== -->
+    =================================================== -->
 
     <header class="encabezado">
 
@@ -50,7 +42,6 @@
             <div class="logo">
                 COA
             </div>
-
 
             <div class="empresa">
 
@@ -77,63 +68,50 @@
 
 
 
-    <!-- ==========================================
-         CONTENIDO PRINCIPAL
-    =========================================== -->
+    <!-- ==================================================
+         CONTENIDO
+    =================================================== -->
 
     <main class="contenedor">
 
 
-        <!-- ======================================
-             SECCIÓN DE CONSULTA
-        ======================================= -->
+        <!-- ==================================================
+             BUSCADOR
+        =================================================== -->
 
         <section class="bienvenida">
 
 
             <div class="bienvenida-texto">
 
-
                 <span class="etiqueta">
-
                     RECURSOS HUMANOS
-
                 </span>
 
 
                 <h2>
-
                     Consulta tus
                     recibos de pago
-
                 </h2>
 
 
                 <p>
-
                     Selecciona la quincena e ingresa
                     tu código de empleado para consultar
                     tu recibo de forma rápida,
                     sencilla y confidencial.
-
                 </p>
-
 
             </div>
 
 
 
-            <!-- ==================================
-                 BUSCADOR
-            =================================== -->
-
             <div class="buscador">
 
 
-                <!-- SELECTOR DE QUINCENA -->
+                <!-- QUINCENA -->
 
                 <div class="selector-quincena">
-
 
                     <label class="titulo-selector">
 
@@ -145,8 +123,6 @@
                     <div class="opciones-quincena">
 
 
-                        <!-- QUINCENA 1 -->
-
                         <label class="opcion-quincena">
 
                             <input
@@ -157,16 +133,11 @@
                             >
 
                             <span>
-
                                 Quincena 1
-
                             </span>
 
                         </label>
 
-
-
-                        <!-- QUINCENA 2 -->
 
                         <label class="opcion-quincena">
 
@@ -177,9 +148,7 @@
                             >
 
                             <span>
-
                                 Quincena 2
-
                             </span>
 
                         </label>
@@ -205,7 +174,6 @@
 
                 <div class="fila-busqueda">
 
-
                     <input
                         type="text"
                         id="codigo"
@@ -219,18 +187,17 @@
                         type="button"
                     >
 
-                        Consultar
+                        🔎 Consultar recibo
 
                     </button>
-
 
                 </div>
 
 
                 <p class="ayuda">
 
-                    Selecciona la quincena e ingresa
-                    tu código de empleado.
+                    Ingresa tu código tal como aparece
+                    en tu documentación laboral.
 
                 </p>
 
@@ -240,14 +207,13 @@
 
             </div>
 
-
         </section>
 
 
 
-        <!-- ==========================================
+        <!-- ==================================================
              RESULTADO DEL EMPLEADO
-        =========================================== -->
+        =================================================== -->
 
         <section
             id="resultado"
@@ -255,13 +221,13 @@
         >
 
 
+            <!-- DATOS DEL COLABORADOR -->
+
             <div class="empleado">
 
 
                 <div class="avatar">
-
                     👤
-
                 </div>
 
 
@@ -269,27 +235,21 @@
 
 
                     <span>
-
-                        COLABORADOR
-
+                        COLABORADOR ENCONTRADO
                     </span>
 
 
                     <h2 id="nombreEmpleado">
-
                         —
-
                     </h2>
 
 
                     <p>
 
-                        Código:
+                        Código de empleado:
 
                         <strong id="codigoEmpleado">
-
                             —
-
                         </strong>
 
                     </p>
@@ -304,7 +264,7 @@
                     type="button"
                 >
 
-                    Nueva consulta
+                    ↻ Nueva consulta
 
                 </button>
 
@@ -313,29 +273,23 @@
 
 
 
-            <!-- ======================================
-                 INFORMACIÓN DEL RECIBO
-            ======================================= -->
+            <!-- ==================================================
+                 RECIBO DISPONIBLE
+            =================================================== -->
 
             <div class="titulo-seccion">
 
 
                 <div>
 
-
                     <span class="etiqueta">
-
-                        MI RECIBO
-
+                        DOCUMENTO DISPONIBLE
                     </span>
 
 
                     <h2>
-
-                        Recibo seleccionado
-
+                        Tu recibo de pago
                     </h2>
-
 
                 </div>
 
@@ -354,10 +308,6 @@
 
 
 
-            <!-- ======================================
-                 TARJETA DEL RECIBO
-            ======================================= -->
-
             <div class="recibos">
 
 
@@ -365,9 +315,7 @@
 
 
                     <div class="icono-recibo">
-
                         🧾
-
                     </div>
 
 
@@ -375,25 +323,19 @@
 
 
                         <span id="textoQuincena">
-
                             QUINCENA 1
-
                         </span>
 
 
                         <h3>
-
                             Recibo de pago
-
                         </h3>
 
 
                         <p>
-
-                            Consulta y guarda tu recibo
-                            correspondiente a la
-                            quincena seleccionada.
-
+                            Consulta el detalle de tu
+                            recibo correspondiente al
+                            período seleccionado.
                         </p>
 
 
@@ -403,11 +345,10 @@
                     <button
                         id="verRecibo"
                         class="ver-recibo"
-                        data-quincena="1"
                         type="button"
                     >
 
-                        Ver recibo
+                        👁️ Ver recibo
 
                     </button>
 
@@ -422,9 +363,9 @@
 
 
 
-        <!-- ==========================================
+        <!-- ==================================================
              VISOR DEL RECIBO
-        =========================================== -->
+        =================================================== -->
 
         <section
             id="visor"
@@ -437,20 +378,14 @@
 
                 <div>
 
-
                     <span class="etiqueta">
-
                         RECIBO DE PAGO
-
                     </span>
 
 
                     <h2 id="visorTitulo">
-
                         Recibo
-
                     </h2>
-
 
                 </div>
 
@@ -464,8 +399,6 @@
                 >
 
 
-                    <!-- GUARDAR -->
-
                     <button
                         id="guardarRecibo"
                         class="boton-secundario"
@@ -477,15 +410,13 @@
                     </button>
 
 
-                    <!-- CERRAR -->
-
                     <button
                         id="cerrarVisor"
                         class="boton-secundario"
                         type="button"
                     >
 
-                        Cerrar
+                        ← Cerrar
 
                     </button>
 
@@ -497,9 +428,7 @@
 
 
 
-            <!-- ==================================
-                 AQUÍ SE RENDERIZA SOLO LA PÁGINA
-            =================================== -->
+            <!-- VISOR PDF -->
 
             <div class="visor-pdf">
 
@@ -524,39 +453,31 @@
 
 
 
-        <!-- ==========================================
+        <!-- ==================================================
              AVISO DE CONFIDENCIALIDAD
-        =========================================== -->
+        =================================================== -->
 
         <section class="aviso">
 
 
             <div class="aviso-icono">
-
                 🔐
-
             </div>
 
 
             <div>
 
-
                 <h3>
-
                     Tu información es confidencial
-
                 </h3>
 
 
                 <p>
-
-                    Los recibos de pago son documentos
-                    de uso exclusivo del colaborador.
-                    No compartas tu código ni la
-                    información de tu recibo con terceros.
-
+                    Los recibos de pago contienen
+                    información personal. Consulta
+                    únicamente tu propio recibo y no
+                    compartas tu código de empleado.
                 </p>
-
 
             </div>
 
@@ -568,29 +489,27 @@
 
 
 
-    <!-- ==========================================
+    <!-- ==================================================
          PIE DE PÁGINA
-    =========================================== -->
+    =================================================== -->
 
     <footer>
 
         RRHH · Agroindustrias Cayo Blanco · COA
 
         <span>
-
             Versión 2
-
         </span>
 
     </footer>
 
 
 
-    <!-- ==========================================
-         JAVASCRIPT
-    =========================================== -->
+    <!-- ==================================================
+         SCRIPT
+    =================================================== -->
 
-    <script src="script.js?v=5"></script>
+    <script src="script.js?v=6"></script>
 
 
 </body>

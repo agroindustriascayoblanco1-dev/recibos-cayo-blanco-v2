@@ -2,7 +2,6 @@
 // COA - RECIBOS DE PAGO - VERSIÓN 2
 // ======================================================
 
-
 // ======================================================
 // ARCHIVOS PDF
 // ======================================================
@@ -105,9 +104,13 @@ function normalizarTexto(texto) {
 // MENSAJES
 // ======================================================
 
-function mostrarMensaje(texto, tipo = "normal") {
+function mostrarMensaje(
+    texto,
+    tipo = "normal"
+) {
 
-    mensaje.textContent = texto;
+    mensaje.textContent =
+        texto;
 
     mensaje.style.color =
         tipo === "error"
@@ -152,12 +155,10 @@ async function cargarPDF(url) {
     pdfjsLib.GlobalWorkerOptions.workerSrc =
         "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
 
-
     const tarea =
         pdfjsLib.getDocument({
             url: url
         });
-
 
     return await tarea.promise;
 
@@ -168,7 +169,10 @@ async function cargarPDF(url) {
 // BUSCAR CÓDIGO
 // ======================================================
 
-async function buscarEnPDF(url, codigo) {
+async function buscarEnPDF(
+    url,
+    codigo
+) {
 
     const pdf =
         await cargarPDF(url);
@@ -188,10 +192,8 @@ async function buscarEnPDF(url, codigo) {
                 paginaNumero
             );
 
-
         const contenido =
             await pagina.getTextContent();
-
 
         const texto =
             contenido.items
@@ -200,7 +202,6 @@ async function buscarEnPDF(url, codigo) {
                         item.str || ""
                 )
                 .join(" ");
-
 
         const textoNormalizado =
             normalizarTexto(texto);
@@ -299,7 +300,8 @@ async function buscarEmpleado() {
             : "Quincena 2";
 
 
-    botonBuscar.disabled = true;
+    botonBuscar.disabled =
+        true;
 
     botonBuscar.textContent =
         "Buscando...";
@@ -426,7 +428,8 @@ async function buscarEmpleado() {
 
     } finally {
 
-        botonBuscar.disabled = false;
+        botonBuscar.disabled =
+            false;
 
         botonBuscar.textContent =
             "Consultar";
@@ -648,7 +651,10 @@ async function abrirRecibo() {
 
 async function cargarJsPDF() {
 
-    if (window.jspdf) {
+    if (
+        window.jspdf &&
+        window.jspdf.jsPDF
+    ) {
 
         return window.jspdf.jsPDF;
 
@@ -698,7 +704,7 @@ async function cargarJsPDF() {
 
                     reject(
                         new Error(
-                            "No se pudo descargar jsPDF."
+                            "No se pudo cargar jsPDF."
                         )
                     );
 
@@ -716,7 +722,7 @@ async function cargarJsPDF() {
 
 
 // ======================================================
-// GUARDAR RECIBO
+// GUARDAR RECIBO COMO PDF
 // ======================================================
 
 async function guardarReciboComoPDF() {
@@ -735,17 +741,13 @@ async function guardarReciboComoPDF() {
     if (!empleadoActual) {
 
         alert(
-            "No se encontró el empleado."
+            "No se encontró la información del empleado."
         );
 
         return;
 
     }
 
-
-    // ------------------------------------------
-    // DESACTIVAR BOTÓN
-    // ------------------------------------------
 
     guardarRecibo.disabled =
         true;
@@ -757,7 +759,6 @@ async function guardarReciboComoPDF() {
 
     try {
 
-
         // --------------------------------------
         // CARGAR jsPDF
         // --------------------------------------
@@ -767,7 +768,7 @@ async function guardarReciboComoPDF() {
 
 
         // --------------------------------------
-        // OBTENER TAMAÑO REAL DE LA PÁGINA
+        // RENDERIZAR EN ALTA CALIDAD
         // --------------------------------------
 
         const viewport =
@@ -775,10 +776,6 @@ async function guardarReciboComoPDF() {
                 scale: 2
             });
 
-
-        // --------------------------------------
-        // CANVAS NUEVO EN ALTA CALIDAD
-        // --------------------------------------
 
         const canvas =
             document.createElement(
@@ -804,10 +801,6 @@ async function guardarReciboComoPDF() {
             );
 
 
-        // --------------------------------------
-        // RENDERIZAR NUEVAMENTE
-        // --------------------------------------
-
         await paginaActual.render({
 
             canvasContext:
@@ -831,7 +824,7 @@ async function guardarReciboComoPDF() {
 
 
         // --------------------------------------
-        // DETERMINAR ORIENTACIÓN
+        // ORIENTACIÓN
         // --------------------------------------
 
         const vertical =
@@ -860,7 +853,7 @@ async function guardarReciboComoPDF() {
 
 
         // --------------------------------------
-        // TAMAÑO DE HOJA
+        // DIMENSIONES A4
         // --------------------------------------
 
         const paginaAncho =
@@ -870,10 +863,6 @@ async function guardarReciboComoPDF() {
         const paginaAlto =
             pdf.internal.pageSize.getHeight();
 
-
-        // --------------------------------------
-        // MÁRGENES
-        // --------------------------------------
 
         const margen =
             8;
@@ -888,10 +877,6 @@ async function guardarReciboComoPDF() {
             paginaAlto -
             margen * 2;
 
-
-        // --------------------------------------
-        // PROPORCIÓN
-        // --------------------------------------
 
         const proporcion =
             Math.min(
@@ -930,7 +915,7 @@ async function guardarReciboComoPDF() {
 
 
         // --------------------------------------
-        // AGREGAR RECIBO
+        // AGREGAR SOLO EL RECIBO
         // --------------------------------------
 
         pdf.addImage(
@@ -955,7 +940,7 @@ async function guardarReciboComoPDF() {
 
 
         // --------------------------------------
-        // NOMBRE
+        // NOMBRE DEL ARCHIVO
         // --------------------------------------
 
         const qNombre =
@@ -964,16 +949,29 @@ async function guardarReciboComoPDF() {
                 : "Q2";
 
 
+        const nombreLimpio =
+            empleadoActual.nombre
+                .replace(
+                    /[\\/:*?"<>|]/g,
+                    ""
+                )
+                .replace(
+                    /\s+/g,
+                    " "
+                )
+                .trim();
+
+
         const nombreArchivo =
-            "Recibo_" +
-            empleadoActual.codigo +
-            "_" +
+            "Recibo de Pago - " +
+            nombreLimpio +
+            " - " +
             qNombre +
             ".pdf";
 
 
         // --------------------------------------
-        // DESCARGAR
+        // GUARDAR
         // --------------------------------------
 
         pdf.save(
@@ -981,8 +979,17 @@ async function guardarReciboComoPDF() {
         );
 
 
+        // --------------------------------------
+        // CONFIRMACIÓN
+        // --------------------------------------
+
         guardarRecibo.textContent =
-            "✓ Guardado";
+            "✓ Recibo guardado";
+
+
+        mostrarMensaje(
+            "✓ Recibo guardado correctamente."
+        );
 
 
         setTimeout(
@@ -1005,13 +1012,12 @@ async function guardarReciboComoPDF() {
 
 
         alert(
-            "No se pudo guardar el recibo. Revisa tu conexión a internet e inténtalo nuevamente."
+            "No se pudo guardar el recibo. Inténtalo nuevamente."
         );
 
 
         guardarRecibo.textContent =
             "📥 Guardar recibo";
-
 
     } finally {
 

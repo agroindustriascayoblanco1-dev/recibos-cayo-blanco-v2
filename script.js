@@ -2,22 +2,10 @@
 // RECIBOS COA - VERSIÓN 2
 // ==========================================
 
-// ------------------------------------------
-// DATOS TEMPORALES PARA LA PRUEBA
-// ------------------------------------------
-//
-// Por ahora utilizaremos un empleado de prueba.
-// Más adelante aquí conectaremos los datos reales.
-//
-
-const empleados = {
-
-    "CBEP0000": {
-        nombre: "Empleado de Prueba",
-        quincena1: true,
-        quincena2: true
-    }
-
+// Nombres EXACTOS de los PDF que están en GitHub
+const PDFS = {
+    q1: "recibos-q1.pdf.pdf",
+    q2: "recibos-q2.pdf.pdf"
 };
 
 
@@ -51,21 +39,112 @@ const cerrarVisor =
 
 
 // ==========================================
+// VARIABLES
+// ==========================================
+
+let empleadoActual = null;
+
+let paginasEncontradas = {
+    q1: null,
+    q2: null
+};
+
+
+// ==========================================
+// MOSTRAR MENSAJE
+// ==========================================
+
+function mostrarMensaje(texto, tipo) {
+
+    mensaje.textContent = texto;
+
+    if (tipo === "error") {
+
+        mensaje.style.color = "#c62828";
+
+    } else {
+
+        mensaje.style.color = "#08743b";
+
+    }
+}
+
+
+// ==========================================
+// BUSCAR CÓDIGO EN UN PDF
+// ==========================================
+
+async function buscarEnPDF(url, codigo) {
+
+    const pdf =
+        await pdfjsLib
+            .getDocument(url)
+            .promise;
+
+
+    for (
+        let paginaNumero = 1;
+        paginaNumero <= pdf.numPages;
+        paginaNumero++
+    ) {
+
+        const pagina =
+            await pdf.getPage(paginaNumero);
+
+
+        const contenido =
+            await pagina.getTextContent();
+
+
+        const texto =
+            contenido.items
+                .map(item => item.str)
+                .join(" ");
+
+
+        if (
+            texto
+                .toUpperCase()
+                .includes(codigo)
+        ) {
+
+            const encontrado =
+                texto.match(
+                    /Empleado:\s*(.*?)\s+Sueldo Mensual/i
+                );
+
+
+            return {
+
+                pagina: paginaNumero,
+
+                nombre: encontrado
+                    ? encontrado[1].trim()
+                    : "Colaborador"
+
+            };
+
+        }
+
+    }
+
+    return null;
+}
+
+
+// ==========================================
 // BUSCAR EMPLEADO
 // ==========================================
 
-function buscarEmpleado() {
+async function buscarEmpleado() {
 
-    const codigo = codigoInput.value
-        .trim()
-        .toUpperCase();
+    const codigo =
+        codigoInput.value
+            .trim()
+            .toUpperCase();
 
 
-    // --------------------------------------
-    // Validar que se haya escrito algo
-    // --------------------------------------
-
-    if (codigo === "") {
+    if (!codigo) {
 
         mostrarMensaje(
             "⚠️ Ingresa tu código de empleado.",
@@ -76,72 +155,123 @@ function buscarEmpleado() {
     }
 
 
-    // --------------------------------------
-    // Buscar empleado
-    // --------------------------------------
+    botonBuscar.disabled = true;
 
-    const empleado = empleados[codigo];
+    botonBuscar.textContent =
+        "Buscando...";
 
-
-    if (!empleado) {
-
-        mostrarMensaje(
-            "❌ No encontramos un empleado con ese código.",
-            "error"
-        );
-
-        resultado.classList.add("oculto");
-
-        return;
-    }
-
-
-    // --------------------------------------
-    // Empleado encontrado
-    // --------------------------------------
 
     mostrarMensaje(
-        "✓ Empleado encontrado correctamente.",
+        "🔎 Buscando tu recibo...",
         "exito"
     );
 
 
-    nombreEmpleado.textContent =
-        empleado.nombre;
-
-    codigoEmpleado.textContent =
-        codigo;
-
-
-    resultado.classList.remove("oculto");
+    paginasEncontradas = {
+        q1: null,
+        q2: null
+    };
 
 
-    // Ir automáticamente al resultado
+    try {
 
-    resultado.scrollIntoView({
-        behavior: "smooth",
-        block: "start"
-    });
-
-}
-
-
-// ==========================================
-// MOSTRAR MENSAJES
-// ==========================================
-
-function mostrarMensaje(texto, tipo) {
-
-    mensaje.textContent = texto;
+        // Buscar en Q1
+        const q1 =
+            await buscarEnPDF(
+                PDFS.q1,
+                codigo
+            );
 
 
-    if (tipo === "error") {
+        // Buscar en Q2
+        const q2 =
+            await buscarEnPDF(
+                PDFS.q2,
+                codigo
+            );
 
-        mensaje.style.color = "#c62828";
 
-    } else {
+        // ----------------------------------
+        // NO ENCONTRADO
+        // ----------------------------------
 
-        mensaje.style.color = "#08743b";
+        if (!q1 && !q2) {
+
+            mostrarMensaje(
+                "❌ No encontramos un recibo con ese código.",
+                "error"
+            );
+
+            resultado.classList.add("oculto");
+
+            return;
+        }
+
+
+        // ----------------------------------
+        // GUARDAR PÁGINAS
+        // ----------------------------------
+
+        paginasEncontradas.q1 =
+            q1 ? q1.pagina : null;
+
+        paginasEncontradas.q2 =
+            q2 ? q2.pagina : null;
+
+
+        // ----------------------------------
+        // DATOS DEL EMPLEADO
+        // ----------------------------------
+
+        empleadoActual = {
+
+            codigo: codigo,
+
+            nombre:
+                q1
+                    ? q1.nombre
+                    : q2.nombre
+
+        };
+
+
+        nombreEmpleado.textContent =
+            empleadoActual.nombre;
+
+        codigoEmpleado.textContent =
+            empleadoActual.codigo;
+
+
+        resultado.classList.remove("oculto");
+
+
+        mostrarMensaje(
+            "✓ Empleado encontrado.",
+            "exito"
+        );
+
+
+        resultado.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+
+
+    } catch (error) {
+
+        console.error(error);
+
+        mostrarMensaje(
+            "❌ No se pudo consultar el recibo. Verifique que los PDF estén disponibles.",
+            "error"
+        );
+
+    } finally {
+
+        botonBuscar.disabled = false;
+
+        botonBuscar.textContent =
+            "Consultar";
 
     }
 
@@ -154,19 +284,60 @@ function mostrarMensaje(texto, tipo) {
 
 function abrirRecibo(quincena) {
 
-    if (quincena === "1") {
+    const pagina =
+        paginasEncontradas[quincena];
+
+
+    if (!pagina) {
+
+        alert(
+            "No encontramos un recibo para esta quincena."
+        );
+
+        return;
+    }
+
+
+    // ----------------------------------
+    // TÍTULO
+    // ----------------------------------
+
+    if (quincena === "q1") {
 
         visorTitulo.textContent =
             "Recibo — Quincena 1";
 
-    }
-
-    if (quincena === "2") {
+    } else {
 
         visorTitulo.textContent =
             "Recibo — Quincena 2";
 
     }
+
+
+    // ----------------------------------
+    // MOSTRAR PDF EN LA PÁGINA EXACTA
+    // ----------------------------------
+
+    const visorPDF =
+        document.querySelector(".visor-pdf");
+
+
+    visorPDF.innerHTML = `
+
+        <iframe
+            src="${PDFS[quincena]}#page=${pagina}"
+            style="
+                width:100%;
+                height:700px;
+                border:none;
+                border-radius:12px;
+                background:white;
+            "
+            title="Recibo de pago"
+        ></iframe>
+
+    `;
 
 
     visor.classList.remove("oculto");
@@ -188,7 +359,7 @@ const botonesRecibo =
     document.querySelectorAll(".ver-recibo");
 
 
-botonesRecibo.forEach(function (boton) {
+botonesRecibo.forEach(boton => {
 
     boton.addEventListener(
         "click",
@@ -197,7 +368,16 @@ botonesRecibo.forEach(function (boton) {
             const quincena =
                 boton.dataset.quincena;
 
-            abrirRecibo(quincena);
+
+            if (quincena === "1") {
+
+                abrirRecibo("q1");
+
+            } else {
+
+                abrirRecibo("q2");
+
+            }
 
         }
     );
@@ -235,7 +415,18 @@ nuevaConsulta.addEventListener(
 
         visor.classList.add("oculto");
 
+
+        paginasEncontradas = {
+            q1: null,
+            q2: null
+        };
+
+
+        empleadoActual = null;
+
+
         codigoInput.focus();
+
 
         window.scrollTo({
             top: 0,
@@ -247,7 +438,7 @@ nuevaConsulta.addEventListener(
 
 
 // ==========================================
-// BOTÓN BUSCAR
+// BOTÓN CONSULTAR
 // ==========================================
 
 botonBuscar.addEventListener(
@@ -257,7 +448,7 @@ botonBuscar.addEventListener(
 
 
 // ==========================================
-// ENTER EN EL CÓDIGO
+// ENTER
 // ==========================================
 
 codigoInput.addEventListener(

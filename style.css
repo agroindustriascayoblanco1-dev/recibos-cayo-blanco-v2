@@ -1,1 +1,531 @@
-style.css
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: #f3f6f4;
+    color: #26332c;
+    min-height: 100vh;
+}
+
+/* =========================
+   ENCABEZADO
+========================= */
+
+.encabezado {
+    background: linear-gradient(135deg, #075b31, #119447);
+    color: white;
+    padding: 22px 6%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, .15);
+}
+
+.marca {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo {
+    width: 58px;
+    height: 58px;
+    border-radius: 15px;
+    background: white;
+    color: #08743b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: 800;
+    box-shadow: 0 5px 15px rgba(0,0,0,.15);
+}
+
+.empresa h1 {
+    font-size: 21px;
+    letter-spacing: .5px;
+}
+
+.empresa p {
+    margin-top: 4px;
+    opacity: .85;
+}
+
+.confidencial-top {
+    font-size: 14px;
+    opacity: .9;
+}
+
+/* =========================
+   CONTENEDOR
+========================= */
+
+.contenedor {
+    width: 92%;
+    max-width: 1100px;
+    margin: 45px auto;
+}
+
+/* =========================
+   BIENVENIDA
+========================= */
+
+.bienvenida {
+    background: white;
+    border-radius: 24px;
+    padding: 45px;
+    display: grid;
+    grid-template-columns: 1.1fr .9fr;
+    gap: 45px;
+    align-items: center;
+    box-shadow: 0 12px 35px rgba(0,0,0,.07);
+}
+
+.etiqueta {
+    color: #07823f;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+}
+
+.bienvenida h2 {
+    font-size: 42px;
+    line-height: 1.1;
+    margin: 15px 0;
+    color: #163e2a;
+}
+
+.bienvenida-texto p {
+    color: #69756e;
+    font-size: 17px;
+    line-height: 1.7;
+    max-width: 560px;
+}
+
+/* =========================
+   BUSCADOR
+========================= */
+
+.buscador {
+    background: #f5f9f6;
+    border: 1px solid #e0e9e3;
+    padding: 28px;
+    border-radius: 20px;
+}
+
+.buscador label {
+    display: block;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.fila-busqueda {
+    display: flex;
+    gap: 10px;
+}
+
+.fila-busqueda input {
+    min-width: 0;
+    flex: 1;
+}
+
+input {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid #dbe4de;
+    border-radius: 11px;
+    background: white;
+    font-size: 16px;
+    outline: none;
+    transition: .25s;
+}
+
+input:focus {
+    border-color: #0b853f;
+    box-shadow: 0 0 0 4px rgba(11,133,63,.10);
+}
+
+button {
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    transition: .25s;
+}
+
+#buscar {
+    background: #0b853f;
+    color: white;
+    padding: 0 24px;
+    border-radius: 11px;
+    font-weight: 700;
+    font-size: 15px;
+}
+
+#buscar:hover {
+    background: #076b32;
+    transform: translateY(-1px);
+}
+
+.ayuda {
+    margin-top: 10px;
+    color: #7c8780;
+    font-size: 13px;
+}
+
+#mensaje {
+    margin-top: 15px;
+    font-weight: 700;
+}
+
+/* =========================
+   EMPLEADO
+========================= */
+
+.resultado {
+    margin-top: 30px;
+}
+
+.empleado {
+    background: white;
+    border-radius: 20px;
+    padding: 25px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    box-shadow: 0 8px 25px rgba(0,0,0,.06);
+}
+
+.avatar {
+    width: 60px;
+    height: 60px;
+    background: #e7f6ed;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 28px;
+}
+
+.datos-empleado span {
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    color: #758079;
+}
+
+.datos-empleado h2 {
+    margin: 3px 0;
+    color: #123b27;
+}
+
+.datos-empleado p {
+    color: #78837c;
+}
+
+.boton-secundario {
+    margin-left: auto;
+    padding: 12px 18px;
+    border-radius: 10px;
+    background: white;
+    border: 1px solid #d5dfd9;
+    color: #365044;
+    font-weight: 700;
+}
+
+.boton-secundario:hover {
+    background: #f1f5f2;
+}
+
+/* =========================
+   TÍTULO SECCIÓN
+========================= */
+
+.titulo-seccion {
+    margin: 38px 0 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+}
+
+.titulo-seccion h2 {
+    margin-top: 6px;
+    color: #173f2b;
+}
+
+.periodo {
+    background: #e6f5ec;
+    color: #08743b;
+    padding: 8px 13px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 800;
+}
+
+/* =========================
+   RECIBOS
+========================= */
+
+.recibos {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px;
+}
+
+.recibo {
+    background: white;
+    border-radius: 20px;
+    padding: 28px;
+    box-shadow: 0 8px 25px rgba(0,0,0,.06);
+    border: 1px solid #edf1ee;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.icono-recibo {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    background: #eaf7ef;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+}
+
+.informacion-recibo span {
+    font-size: 12px;
+    color: #0b853f;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.informacion-recibo h3 {
+    margin: 7px 0;
+    font-size: 22px;
+    color: #183d2a;
+}
+
+.informacion-recibo p {
+    color: #748078;
+    line-height: 1.6;
+}
+
+.ver-recibo {
+    width: 100%;
+    padding: 13px;
+    background: #0b853f;
+    color: white;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 15px;
+}
+
+.ver-recibo:hover {
+    background: #076b32;
+}
+
+/* =========================
+   VISOR
+========================= */
+
+.visor {
+    background: white;
+    margin-top: 30px;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(0,0,0,.06);
+}
+
+.cabecera-visor {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cabecera-visor h2 {
+    margin-top: 6px;
+    color: #183d2a;
+}
+
+.visor-pdf {
+    margin-top: 25px;
+    min-height: 300px;
+    background: #f5f7f6;
+    border: 2px dashed #d6dfd9;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 30px;
+}
+
+.icono-pdf {
+    font-size: 55px;
+    margin-bottom: 15px;
+}
+
+.visor-pdf h3 {
+    color: #294a39;
+}
+
+.visor-pdf p {
+    color: #7b857f;
+    margin-top: 8px;
+}
+
+.acciones {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.boton-principal,
+.acciones .boton-secundario {
+    flex: 1;
+    margin: 0;
+}
+
+.boton-principal {
+    padding: 14px;
+    border-radius: 10px;
+    background: #0b853f;
+    color: white;
+    font-weight: 700;
+}
+
+/* =========================
+   AVISO
+========================= */
+
+.aviso {
+    margin-top: 35px;
+    padding: 25px;
+    background: #eaf7ef;
+    border-left: 6px solid #0b853f;
+    border-radius: 15px;
+    display: flex;
+    gap: 18px;
+}
+
+.aviso-icono {
+    font-size: 35px;
+}
+
+.aviso h3 {
+    color: #126537;
+    margin-bottom: 6px;
+}
+
+.aviso p {
+    color: #526259;
+    line-height: 1.6;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    background: #075b31;
+    color: white;
+    text-align: center;
+    padding: 22px;
+    margin-top: 50px;
+    font-size: 14px;
+}
+
+footer span {
+    opacity: .65;
+    margin-left: 8px;
+}
+
+/* =========================
+   UTILIDADES
+========================= */
+
+.oculto {
+    display: none;
+}
+
+/* =========================
+   CELULAR
+========================= */
+
+@media (max-width: 800px) {
+
+    .encabezado {
+        padding: 18px 5%;
+    }
+
+    .confidencial-top {
+        display: none;
+    }
+
+    .empresa h1 {
+        font-size: 16px;
+    }
+
+    .empresa p {
+        font-size: 12px;
+    }
+
+    .logo {
+        width: 48px;
+        height: 48px;
+        font-size: 17px;
+    }
+
+    .contenedor {
+        width: 94%;
+        margin: 25px auto;
+    }
+
+    .bienvenida {
+        grid-template-columns: 1fr;
+        padding: 28px;
+        gap: 28px;
+    }
+
+    .bienvenida h2 {
+        font-size: 31px;
+    }
+
+    .fila-busqueda {
+        flex-direction: column;
+    }
+
+    #buscar {
+        padding: 14px;
+    }
+
+    .empleado {
+        flex-wrap: wrap;
+    }
+
+    .boton-secundario {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .recibos {
+        grid-template-columns: 1fr;
+    }
+
+    .titulo-seccion {
+        align-items: flex-start;
+        gap: 15px;
+        flex-direction: column;
+    }
+
+    .acciones {
+        flex-direction: column;
+    }
+}

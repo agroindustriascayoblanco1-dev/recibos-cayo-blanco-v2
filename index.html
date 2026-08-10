@@ -1,341 +1,564 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Recibos de Pago | Agroindustrias Cayo Blanco</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-    <link rel="stylesheet" href="style.css">
+    <title>
+        Recibos de Pago | Agroindustrias Cayo Blanco
+    </title>
+
+
+    <!-- PDF.JS -->
+
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js">
+    </script>
+
+
+    <!-- ESTILOS -->
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
 </head>
+
 
 <body>
 
-    <!-- ENCABEZADO -->
+
+    <!-- =====================================
+         ENCABEZADO
+    ====================================== -->
+
     <header class="encabezado">
 
         <div class="marca">
-            <div class="logo">COA</div>
+
+            <div class="logo">
+                COA
+            </div>
+
 
             <div class="empresa">
-                <h1>AGROINDUSTRIAS CAYO BLANCO</h1>
-                <p>Portal de Recibos de Pago</p>
+
+                <h1>
+                    AGROINDUSTRIAS CAYO BLANCO
+                </h1>
+
+                <p>
+                    Portal de Recibos de Pago
+                </p>
+
             </div>
+
         </div>
 
+
         <div class="confidencial-top">
+
             🔒 Información confidencial
+
         </div>
 
     </header>
 
 
-    <!-- CONTENIDO PRINCIPAL -->
+
+    <!-- =====================================
+         CONTENIDO
+    ====================================== -->
+
     <main class="contenedor">
 
-        <!-- PRESENTACIÓN -->
+
+        <!-- =================================
+             BIENVENIDA
+        ================================== -->
+
         <section class="bienvenida">
+
 
             <div class="bienvenida-texto">
 
+
                 <span class="etiqueta">
+
                     RECURSOS HUMANOS
+
                 </span>
 
+
                 <h2>
-                    Consulta tus recibos de pago
+
+                    Consulta tus
+                    recibos de pago
+
                 </h2>
 
+
                 <p>
-                    Ingresa tu código de empleado para consultar
-                    tus recibos de pago de forma rápida,
-                    sencilla y confidencial.
+
+                    Ingresa tu código de empleado
+                    para consultar tus recibos de
+                    pago de forma rápida, sencilla
+                    y confidencial.
+
                 </p>
+
 
             </div>
 
 
-            <!-- BUSCADOR -->
+
+            <!-- =============================
+                 BUSCADOR
+            ============================== -->
+
             <div class="buscador">
 
+
                 <label for="codigo">
+
                     Código de empleado
+
                 </label>
 
+
                 <div class="fila-busqueda">
+
 
                     <input
                         type="text"
                         id="codigo"
-                        placeholder="Ejemplo: CBEP0000"
+                        placeholder="Ejemplo: CBEP0572"
                         autocomplete="off"
                     >
 
-                    <button id="buscar" type="button">
+
+                    <button
+                        id="buscar"
+                        type="button"
+                    >
+
                         Consultar
+
                     </button>
+
 
                 </div>
 
+
                 <p class="ayuda">
-                    Ingrese su código de empleado para continuar.
+
+                    Ingrese su código de empleado
+                    para continuar.
+
                 </p>
+
 
                 <div id="mensaje"></div>
 
+
             </div>
+
 
         </section>
 
 
-        <!-- RESULTADO DEL EMPLEADO -->
-        <section id="resultado" class="resultado oculto">
+
+        <!-- =================================
+             RESULTADO DEL EMPLEADO
+        ================================== -->
+
+        <section
+            id="resultado"
+            class="resultado oculto"
+        >
+
 
             <div class="empleado">
 
+
                 <div class="avatar">
+
                     👤
+
                 </div>
+
 
                 <div class="datos-empleado">
 
+
                     <span>
+
                         COLABORADOR
+
                     </span>
 
+
                     <h2 id="nombreEmpleado">
+
                         —
+
                     </h2>
 
+
                     <p>
+
                         Código:
+
                         <strong id="codigoEmpleado">
+
                             —
+
                         </strong>
+
                     </p>
 
+
                 </div>
+
 
                 <button
                     id="nuevaConsulta"
                     class="boton-secundario"
                     type="button"
                 >
+
                     Nueva consulta
+
                 </button>
+
 
             </div>
 
 
-            <!-- RECIBOS -->
+
+            <!-- =================================
+                 TÍTULO RECIBOS
+            ================================== -->
+
             <div class="titulo-seccion">
+
 
                 <div>
 
+
                     <span class="etiqueta">
+
                         MIS RECIBOS
+
                     </span>
 
+
                     <h2>
+
                         Selecciona un período
+
                     </h2>
+
 
                 </div>
 
+
                 <span class="periodo">
+
                     PERÍODO ACTUAL
+
                 </span>
+
 
             </div>
 
 
+
+            <!-- =================================
+                 TARJETAS DE RECIBOS
+            ================================== -->
+
             <div class="recibos">
 
+
                 <!-- QUINCENA 1 -->
+
                 <article class="recibo">
 
+
                     <div class="icono-recibo">
+
                         🧾
+
                     </div>
+
 
                     <div class="informacion-recibo">
 
+
                         <span>
+
                             QUINCENA 1
+
                         </span>
 
+
                         <h3>
+
                             Primera quincena
+
                         </h3>
 
+
                         <p>
-                            Consulta tu recibo correspondiente
-                            a la primera quincena.
+
+                            Consulta tu recibo
+                            correspondiente a la
+                            primera quincena.
+
                         </p>
 
+
                     </div>
+
 
                     <button
                         class="ver-recibo"
                         data-quincena="1"
                         type="button"
                     >
+
                         Ver recibo
+
                     </button>
+
 
                 </article>
 
 
+
                 <!-- QUINCENA 2 -->
+
                 <article class="recibo">
 
+
                     <div class="icono-recibo">
+
                         🧾
+
                     </div>
+
 
                     <div class="informacion-recibo">
 
+
                         <span>
+
                             QUINCENA 2
+
                         </span>
 
+
                         <h3>
+
                             Segunda quincena
+
                         </h3>
 
+
                         <p>
-                            Consulta tu recibo correspondiente
-                            a la segunda quincena.
+
+                            Consulta tu recibo
+                            correspondiente a la
+                            segunda quincena.
+
                         </p>
 
+
                     </div>
+
 
                     <button
                         class="ver-recibo"
                         data-quincena="2"
                         type="button"
                     >
+
                         Ver recibo
+
                     </button>
+
 
                 </article>
 
+
             </div>
+
 
         </section>
 
 
-        <!-- VISOR DEL RECIBO -->
-        <section id="visor" class="visor oculto">
+
+        <!-- =================================
+             VISOR DEL RECIBO
+        ================================== -->
+
+        <section
+            id="visor"
+            class="visor oculto"
+        >
+
 
             <div class="cabecera-visor">
 
+
                 <div>
 
+
                     <span class="etiqueta">
+
                         RECIBO SELECCIONADO
+
                     </span>
 
+
                     <h2 id="visorTitulo">
+
                         Recibo de pago
+
                     </h2>
 
+
                 </div>
+
 
                 <button
                     id="cerrarVisor"
                     class="boton-secundario"
                     type="button"
                 >
+
                     Cerrar
+
                 </button>
+
 
             </div>
 
+
+
+            <!-- =================================
+                 PDF
+            ================================== -->
 
             <div class="visor-pdf">
 
+
                 <div class="icono-pdf">
+
                     📄
+
                 </div>
 
+
                 <h3>
+
                     Recibo de pago
+
                 </h3>
 
+
                 <p>
-                    El visor de recibos estará disponible
-                    cuando conectemos los archivos PDF.
+
+                    Selecciona una quincena
+                    para visualizar tu recibo.
+
                 </p>
 
-            </div>
-
-
-            <div class="acciones">
-
-                <button
-                    id="descargar"
-                    class="boton-principal"
-                    type="button"
-                    disabled
-                >
-                    ⬇ Descargar PDF
-                </button>
-
-                <button
-                    id="imprimir"
-                    class="boton-secundario"
-                    type="button"
-                    disabled
-                >
-                    🖨 Imprimir
-                </button>
 
             </div>
+
 
         </section>
 
 
-        <!-- CONFIDENCIALIDAD -->
+
+        <!-- =================================
+             AVISO
+        ================================== -->
+
         <section class="aviso">
 
+
             <div class="aviso-icono">
+
                 🔐
+
             </div>
+
 
             <div>
 
+
                 <h3>
+
                     Tu información es confidencial
+
                 </h3>
 
+
                 <p>
-                    Los recibos de pago son documentos de uso
-                    exclusivo del colaborador. No compartas
-                    tu código ni la información de tu recibo
-                    con terceros.
+
+                    Los recibos de pago son documentos
+                    de uso exclusivo del colaborador.
+                    No compartas tu código ni la
+                    información de tu recibo con terceros.
+
                 </p>
+
 
             </div>
 
+
         </section>
+
 
     </main>
 
 
-    <!-- PIE DE PÁGINA -->
+
+    <!-- =====================================
+         PIE DE PÁGINA
+    ====================================== -->
+
     <footer>
 
         RRHH · Agroindustrias Cayo Blanco · COA
 
         <span>
+
             Versión 2
+
         </span>
 
     </footer>
 
 
+
+    <!-- =====================================
+         JAVASCRIPT DE LA APLICACIÓN
+    ====================================== -->
+
     <script src="script.js"></script>
 
+
 </body>
+
 </html>

@@ -2,13 +2,17 @@
 // COA - RECIBOS DE PAGO - VERSIÓN 2
 // ======================================================
 
+
 // ======================================================
 // ARCHIVOS PDF
 // ======================================================
 
 const PDFS = {
+
     q1: "recibos-q1.pdf.pdf",
+
     q2: "recibos-q2.pdf.pdf"
+
 };
 
 
@@ -70,6 +74,9 @@ const textoQuincena =
 const periodoSeleccionado =
     document.getElementById("periodoSeleccionado");
 
+const visorPDF =
+    document.querySelector(".visor-pdf");
+
 
 // ======================================================
 // VARIABLES
@@ -121,6 +128,85 @@ function mostrarMensaje(
 
 
 // ======================================================
+// LIMPIAR TODO
+// ======================================================
+
+function limpiarConsulta() {
+
+    empleadoActual =
+        null;
+
+    paginaEncontrada =
+        null;
+
+    pdfActual =
+        null;
+
+    paginaActual =
+        null;
+
+
+    nombreEmpleado.textContent =
+        "—";
+
+    codigoEmpleado.textContent =
+        "—";
+
+
+    textoQuincena.textContent =
+        "QUINCENA 1";
+
+
+    periodoSeleccionado.textContent =
+        "QUINCENA 1";
+
+
+    visorTitulo.textContent =
+        "Recibo";
+
+
+    if (visorPDF) {
+
+        visorPDF.innerHTML = `
+
+            <div
+                style="
+                    text-align:center;
+                    padding:50px;
+                    color:#08743b;
+                "
+            >
+
+                Selecciona tu recibo para visualizarlo.
+
+            </div>
+
+        `;
+
+    }
+
+
+    visor.classList.add(
+        "oculto"
+    );
+
+
+    resultado.classList.add(
+        "oculto"
+    );
+
+
+    guardarRecibo.disabled =
+        false;
+
+
+    guardarRecibo.textContent =
+        "📥 Guardar recibo";
+
+}
+
+
+// ======================================================
 // OBTENER QUINCENA
 // ======================================================
 
@@ -130,6 +216,7 @@ function obtenerQuincenaSeleccionada() {
         document.querySelector(
             'input[name="quincena"]:checked'
         );
+
 
     return seleccion
         ? seleccion.value
@@ -152,13 +239,16 @@ async function cargarPDF(url) {
 
     }
 
+
     pdfjsLib.GlobalWorkerOptions.workerSrc =
         "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+
 
     const tarea =
         pdfjsLib.getDocument({
             url: url
         });
+
 
     return await tarea.promise;
 
@@ -177,6 +267,7 @@ async function buscarEnPDF(
     const pdf =
         await cargarPDF(url);
 
+
     const codigoNormalizado =
         normalizarTexto(codigo);
 
@@ -192,8 +283,10 @@ async function buscarEnPDF(
                 paginaNumero
             );
 
+
         const contenido =
             await pagina.getTextContent();
+
 
         const texto =
             contenido.items
@@ -202,6 +295,7 @@ async function buscarEnPDF(
                         item.str || ""
                 )
                 .join(" ");
+
 
         const textoNormalizado =
             normalizarTexto(texto);
@@ -249,11 +343,13 @@ async function buscarEnPDF(
         ) {
 
             mostrarMensaje(
+
                 "🔎 Revisando página " +
                 paginaNumero +
                 " de " +
                 pdf.numPages +
                 "..."
+
             );
 
         }
@@ -285,9 +381,38 @@ async function buscarEmpleado() {
             "error"
         );
 
+        codigoInput.focus();
+
         return;
 
     }
+
+
+    // ----------------------------------------------
+    // LIMPIAR RESULTADO ANTERIOR
+    // ----------------------------------------------
+
+    empleadoActual =
+        null;
+
+    paginaEncontrada =
+        null;
+
+    pdfActual =
+        null;
+
+    paginaActual =
+        null;
+
+
+    visor.classList.add(
+        "oculto"
+    );
+
+
+    resultado.classList.add(
+        "oculto"
+    );
 
 
     quincenaSeleccionada =
@@ -303,60 +428,54 @@ async function buscarEmpleado() {
     botonBuscar.disabled =
         true;
 
+
     botonBuscar.textContent =
         "Buscando...";
-
-
-    resultado.classList.add(
-        "oculto"
-    );
-
-    visor.classList.add(
-        "oculto"
-    );
-
-
-    paginaEncontrada =
-        null;
-
-    pdfActual =
-        null;
-
-    paginaActual =
-        null;
 
 
     try {
 
         mostrarMensaje(
+
             "🔎 Buscando en " +
             nombreQuincena +
             "..."
+
         );
 
 
         const encontrado =
             await buscarEnPDF(
+
                 PDFS[
                     quincenaSeleccionada
                 ],
+
                 codigo
+
             );
 
 
         if (!encontrado) {
 
             mostrarMensaje(
+
                 "❌ No encontramos un recibo con ese código en " +
                 nombreQuincena +
                 ".",
+
                 "error"
+
             );
 
             return;
 
         }
 
+
+        // ------------------------------------------
+        // GUARDAR DATOS
+        // ------------------------------------------
 
         paginaEncontrada =
             encontrado.pagina;
@@ -372,6 +491,10 @@ async function buscarEmpleado() {
 
         };
 
+
+        // ------------------------------------------
+        // MOSTRAR EMPLEADO
+        // ------------------------------------------
 
         nombreEmpleado.textContent =
             empleadoActual.nombre;
@@ -389,16 +512,14 @@ async function buscarEmpleado() {
             nombreQuincena.toUpperCase();
 
 
-        verRecibo.dataset.quincena =
-            quincenaSeleccionada === "q1"
-                ? "1"
-                : "2";
-
-
         visorTitulo.textContent =
             "Recibo — " +
             nombreQuincena;
 
+
+        // ------------------------------------------
+        // MOSTRAR RESULTADO
+        // ------------------------------------------
 
         resultado.classList.remove(
             "oculto"
@@ -411,19 +532,30 @@ async function buscarEmpleado() {
 
 
         resultado.scrollIntoView({
-            behavior: "smooth",
-            block: "start"
-        });
+
+            behavior:
+                "smooth",
+
+            block:
+                "start"
+
+        );
 
 
     } catch (error) {
 
-        console.error(error);
+        console.error(
+            "Error en búsqueda:",
+            error
+        );
 
 
         mostrarMensaje(
-            "❌ Ocurrió un error al leer el recibo.",
+
+            "❌ Ocurrió un error al buscar el recibo.",
+
             "error"
+
         );
 
     } finally {
@@ -431,8 +563,9 @@ async function buscarEmpleado() {
         botonBuscar.disabled =
             false;
 
+
         botonBuscar.textContent =
-            "Consultar";
+            "🔎 Consultar recibo";
 
     }
 
@@ -454,12 +587,6 @@ async function abrirRecibo() {
         return;
 
     }
-
-
-    const visorPDF =
-        document.querySelector(
-            ".visor-pdf"
-        );
 
 
     const nombreQuincena =
@@ -497,8 +624,13 @@ async function abrirRecibo() {
 
 
     visor.scrollIntoView({
-        behavior: "smooth",
-        block: "start"
+
+        behavior:
+            "smooth",
+
+        block:
+            "start"
+
     });
 
 
@@ -506,9 +638,11 @@ async function abrirRecibo() {
 
         const pdf =
             await cargarPDF(
+
                 PDFS[
                     quincenaSeleccionada
                 ]
+
             );
 
 
@@ -528,28 +662,41 @@ async function abrirRecibo() {
 
         const viewportOriginal =
             page.getViewport({
-                scale: 1
+
+                scale:
+                    1
+
             });
 
 
         const anchoDisponible =
             Math.min(
+
                 1000,
-                visorPDF.clientWidth || 1000
+
+                visorPDF.clientWidth ||
+                1000
+
             );
 
 
         const escala =
             Math.max(
+
                 1,
+
                 anchoDisponible /
                 viewportOriginal.width
+
             );
 
 
         const viewport =
             page.getViewport({
-                scale: escala
+
+                scale:
+                    escala
+
             });
 
 
@@ -580,20 +727,26 @@ async function abrirRecibo() {
         canvas.style.display =
             "block";
 
+
         canvas.style.width =
             "100%";
+
 
         canvas.style.height =
             "auto";
 
+
         canvas.style.margin =
             "0 auto";
+
 
         canvas.style.background =
             "#ffffff";
 
+
         canvas.style.borderRadius =
             "12px";
+
 
         canvas.style.boxShadow =
             "0 5px 25px rgba(0,0,0,0.12)";
@@ -621,7 +774,10 @@ async function abrirRecibo() {
 
     } catch (error) {
 
-        console.error(error);
+        console.error(
+            "Error mostrando recibo:",
+            error
+        );
 
 
         visorPDF.innerHTML = `
@@ -722,7 +878,7 @@ async function cargarJsPDF() {
 
 
 // ======================================================
-// GUARDAR RECIBO COMO PDF
+// GUARDAR RECIBO
 // ======================================================
 
 async function guardarReciboComoPDF() {
@@ -759,21 +915,16 @@ async function guardarReciboComoPDF() {
 
     try {
 
-        // --------------------------------------
-        // CARGAR jsPDF
-        // --------------------------------------
-
         const jsPDF =
             await cargarJsPDF();
 
 
-        // --------------------------------------
-        // RENDERIZAR EN ALTA CALIDAD
-        // --------------------------------------
-
         const viewport =
             paginaActual.getViewport({
-                scale: 2
+
+                scale:
+                    2
+
             });
 
 
@@ -812,20 +963,15 @@ async function guardarReciboComoPDF() {
         }).promise;
 
 
-        // --------------------------------------
-        // CONVERTIR A IMAGEN
-        // --------------------------------------
-
         const imagen =
             canvas.toDataURL(
+
                 "image/jpeg",
+
                 0.95
+
             );
 
-
-        // --------------------------------------
-        // ORIENTACIÓN
-        // --------------------------------------
 
         const vertical =
             viewport.height >=
@@ -851,10 +997,6 @@ async function guardarReciboComoPDF() {
 
             });
 
-
-        // --------------------------------------
-        // DIMENSIONES A4
-        // --------------------------------------
 
         const paginaAncho =
             pdf.internal.pageSize.getWidth();
@@ -914,10 +1056,6 @@ async function guardarReciboComoPDF() {
             ) / 2;
 
 
-        // --------------------------------------
-        // AGREGAR SOLO EL RECIBO
-        // --------------------------------------
-
         pdf.addImage(
 
             imagen,
@@ -939,9 +1077,9 @@ async function guardarReciboComoPDF() {
         );
 
 
-        // --------------------------------------
+        // ------------------------------------------
         // NOMBRE DEL ARCHIVO
-        // --------------------------------------
+        // ------------------------------------------
 
         const qNombre =
             quincenaSeleccionada === "q1"
@@ -951,14 +1089,17 @@ async function guardarReciboComoPDF() {
 
         const nombreLimpio =
             empleadoActual.nombre
+
                 .replace(
                     /[\\/:*?"<>|]/g,
                     ""
                 )
+
                 .replace(
                     /\s+/g,
                     " "
                 )
+
                 .trim();
 
 
@@ -970,18 +1111,14 @@ async function guardarReciboComoPDF() {
             ".pdf";
 
 
-        // --------------------------------------
-        // GUARDAR
-        // --------------------------------------
+        // ------------------------------------------
+        // DESCARGAR
+        // ------------------------------------------
 
         pdf.save(
             nombreArchivo
         );
 
-
-        // --------------------------------------
-        // CONFIRMACIÓN
-        // --------------------------------------
 
         guardarRecibo.textContent =
             "✓ Recibo guardado";
@@ -993,20 +1130,23 @@ async function guardarReciboComoPDF() {
 
 
         setTimeout(
+
             function () {
 
                 guardarRecibo.textContent =
                     "📥 Guardar recibo";
 
             },
+
             2500
+
         );
 
 
     } catch (error) {
 
         console.error(
-            "ERROR AL GUARDAR:",
+            "Error guardando recibo:",
             error
         );
 
@@ -1030,22 +1170,28 @@ async function guardarReciboComoPDF() {
 
 
 // ======================================================
-// BOTÓN VER RECIBO
+// VER RECIBO
 // ======================================================
 
 verRecibo.addEventListener(
+
     "click",
+
     abrirRecibo
+
 );
 
 
 // ======================================================
-// BOTÓN GUARDAR
+// GUARDAR RECIBO
 // ======================================================
 
 guardarRecibo.addEventListener(
+
     "click",
+
     guardarReciboComoPDF
+
 );
 
 
@@ -1054,14 +1200,44 @@ guardarRecibo.addEventListener(
 // ======================================================
 
 cerrarVisor.addEventListener(
+
     "click",
+
     function () {
 
         visor.classList.add(
             "oculto"
         );
 
+
+        // LIMPIAR EL CONTENIDO VISUAL
+
+        visorPDF.innerHTML = `
+
+            <div
+                style="
+                    text-align:center;
+                    padding:50px;
+                    color:#08743b;
+                "
+            >
+
+                Selecciona tu recibo para visualizarlo.
+
+            </div>
+
+        `;
+
+
+        paginaActual =
+            null;
+
+
+        pdfActual =
+            null;
+
     }
+
 );
 
 
@@ -1070,36 +1246,24 @@ cerrarVisor.addEventListener(
 // ======================================================
 
 nuevaConsulta.addEventListener(
+
     "click",
+
     function () {
 
         codigoInput.value =
             "";
 
+
         mensaje.textContent =
             "";
 
-        resultado.classList.add(
-            "oculto"
-        );
 
-        visor.classList.add(
-            "oculto"
-        );
+        limpiarConsulta();
 
-        paginaEncontrada =
-            null;
-
-        pdfActual =
-            null;
-
-        paginaActual =
-            null;
-
-        empleadoActual =
-            null;
 
         codigoInput.focus();
+
 
         window.scrollTo({
 
@@ -1112,6 +1276,56 @@ nuevaConsulta.addEventListener(
         });
 
     }
+
+);
+
+
+// ======================================================
+// CAMBIO DE QUINCENA
+// ======================================================
+
+const radiosQuincena =
+    document.querySelectorAll(
+        'input[name="quincena"]'
+    );
+
+
+radiosQuincena.forEach(
+
+    function (radio) {
+
+        radio.addEventListener(
+
+            "change",
+
+            function () {
+
+                // Si cambia la quincena,
+                // eliminamos cualquier resultado anterior.
+
+                codigoInput.value =
+                    "";
+
+
+                mensaje.textContent =
+                    "";
+
+
+                limpiarConsulta();
+
+
+                quincenaSeleccionada =
+                    obtenerQuincenaSeleccionada();
+
+
+                codigoInput.focus();
+
+            }
+
+        );
+
+    }
+
 );
 
 
@@ -1120,17 +1334,22 @@ nuevaConsulta.addEventListener(
 // ======================================================
 
 botonBuscar.addEventListener(
+
     "click",
+
     buscarEmpleado
+
 );
 
 
 // ======================================================
-// ENTER
+// ENTER EN EL CAMPO
 // ======================================================
 
 codigoInput.addEventListener(
+
     "keydown",
+
     function (evento) {
 
         if (
@@ -1142,4 +1361,5 @@ codigoInput.addEventListener(
         }
 
     }
+
 );

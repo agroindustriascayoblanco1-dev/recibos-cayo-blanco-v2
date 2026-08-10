@@ -22,7 +22,7 @@
     <!-- ESTILOS -->
     <link
         rel="stylesheet"
-        href="style.css?v=6"
+        href="style.css?v=8"
     >
 
 </head>
@@ -123,6 +123,8 @@
                     <div class="opciones-quincena">
 
 
+                        <!-- QUINCENA 1 -->
+
                         <label class="opcion-quincena">
 
                             <input
@@ -133,11 +135,30 @@
                             >
 
                             <span>
-                                Quincena 1
+
+                                <strong>
+                                    Quincena 1
+                                </strong>
+
+                                <small
+                                    id="fechaQ1Selector"
+                                    style="
+                                        display:block;
+                                        margin-top:3px;
+                                        font-weight:normal;
+                                        opacity:.8;
+                                    "
+                                >
+                                    Agosto 2026
+                                </small>
+
                             </span>
 
                         </label>
 
+
+
+                        <!-- QUINCENA 2 -->
 
                         <label class="opcion-quincena">
 
@@ -148,7 +169,23 @@
                             >
 
                             <span>
-                                Quincena 2
+
+                                <strong>
+                                    Quincena 2
+                                </strong>
+
+                                <small
+                                    id="fechaQ2Selector"
+                                    style="
+                                        display:block;
+                                        margin-top:3px;
+                                        font-weight:normal;
+                                        opacity:.8;
+                                    "
+                                >
+                                    Agosto 2026
+                                </small>
+
                             </span>
 
                         </label>
@@ -221,8 +258,6 @@
         >
 
 
-            <!-- DATOS DEL COLABORADOR -->
-
             <div class="empleado">
 
 
@@ -232,7 +267,6 @@
 
 
                 <div class="datos-empleado">
-
 
                     <span>
                         COLABORADOR ENCONTRADO
@@ -254,7 +288,6 @@
 
                     </p>
 
-
                 </div>
 
 
@@ -274,7 +307,7 @@
 
 
             <!-- ==================================================
-                 RECIBO DISPONIBLE
+                 RECIBO
             =================================================== -->
 
             <div class="titulo-seccion">
@@ -299,7 +332,7 @@
                     class="periodo"
                 >
 
-                    QUINCENA 1
+                    QUINCENA 1 · AGOSTO 2026
 
                 </span>
 
@@ -332,10 +365,10 @@
                         </h3>
 
 
-                        <p>
-                            Consulta el detalle de tu
-                            recibo correspondiente al
-                            período seleccionado.
+                        <p
+                            id="fechaRecibo"
+                        >
+                            Agosto 2026
                         </p>
 
 
@@ -364,7 +397,7 @@
 
 
         <!-- ==================================================
-             VISOR DEL RECIBO
+             VISOR
         =================================================== -->
 
         <section
@@ -386,6 +419,18 @@
                     <h2 id="visorTitulo">
                         Recibo
                     </h2>
+
+
+                    <p
+                        id="visorFecha"
+                        style="
+                            margin-top:5px;
+                            color:#61736c;
+                            font-size:13px;
+                        "
+                    >
+                        Agosto 2026
+                    </p>
 
                 </div>
 
@@ -428,10 +473,7 @@
 
 
 
-            <!-- VISOR PDF -->
-
             <div class="visor-pdf">
-
 
                 <div
                     style="
@@ -445,7 +487,6 @@
 
                 </div>
 
-
             </div>
 
 
@@ -454,7 +495,7 @@
 
 
         <!-- ==================================================
-             AVISO DE CONFIDENCIALIDAD
+             AVISO
         =================================================== -->
 
         <section class="aviso">
@@ -509,7 +550,7 @@
          SCRIPT
     =================================================== -->
 
-    <script src="script.js?v=6"></script>
+    <script src="script.js?v=8"></script>
 
 
 </body>

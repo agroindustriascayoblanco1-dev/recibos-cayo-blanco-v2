@@ -111,10 +111,10 @@
 
                 <p>
 
-                    Ingresa tu código de empleado
-                    para consultar tu recibo de pago
-                    de forma rápida, sencilla
-                    y confidencial.
+                    Selecciona la quincena e ingresa
+                    tu código de empleado para consultar
+                    tu recibo de forma rápida,
+                    sencilla y confidencial.
 
                 </p>
 
@@ -130,9 +130,7 @@
             <div class="buscador">
 
 
-                <!-- ==============================
-                     SELECTOR DE QUINCENA
-                =============================== -->
+                <!-- SELECTOR DE QUINCENA -->
 
                 <div class="selector-quincena">
 
@@ -151,7 +149,6 @@
 
                         <label class="opcion-quincena">
 
-
                             <input
                                 type="radio"
                                 name="quincena"
@@ -159,13 +156,11 @@
                                 checked
                             >
 
-
                             <span>
 
                                 Quincena 1
 
                             </span>
-
 
                         </label>
 
@@ -175,13 +170,11 @@
 
                         <label class="opcion-quincena">
 
-
                             <input
                                 type="radio"
                                 name="quincena"
                                 value="q2"
                             >
-
 
                             <span>
 
@@ -189,20 +182,16 @@
 
                             </span>
 
-
                         </label>
 
 
                     </div>
 
-
                 </div>
 
 
 
-                <!-- ==============================
-                     CÓDIGO DE EMPLEADO
-                =============================== -->
+                <!-- CÓDIGO -->
 
                 <label
                     for="codigo"
@@ -246,8 +235,6 @@
                 </p>
 
 
-                <!-- MENSAJE -->
-
                 <div id="mensaje"></div>
 
 
@@ -267,10 +254,6 @@
             class="resultado oculto"
         >
 
-
-            <!-- ======================================
-                 DATOS DEL COLABORADOR
-            ======================================= -->
 
             <div class="empleado">
 
@@ -372,7 +355,7 @@
 
 
             <!-- ======================================
-                 BOTÓN PARA VER RECIBO
+                 TARJETA DEL RECIBO
             ======================================= -->
 
             <div class="recibos">
@@ -407,8 +390,9 @@
 
                         <p>
 
-                            Tu recibo correspondiente
-                            a la quincena seleccionada.
+                            Consulta y guarda tu recibo
+                            correspondiente a la
+                            quincena seleccionada.
 
                         </p>
 
@@ -471,15 +455,42 @@
                 </div>
 
 
-                <button
-                    id="cerrarVisor"
-                    class="boton-secundario"
-                    type="button"
+                <div
+                    style="
+                        display:flex;
+                        gap:10px;
+                        flex-wrap:wrap;
+                    "
                 >
 
-                    Cerrar
 
-                </button>
+                    <!-- GUARDAR -->
+
+                    <button
+                        id="guardarRecibo"
+                        class="boton-secundario"
+                        type="button"
+                    >
+
+                        📥 Guardar recibo
+
+                    </button>
+
+
+                    <!-- CERRAR -->
+
+                    <button
+                        id="cerrarVisor"
+                        class="boton-secundario"
+                        type="button"
+                    >
+
+                        Cerrar
+
+                    </button>
+
+
+                </div>
 
 
             </div>
@@ -487,8 +498,7 @@
 
 
             <!-- ==================================
-                 AQUÍ SE MOSTRARÁ SOLO LA PÁGINA
-                 DEL RECIBO
+                 AQUÍ SE RENDERIZA SOLO LA PÁGINA
             =================================== -->
 
             <div class="visor-pdf">
@@ -580,7 +590,7 @@
          JAVASCRIPT
     =========================================== -->
 
-    <script src="script.js?v=4"></script>
+    <script src="script.js?v=5"></script>
 
 
 </body>

@@ -4269,3 +4269,50 @@ button:active .icono {
         font-size: 17px;
     }
 }
+/* =========================================================
+   AJUSTE DEL TÍTULO PRINCIPAL
+========================================================= */
+
+.bienvenida-texto h2 {
+    font-size: 52px !important;
+    line-height: 1.02 !important;
+    letter-spacing: -2px !important;
+    margin-bottom: 14px !important;
+}
+
+
+/* Computadora */
+@media (min-width: 701px) {
+
+    .bienvenida-texto h2 {
+        font-size: 52px !important;
+        line-height: 1.04 !important;
+        margin-bottom: 16px !important;
+    }
+
+}
+
+
+/* Celular */
+@media (max-width: 700px) {
+
+    .bienvenida-texto h2 {
+        font-size: 37px !important;
+        line-height: 1.02 !important;
+        letter-spacing: -1.5px !important;
+        margin-bottom: 12px !important;
+    }
+
+}
+
+
+/* Celulares pequeños */
+@media (max-width: 380px) {
+
+    .bienvenida-texto h2 {
+        font-size: 33px !important;
+        line-height: 1.04 !important;
+        letter-spacing: -1.2px !important;
+    }
+
+}

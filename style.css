@@ -4281,3 +4281,415 @@ button:active .icono {
 #textoQuincena {
     display: none !important;
 }
+/* =========================================================
+   CENTRO DE INFORMACIÓN
+========================================================= */
+
+.centro-informacion {
+
+    margin-top: 28px;
+    padding: 28px;
+
+    background: #ffffff;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 22px;
+
+    box-shadow:
+        0 12px 35px rgba(14,45,58,.07);
+
+}
+
+
+.centro-titulo {
+
+    text-align: center;
+
+    margin-bottom: 20px;
+
+}
+
+
+.centro-titulo h2 {
+
+    margin:
+        6px 0 8px;
+
+    color:
+        var(--navy-dark);
+
+    font-size:
+        22px;
+
+}
+
+
+.centro-titulo p {
+
+    margin: 0;
+
+    color:
+        var(--text-soft);
+
+    font-size:
+        13px;
+
+    line-height:
+        1.5;
+
+}
+
+
+.centro-opciones {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap:
+        12px;
+
+}
+
+
+.centro-card {
+
+    border:
+        1px solid var(--border);
+
+    border-radius:
+        15px;
+
+    background:
+        #ffffff;
+
+    overflow:
+        hidden;
+
+    transition:
+        .2s ease;
+
+}
+
+
+.centro-card:hover {
+
+    border-color:
+        rgba(27,161,89,.35);
+
+    box-shadow:
+        0 8px 22px rgba(14,45,58,.08);
+
+}
+
+
+.centro-card summary {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        10px;
+
+    min-height:
+        72px;
+
+    padding:
+        13px;
+
+    cursor:
+        pointer;
+
+    list-style:
+        none;
+
+}
+
+
+.centro-card summary::-webkit-details-marker {
+
+    display:
+        none;
+
+}
+
+
+.centro-icono {
+
+    width:
+        38px;
+
+    height:
+        38px;
+
+    flex:
+        0 0 38px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    border-radius:
+        11px;
+
+    font-size:
+        17px;
+
+    font-weight:
+        900;
+
+}
+
+
+.centro-icono.verde {
+
+    background:
+        var(--green-soft);
+
+    color:
+        var(--green-dark);
+
+}
+
+
+.centro-icono.azul {
+
+    background:
+        var(--blue-soft);
+
+    color:
+        #1689ad;
+
+}
+
+
+.centro-icono.amarillo {
+
+    background:
+        var(--yellow-soft);
+
+    color:
+        #927713;
+
+}
+
+
+.centro-card summary > span:nth-child(2) {
+
+    min-width:
+        0;
+
+    flex:
+        1;
+
+}
+
+
+.centro-card strong {
+
+    display:
+        block;
+
+    margin-bottom:
+        3px;
+
+    color:
+        var(--navy);
+
+    font-size:
+        12px;
+
+}
+
+
+.centro-card small {
+
+    display:
+        block;
+
+    color:
+        var(--text-soft);
+
+    font-size:
+        10px;
+
+    line-height:
+        1.35;
+
+}
+
+
+.centro-flecha {
+
+    color:
+        var(--text-soft);
+
+    font-size:
+        20px;
+
+    line-height:
+        1;
+
+    transition:
+        transform .2s ease;
+
+}
+
+
+.centro-card[open]
+.centro-flecha {
+
+    transform:
+        rotate(45deg);
+
+}
+
+
+.centro-contenido {
+
+    padding:
+        0 15px 16px;
+
+    border-top:
+        1px solid #edf1f3;
+
+}
+
+
+.centro-contenido p {
+
+    margin:
+        14px 0 10px;
+
+    color:
+        var(--text-soft);
+
+    font-size:
+        11px;
+
+    line-height:
+        1.55;
+
+}
+
+
+.centro-contenido ul {
+
+    margin:
+        0;
+
+    padding-left:
+        18px;
+
+}
+
+
+.centro-contenido li {
+
+    margin-bottom:
+        7px;
+
+    color:
+        var(--text-soft);
+
+    font-size:
+        10px;
+
+    line-height:
+        1.5;
+
+}
+
+
+.centro-contenido li:last-child {
+
+    margin-bottom:
+        0;
+
+}
+
+
+/* =========================================================
+   CENTRO DE INFORMACIÓN — CELULAR
+========================================================= */
+
+@media (max-width: 700px) {
+
+    .centro-informacion {
+
+        margin-top:
+            22px;
+
+        padding:
+            20px 16px;
+
+        border-radius:
+            18px;
+
+    }
+
+
+    .centro-titulo h2 {
+
+        font-size:
+            20px;
+
+    }
+
+
+    .centro-titulo p {
+
+        font-size:
+            12px;
+
+    }
+
+
+    .centro-opciones {
+
+        grid-template-columns:
+            1fr;
+
+        gap:
+            9px;
+
+    }
+
+
+    .centro-card summary {
+
+        min-height:
+            66px;
+
+        padding:
+            12px;
+
+    }
+
+
+    .centro-icono {
+
+        width:
+            36px;
+
+        height:
+            36px;
+
+        flex-basis:
+            36px;
+
+    }
+
+}

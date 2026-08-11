@@ -26,6 +26,7 @@ const PERIODOS = {
 
 };
 
+
 // ======================================================
 // VARIABLES
 // ======================================================
@@ -39,73 +40,51 @@ let pdfActual = null;
 let paginaActual = null;
 
 let quincenaSeleccionada = "q1";
-function actualizarSelectorQuincenas() {
 
-    const q1 = PERIODOS.q1;
-    const q2 = PERIODOS.q2;
-
-    const nombreQ1 = document.getElementById("nombreQ1");
-    const mesQ1 = document.getElementById("mesQ1");
-
-    const nombreQ2 = document.getElementById("nombreQ2");
-    const mesQ2 = document.getElementById("mesQ2");
-
-    if (nombreQ1) {
-        nombreQ1.textContent = q1.nombre;
-    }
-
-    if (mesQ1) {
-        mesQ1.textContent = q1.mes;
-    }
-
-    if (nombreQ2) {
-        nombreQ2.textContent = q2.nombre;
-    }
-
-    if (mesQ2) {
-        mesQ2.textContent = q2.mes;
-    }
-
-}
 
 function actualizarSelectorQuincenas() {
 
     const q1 = PERIODOS.q1;
     const q2 = PERIODOS.q2;
 
-    const nombreQ1 = document.getElementById("nombreQ1");
-    const mesQ1 = document.getElementById("mesQ1");
-    const pagoQ1 = document.getElementById("periodoPagoQ1");
+    const nombreQ1 =
+        document.getElementById("nombreQ1");
 
-    const nombreQ2 = document.getElementById("nombreQ2");
-    const mesQ2 = document.getElementById("mesQ2");
-    const pagoQ2 = document.getElementById("periodoPagoQ2");
+    const mesQ1 =
+        document.getElementById("mesQ1");
+
+    const nombreQ2 =
+        document.getElementById("nombreQ2");
+
+    const mesQ2 =
+        document.getElementById("mesQ2");
+
 
     if (nombreQ1) {
-        nombreQ1.textContent = q1.nombre;
+        nombreQ1.textContent =
+            q1.nombre;
     }
+
 
     if (mesQ1) {
-        mesQ1.textContent = q1.mes;
+        mesQ1.textContent =
+            q1.mes;
     }
 
-    if (pagoQ1) {
-        pagoQ1.textContent = q1.periodoPago || "";
-    }
 
     if (nombreQ2) {
-        nombreQ2.textContent = q2.nombre;
+        nombreQ2.textContent =
+            q2.nombre;
     }
+
 
     if (mesQ2) {
-        mesQ2.textContent = q2.mes;
-    }
-
-    if (pagoQ2) {
-        pagoQ2.textContent = q2.periodoPago || "";
+        mesQ2.textContent =
+            q2.mes;
     }
 
 }
+
 
 // ======================================================
 // INICIAR CUANDO EL HTML ESTÉ LISTO
@@ -122,7 +101,9 @@ document.addEventListener(
 // ======================================================
 
 function iniciarSistema() {
+
     actualizarSelectorQuincenas();
+
 
     console.log(
         "COA: sistema iniciado"
@@ -141,10 +122,12 @@ function iniciarSistema() {
             "PDF.js no está cargado."
         );
 
+
         mostrarMensaje(
             "❌ No se pudo cargar el sistema de recibos.",
             true
         );
+
 
         return;
 
@@ -170,6 +153,7 @@ function iniciarSistema() {
         console.error(
             "No existe el botón buscar."
         );
+
 
         return;
 
@@ -203,6 +187,7 @@ function iniciarSistema() {
                 ) {
 
                     evento.preventDefault();
+
 
                     consultarEmpleado();
 
@@ -494,9 +479,11 @@ async function consultarEmpleado() {
         "================================"
     );
 
+
     console.log(
         "CONSULTA INICIADA"
     );
+
 
     console.log(
         "================================"
@@ -520,6 +507,7 @@ async function consultarEmpleado() {
         console.error(
             "No existe el campo código."
         );
+
 
         return;
 
@@ -549,7 +537,9 @@ async function consultarEmpleado() {
             true
         );
 
+
         codigoInput.focus();
+
 
         return;
 
@@ -565,7 +555,9 @@ async function consultarEmpleado() {
             true
         );
 
+
         codigoInput.focus();
+
 
         return;
 
@@ -589,6 +581,7 @@ async function consultarEmpleado() {
             true
         );
 
+
         return;
 
     }
@@ -609,6 +602,7 @@ async function consultarEmpleado() {
 
         boton.disabled =
             true;
+
 
         boton.textContent =
             "Buscando...";
@@ -658,7 +652,6 @@ async function consultarEmpleado() {
             numero <= pdf.numPages;
             numero++
         ) {
-
 
             mostrarMensaje(
                 "🔎 Revisando página " +
@@ -742,6 +735,7 @@ async function consultarEmpleado() {
                 true
 
             );
+
 
             return;
 
@@ -832,17 +826,20 @@ async function consultarEmpleado() {
                     " · " +
                     periodo.mes
                 ).toUpperCase();
-        const periodoPagoElemento =
-    document.getElementById(
-        "periodoPago"
-    );
 
-if (periodoPagoElemento) {
-    periodoPagoElemento.textContent =
-        obtenerTextoPeriodoPago(
-            periodo
-        );
-}
+
+        const periodoPagoElemento =
+            document.getElementById(
+                "periodoPago"
+            );
+
+
+        if (periodoPagoElemento) {
+
+            periodoPagoElemento.textContent =
+                periodo.periodoPago || "";
+
+        }
 
 
         // ==================================================
@@ -892,12 +889,14 @@ if (periodoPagoElemento) {
 
         );
 
+
     } finally {
 
         if (boton) {
 
             boton.disabled =
                 false;
+
 
             boton.textContent =
                 "🔎 Consultar";

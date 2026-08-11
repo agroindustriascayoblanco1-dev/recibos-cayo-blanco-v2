@@ -11,17 +11,32 @@
 const PERIODOS = {
 
     q1: {
+
         nombre: "Quincena 1",
+
         mes: "Julio 2026",
-        periodoPago: "11 de Junio al 25 de Junio de 2026",
-        archivo: "RECIBOS QUINCENA 1.pdf"
+
+        periodoPago:
+            "11 de Junio al 25 de Junio de 2026",
+
+        archivo:
+            "RECIBOS QUINCENA 1.pdf"
+
     },
 
+
     q2: {
+
         nombre: "Quincena 2",
+
         mes: "Julio 2026",
-        periodoPago: "26 de Junio al 10 de julio de 2026",
-        archivo: "RECIBOS QUINCENA 2.pdf"
+
+        periodoPago:
+            "26 de Junio al 10 de julio de 2026",
+
+        archivo:
+            "RECIBOS QUINCENA 2.pdf"
+
     }
 
 };
@@ -42,45 +57,70 @@ let paginaActual = null;
 let quincenaSeleccionada = "q1";
 
 
+// ======================================================
+// ACTUALIZAR SELECTOR DE QUINCENAS
+// ======================================================
+
 function actualizarSelectorQuincenas() {
 
     const q1 = PERIODOS.q1;
+
     const q2 = PERIODOS.q2;
 
+
     const nombreQ1 =
-        document.getElementById("nombreQ1");
+        document.getElementById(
+            "nombreQ1"
+        );
+
 
     const mesQ1 =
-        document.getElementById("mesQ1");
+        document.getElementById(
+            "mesQ1"
+        );
+
 
     const nombreQ2 =
-        document.getElementById("nombreQ2");
+        document.getElementById(
+            "nombreQ2"
+        );
+
 
     const mesQ2 =
-        document.getElementById("mesQ2");
+        document.getElementById(
+            "mesQ2"
+        );
 
 
     if (nombreQ1) {
+
         nombreQ1.textContent =
             q1.nombre;
+
     }
 
 
     if (mesQ1) {
+
         mesQ1.textContent =
             q1.mes;
+
     }
 
 
     if (nombreQ2) {
+
         nombreQ2.textContent =
             q2.nombre;
+
     }
 
 
     if (mesQ2) {
+
         mesQ2.textContent =
             q2.mes;
+
     }
 
 }
@@ -187,7 +227,6 @@ function iniciarSistema() {
                 ) {
 
                     evento.preventDefault();
-
 
                     consultarEmpleado();
 
@@ -299,13 +338,18 @@ function iniciarSistema() {
     }
 
 
+    // --------------------------------------------------
+    // CENTRO DE INFORMACIÓN
+    // --------------------------------------------------
+
+    iniciarCentroInformacion();
+
+
     console.log(
         "COA: eventos configurados correctamente"
     );
 
 }
-
-
 // ======================================================
 // MENSAJE
 // ======================================================
@@ -349,15 +393,15 @@ function normalizar(
     return String(
         texto || ""
     )
-    .toUpperCase()
-    .replace(
-        /\s+/g,
-        ""
-    )
-    .replace(
-        /[^A-Z0-9]/g,
-        ""
-    );
+        .toUpperCase()
+        .replace(
+            /\s+/g,
+            ""
+        )
+        .replace(
+            /[^A-Z0-9]/g,
+            ""
+        );
 
 }
 
@@ -389,7 +433,7 @@ function cambiarQuincena() {
 
 
 // ======================================================
-// LIMPIAR
+// LIMPIAR CONSULTA
 // ======================================================
 
 function limpiarConsulta() {
@@ -906,8 +950,6 @@ async function consultarEmpleado() {
     }
 
 }
-
-
 // ======================================================
 // OBTENER NOMBRE
 // ======================================================
@@ -1075,7 +1117,8 @@ async function mostrarRecibo() {
         const viewportBase =
             pagina.getViewport({
 
-                scale: 1
+                scale:
+                    1
 
             });
 
@@ -1258,7 +1301,8 @@ function nuevaConsulta() {
 
     window.scrollTo({
 
-        top: 0,
+        top:
+            0,
 
         behavior:
             "smooth"
@@ -1282,6 +1326,7 @@ async function guardarPDF() {
             "Primero abre el recibo."
         );
 
+
         return;
 
     }
@@ -1294,6 +1339,7 @@ async function guardarPDF() {
         alert(
             "No se pudo cargar la función para guardar el PDF."
         );
+
 
         return;
 
@@ -1315,6 +1361,10 @@ async function guardarPDF() {
         boton.textContent =
             "Guardando...";
 
+
+        // ==================================================
+        // CREAR CANVAS
+        // ==================================================
 
         const viewport =
             paginaActual.getViewport({
@@ -1356,12 +1406,20 @@ async function guardarPDF() {
         }).promise;
 
 
+        // ==================================================
+        // CONVERTIR A IMAGEN
+        // ==================================================
+
         const imagen =
             canvas.toDataURL(
                 "image/jpeg",
-                .95
+                0.95
             );
 
+
+        // ==================================================
+        // CREAR PDF
+        // ==================================================
 
         const {
             jsPDF
@@ -1386,6 +1444,10 @@ async function guardarPDF() {
 
             });
 
+
+        // ==================================================
+        // TAMAÑO DE PÁGINA
+        // ==================================================
 
         const anchoPagina =
             pdf.internal.pageSize.getWidth();
@@ -1445,6 +1507,10 @@ async function guardarPDF() {
             ) / 2;
 
 
+        // ==================================================
+        // AGREGAR IMAGEN
+        // ==================================================
+
         pdf.addImage(
 
             imagen,
@@ -1465,6 +1531,10 @@ async function guardarPDF() {
 
         );
 
+
+        // ==================================================
+        // NOMBRE DEL ARCHIVO
+        // ==================================================
 
         const nombre =
             empleadoActual.nombre
@@ -1525,218 +1595,219 @@ async function guardarPDF() {
 }
 // ======================================================
 // CENTRO DE INFORMACIÓN
-// SOLO UNA SECCIÓN ABIERTA A LA VEZ
+// VENTANAS MODALES
 // ======================================================
 
-document
-    .querySelectorAll(".centro-card")
-    .forEach(function(card) {
+function iniciarCentroInformacion() {
 
-        card.addEventListener(
-            "toggle",
-            function() {
-
-                if (!card.open) {
-                    return;
-                }
-
-                document
-                    .querySelectorAll(".centro-card")
-                    .forEach(function(otraCard) {
-
-                        if (otraCard !== card) {
-                            otraCard.open = false;
-                        }
-
-                    });
-
-            }
+    const tarjetas =
+        document.querySelectorAll(
+            ".centro-card"
         );
 
-    });
-// ======================================================
-// CENTRO DE INFORMACIÓN
-// ABRIR Y CERRAR VENTANAS
-// ======================================================
 
-document.addEventListener(
-    "DOMContentLoaded",
-    function() {
-
-        const tarjetas =
-            document.querySelectorAll(
-                ".centro-card"
-            );
-
-        const modales =
-            document.querySelectorAll(
-                ".centro-modal"
-            );
+    const modales =
+        document.querySelectorAll(
+            ".centro-modal"
+        );
 
 
-        // ==============================================
-        // ABRIR VENTANA
-        // ==============================================
+    // ==================================================
+    // ABRIR VENTANA
+    // ==================================================
 
-        tarjetas.forEach(
-            function(tarjeta) {
+    tarjetas.forEach(
+        function(tarjeta) {
 
-                tarjeta.addEventListener(
-                    "click",
-                    function() {
+            tarjeta.addEventListener(
+                "click",
+                function() {
 
-                        const idModal =
-                            tarjeta.dataset.modal;
-
-                        const modal =
-                            document.getElementById(
-                                idModal
-                            );
+                    const idModal =
+                        tarjeta.dataset.modal;
 
 
-                        if (!modal) {
-                            return;
-                        }
-
-
-                        // Cerrar cualquier otra ventana
-
-                        modales.forEach(
-                            function(otroModal) {
-
-                                otroModal.classList.add(
-                                    "oculto"
-                                );
-
-                            }
+                    const modal =
+                        document.getElementById(
+                            idModal
                         );
 
 
-                        // Abrir la seleccionada
+                    if (!modal) {
 
-                        modal.classList.remove(
-                            "oculto"
+                        console.warn(
+                            "No se encontró el modal:",
+                            idModal
                         );
 
-
-                        document.body.classList.add(
-                            "centro-modal-abierto"
-                        );
+                        return;
 
                     }
-                );
-
-            }
-        );
 
 
-        // ==============================================
-        // BOTONES CERRAR
-        // ==============================================
-
-        modales.forEach(
-            function(modal) {
-
-                const botonCerrar =
-                    modal.querySelector(
-                        "[data-cerrar-modal]"
-                    );
-
-
-                if (botonCerrar) {
-
-                    botonCerrar.addEventListener(
-                        "click",
-                        function() {
-
-                            cerrarModal(
-                                modal
-                            );
-
-                        }
-                    );
-
-                }
-
-
-                // ==========================================
-                // CERRAR AL HACER CLIC EN EL FONDO
-                // ==========================================
-
-                modal.addEventListener(
-                    "click",
-                    function(evento) {
-
-                        if (
-                            evento.target === modal
-                        ) {
-
-                            cerrarModal(
-                                modal
-                            );
-
-                        }
-
-                    }
-                );
-
-            }
-        );
-
-
-        // ==============================================
-        // CERRAR CON ESC
-        // ==============================================
-
-        document.addEventListener(
-            "keydown",
-            function(evento) {
-
-                if (
-                    evento.key === "Escape"
-                ) {
+                    // ------------------------------------------
+                    // CERRAR TODAS LAS VENTANAS
+                    // ------------------------------------------
 
                     modales.forEach(
-                        function(modal) {
+                        function(otroModal) {
 
-                            if (
-                                !modal.classList.contains(
-                                    "oculto"
-                                )
-                            ) {
-
-                                cerrarModal(
-                                    modal
-                                );
-
-                            }
+                            otroModal.classList.add(
+                                "oculto"
+                            );
 
                         }
                     );
 
+
+                    // ------------------------------------------
+                    // ABRIR LA SELECCIONADA
+                    // ------------------------------------------
+
+                    modal.classList.remove(
+                        "oculto"
+                    );
+
+
+                    // ------------------------------------------
+                    // BLOQUEAR SCROLL
+                    // ------------------------------------------
+
+                    document.body.classList.add(
+                        "centro-modal-abierto"
+                    );
+
                 }
-
-            }
-        );
-
-
-        // ==============================================
-        // FUNCIÓN CERRAR
-        // ==============================================
-
-        function cerrarModal(
-            modal
-        ) {
-
-            modal.classList.add(
-                "oculto"
-            );
-
-            document.body.classList.remove(
-                "centro-modal-abierto"
             );
 
         }
+    );
 
+
+    // ==================================================
+    // CONFIGURAR CADA MODAL
+    // ==================================================
+
+    modales.forEach(
+        function(modal) {
+
+            // ----------------------------------------------
+            // BOTÓN CERRAR
+            // ----------------------------------------------
+
+            const botonCerrar =
+                modal.querySelector(
+                    "[data-cerrar-modal]"
+                );
+
+
+            if (botonCerrar) {
+
+                botonCerrar.addEventListener(
+                    "click",
+                    function() {
+
+                        cerrarCentroModal(
+                            modal
+                        );
+
+                    }
+                );
+
+            }
+
+
+            // ----------------------------------------------
+            // CERRAR AL TOCAR EL FONDO
+            // ----------------------------------------------
+
+            modal.addEventListener(
+                "click",
+                function(evento) {
+
+                    if (
+                        evento.target === modal
+                    ) {
+
+                        cerrarCentroModal(
+                            modal
+                        );
+
+                    }
+
+                }
+            );
+
+        }
+    );
+
+
+    // ==================================================
+    // CERRAR CON ESC
+    // ==================================================
+
+    document.addEventListener(
+        "keydown",
+        function(evento) {
+
+            if (
+                evento.key !== "Escape"
+            ) {
+
+                return;
+
+            }
+
+
+            modales.forEach(
+                function(modal) {
+
+                    if (
+                        !modal.classList.contains(
+                            "oculto"
+                        )
+                    ) {
+
+                        cerrarCentroModal(
+                            modal
+                        );
+
+                    }
+
+                }
+            );
+
+        }
+    );
+
+
+    console.log(
+        "COA: Centro de Información iniciado"
+    );
+
+}
+
+
+// ======================================================
+// CERRAR MODAL
+// ======================================================
+
+function cerrarCentroModal(
+    modal
+) {
+
+    if (!modal) {
+        return;
     }
-);
+
+
+    modal.classList.add(
+        "oculto"
+    );
+
+
+    document.body.classList.remove(
+        "centro-modal-abierto"
+    );
+
+}

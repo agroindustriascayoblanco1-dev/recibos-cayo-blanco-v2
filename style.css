@@ -1,22 +1,53 @@
+/* =========================================================
+   COA — PORTAL DE RECIBOS DE PAGO
+   DISEÑO OCEAN
+   ========================================================= */
+
+
+/* =========================================================
+   VARIABLES
+========================================================= */
+
 :root {
 
-    --verde: #087a3f;
-    --verde-oscuro: #045a2d;
-    --verde-claro: #e8f6ee;
+    --bondi: #4799B6;
+    --san-marino: #4A6EB0;
+    --eden: #114C5F;
+    --sinbad: #9CCFD3;
+    --janna: #F2E6CF;
 
-    --texto: #12352a;
-    --texto-suave: #61736c;
+    --bondi-dark: #3B829D;
+    --eden-dark: #0B3B4B;
 
-    --blanco: #ffffff;
-    --fondo: #f3f7f5;
+    --background: #F5F9FA;
+    --background-soft: #FBFCFD;
 
-    --borde: #dbe7e1;
+    --white: #FFFFFF;
 
-    --sombra:
-        0 12px 35px rgba(0, 70, 40, .08);
+    --text: #173C4B;
+    --text-soft: #6C7F8C;
+    --text-light: #9AAAB2;
+
+    --border: #D7E4E8;
+
+    --green-soft: #E8F3F6;
+    --blue-soft: #EEF1F8;
+    --yellow-soft: #FAF4E8;
+
+    --danger: #C62828;
+
+    --shadow:
+        0 12px 35px rgba(17,76,95,.08);
+
+    --shadow-large:
+        0 22px 60px rgba(17,76,95,.11);
 
 }
 
+
+/* =========================================================
+   RESET
+========================================================= */
 
 * {
 
@@ -45,29 +76,66 @@ body {
         Helvetica,
         sans-serif;
 
+    color: var(--text);
+
     background:
         linear-gradient(
             180deg,
-            #f2f7f4,
-            #f8faf9
+            #F5F9FA 0%,
+            #FBFCFD 100%
         );
 
-    color:
-        var(--texto);
+    -webkit-font-smoothing: antialiased;
 
 }
 
 
-/* =====================================================
+button,
+input {
+
+    font-family: inherit;
+
+}
+
+
+button {
+
+    cursor: pointer;
+
+}
+
+
+button:disabled {
+
+    cursor: wait;
+
+    opacity: .7;
+
+}
+
+
+::selection {
+
+    background: var(--sinbad);
+
+    color: var(--eden);
+
+}
+
+
+/* =========================================================
    ENCABEZADO
-===================================================== */
+========================================================= */
 
 .encabezado {
 
-    min-height: 80px;
+    position: relative;
+
+    min-height: 78px;
 
     padding:
-        14px 6%;
+        11px
+        clamp(18px, 5vw, 72px);
 
     display: flex;
 
@@ -75,20 +143,49 @@ body {
 
     justify-content: space-between;
 
-    background:
-        linear-gradient(
-            135deg,
-            var(--verde-oscuro),
-            var(--verde)
-        );
+    gap: 25px;
 
-    color: white;
+    background: var(--white);
+
+    border-bottom:
+        1px solid var(--border);
 
     box-shadow:
-        0 4px 20px rgba(0,0,0,.12);
+        0 5px 24px rgba(17,76,95,.06);
+
+    z-index: 100;
 
 }
 
+
+.encabezado::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+
+    right: 0;
+
+    bottom: 0;
+
+    height: 4px;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--janna) 0%,
+            var(--bondi) 48%,
+            var(--san-marino) 100%
+        );
+
+}
+
+
+/* =========================================================
+   MARCA
+========================================================= */
 
 .marca {
 
@@ -96,16 +193,1308 @@ body {
 
     align-items: center;
 
-    gap: 14px;
+    gap: 12px;
+
+    min-width: 0;
 
 }
 
 
 .logo {
 
-    width: 55px;
+    width: 54px;
 
-    height: 55px;
+    height: 54px;
+
+    flex: 0 0 54px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 16px;
+
+    background: var(--eden);
+
+    color: var(--white);
+
+    font-size: 17px;
+
+    font-weight: 900;
+
+    letter-spacing: -.5px;
+
+    box-shadow:
+        0 7px 18px rgba(17,76,95,.18);
+
+}
+
+
+.empresa {
+
+    min-width: 0;
+
+}
+
+
+.empresa h1 {
+
+    color: var(--eden-dark);
+
+    font-size: 17px;
+
+    font-weight: 900;
+
+    line-height: 1.2;
+
+    letter-spacing: .1px;
+
+}
+
+
+.empresa p {
+
+    margin-top: 4px;
+
+    color: var(--text-soft);
+
+    font-size: 11px;
+
+    line-height: 1.3;
+
+}
+
+
+/* =========================================================
+   NAVEGACIÓN
+========================================================= */
+
+.navegacion {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 4px;
+
+}
+
+
+.nav-link {
+
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 7px;
+
+    padding: 9px 13px;
+
+    border: 0;
+
+    border-radius: 999px;
+
+    color: var(--text-soft);
+
+    background: transparent;
+
+    text-decoration: none;
+
+    font-family: inherit;
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    transition:
+        color .2s ease,
+        background .2s ease,
+        transform .2s ease;
+
+}
+
+
+.nav-link:hover {
+
+    color: var(--eden);
+
+    background: var(--blue-soft);
+
+    transform: translateY(-1px);
+
+}
+
+
+.nav-link.activo {
+
+    color: var(--eden);
+
+    background: var(--yellow-soft);
+
+}
+
+
+/* =========================================================
+   ICONOS BASE
+========================================================= */
+
+.icono {
+
+    position: relative;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 18px;
+
+    height: 18px;
+
+    flex: 0 0 18px;
+
+    color: currentColor;
+
+}
+
+
+/* =========================================================
+   ICONO INFORMACIÓN
+========================================================= */
+
+.icono-info {
+
+    border:
+        1.7px solid currentColor;
+
+    border-radius: 50%;
+
+}
+
+
+.icono-info::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: 3px;
+
+    left: 50%;
+
+    width: 2px;
+
+    height: 2px;
+
+    transform: translateX(-50%);
+
+    border-radius: 50%;
+
+    background: currentColor;
+
+}
+
+
+.icono-info::after {
+
+    content: "";
+
+    position: absolute;
+
+    top: 7px;
+
+    left: 50%;
+
+    width: 2px;
+
+    height: 7px;
+
+    transform: translateX(-50%);
+
+    border-radius: 2px;
+
+    background: currentColor;
+
+}
+
+
+/* =========================================================
+   ICONO AYUDA
+========================================================= */
+
+.icono-ayuda {
+
+    border:
+        1.7px solid currentColor;
+
+    border-radius: 50%;
+
+}
+
+
+.icono-ayuda::before {
+
+    content: "?";
+
+    position: absolute;
+
+    inset: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 10px;
+
+    font-weight: 900;
+
+}
+
+
+/* =========================================================
+   ICONO LUPA
+========================================================= */
+
+.icono-lupa::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: 1px;
+
+    left: 1px;
+
+    width: 9px;
+
+    height: 9px;
+
+    border:
+        2px solid currentColor;
+
+    border-radius: 50%;
+
+}
+
+
+.icono-lupa::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: 10px;
+
+    top: 11px;
+
+    width: 7px;
+
+    height: 2px;
+
+    border-radius: 2px;
+
+    background: currentColor;
+
+    transform: rotate(45deg);
+
+}
+
+
+/* =========================================================
+   ICONO DOCUMENTO
+========================================================= */
+
+.icono-documento {
+
+    border:
+        1.7px solid currentColor;
+
+    border-radius: 4px;
+
+}
+
+
+.icono-documento::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: -1px;
+
+    right: -1px;
+
+    width: 6px;
+
+    height: 6px;
+
+    background: var(--green-soft);
+
+    border-left:
+        1.7px solid currentColor;
+
+    border-bottom:
+        1.7px solid currentColor;
+
+    transform: rotate(45deg);
+
+}
+
+
+.icono-documento::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: 4px;
+
+    right: 4px;
+
+    bottom: 4px;
+
+    height: 1.5px;
+
+    border-radius: 2px;
+
+    background: currentColor;
+
+    box-shadow:
+        0 -4px 0 currentColor;
+
+}
+
+
+/* =========================================================
+   DOCUMENTO GRANDE
+========================================================= */
+
+.icono-documento-grande {
+
+    width: 23px;
+
+    height: 26px;
+
+    flex-basis: 23px;
+
+    border:
+        1.8px solid currentColor;
+
+    border-radius: 4px;
+
+}
+
+
+.icono-documento-grande::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: -1px;
+
+    right: -1px;
+
+    width: 7px;
+
+    height: 7px;
+
+    background: var(--white);
+
+    border-left:
+        1.8px solid currentColor;
+
+    border-bottom:
+        1.8px solid currentColor;
+
+    transform: rotate(45deg);
+
+}
+
+
+.icono-documento-grande::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: 4px;
+
+    right: 4px;
+
+    bottom: 5px;
+
+    height: 1.5px;
+
+    background: currentColor;
+
+    border-radius: 2px;
+
+    box-shadow:
+        0 -5px 0 currentColor;
+
+}
+
+
+/* =========================================================
+   ICONO PERSONA
+========================================================= */
+
+.icono-persona::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: 1px;
+
+    left: 50%;
+
+    width: 7px;
+
+    height: 7px;
+
+    transform: translateX(-50%);
+
+    border:
+        1.7px solid currentColor;
+
+    border-radius: 50%;
+
+}
+
+
+.icono-persona::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: 50%;
+
+    bottom: 1px;
+
+    width: 14px;
+
+    height: 7px;
+
+    transform: translateX(-50%);
+
+    border:
+        1.7px solid currentColor;
+
+    border-bottom: 0;
+
+    border-radius:
+        9px
+        9px
+        0
+        0;
+
+}
+
+
+/* =========================================================
+   ICONO ESCUDO
+========================================================= */
+
+.icono-escudo {
+
+    width: 18px;
+
+    height: 21px;
+
+    flex-basis: 18px;
+
+    border:
+        1.8px solid currentColor;
+
+    clip-path:
+        polygon(
+            50% 0,
+            94% 15%,
+            88% 65%,
+            50% 100%,
+            12% 65%,
+            6% 15%
+        );
+
+}
+
+
+/* =========================================================
+   ICONO OJO
+========================================================= */
+
+.icono-ojo::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: 4px;
+
+    left: 0;
+
+    width: 18px;
+
+    height: 10px;
+
+    border:
+        1.7px solid currentColor;
+
+    border-radius:
+        80%
+        20%
+        80%
+        20%;
+
+}
+
+
+.icono-ojo::after {
+
+    content: "";
+
+    position: absolute;
+
+    top: 7px;
+
+    left: 7px;
+
+    width: 4px;
+
+    height: 4px;
+
+    border:
+        1.5px solid currentColor;
+
+    border-radius: 50%;
+
+}
+
+
+/* =========================================================
+   ICONO DESCARGA
+========================================================= */
+
+.icono-descargar::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: 1px;
+
+    left: 8px;
+
+    width: 2px;
+
+    height: 10px;
+
+    border-radius: 2px;
+
+    background: currentColor;
+
+}
+
+
+.icono-descargar::after {
+
+    content: "";
+
+    position: absolute;
+
+    top: 7px;
+
+    left: 5px;
+
+    width: 7px;
+
+    height: 7px;
+
+    border-right:
+        2px solid currentColor;
+
+    border-bottom:
+        2px solid currentColor;
+
+    transform: rotate(45deg);
+
+}
+
+
+/* =========================================================
+   ICONO CERRAR
+========================================================= */
+
+.icono-cerrar::before,
+.icono-cerrar::after {
+
+    content: "";
+
+    position: absolute;
+
+    top: 8px;
+
+    left: 1px;
+
+    width: 16px;
+
+    height: 1.8px;
+
+    border-radius: 2px;
+
+    background: currentColor;
+
+}
+
+
+.icono-cerrar::before {
+
+    transform: rotate(45deg);
+
+}
+
+
+.icono-cerrar::after {
+
+    transform: rotate(-45deg);
+
+}
+
+
+/* =========================================================
+   ICONO CHECK
+========================================================= */
+
+.icono-check::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: 4px;
+
+    left: 3px;
+
+    width: 10px;
+
+    height: 6px;
+
+    border-left:
+        2px solid currentColor;
+
+    border-bottom:
+        2px solid currentColor;
+
+    transform: rotate(-45deg);
+
+}
+
+
+/* =========================================================
+   ICONO RELOJ
+========================================================= */
+
+.icono-reloj {
+
+    border:
+        1.7px solid currentColor;
+
+    border-radius: 50%;
+
+}
+
+
+.icono-reloj::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: 3px;
+
+    left: 50%;
+
+    width: 2px;
+
+    height: 6px;
+
+    transform: translateX(-50%);
+
+    border-radius: 2px;
+
+    background: currentColor;
+
+}
+
+
+.icono-reloj::after {
+
+    content: "";
+
+    position: absolute;
+
+    top: 8px;
+
+    left: 50%;
+
+    width: 6px;
+
+    height: 2px;
+
+    background: currentColor;
+
+    transform: rotate(30deg);
+
+    transform-origin: left center;
+
+}
+
+
+/* =========================================================
+   ICONO RAYO
+========================================================= */
+
+.icono-rayo::before {
+
+    content: "ϟ";
+
+    font-size: 22px;
+
+    font-weight: 900;
+
+}
+
+
+/* =========================================================
+   ICONO RECARGAR
+========================================================= */
+
+.icono-recargar::before {
+
+    content: "↻";
+
+    font-size: 19px;
+
+    font-weight: 700;
+
+}
+
+
+/* =========================================================
+   CONTENEDOR
+========================================================= */
+
+.contenedor {
+
+    width:
+        min(1140px, 92%);
+
+    margin:
+        42px auto 48px;
+
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.bienvenida {
+
+    position: relative;
+
+    overflow: hidden;
+
+    display: grid;
+
+    grid-template-columns:
+        1.04fr .96fr;
+
+    gap: 38px;
+
+    align-items: stretch;
+
+    padding: 38px;
+
+    background: var(--white);
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 28px;
+
+    box-shadow:
+        var(--shadow-large);
+
+}
+
+
+.bienvenida::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 330px;
+
+    height: 330px;
+
+    right: -210px;
+
+    bottom: -220px;
+
+    border-radius: 50%;
+
+    border:
+        45px solid
+        rgba(71,153,182,.055);
+
+    pointer-events: none;
+
+}
+
+
+.bienvenida::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 180px;
+
+    height: 180px;
+
+    left: -125px;
+
+    top: -125px;
+
+    border-radius: 50%;
+
+    border:
+        30px solid
+        rgba(74,110,176,.045);
+
+    pointer-events: none;
+
+}
+
+
+/* =========================================================
+   TEXTO HERO
+========================================================= */
+
+.bienvenida-texto {
+
+    position: relative;
+
+    z-index: 2;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    min-width: 0;
+
+}
+
+
+.etiqueta {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    width: fit-content;
+
+    padding:
+        7px 11px;
+
+    border-radius: 999px;
+
+    background:
+        var(--green-soft);
+
+    color:
+        var(--bondi-dark);
+
+    font-size: 8px;
+
+    font-weight: 900;
+
+    letter-spacing: 1.4px;
+
+}
+
+
+.etiqueta::before {
+
+    content: "";
+
+    width: 6px;
+
+    height: 6px;
+
+    margin-right: 7px;
+
+    border-radius: 50%;
+
+    background:
+        var(--bondi);
+
+}
+
+
+.bienvenida-texto h2 {
+
+    margin-top: 18px;
+
+    color:
+        var(--eden-dark);
+
+    font-size:
+        clamp(39px, 5vw, 64px);
+
+    font-weight: 900;
+
+    line-height: .97;
+
+    letter-spacing: -2.8px;
+
+}
+
+
+.bienvenida-texto h2 span {
+
+    color:
+        var(--eden);
+
+}
+
+
+.linea-destacada {
+
+    width: 82px;
+
+    height: 5px;
+
+    margin:
+        17px 0 16px;
+
+    border-radius: 999px;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--janna),
+            var(--bondi),
+            var(--san-marino)
+        );
+
+}
+
+
+.bienvenida-texto > p {
+
+    max-width: 475px;
+
+    color:
+        var(--text-soft);
+
+    font-size: 14px;
+
+    line-height: 1.72;
+
+}
+
+
+/* =========================================================
+   BENEFICIOS HERO
+========================================================= */
+
+.beneficios-hero {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    margin-top: 28px;
+
+}
+
+
+.beneficio-hero {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 3px;
+
+    min-width: 0;
+
+}
+
+
+.beneficio-hero strong {
+
+    color:
+        var(--eden);
+
+    font-size: 10px;
+
+}
+
+
+.beneficio-hero small {
+
+    max-width: 125px;
+
+    color:
+        var(--text-soft);
+
+    font-size: 8px;
+
+    line-height: 1.45;
+
+}
+
+
+.beneficio-icono {
+
+    width: 34px;
+
+    height: 34px;
+
+    margin-bottom: 3px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 10px;
+
+}
+
+
+.beneficio-icono.seguro {
+
+    background:
+        var(--green-soft);
+
+    color:
+        var(--bondi);
+
+}
+
+
+.beneficio-icono.facil {
+
+    background:
+        var(--yellow-soft);
+
+    color:
+        #A58D5E;
+
+}
+
+
+.beneficio-icono.tiempo {
+
+    background:
+        var(--blue-soft);
+
+    color:
+        var(--san-marino);
+
+}
+
+
+.separador-beneficio {
+
+    width: 1px;
+
+    height: 42px;
+
+    background:
+        var(--border);
+
+}
+
+
+/* =========================================================
+   DECORACIÓN HERO
+========================================================= */
+
+.decoracion-hero {
+
+    position: absolute;
+
+    right: 6%;
+
+    bottom: 6%;
+
+    width: 125px;
+
+    height: 25px;
+
+    z-index: 1;
+
+}
+
+
+.forma-verde,
+.forma-amarilla,
+.forma-azul {
+
+    position: absolute;
+
+    bottom: 0;
+
+    display: block;
+
+    border-radius: 999px;
+
+}
+
+
+.forma-verde {
+
+    width: 72px;
+
+    height: 18px;
+
+    left: 0;
+
+    background:
+        var(--bondi);
+
+}
+
+
+.forma-amarilla {
+
+    width: 45px;
+
+    height: 18px;
+
+    left: 64px;
+
+    background:
+        var(--janna);
+
+}
+
+
+.forma-azul {
+
+    width: 30px;
+
+    height: 18px;
+
+    right: 0;
+
+    background:
+        var(--san-marino);
+
+}
+
+
+/* =========================================================
+   BUSCADOR
+========================================================= */
+
+.buscador {
+
+    position: relative;
+
+    z-index: 5;
+
+    overflow: hidden;
+
+    padding: 28px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 23px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #FFFFFF 0%,
+            #F7FAFB 100%
+        );
+
+    box-shadow:
+        0 18px 42px
+        rgba(17,76,95,.09);
+
+}
+
+
+.buscador::before {
+
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+
+    top: 0;
+
+    right: 0;
+
+    height: 5px;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--bondi),
+            var(--janna),
+            var(--san-marino)
+        );
+
+}
+
+
+.cabecera-buscador {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+
+    margin-bottom: 23px;
+
+}
+
+
+.icono-buscador {
+
+    width: 50px;
+
+    height: 50px;
+
+    flex: 0 0 50px;
 
     display: flex;
 
@@ -115,177 +1504,57 @@ body {
 
     border-radius: 15px;
 
-    background: white;
+    background:
+        var(--green-soft);
 
-    color: var(--verde);
+    color:
+        var(--eden);
+
+}
+
+
+.cabecera-buscador h2 {
+
+    color:
+        var(--eden-dark);
+
+    font-size: 23px;
 
     font-weight: 900;
 
-    font-size: 19px;
+    line-height: 1.1;
 
 }
 
 
-.empresa h1 {
+.cabecera-buscador p {
 
-    font-size: 20px;
-
-}
-
-
-.empresa p {
-
-    margin-top: 4px;
-
-    font-size: 12px;
-
-    opacity: .85;
-
-}
-
-
-.confidencial-top {
-
-    padding:
-        8px 13px;
-
-    border:
-        1px solid rgba(255,255,255,.2);
-
-    border-radius: 999px;
-
-    background:
-        rgba(255,255,255,.08);
-
-    font-size: 11px;
-
-}
-
-
-/* =====================================================
-   CONTENEDOR
-===================================================== */
-
-.contenedor {
-
-    width:
-        min(1100px, 92%);
-
-    margin:
-        35px auto 45px;
-
-}
-
-
-/* =====================================================
-   PRINCIPAL
-===================================================== */
-
-.bienvenida {
-
-    display: grid;
-
-    grid-template-columns:
-        1fr 1fr;
-
-    gap: 40px;
-
-    align-items: center;
-
-    padding: 40px;
-
-    background:
-        white;
-
-    border:
-        1px solid var(--borde);
-
-    border-radius: 25px;
-
-    box-shadow:
-        var(--sombra);
-
-}
-
-
-.etiqueta {
-
-    display: inline-block;
-
-    margin-bottom: 12px;
-
-    padding:
-        6px 10px;
-
-    border-radius: 999px;
-
-    background:
-        var(--verde-claro);
+    margin-top: 5px;
 
     color:
-        var(--verde);
+        var(--text-soft);
 
     font-size: 10px;
 
-    font-weight: 900;
-
-    letter-spacing: 1px;
+    line-height: 1.45;
 
 }
 
 
-.bienvenida-texto h2 {
-
-    margin-bottom: 15px;
-
-    font-size:
-        clamp(32px, 4vw, 48px);
-
-    line-height: 1.05;
-
-}
-
-
-.bienvenida-texto p {
-
-    max-width: 550px;
-
-    color:
-        var(--texto-suave);
-
-    font-size: 14px;
-
-    line-height: 1.7;
-
-}
-
-
-/* =====================================================
-   BUSCADOR
-===================================================== */
-
-.buscador {
-
-    padding: 25px;
-
-    border:
-        1px solid var(--borde);
-
-    border-radius: 20px;
-
-    background:
-        #f5faf7;
-
-}
-
+/* =========================================================
+   QUINCENAS
+========================================================= */
 
 .titulo-selector {
 
     display: block;
 
-    margin-bottom: 10px;
+    margin-bottom: 9px;
 
-    font-size: 13px;
+    color:
+        var(--text);
+
+    font-size: 11px;
 
     font-weight: 900;
 
@@ -299,7 +1568,7 @@ body {
     grid-template-columns:
         1fr 1fr;
 
-    gap: 9px;
+    gap: 8px;
 
     margin-bottom: 20px;
 
@@ -326,7 +1595,9 @@ body {
 
 .opcion-quincena span {
 
-    min-height: 58px;
+    position: relative;
+
+    min-height: 59px;
 
     display: flex;
 
@@ -336,37 +1607,88 @@ body {
 
     justify-content: center;
 
-    gap: 3px;
+    gap: 4px;
+
+    border:
+        2px solid var(--border);
+
+    border-radius: 13px;
+
+    background:
+        var(--white);
+
+    color:
+        var(--text);
 
     text-align: center;
 
-    border:
-        2px solid var(--borde);
+    transition:
+        all .2s ease;
 
-    border-radius: 12px;
+}
 
-    background: white;
 
-    font-size: 12px;
+.opcion-quincena strong {
 
-    font-weight: 800;
+    font-size: 11px;
+
+}
+
+
+.opcion-quincena small {
+
+    color:
+        var(--text-soft);
+
+    font-size: 9px;
+
+}
+
+
+.opcion-quincena span:hover {
+
+    border-color:
+        var(--bondi);
+
+    transform:
+        translateY(-1px);
+
+    box-shadow:
+        0 6px 16px
+        rgba(71,153,182,.10);
 
 }
 
 
 .opcion-quincena input:checked + span {
 
-    background:
-        var(--verde);
-
     border-color:
-        var(--verde);
+        var(--bondi);
+
+    background:
+        var(--bondi);
 
     color:
-        white;
+        var(--white);
+
+    box-shadow:
+        0 8px 19px
+        rgba(71,153,182,.24);
 
 }
 
+
+.opcion-quincena input:checked + span small {
+
+    color:
+        rgba(255,255,255,.82);
+
+}
+
+
+/* =========================================================
+   CÓDIGO
+========================================================= */
 
 .label-codigo {
 
@@ -374,7 +1696,10 @@ body {
 
     margin-bottom: 8px;
 
-    font-size: 13px;
+    color:
+        var(--text);
+
+    font-size: 11px;
 
     font-weight: 900;
 
@@ -383,75 +1708,161 @@ body {
 
 .fila-busqueda {
 
-    display: flex;
+    display: grid;
+
+    grid-template-columns:
+        minmax(0,1fr)
+        auto;
 
     gap: 9px;
 
 }
 
 
-#codigo {
+.campo-codigo {
 
-    flex: 1;
+    position: relative;
 
-    min-width: 0;
+    min-height: 59px;
 
-    height: 54px;
+    display: flex;
 
-    padding:
-        0 15px;
+    align-items: center;
 
     border:
-        2px solid var(--borde);
+        2px solid var(--border);
 
-    border-radius: 12px;
+    border-radius: 13px;
 
-    outline: none;
+    background:
+        var(--white);
 
-    background: white;
-
-    color: var(--texto);
-
-    font-size: 16px;
-
-    font-weight: 600;
+    transition:
+        border-color .2s ease,
+        box-shadow .2s ease;
 
 }
 
 
-#codigo:focus {
+.campo-codigo:focus-within {
 
     border-color:
-        var(--verde);
+        var(--bondi);
 
     box-shadow:
         0 0 0 4px
-        rgba(8,122,63,.08);
+        rgba(71,153,182,.10);
+
+}
+
+
+.icono-id {
+
+    position: absolute;
+
+    left: 15px;
+
+    width: 18px;
+
+    height: 14px;
+
+    color:
+        var(--text-soft);
+
+    border:
+        1.5px solid currentColor;
+
+    border-radius: 3px;
+
+}
+
+
+.icono-id::before {
+
+    content: "";
+
+    position: absolute;
+
+    left: 2px;
+
+    top: 2px;
+
+    width: 4px;
+
+    height: 4px;
+
+    border:
+        1px solid currentColor;
+
+    border-radius: 50%;
+
+}
+
+
+.campo-codigo input {
+
+    width: 100%;
+
+    height: 100%;
+
+    min-height: 55px;
+
+    padding:
+        0 15px 0 45px;
+
+    border: 0;
+
+    outline: none;
+
+    background: transparent;
+
+    color:
+        var(--text);
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+}
+
+
+.campo-codigo input::placeholder {
+
+    color:
+        var(--text-light);
 
 }
 
 
 #buscar {
 
-    height: 54px;
+    min-width: 145px;
 
     padding:
-        0 20px;
+        0 22px;
 
-    border: none;
+    border: 0;
 
-    border-radius: 12px;
+    border-radius: 13px;
 
     background:
-        var(--verde);
+        var(--bondi);
 
-    color: white;
+    color:
+        var(--white);
 
-    font-size: 13px;
+    font-size: 12px;
 
     font-weight: 900;
 
-    cursor: pointer;
+    box-shadow:
+        0 8px 18px
+        rgba(71,153,182,.22);
+
+    transition:
+        background .2s ease,
+        transform .2s ease,
+        box-shadow .2s ease;
 
 }
 
@@ -459,16 +1870,22 @@ body {
 #buscar:hover {
 
     background:
-        var(--verde-oscuro);
+        var(--bondi-dark);
+
+    transform:
+        translateY(-1px);
+
+    box-shadow:
+        0 11px 22px
+        rgba(71,153,182,.27);
 
 }
 
 
-#buscar:disabled {
+#buscar:active {
 
-    opacity: .65;
-
-    cursor: wait;
+    transform:
+        translateY(0);
 
 }
 
@@ -478,85 +1895,259 @@ body {
     margin-top: 8px;
 
     color:
-        var(--texto-suave);
+        var(--text-soft);
 
-    font-size: 11px;
+    font-size: 9px;
 
 }
 
 
 #mensaje {
 
-    min-height: 21px;
+    min-height: 20px;
 
-    margin-top: 10px;
+    margin-top: 9px;
 
-    font-size: 12px;
+    font-size: 10px;
 
-    font-weight: 800;
+    font-weight: 700;
 
 }
 
 
-/* =====================================================
+/* =========================================================
+   SEGURIDAD MINI
+========================================================= */
+
+.seguridad-mini {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    margin-top: 19px;
+
+    padding: 12px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 12px;
+
+    background:
+        #F7FAFB;
+
+}
+
+
+.seguridad-mini-icono {
+
+    width: 34px;
+
+    height: 34px;
+
+    flex: 0 0 34px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 10px;
+
+    background:
+        var(--green-soft);
+
+    color:
+        var(--eden);
+
+}
+
+
+.seguridad-mini strong {
+
+    display: block;
+
+    color:
+        var(--eden);
+
+    font-size: 10px;
+
+}
+
+
+.seguridad-mini p {
+
+    margin-top: 3px;
+
+    color:
+        var(--text-soft);
+
+    font-size: 8px;
+
+    line-height: 1.4;
+
+}
+
+
+/* =========================================================
+   BENEFICIOS INFERIORES
+========================================================= */
+
+.beneficios {
+
+    display: grid;
+
+    grid-template-columns:
+        1fr auto 1fr auto 1fr;
+
+    align-items: center;
+
+    gap: 22px;
+
+    margin-top: 28px;
+
+    padding:
+        20px 26px;
+
+    background:
+        rgba(255,255,255,.78);
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 20px;
+
+}
+
+
+.beneficio {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+}
+
+
+.beneficio-grande {
+
+    width: 45px;
+
+    height: 45px;
+
+    flex: 0 0 45px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 13px;
+
+}
+
+
+.beneficio-grande.verde {
+
+    background:
+        var(--green-soft);
+
+    color:
+        var(--bondi);
+
+}
+
+
+.beneficio-grande.amarillo {
+
+    background:
+        var(--yellow-soft);
+
+    color:
+        #A58D5E;
+
+}
+
+
+.beneficio-grande.azul {
+
+    background:
+        var(--blue-soft);
+
+    color:
+        var(--san-marino);
+
+}
+
+
+.beneficio strong {
+
+    display: block;
+
+    color:
+        var(--eden);
+
+    font-size: 11px;
+
+}
+
+
+.beneficio p {
+
+    margin-top: 3px;
+
+    color:
+        var(--text-soft);
+
+    font-size: 9px;
+
+    line-height: 1.4;
+
+}
+
+
+.linea-beneficio {
+
+    width: 1px;
+
+    height: 42px;
+
+    background:
+        var(--border);
+
+}
+
+
+/* =========================================================
    RESULTADO
-===================================================== */
-
-.oculto {
-
-    display: none !important;
-
-}
-
+========================================================= */
 
 .resultado {
 
-    margin-top: 25px;
+    margin-top: 30px;
 
-    padding: 25px;
+    padding: 30px;
 
-    background: white;
+    background:
+        var(--white);
 
     border:
-        1px solid var(--borde);
+        1px solid var(--border);
 
-    border-radius: 21px;
+    border-radius: 24px;
 
     box-shadow:
-        var(--sombra);
-
-    animation:
-        aparecer .3s ease;
+        var(--shadow);
 
 }
 
-
-@keyframes aparecer {
-
-    from {
-
-        opacity: 0;
-
-        transform:
-            translateY(8px);
-
-    }
-
-    to {
-
-        opacity: 1;
-
-        transform:
-            translateY(0);
-
-    }
-
-}
-
-
-/* =====================================================
-   EMPLEADO
-===================================================== */
 
 .empleado {
 
@@ -569,18 +2160,18 @@ body {
     padding-bottom: 22px;
 
     border-bottom:
-        1px solid var(--borde);
+        1px solid var(--border);
 
 }
 
 
 .avatar {
 
-    width: 58px;
+    width: 52px;
 
-    height: 58px;
+    height: 52px;
 
-    flex: 0 0 58px;
+    flex: 0 0 52px;
 
     display: flex;
 
@@ -588,12 +2179,13 @@ body {
 
     justify-content: center;
 
-    border-radius: 16px;
+    border-radius: 15px;
 
     background:
-        var(--verde-claro);
+        var(--green-soft);
 
-    font-size: 25px;
+    color:
+        var(--eden);
 
 }
 
@@ -602,21 +2194,15 @@ body {
 
     flex: 1;
 
-    min-width: 0;
-
 }
 
 
 .datos-empleado > span {
 
-    display: block;
-
-    margin-bottom: 4px;
-
     color:
-        var(--verde);
+        var(--bondi-dark);
 
-    font-size: 9px;
+    font-size: 8px;
 
     font-weight: 900;
 
@@ -627,7 +2213,10 @@ body {
 
 .datos-empleado h2 {
 
-    margin-bottom: 4px;
+    margin-top: 4px;
+
+    color:
+        var(--eden-dark);
 
     font-size: 21px;
 
@@ -636,40 +2225,58 @@ body {
 
 .datos-empleado p {
 
-    color:
-        var(--texto-suave);
+    margin-top: 3px;
 
-    font-size: 12px;
+    color:
+        var(--text-soft);
+
+    font-size: 10px;
 
 }
 
 
-/* =====================================================
-   BOTONES
-===================================================== */
+.datos-empleado strong {
+
+    color:
+        var(--eden);
+
+}
+
+
+/* =========================================================
+   BOTÓN SECUNDARIO
+========================================================= */
 
 .boton-secundario {
 
-    min-height: 43px;
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 7px;
 
     padding:
-        0 15px;
+        10px 15px;
 
     border:
-        1px solid var(--borde);
+        1px solid var(--border);
 
     border-radius: 10px;
 
-    background: white;
+    background:
+        var(--white);
 
     color:
-        var(--texto);
+        var(--eden);
 
-    font-size: 11px;
+    font-size: 10px;
 
-    font-weight: 900;
+    font-weight: 800;
 
-    cursor: pointer;
+    transition:
+        all .2s ease;
 
 }
 
@@ -677,17 +2284,20 @@ body {
 .boton-secundario:hover {
 
     border-color:
-        var(--verde);
+        var(--san-marino);
 
-    color:
-        var(--verde);
+    background:
+        var(--blue-soft);
+
+    transform:
+        translateY(-1px);
 
 }
 
 
-/* =====================================================
-   RECIBO
-===================================================== */
+/* =========================================================
+   TÍTULO DE SECCIÓN
+========================================================= */
 
 .titulo-seccion {
 
@@ -697,17 +2307,21 @@ body {
 
     justify-content: space-between;
 
-    gap: 15px;
+    gap: 20px;
 
-    margin:
-        25px 0 15px;
+    margin-top: 25px;
 
 }
 
 
 .titulo-seccion h2 {
 
-    font-size: 24px;
+    margin-top: 7px;
+
+    color:
+        var(--eden-dark);
+
+    font-size: 26px;
 
 }
 
@@ -715,29 +2329,37 @@ body {
 .periodo {
 
     padding:
-        7px 11px;
+        8px 11px;
 
     border-radius: 999px;
 
     background:
-        var(--verde-claro);
+        var(--green-soft);
 
     color:
-        var(--verde);
+        var(--bondi-dark);
 
-    font-size: 9px;
+    font-size: 8px;
 
     font-weight: 900;
 
 }
 
 
+/* =========================================================
+   RECIBO
+========================================================= */
+
+.recibos {
+
+    margin-top: 18px;
+
+}
+
+
 .recibo {
 
-    display: grid;
-
-    grid-template-columns:
-        auto 1fr auto;
+    display: flex;
 
     align-items: center;
 
@@ -746,20 +2368,39 @@ body {
     padding: 18px;
 
     border:
-        1px solid var(--borde);
+        1px solid var(--border);
 
-    border-radius: 16px;
+    border-radius: 17px;
 
-    background: white;
+    background:
+        var(--white);
+
+    transition:
+        transform .2s ease,
+        box-shadow .2s ease;
+
+}
+
+
+.recibo:hover {
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 12px 28px
+        rgba(17,76,95,.08);
 
 }
 
 
 .icono-recibo {
 
-    width: 55px;
+    width: 52px;
 
-    height: 55px;
+    height: 52px;
+
+    flex: 0 0 52px;
 
     display: flex;
 
@@ -770,39 +2411,41 @@ body {
     border-radius: 14px;
 
     background:
-        var(--verde-claro);
+        var(--green-soft);
 
-    font-size: 24px;
+    color:
+        var(--eden);
 
 }
 
 
 .informacion-recibo {
 
-    min-width: 0;
+    flex: 1;
 
 }
 
 
 .informacion-recibo > span {
 
-    display: block;
-
-    margin-bottom: 4px;
-
     color:
-        var(--verde);
+        var(--bondi-dark);
 
-    font-size: 9px;
+    font-size: 8px;
 
     font-weight: 900;
+
+    letter-spacing: .8px;
 
 }
 
 
 .informacion-recibo h3 {
 
-    margin-bottom: 4px;
+    margin-top: 4px;
+
+    color:
+        var(--eden-dark);
 
     font-size: 17px;
 
@@ -811,58 +2454,88 @@ body {
 
 .informacion-recibo p {
 
-    color:
-        var(--texto-suave);
+    margin-top: 4px;
 
-    font-size: 11px;
+    color:
+        var(--text-soft);
+
+    font-size: 9px;
+
+    line-height: 1.5;
 
 }
 
 
 .ver-recibo {
 
-    min-height: 45px;
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 7px;
+
+    min-height: 43px;
 
     padding:
-        0 18px;
+        0 17px;
 
-    border: none;
+    border: 0;
 
-    border-radius: 10px;
+    border-radius: 11px;
 
     background:
-        var(--verde);
+        var(--san-marino);
 
-    color: white;
+    color:
+        var(--white);
 
-    font-size: 12px;
+    font-size: 10px;
 
     font-weight: 900;
 
-    cursor: pointer;
+    box-shadow:
+        0 8px 18px
+        rgba(74,110,176,.20);
+
+    transition:
+        all .2s ease;
 
 }
 
 
-/* =====================================================
+.ver-recibo:hover {
+
+    background:
+        #3F609D;
+
+    transform:
+        translateY(-1px);
+
+}
+
+
+/* =========================================================
    VISOR
-===================================================== */
+========================================================= */
 
 .visor {
 
-    margin-top: 25px;
+    margin-top: 30px;
 
-    padding: 23px;
+    overflow: hidden;
 
-    background: white;
+    background:
+        var(--white);
 
     border:
-        1px solid var(--borde);
+        1px solid var(--border);
 
-    border-radius: 21px;
+    border-radius: 24px;
 
     box-shadow:
-        var(--sombra);
+        var(--shadow);
 
 }
 
@@ -877,12 +2550,20 @@ body {
 
     gap: 15px;
 
-    margin-bottom: 18px;
+    padding: 20px 24px;
+
+    border-bottom:
+        1px solid var(--border);
 
 }
 
 
 .cabecera-visor h2 {
+
+    margin-top: 5px;
+
+    color:
+        var(--eden-dark);
 
     font-size: 21px;
 
@@ -893,6 +2574,8 @@ body {
 
     display: flex;
 
+    align-items: center;
+
     gap: 8px;
 
 }
@@ -900,52 +2583,17 @@ body {
 
 .visor-pdf {
 
-    width: 100%;
-
     min-height: 400px;
 
-    padding: 10px;
-
-    overflow: auto;
-
-    display: flex;
-
-    justify-content: center;
-
-    align-items: flex-start;
+    padding: 20px;
 
     background:
-        #edf2ef;
-
-    border:
-        1px solid var(--borde);
-
-    border-radius: 13px;
-
-}
-
-
-.visor-pdf canvas {
-
-    display: block;
-
-    max-width: 100%;
-
-    height: auto;
-
-    background: white;
-
-    box-shadow:
-        0 5px 20px rgba(0,0,0,.15);
+        #F3F7F8;
 
 }
 
 
 .visor-mensaje {
-
-    width: 100%;
-
-    min-height: 350px;
 
     display: flex;
 
@@ -953,312 +2601,998 @@ body {
 
     justify-content: center;
 
+    min-height: 350px;
+
     color:
-        var(--texto-suave);
+        var(--text-soft);
+
+    font-size: 13px;
 
     text-align: center;
 
 }
 
 
-/* =====================================================
+/* =========================================================
    AVISO
-===================================================== */
+========================================================= */
 
 .aviso {
 
     display: flex;
 
-    align-items: flex-start;
+    align-items: center;
 
-    gap: 12px;
+    gap: 14px;
 
-    margin-top: 25px;
+    margin-top: 28px;
 
-    padding: 18px;
-
-    background:
-        var(--verde-claro);
+    padding:
+        17px 20px;
 
     border:
-        1px solid var(--borde);
+        1px solid var(--border);
 
     border-left:
-        4px solid var(--verde);
+        4px solid var(--bondi);
 
-    border-radius: 14px;
+    border-radius: 17px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #FBFCFD,
+            #E8F3F6
+        );
 
 }
 
 
 .aviso-icono {
 
-    font-size: 23px;
+    width: 42px;
+
+    height: 42px;
+
+    flex: 0 0 42px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 12px;
+
+    background:
+        var(--bondi);
+
+    color:
+        var(--white);
 
 }
 
 
 .aviso h3 {
 
-    margin-bottom: 5px;
+    color:
+        var(--eden);
 
-    font-size: 15px;
+    font-size: 12px;
 
 }
 
 
 .aviso p {
 
+    margin-top: 4px;
+
     color:
-        var(--texto-suave);
+        var(--text-soft);
+
+    font-size: 9px;
+
+    line-height: 1.5;
+
+}
+
+
+/* =========================================================
+   MODALES
+========================================================= */
+
+.modal-overlay {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 1000;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 20px;
+
+    background:
+        rgba(17,76,95,.48);
+
+    backdrop-filter:
+        blur(6px);
+
+}
+
+
+.modal {
+
+    position: relative;
+
+    width:
+        min(520px, 100%);
+
+    max-height:
+        calc(100vh - 40px);
+
+    overflow-y: auto;
+
+    padding: 32px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 24px;
+
+    background:
+        var(--white);
+
+    box-shadow:
+        0 25px 70px
+        rgba(17,76,95,.22);
+
+    animation:
+        modalEntrada .22s ease;
+
+}
+
+
+@keyframes modalEntrada {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(12px)
+            scale(.98);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+
+    }
+
+}
+
+
+.modal-cerrar {
+
+    position: absolute;
+
+    top: 16px;
+
+    right: 16px;
+
+    width: 34px;
+
+    height: 34px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border: 0;
+
+    border-radius: 10px;
+
+    background:
+        var(--background);
+
+    color:
+        var(--text-soft);
+
+}
+
+
+.modal-cerrar:hover {
+
+    background:
+        var(--green-soft);
+
+    color:
+        var(--eden);
+
+}
+
+
+.modal-icono {
+
+    width: 50px;
+
+    height: 50px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    margin-bottom: 15px;
+
+    border-radius: 14px;
+
+}
+
+
+.modal-icono.verde {
+
+    background:
+        var(--green-soft);
+
+    color:
+        var(--bondi);
+
+}
+
+
+.modal-icono.azul {
+
+    background:
+        var(--blue-soft);
+
+    color:
+        var(--san-marino);
+
+}
+
+
+.modal-icono.amarillo {
+
+    background:
+        var(--yellow-soft);
+
+    color:
+        #A58D5E;
+
+}
+
+
+.modal-etiqueta {
+
+    display: block;
+
+    color:
+        var(--bondi-dark);
+
+    font-size: 8px;
+
+    font-weight: 900;
+
+    letter-spacing: 1.3px;
+
+}
+
+
+.modal h2 {
+
+    margin-top: 6px;
+
+    color:
+        var(--eden-dark);
+
+    font-size: 27px;
+
+}
+
+
+.modal-introduccion {
+
+    margin-top: 12px;
+
+    color:
+        var(--text-soft);
 
     font-size: 11px;
+
+    line-height: 1.7;
+
+}
+
+
+.modal-seccion {
+
+    margin-top: 22px;
+
+}
+
+
+.modal-seccion h3 {
+
+    margin-bottom: 12px;
+
+    color:
+        var(--eden);
+
+    font-size: 13px;
+
+}
+
+
+/* =========================================================
+   PASOS
+========================================================= */
+
+.paso {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 10px 0;
+
+}
+
+
+.paso > span {
+
+    width: 32px;
+
+    height: 32px;
+
+    flex: 0 0 32px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 9px;
+
+    background:
+        var(--green-soft);
+
+    color:
+        var(--bondi-dark);
+
+    font-size: 9px;
+
+    font-weight: 900;
+
+}
+
+
+.paso p {
+
+    color:
+        var(--text-soft);
+
+    font-size: 10px;
+
+    line-height: 1.5;
+
+}
+
+
+.paso strong {
+
+    color:
+        var(--eden);
+
+}
+
+
+/* =========================================================
+   SEGURIDAD
+========================================================= */
+
+.seguridad-lista {
+
+    margin-top: 20px;
+
+}
+
+
+.seguridad-lista > div {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding:
+        10px 0;
+
+}
+
+
+.lista-icono {
+
+    width: 36px;
+
+    height: 36px;
+
+    flex: 0 0 36px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 10px;
+
+    background:
+        var(--blue-soft);
+
+    color:
+        var(--san-marino);
+
+}
+
+
+.seguridad-lista p {
+
+    color:
+        var(--text-soft);
+
+    font-size: 10px;
+
+    line-height: 1.5;
+
+}
+
+
+/* =========================================================
+   AYUDA
+========================================================= */
+
+.ayuda-lista {
+
+    margin-top: 20px;
+
+}
+
+
+.ayuda-item {
+
+    margin-bottom: 10px;
+
+    padding: 14px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 13px;
+
+    background:
+        #F8FAFB;
+
+}
+
+
+.ayuda-item:last-child {
+
+    margin-bottom: 0;
+
+}
+
+
+.ayuda-item strong {
+
+    display: block;
+
+    color:
+        var(--eden);
+
+    font-size: 11px;
+
+}
+
+
+.ayuda-item p {
+
+    margin-top: 5px;
+
+    color:
+        var(--text-soft);
+
+    font-size: 10px;
 
     line-height: 1.6;
 
 }
 
 
-/* =====================================================
-   FOOTER
-===================================================== */
+/* =========================================================
+   BOTÓN MODAL
+========================================================= */
 
-footer {
+.modal-principal {
 
-    padding:
-        22px 15px 30px;
+    width: 100%;
 
-    text-align: center;
+    min-height: 44px;
+
+    margin-top: 22px;
+
+    border: 0;
+
+    border-radius: 11px;
+
+    background:
+        var(--bondi);
 
     color:
-        var(--texto-suave);
+        var(--white);
 
-    font-size: 10px;
+    font-size: 11px;
+
+    font-weight: 900;
+
+    box-shadow:
+        0 8px 18px
+        rgba(71,153,182,.20);
+
+    transition:
+        all .2s ease;
 
 }
 
 
-/* =====================================================
-   CELULAR
-===================================================== */
+.modal-principal:hover {
 
-@media (max-width: 700px) {
+    background:
+        var(--bondi-dark);
+
+    transform:
+        translateY(-1px);
+
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer {
+
+    width:
+        min(1140px, 92%);
+
+    margin:
+        0 auto 30px;
+
+    color:
+        var(--text-soft);
+
+}
+
+
+.footer-contenido {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding-top: 18px;
+
+    border-top:
+        1px solid var(--border);
+
+}
+
+
+.footer-bloque {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 3px;
+
+}
+
+
+.footer-bloque strong {
+
+    color:
+        var(--eden);
+
+    font-size: 9px;
+
+}
+
+
+.footer-bloque span {
+
+    color:
+        var(--text-soft);
+
+    font-size: 8px;
+
+}
+
+
+.footer-centro {
+
+    font-size: 8px;
+
+    text-align: center;
+
+}
+
+
+.footer-derecha {
+
+    text-align: right;
+
+}
+
+
+.version {
+
+    display: block;
+
+    margin-top: 10px;
+
+    color:
+        var(--text-light);
+
+    font-size: 7px;
+
+    text-align: center;
+
+}
+
+
+/* =========================================================
+   ELEMENTOS OCULTOS
+========================================================= */
+
+.oculto {
+
+    display: none !important;
+
+}
+
+
+body.modal-abierto {
+
+    overflow: hidden;
+
+}
+
+
+/* =========================================================
+   ANIMACIONES
+========================================================= */
+
+button,
+.nav-link,
+.opcion-quincena span,
+.recibo {
+
+    -webkit-tap-highlight-color:
+        transparent;
+
+}
+
+
+button:hover .icono,
+.nav-link:hover .icono {
+
+    transform:
+        scale(1.05);
+
+}
+
+
+button:active .icono {
+
+    transform:
+        scale(.96);
+
+}
+
+
+/* =========================================================
+   SCROLLBAR
+========================================================= */
+
+::-webkit-scrollbar {
+
+    width: 9px;
+
+}
+
+
+::-webkit-scrollbar-track {
+
+    background:
+        var(--background);
+
+}
+
+
+::-webkit-scrollbar-thumb {
+
+    background:
+        var(--sinbad);
+
+    border-radius: 20px;
+
+}
+
+
+::-webkit-scrollbar-thumb:hover {
+
+    background:
+        var(--bondi);
+
+}
+
+
+/* =========================================================
+   RESPONSIVE — TABLET
+========================================================= */
+
+@media (max-width: 900px) {
+
+    .bienvenida {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .beneficios {
+
+        grid-template-columns:
+            1fr;
+
+        gap: 14px;
+
+    }
+
+
+    .linea-beneficio {
+
+        width: 100%;
+
+        height: 1px;
+
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE — MÓVIL
+========================================================= */
+
+@media (max-width: 650px) {
 
     .encabezado {
 
+        min-height: 70px;
+
         padding:
-            12px 15px;
+            9px 15px;
 
     }
 
 
     .logo {
 
-        width: 47px;
+        width: 45px;
 
-        height: 47px;
+        height: 45px;
 
-        flex-basis: 47px;
+        flex-basis: 45px;
 
-        font-size: 16px;
+        border-radius: 13px;
+
+        font-size: 14px;
 
     }
 
 
     .empresa h1 {
 
-        font-size: 14px;
+        font-size: 12px;
 
     }
 
 
     .empresa p {
 
-        font-size: 9px;
+        font-size: 8px;
 
     }
 
 
-    .confidencial-top {
+    .navegacion {
 
-        display: none;
+        gap: 0;
+
+    }
+
+
+    .nav-link {
+
+        padding:
+            7px;
+
+        font-size: 0;
+
+    }
+
+
+    .nav-link .icono {
+
+        width: 18px;
+
+        height: 18px;
 
     }
 
 
     .contenedor {
 
-        width:
-            calc(100% - 18px);
+        width: 94%;
 
         margin:
-            15px auto 30px;
+            25px auto 35px;
 
     }
 
 
     .bienvenida {
 
-        display: block;
+        padding: 22px;
 
-        padding:
-            22px 14px;
+        gap: 25px;
 
-        border-radius:
-            19px;
-
-    }
-
-
-    .bienvenida-texto {
-
-        margin-bottom:
-            20px;
+        border-radius: 21px;
 
     }
 
 
     .bienvenida-texto h2 {
 
-        font-size:
-            31px;
+        font-size: 40px;
+
+        letter-spacing: -1.8px;
 
     }
 
 
-    .bienvenida-texto p {
+    .bienvenida-texto > p {
 
-        font-size:
-            12px;
+        font-size: 12px;
+
+    }
+
+
+    .beneficios-hero {
+
+        gap: 9px;
+
+    }
+
+
+    .beneficio-hero small {
+
+        max-width: 85px;
 
     }
 
 
     .buscador {
 
-        padding:
-            16px 12px;
+        padding: 21px;
+
+        border-radius: 18px;
+
+    }
+
+
+    .cabecera-buscador h2 {
+
+        font-size: 20px;
 
     }
 
 
     .opciones-quincena {
 
-        gap: 7px;
-
-    }
-
-
-    .opcion-quincena span {
-
-        min-height: 60px;
-
-        font-size: 11px;
+        grid-template-columns:
+            1fr;
 
     }
 
 
     .fila-busqueda {
 
-        display: block;
-
-    }
-
-
-    #codigo {
-
-        width: 100%;
-
-        height: 56px;
-
-        font-size: 17px;
+        grid-template-columns:
+            1fr;
 
     }
 
 
     #buscar {
 
-        width: 100%;
-
-        height: 54px;
-
-        margin-top: 9px;
-
-        font-size: 14px;
-
-    }
-
-
-    .resultado {
-
-        padding:
-            16px 13px;
+        min-height: 50px;
 
     }
 
 
     .empleado {
 
-        display: grid;
-
-        grid-template-columns:
-            auto 1fr;
-
-        gap: 11px;
+        flex-wrap: wrap;
 
     }
 
 
-    .datos-empleado h2 {
+    .datos-empleado {
 
-        font-size: 17px;
-
-    }
-
-
-    .empleado .boton-secundario {
-
-        grid-column:
-            1 / -1;
-
-        width: 100%;
+        min-width:
+            calc(100% - 70px);
 
     }
 
 
     .titulo-seccion {
 
-        display: block;
+        align-items: flex-start;
 
-    }
-
-
-    .titulo-seccion h2 {
-
-        font-size: 21px;
-
-    }
-
-
-    .periodo {
-
-        display: inline-block;
-
-        margin-top: 8px;
+        flex-direction: column;
 
     }
 
 
     .recibo {
 
-        display: block;
+        align-items: flex-start;
+
+        flex-wrap: wrap;
 
     }
 
 
-    .icono-recibo {
+    .informacion-recibo {
 
-        margin-bottom: 12px;
+        min-width:
+            calc(100% - 70px);
 
     }
 
@@ -1267,36 +3601,114 @@ footer {
 
         width: 100%;
 
-        margin-top: 15px;
-
-        height: 50px;
-
-    }
-
-
-    .visor {
-
-        padding:
-            14px 10px;
+        margin-top: 5px;
 
     }
 
 
     .cabecera-visor {
 
-        display: block;
+        align-items: flex-start;
 
-    }
-
-
-    .cabecera-visor h2 {
-
-        margin-bottom: 13px;
+        flex-direction: column;
 
     }
 
 
     .acciones-visor {
+
+        width: 100%;
+
+        flex-wrap: wrap;
+
+    }
+
+
+    .acciones-visor .boton-secundario {
+
+        flex: 1;
+
+    }
+
+
+    .visor-pdf {
+
+        padding: 10px;
+
+    }
+
+
+    .aviso {
+
+        align-items: flex-start;
+
+    }
+
+
+    .footer-contenido {
+
+        flex-direction: column;
+
+        text-align: center;
+
+    }
+
+
+    .footer-derecha {
+
+        text-align: center;
+
+    }
+
+
+    .modal {
+
+        padding: 25px;
+
+        border-radius: 20px;
+
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE — MÓVIL PEQUEÑO
+========================================================= */
+
+@media (max-width: 430px) {
+
+    .marca {
+
+        gap: 8px;
+
+    }
+
+
+    .empresa h1 {
+
+        max-width: 170px;
+
+        font-size: 10px;
+
+    }
+
+
+    .empresa p {
+
+        font-size: 7px;
+
+    }
+
+
+    .bienvenida-texto h2 {
+
+        font-size: 35px;
+
+    }
+
+
+    .beneficios-hero {
 
         display: grid;
 
@@ -1306,19 +3718,29 @@ footer {
     }
 
 
-    .acciones-visor button {
+    .separador-beneficio {
 
-        width: 100%;
+        display: none;
 
     }
 
 
-    .visor-pdf {
+    .seguridad-mini {
 
-        min-height: 300px;
+        align-items: flex-start;
 
-        padding: 5px;
+    }
+
+
+    .modal h2 {
+
+        font-size: 23px;
 
     }
 
 }
+
+
+/* =========================================================
+   FIN DEL STYLE.CSS
+========================================================= */

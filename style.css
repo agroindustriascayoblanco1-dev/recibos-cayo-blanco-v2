@@ -4270,49 +4270,55 @@ button:active .icono {
     }
 }
 /* =========================================================
-   AJUSTE DEL TÍTULO PRINCIPAL
+   AJUSTE DEFINITIVO DEL TÍTULO PRINCIPAL
 ========================================================= */
 
 .bienvenida-texto h2 {
-    font-size: 52px !important;
-    line-height: 1.02 !important;
-    letter-spacing: -2px !important;
-    margin-bottom: 14px !important;
+    font-size: 48px !important;
+    line-height: 1.12 !important;
+    letter-spacing: -1.8px !important;
+    margin-top: 18px !important;
+    margin-bottom: 20px !important;
 }
 
 
-/* Computadora */
+/* COMPUTADORA */
+
 @media (min-width: 701px) {
 
     .bienvenida-texto h2 {
-        font-size: 52px !important;
-        line-height: 1.04 !important;
+        font-size: 48px !important;
+        line-height: 1.12 !important;
+        margin-bottom: 20px !important;
+    }
+
+}
+
+
+/* CELULAR */
+
+@media (max-width: 700px) {
+
+    .bienvenida-texto h2 {
+        font-size: 36px !important;
+        line-height: 1.10 !important;
+        letter-spacing: -1.3px !important;
+        margin-top: 14px !important;
         margin-bottom: 16px !important;
     }
 
 }
 
 
-/* Celular */
-@media (max-width: 700px) {
+/* CELULARES PEQUEÑOS */
 
-    .bienvenida-texto h2 {
-        font-size: 37px !important;
-        line-height: 1.02 !important;
-        letter-spacing: -1.5px !important;
-        margin-bottom: 12px !important;
-    }
-
-}
-
-
-/* Celulares pequeños */
 @media (max-width: 380px) {
 
     .bienvenida-texto h2 {
-        font-size: 33px !important;
-        line-height: 1.04 !important;
-        letter-spacing: -1.2px !important;
+        font-size: 32px !important;
+        line-height: 1.10 !important;
+        letter-spacing: -1px !important;
+        margin-bottom: 15px !important;
     }
 
 }

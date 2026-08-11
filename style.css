@@ -1,1842 +1,573 @@
-/* =====================================================
-   COA - RECIBOS DE PAGO
-   VERSIÓN 2 - DISEÑO RESPONSIVE
-   ===================================================== */
+<!DOCTYPE html>
+<html lang="es">
 
-:root {
+<head>
 
-    --verde:
-        #087a3f;
+    <meta charset="UTF-8">
 
-    --verde-oscuro:
-        #005b30;
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-    --verde-claro:
-        #eaf7f0;
+    <title>
+        Recibos de Pago | Agroindustrias Cayo Blanco
+    </title>
 
-    --verde-suave:
-        #f4faf7;
 
-    --texto:
-        #12352a;
+    <!-- ==================================================
+         PDF.JS
+    =================================================== -->
 
-    --texto-secundario:
-        #61736c;
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js">
+    </script>
 
-    --blanco:
-        #ffffff;
 
-    --gris-fondo:
-        #f3f7f5;
+    <!-- ==================================================
+         ESTILOS
+    =================================================== -->
 
-    --borde:
-        #dbe7e1;
+    <link
+        rel="stylesheet"
+        href="style.css?v=10"
+    >
 
-    --rojo:
-        #d62828;
+</head>
 
-    --sombra:
-        0 10px 35px rgba(0, 70, 40, 0.08);
 
-}
+<body>
 
 
-/* =====================================================
-   RESET
-   ===================================================== */
+    <!-- ==================================================
+         ENCABEZADO
+    =================================================== -->
 
-* {
+    <header class="encabezado">
 
-    box-sizing:
-        border-box;
+        <div class="marca">
 
-    margin:
-        0;
+            <div class="logo">
+                COA
+            </div>
 
-    padding:
-        0;
 
-}
+            <div class="empresa">
 
+                <h1>
+                    AGROINDUSTRIAS CAYO BLANCO
+                </h1>
 
-html {
+                <p>
+                    Portal de Recibos de Pago
+                </p>
 
-    scroll-behavior:
-        smooth;
+            </div>
 
-}
+        </div>
 
 
-body {
+        <div class="confidencial-top">
 
-    min-height:
-        100vh;
+            🔒 Información confidencial
 
-    font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
+        </div>
 
-    background:
-        var(--gris-fondo);
+    </header>
 
-    color:
-        var(--texto);
 
-}
 
+    <!-- ==================================================
+         CONTENIDO PRINCIPAL
+    =================================================== -->
 
-/* =====================================================
-   ENCABEZADO
-   ===================================================== */
+    <main class="contenedor">
 
-.encabezado {
 
-    width:
-        100%;
+        <!-- ==================================================
+             BUSCADOR
+        =================================================== -->
 
-    padding:
-        18px 6%;
+        <section class="bienvenida">
 
-    display:
-        flex;
 
-    align-items:
-        center;
+            <div class="bienvenida-texto">
 
-    justify-content:
-        space-between;
+                <span class="etiqueta">
+                    RECURSOS HUMANOS
+                </span>
 
-    gap:
-        20px;
 
-    background:
-        linear-gradient(
-            135deg,
-            var(--verde-oscuro),
-            var(--verde)
-        );
+                <h2>
+                    Consulta tus<br>
+                    recibos de pago
+                </h2>
 
-    color:
-        white;
 
-    box-shadow:
-        0 4px 18px rgba(0, 60, 30, .12);
+                <p>
+                    Selecciona la quincena e ingresa
+                    tu código de empleado para consultar
+                    tu recibo de forma rápida,
+                    sencilla y confidencial.
+                </p>
 
-}
+            </div>
 
 
-.marca {
 
-    display:
-        flex;
+            <div class="buscador">
 
-    align-items:
-        center;
 
-    gap:
-        14px;
+                <!-- ==================================================
+                     SELECCIÓN DE QUINCENA
+                =================================================== -->
 
-}
+                <div class="selector-quincena">
 
+                    <label class="titulo-selector">
 
-.logo {
+                        Selecciona la quincena
 
-    width:
-        56px;
+                    </label>
 
-    height:
-        56px;
 
-    display:
-        flex;
+                    <div class="opciones-quincena">
 
-    align-items:
-        center;
 
-    justify-content:
-        center;
+                        <!-- QUINCENA 1 -->
 
-    border-radius:
-        14px;
+                        <label class="opcion-quincena">
 
-    background:
-        white;
+                            <input
+                                type="radio"
+                                name="quincena"
+                                value="q1"
+                                checked
+                            >
 
-    color:
-        var(--verde);
 
-    font-size:
-        19px;
+                            <span>
 
-    font-weight:
-        900;
+                                <strong>
+                                    Quincena 1
+                                </strong>
 
-    box-shadow:
-        0 4px 14px rgba(0,0,0,.12);
+                                <small>
+                                    Agosto 2026
+                                </small>
 
-}
+                            </span>
 
+                        </label>
 
-.empresa h1 {
 
-    font-size:
-        20px;
 
-    line-height:
-        1.2;
+                        <!-- QUINCENA 2 -->
 
-}
+                        <label class="opcion-quincena">
 
+                            <input
+                                type="radio"
+                                name="quincena"
+                                value="q2"
+                            >
 
-.empresa p {
 
-    margin-top:
-        4px;
+                            <span>
 
-    font-size:
-        12px;
+                                <strong>
+                                    Quincena 2
+                                </strong>
 
-    opacity:
-        .88;
+                                <small>
+                                    Agosto 2026
+                                </small>
 
-}
+                            </span>
 
+                        </label>
 
-.confidencial-top {
 
-    padding:
-        8px 13px;
+                    </div>
 
-    border:
-        1px solid rgba(255,255,255,.18);
+                </div>
 
-    border-radius:
-        999px;
 
-    background:
-        rgba(255,255,255,.08);
 
-    font-size:
-        11px;
+                <!-- ==================================================
+                     CÓDIGO DE EMPLEADO
+                =================================================== -->
 
-}
+                <label
+                    for="codigo"
+                    class="label-codigo"
+                >
 
+                    Código de empleado
 
-/* =====================================================
-   CONTENEDOR
-   ===================================================== */
+                </label>
 
-.contenedor {
 
-    width:
-        min(1100px, 92%);
+                <div class="fila-busqueda">
 
-    margin:
-        35px auto 45px;
 
-}
+                    <input
+                        type="text"
+                        id="codigo"
+                        placeholder="Ejemplo: CBEP0016"
+                        autocomplete="off"
+                        spellcheck="false"
+                    >
 
 
-/* =====================================================
-   BIENVENIDA
-   ===================================================== */
+                    <button
+                        id="buscar"
+                        type="button"
+                    >
 
-.bienvenida {
+                        🔎 Consultar
 
-    display:
-        grid;
+                    </button>
 
-    grid-template-columns:
-        1fr 1fr;
 
-    align-items:
-        center;
+                </div>
 
-    gap:
-        40px;
 
-    padding:
-        38px;
+                <p class="ayuda">
 
-    background:
-        var(--blanco);
+                    Ingresa tu código tal como aparece
+                    en tu documentación laboral.
 
-    border:
-        1px solid var(--borde);
+                </p>
 
-    border-radius:
-        24px;
 
-    box-shadow:
-        var(--sombra);
+                <div id="mensaje"></div>
 
-}
 
+            </div>
 
-.bienvenida-texto h2 {
+        </section>
 
-    margin-bottom:
-        14px;
 
-    color:
-        var(--texto);
 
-    font-size:
-        clamp(32px, 4vw, 46px);
+        <!-- ==================================================
+             RESULTADO DEL EMPLEADO
+        =================================================== -->
 
-    line-height:
-        1.08;
+        <section
+            id="resultado"
+            class="resultado oculto"
+        >
 
-}
 
+            <div class="empleado">
 
-.bienvenida-texto p {
 
-    max-width:
-        540px;
+                <div class="avatar">
+                    👤
+                </div>
 
-    color:
-        var(--texto-secundario);
 
-    font-size:
-        14px;
+                <div class="datos-empleado">
 
-    line-height:
-        1.7;
 
-}
+                    <span>
+                        COLABORADOR ENCONTRADO
+                    </span>
 
 
-.etiqueta {
+                    <h2 id="nombreEmpleado">
+                        —
+                    </h2>
 
-    display:
-        inline-block;
 
-    margin-bottom:
-        12px;
+                    <p>
 
-    padding:
-        6px 10px;
+                        Código de empleado:
 
-    border-radius:
-        999px;
+                        <strong id="codigoEmpleado">
+                            —
+                        </strong>
 
-    background:
-        var(--verde-claro);
+                    </p>
 
-    color:
-        var(--verde);
 
-    font-size:
-        10px;
+                </div>
 
-    font-weight:
-        900;
 
-    letter-spacing:
-        1px;
+                <button
+                    id="nuevaConsulta"
+                    class="boton-secundario"
+                    type="button"
+                >
 
-}
+                    ↻ Nueva consulta
 
+                </button>
 
-/* =====================================================
-   BUSCADOR
-   ===================================================== */
 
-.buscador {
+            </div>
 
-    padding:
-        25px;
 
-    background:
-        var(--verde-suave);
 
-    border:
-        1px solid var(--borde);
+            <!-- ==================================================
+                 RECIBO DISPONIBLE
+            =================================================== -->
 
-    border-radius:
-        18px;
+            <div class="titulo-seccion">
 
-}
 
+                <div>
 
-.selector-quincena {
 
-    margin-bottom:
-        20px;
+                    <span class="etiqueta">
 
-}
+                        DOCUMENTO DISPONIBLE
 
+                    </span>
 
-.titulo-selector {
 
-    display:
-        block;
+                    <h2>
 
-    margin-bottom:
-        10px;
+                        Tu recibo de pago
 
-    font-size:
-        13px;
+                    </h2>
 
-    font-weight:
-        900;
 
-}
+                </div>
 
 
-.opciones-quincena {
+                <span
+                    id="periodoSeleccionado"
+                    class="periodo"
+                >
 
-    display:
-        grid;
+                    QUINCENA 1 · AGOSTO 2026
 
-    grid-template-columns:
-        1fr 1fr;
+                </span>
 
-    gap:
-        9px;
 
-}
+            </div>
 
 
-.opcion-quincena {
 
-    position:
-        relative;
+            <div class="recibos">
 
-    cursor:
-        pointer;
 
-}
+                <article class="recibo">
 
 
-.opcion-quincena input {
+                    <div class="icono-recibo">
 
-    position:
-        absolute;
+                        🧾
 
-    opacity:
-        0;
+                    </div>
 
-}
 
+                    <div class="informacion-recibo">
 
-.opcion-quincena span {
 
-    min-height:
-        55px;
+                        <span id="textoQuincena">
 
-    padding:
-        9px;
+                            QUINCENA 1 · AGOSTO 2026
 
-    display:
-        flex;
+                        </span>
 
-    flex-direction:
-        column;
 
-    align-items:
-        center;
+                        <h3>
 
-    justify-content:
-        center;
+                            Recibo de pago
 
-    text-align:
-        center;
+                        </h3>
 
-    border:
-        2px solid var(--borde);
 
-    border-radius:
-        12px;
+                        <p>
 
-    background:
-        white;
+                            Consulta el detalle de tu
+                            recibo correspondiente al
+                            período seleccionado.
 
-    color:
-        var(--texto);
+                        </p>
 
-    font-size:
-        12px;
 
-    font-weight:
-        800;
+                    </div>
 
-    transition:
-        .2s ease;
 
-}
+                    <button
+                        id="verRecibo"
+                        class="ver-recibo"
+                        type="button"
+                    >
 
+                        👁️ Ver recibo
 
-.opcion-quincena span:hover {
+                    </button>
 
-    border-color:
-        var(--verde);
 
-}
+                </article>
 
 
-.opcion-quincena input:checked + span {
+            </div>
 
-    border-color:
-        var(--verde);
 
-    background:
-        var(--verde);
+        </section>
 
-    color:
-        white;
 
-    box-shadow:
-        0 5px 15px rgba(8,122,63,.18);
 
-}
+        <!-- ==================================================
+             VISOR DEL RECIBO
+        =================================================== -->
 
+        <section
+            id="visor"
+            class="visor oculto"
+        >
 
-/* =====================================================
-   CÓDIGO
-   ===================================================== */
 
-.label-codigo {
+            <div class="cabecera-visor">
 
-    display:
-        block;
 
-    margin-bottom:
-        8px;
+                <div>
 
-    font-size:
-        13px;
 
-    font-weight:
-        900;
+                    <span class="etiqueta">
 
-}
+                        RECIBO DE PAGO
 
+                    </span>
 
-.fila-busqueda {
 
-    display:
-        flex;
+                    <h2 id="visorTitulo">
 
-    gap:
-        9px;
+                        Recibo
 
-}
+                    </h2>
 
 
-#codigo {
+                </div>
 
-    flex:
-        1;
 
-    min-width:
-        0;
 
-    height:
-        52px;
+                <div class="acciones-visor">
 
-    padding:
-        0 15px;
 
-    border:
-        2px solid var(--borde);
+                    <button
+                        id="guardarRecibo"
+                        class="boton-secundario"
+                        type="button"
+                    >
 
-    border-radius:
-        12px;
+                        📥 Guardar recibo
 
-    outline:
-        none;
+                    </button>
 
-    background:
-        white;
 
-    color:
-        var(--texto);
+                    <button
+                        id="cerrarVisor"
+                        class="boton-secundario"
+                        type="button"
+                    >
 
-    font-size:
-        15px;
+                        ← Cerrar
 
-}
+                    </button>
 
 
-#codigo:focus {
+                </div>
 
-    border-color:
-        var(--verde);
 
-    box-shadow:
-        0 0 0 4px rgba(8,122,63,.08);
+            </div>
 
-}
 
 
-#buscar {
+            <!-- VISOR PDF -->
 
-    height:
-        52px;
+            <div class="visor-pdf">
 
-    padding:
-        0 20px;
 
-    border:
-        none;
+                <div class="visor-mensaje">
 
-    border-radius:
-        12px;
+                    Selecciona tu recibo para visualizarlo.
 
-    background:
-        var(--verde);
+                </div>
 
-    color:
-        white;
 
-    font-size:
-        13px;
+            </div>
 
-    font-weight:
-        900;
 
-    cursor:
-        pointer;
+        </section>
 
-    transition:
-        .2s ease;
 
-}
 
+        <!-- ==================================================
+             AVISO
+        =================================================== -->
 
-#buscar:hover {
+        <section class="aviso">
 
-    background:
-        var(--verde-oscuro);
 
-    transform:
-        translateY(-1px);
+            <div class="aviso-icono">
 
-}
+                🔐
 
+            </div>
 
-#buscar:disabled {
 
-    opacity:
-        .65;
+            <div>
 
-    cursor:
-        wait;
 
-}
+                <h3>
 
+                    Tu información es confidencial
 
-.ayuda {
+                </h3>
 
-    margin-top:
-        8px;
 
-    color:
-        var(--texto-secundario);
+                <p>
 
-    font-size:
-        11px;
+                    Los recibos de pago contienen
+                    información personal. Consulta
+                    únicamente tu propio recibo y no
+                    compartas tu código de empleado.
 
-}
+                </p>
 
 
-#mensaje {
+            </div>
 
-    min-height:
-        20px;
 
-    margin-top:
-        10px;
+        </section>
 
-    font-size:
-        12px;
 
-    font-weight:
-        800;
+    </main>
 
-}
 
 
-/* =====================================================
-   OCULTO
-   ===================================================== */
+    <!-- ==================================================
+         PIE DE PÁGINA
+    =================================================== -->
 
-.oculto {
+    <footer>
 
-    display:
-        none !important;
+        RRHH · Agroindustrias Cayo Blanco · COA
 
-}
+        <span>
 
+            Versión 3
 
-/* =====================================================
-   RESULTADO
-   ===================================================== */
+        </span>
 
-.resultado {
+    </footer>
 
-    margin-top:
-        25px;
 
-    padding:
-        25px;
 
-    background:
-        white;
+    <!-- ==================================================
+         SCRIPT
+    =================================================== -->
 
-    border:
-        1px solid var(--borde);
+    <script src="script.js?v=10"></script>
 
-    border-radius:
-        21px;
 
-    box-shadow:
-        var(--sombra);
+</body>
 
-    animation:
-        aparecer .3s ease;
-
-}
-
-
-@keyframes aparecer {
-
-    from {
-
-        opacity:
-            0;
-
-        transform:
-            translateY(8px);
-
-    }
-
-    to {
-
-        opacity:
-            1;
-
-        transform:
-            translateY(0);
-
-    }
-
-}
-
-
-/* =====================================================
-   EMPLEADO
-   ===================================================== */
-
-.empleado {
-
-    display:
-        flex;
-
-    align-items:
-        center;
-
-    gap:
-        15px;
-
-    padding:
-        18px;
-
-    background:
-        var(--verde-suave);
-
-    border:
-        1px solid var(--borde);
-
-    border-radius:
-        16px;
-
-}
-
-
-.avatar {
-
-    width:
-        55px;
-
-    height:
-        55px;
-
-    flex:
-        0 0 55px;
-
-    display:
-        flex;
-
-    align-items:
-        center;
-
-    justify-content:
-        center;
-
-    border-radius:
-        15px;
-
-    background:
-        white;
-
-    color:
-        var(--verde);
-
-    font-size:
-        25px;
-
-    box-shadow:
-        0 4px 12px rgba(0,60,30,.06);
-
-}
-
-
-.datos-empleado {
-
-    flex:
-        1;
-
-    min-width:
-        0;
-
-}
-
-
-.datos-empleado span {
-
-    display:
-        block;
-
-    margin-bottom:
-        4px;
-
-    color:
-        var(--verde);
-
-    font-size:
-        9px;
-
-    font-weight:
-        900;
-
-    letter-spacing:
-        1px;
-
-}
-
-
-.datos-empleado h2 {
-
-    margin-bottom:
-        4px;
-
-    font-size:
-        20px;
-
-    line-height:
-        1.25;
-
-}
-
-
-.datos-empleado p {
-
-    color:
-        var(--texto-secundario);
-
-    font-size:
-        12px;
-
-}
-
-
-/* =====================================================
-   BOTÓN SECUNDARIO
-   ===================================================== */
-
-.boton-secundario {
-
-    min-height:
-        43px;
-
-    padding:
-        0 15px;
-
-    border:
-        1px solid var(--borde);
-
-    border-radius:
-        10px;
-
-    background:
-        white;
-
-    color:
-        var(--texto);
-
-    font-size:
-        11px;
-
-    font-weight:
-        900;
-
-    cursor:
-        pointer;
-
-}
-
-
-.boton-secundario:hover {
-
-    border-color:
-        var(--verde);
-
-    color:
-        var(--verde);
-
-}
-
-
-/* =====================================================
-   TÍTULO DE SECCIÓN
-   ===================================================== */
-
-.titulo-seccion {
-
-    display:
-        flex;
-
-    align-items:
-        center;
-
-    justify-content:
-        space-between;
-
-    gap:
-        15px;
-
-    margin:
-        28px 0 15px;
-
-}
-
-
-.titulo-seccion h2 {
-
-    font-size:
-        23px;
-
-}
-
-
-.periodo {
-
-    padding:
-        7px 11px;
-
-    border-radius:
-        999px;
-
-    background:
-        var(--verde-claro);
-
-    color:
-        var(--verde);
-
-    font-size:
-        9px;
-
-    font-weight:
-        900;
-
-}
-
-
-/* =====================================================
-   RECIBO
-   ===================================================== */
-
-.recibos {
-
-    display:
-        grid;
-
-    grid-template-columns:
-        1fr;
-
-}
-
-
-.recibo {
-
-    display:
-        flex;
-
-    align-items:
-        center;
-
-    gap:
-        16px;
-
-    padding:
-        19px;
-
-    background:
-        white;
-
-    border:
-        1px solid var(--borde);
-
-    border-radius:
-        16px;
-
-}
-
-
-.icono-recibo {
-
-    width:
-        53px;
-
-    height:
-        53px;
-
-    flex:
-        0 0 53px;
-
-    display:
-        flex;
-
-    align-items:
-        center;
-
-    justify-content:
-        center;
-
-    border-radius:
-        14px;
-
-    background:
-        var(--verde-claro);
-
-    color:
-        var(--verde);
-
-    font-size:
-        23px;
-
-}
-
-
-.informacion-recibo {
-
-    flex:
-        1;
-
-}
-
-
-.informacion-recibo span {
-
-    display:
-        block;
-
-    margin-bottom:
-        3px;
-
-    color:
-        var(--verde);
-
-    font-size:
-        9px;
-
-    font-weight:
-        900;
-
-}
-
-
-.informacion-recibo h3 {
-
-    margin:
-        3px 0;
-
-    font-size:
-        17px;
-
-}
-
-
-.informacion-recibo p {
-
-    color:
-        var(--texto-secundario);
-
-    font-size:
-        11px;
-
-    line-height:
-        1.5;
-
-}
-
-
-.ver-recibo {
-
-    min-height:
-        45px;
-
-    padding:
-        0 18px;
-
-    border:
-        none;
-
-    border-radius:
-        10px;
-
-    background:
-        var(--verde);
-
-    color:
-        white;
-
-    font-size:
-        12px;
-
-    font-weight:
-        900;
-
-    cursor:
-        pointer;
-
-}
-
-
-.ver-recibo:hover {
-
-    background:
-        var(--verde-oscuro);
-
-}
-
-
-/* =====================================================
-   VISOR
-   ===================================================== */
-
-.visor {
-
-    margin-top:
-        25px;
-
-    padding:
-        23px;
-
-    background:
-        white;
-
-    border:
-        1px solid var(--borde);
-
-    border-radius:
-        21px;
-
-    box-shadow:
-        var(--sombra);
-
-}
-
-
-.cabecera-visor {
-
-    display:
-        flex;
-
-    align-items:
-        center;
-
-    justify-content:
-        space-between;
-
-    gap:
-        15px;
-
-    margin-bottom:
-        18px;
-
-}
-
-
-.cabecera-visor h2 {
-
-    font-size:
-        21px;
-
-}
-
-
-.visor-pdf {
-
-    width:
-        100%;
-
-    padding:
-        10px;
-
-    overflow:
-        hidden;
-
-    background:
-        #edf2ef;
-
-    border:
-        1px solid var(--borde);
-
-    border-radius:
-        13px;
-
-}
-
-
-/* =====================================================
-   AVISO
-   ===================================================== */
-
-.aviso {
-
-    display:
-        flex;
-
-    align-items:
-        flex-start;
-
-    gap:
-        12px;
-
-    margin-top:
-        25px;
-
-    padding:
-        18px;
-
-    background:
-        var(--verde-claro);
-
-    border:
-        1px solid var(--borde);
-
-    border-left:
-        4px solid var(--verde);
-
-    border-radius:
-        14px;
-
-}
-
-
-.aviso-icono {
-
-    font-size:
-        23px;
-
-}
-
-
-.aviso h3 {
-
-    margin-bottom:
-        5px;
-
-    color:
-        var(--verde-oscuro);
-
-    font-size:
-        15px;
-
-}
-
-
-.aviso p {
-
-    color:
-        var(--texto-secundario);
-
-    font-size:
-        11px;
-
-    line-height:
-        1.6;
-
-}
-
-
-/* =====================================================
-   FOOTER
-   ===================================================== */
-
-footer {
-
-    padding:
-        22px 15px 28px;
-
-    color:
-        var(--texto-secundario);
-
-    font-size:
-        10px;
-
-    text-align:
-        center;
-
-    line-height:
-        1.5;
-
-}
-
-
-/* =====================================================
-   TABLET
-   ===================================================== */
-
-@media (
-    max-width: 900px
-) {
-
-    .contenedor {
-
-        width:
-            94%;
-
-        margin:
-            27px auto 40px;
-
-    }
-
-
-    .bienvenida {
-
-        grid-template-columns:
-            1fr;
-
-        gap:
-            25px;
-
-        padding:
-            30px;
-
-    }
-
-}
-
-
-/* =====================================================
-   CELULAR
-   ===================================================== */
-
-@media (
-    max-width: 600px
-) {
-
-    .encabezado {
-
-        padding:
-            13px 14px;
-
-        min-height:
-            70px;
-
-    }
-
-
-    .logo {
-
-        width:
-            46px;
-
-        height:
-            46px;
-
-        font-size:
-            16px;
-
-    }
-
-
-    .marca {
-
-        gap:
-            9px;
-
-    }
-
-
-    .empresa h1 {
-
-        font-size:
-            14px;
-
-    }
-
-
-    .empresa p {
-
-        font-size:
-            9px;
-
-    }
-
-
-    .confidencial-top {
-
-        display:
-            none;
-
-    }
-
-
-    .contenedor {
-
-        width:
-            calc(100% - 18px);
-
-        margin:
-            13px auto 30px;
-
-    }
-
-
-    .bienvenida {
-
-        display:
-            block;
-
-        padding:
-            22px 15px 16px;
-
-        border-radius:
-            19px;
-
-    }
-
-
-    .bienvenida-texto {
-
-        margin-bottom:
-            18px;
-
-    }
-
-
-    .bienvenida-texto h2 {
-
-        font-size:
-            30px;
-
-        margin-bottom:
-            10px;
-
-    }
-
-
-    .bienvenida-texto p {
-
-        font-size:
-            12px;
-
-    }
-
-
-    .etiqueta {
-
-        font-size:
-            9px;
-
-    }
-
-
-    .buscador {
-
-        padding:
-            16px 12px;
-
-        border-radius:
-            16px;
-
-    }
-
-
-    .opciones-quincena {
-
-        gap:
-            7px;
-
-    }
-
-
-    .opcion-quincena span {
-
-        min-height:
-            55px;
-
-        font-size:
-            11px;
-
-    }
-
-
-    .fila-busqueda {
-
-        flex-direction:
-            column;
-
-        gap:
-            8px;
-
-    }
-
-
-    #codigo {
-
-        width:
-            100%;
-
-        height:
-            55px;
-
-        font-size:
-            16px;
-
-    }
-
-
-    #buscar {
-
-        width:
-            100%;
-
-        height:
-            53px;
-
-        font-size:
-            14px;
-
-    }
-
-
-    .resultado {
-
-        margin-top:
-            18px;
-
-        padding:
-            14px;
-
-        border-radius:
-            18px;
-
-    }
-
-
-    .empleado {
-
-        display:
-            grid;
-
-        grid-template-columns:
-            auto 1fr;
-
-        gap:
-            11px;
-
-        padding:
-            14px;
-
-    }
-
-
-    .avatar {
-
-        width:
-            47px;
-
-        height:
-            47px;
-
-        font-size:
-            21px;
-
-    }
-
-
-    .datos-empleado h2 {
-
-        font-size:
-            16px;
-
-    }
-
-
-    .datos-empleado p {
-
-        font-size:
-            10px;
-
-    }
-
-
-    .empleado .boton-secundario {
-
-        grid-column:
-            1 / -1;
-
-        width:
-            100%;
-
-        min-height:
-            45px;
-
-    }
-
-
-    .titulo-seccion {
-
-        align-items:
-            flex-start;
-
-        flex-direction:
-            column;
-
-        gap:
-            7px;
-
-        margin:
-            22px 0 13px;
-
-    }
-
-
-    .titulo-seccion h2 {
-
-        font-size:
-            20px;
-
-    }
-
-
-    .recibo {
-
-        display:
-            grid;
-
-        grid-template-columns:
-            auto 1fr;
-
-        gap:
-            11px;
-
-        padding:
-            15px;
-
-    }
-
-
-    .icono-recibo {
-
-        width:
-            47px;
-
-        height:
-            47px;
-
-        font-size:
-            20px;
-
-    }
-
-
-    .informacion-recibo h3 {
-
-        font-size:
-            15px;
-
-    }
-
-
-    .informacion-recibo p {
-
-        font-size:
-            10px;
-
-    }
-
-
-    .ver-recibo {
-
-        grid-column:
-            1 / -1;
-
-        width:
-            100%;
-
-        min-height:
-            48px;
-
-        font-size:
-            13px;
-
-    }
-
-
-    .visor {
-
-        padding:
-            13px;
-
-        border-radius:
-            18px;
-
-    }
-
-
-    .cabecera-visor {
-
-        flex-direction:
-            column;
-
-        align-items:
-            stretch;
-
-    }
-
-
-    .cabecera-visor h2 {
-
-        font-size:
-            19px;
-
-    }
-
-
-    .cabecera-visor > div:last-child {
-
-        width:
-            100%;
-
-        display:
-            flex;
-
-        gap:
-            7px;
-
-    }
-
-
-    .cabecera-visor > div:last-child button {
-
-        flex:
-            1;
-
-        min-height:
-            45px;
-
-    }
-
-
-    .visor-pdf {
-
-        padding:
-            4px;
-
-    }
-
-
-    .aviso {
-
-        padding:
-            15px;
-
-        gap:
-            9px;
-
-    }
-
-
-    .aviso h3 {
-
-        font-size:
-            14px;
-
-    }
-
-
-    .aviso p {
-
-        font-size:
-            10px;
-
-    }
-
-}
-
-
-/* =====================================================
-   TELÉFONOS PEQUEÑOS
-   ===================================================== */
-
-@media (
-    max-width: 380px
-) {
-
-    .empresa h1 {
-
-        font-size:
-            13px;
-
-    }
-
-
-    .empresa p {
-
-        font-size:
-            8px;
-
-    }
-
-
-    .bienvenida {
-
-        padding:
-            19px 12px 14px;
-
-    }
-
-
-    .bienvenida-texto h2 {
-
-        font-size:
-            27px;
-
-    }
-
-
-    .opciones-quincena {
-
-        grid-template-columns:
-            1fr;
-
-    }
-
-
-    .opcion-quincena span {
-
-        min-height:
-            50px;
-
-    }
-
-}
+</html>

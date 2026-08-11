@@ -4361,3 +4361,23 @@ button:active .icono {
     }
 
 }
+/* =========================================================
+   DESCRIPCIÓN DEL RECIBO
+========================================================= */
+
+.informacion-recibo p {
+    font-size: 15px !important;
+    line-height: 1.6 !important;
+}
+
+
+/* CELULAR */
+
+@media (max-width: 700px) {
+
+    .informacion-recibo p {
+        font-size: 13px !important;
+        line-height: 1.55 !important;
+    }
+
+}

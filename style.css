@@ -1,9 +1,17 @@
 /* =========================================================
    COA — PORTAL DE RECIBOS DE PAGO
-   OCEAN V7 — RESPONSIVE
+   OCEAN V8
+   DISEÑO RESPONSIVE
+   CAMPO DE CÓDIGO GRANDE Y CÓMODO
+========================================================= */
+
+
+/* =========================================================
+   VARIABLES
 ========================================================= */
 
 :root {
+
     --bondi: #4799B6;
     --bondi-dark: #347F9C;
 
@@ -18,6 +26,7 @@
 
     --blue-light: #EAF5F7;
     --blue-soft: #F4F9FA;
+
     --purple-light: #EEF1FA;
     --yellow-light: #FFF7E8;
 
@@ -52,11 +61,15 @@
 
 html {
     scroll-behavior: smooth;
+
     -webkit-text-size-adjust: 100%;
 }
 
 body {
+
     min-height: 100vh;
+
+    margin: 0;
 
     font-family:
         Inter,
@@ -87,6 +100,7 @@ input,
 select,
 textarea {
     font-family: inherit;
+
     -webkit-appearance: none;
 }
 
@@ -115,6 +129,7 @@ img {
 ========================================================= */
 
 .encabezado {
+
     position: relative;
 
     min-height: 88px;
@@ -124,7 +139,9 @@ img {
         clamp(22px, 5vw, 78px);
 
     display: flex;
+
     align-items: center;
+
     justify-content: space-between;
 
     gap: 25px;
@@ -140,6 +157,7 @@ img {
 }
 
 .encabezado::after {
+
     content: "";
 
     position: absolute;
@@ -165,7 +183,9 @@ img {
 ========================================================= */
 
 .marca {
+
     display: flex;
+
     align-items: center;
 
     gap: 14px;
@@ -174,21 +194,26 @@ img {
 }
 
 .logo {
+
     width: 58px;
     height: 58px;
 
     flex: 0 0 58px;
 
     display: flex;
+
     align-items: center;
+
     justify-content: center;
 
     border-radius: 17px;
 
     background: white;
+
     color: var(--eden);
 
     font-size: 18px;
+
     font-weight: 900;
 
     box-shadow:
@@ -200,15 +225,18 @@ img {
 }
 
 .empresa h1 {
+
     color: white;
 
     font-size: 20px;
+
     font-weight: 850;
 
     line-height: 1.15;
 }
 
 .empresa p {
+
     margin-top: 5px;
 
     color:
@@ -223,15 +251,20 @@ img {
 ========================================================= */
 
 .navegacion {
+
     display: flex;
+
     align-items: center;
 
     gap: 5px;
 }
 
 .nav-link {
+
     display: flex;
+
     align-items: center;
+
     justify-content: center;
 
     gap: 8px;
@@ -242,14 +275,17 @@ img {
         8px 13px;
 
     border: 0;
+
     border-radius: 999px;
 
     color:
-        rgba(255, 255, 255, .88);
+        rgba(255,255,255,.88);
 
-    background: transparent;
+    background:
+        transparent;
 
     font-size: 11px;
+
     font-weight: 700;
 
     text-decoration: none;
@@ -260,16 +296,18 @@ img {
 }
 
 .nav-link:hover {
+
     background:
-        rgba(255, 255, 255, .11);
+        rgba(255,255,255,.11);
 
     transform:
         translateY(-1px);
 }
 
 .nav-link.activo {
+
     background:
-        rgba(255, 255, 255, .13);
+        rgba(255,255,255,.13);
 }
 
 
@@ -278,11 +316,13 @@ img {
 ========================================================= */
 
 .icono {
+
     position: relative;
 
     display: inline-flex;
 
     align-items: center;
+
     justify-content: center;
 
     width: 19px;
@@ -297,6 +337,7 @@ img {
 /* Información */
 
 .icono-info {
+
     border:
         1.8px solid currentColor;
 
@@ -304,6 +345,7 @@ img {
 }
 
 .icono-info::before {
+
     content: "";
 
     position: absolute;
@@ -324,6 +366,7 @@ img {
 }
 
 .icono-info::after {
+
     content: "";
 
     position: absolute;
@@ -347,6 +390,7 @@ img {
 /* Ayuda */
 
 .icono-ayuda {
+
     border:
         1.8px solid currentColor;
 
@@ -354,16 +398,21 @@ img {
 }
 
 .icono-ayuda::before {
+
     content: "?";
 
     position: absolute;
+
     inset: 0;
 
     display: flex;
+
     align-items: center;
+
     justify-content: center;
 
     font-size: 11px;
+
     font-weight: 900;
 }
 
@@ -371,6 +420,7 @@ img {
 /* Lupa */
 
 .icono-lupa::before {
+
     content: "";
 
     position: absolute;
@@ -388,6 +438,7 @@ img {
 }
 
 .icono-lupa::after {
+
     content: "";
 
     position: absolute;
@@ -411,6 +462,7 @@ img {
 /* Documento */
 
 .icono-documento {
+
     border:
         1.8px solid currentColor;
 
@@ -418,6 +470,7 @@ img {
 }
 
 .icono-documento::before {
+
     content: "";
 
     position: absolute;
@@ -442,6 +495,7 @@ img {
 }
 
 .icono-documento::after {
+
     content: "";
 
     position: absolute;
@@ -465,6 +519,7 @@ img {
 /* Persona */
 
 .icono-persona::before {
+
     content: "";
 
     position: absolute;
@@ -485,6 +540,7 @@ img {
 }
 
 .icono-persona::after {
+
     content: "";
 
     position: absolute;
@@ -511,6 +567,7 @@ img {
 /* Escudo */
 
 .icono-escudo {
+
     width: 19px;
     height: 22px;
 
@@ -534,6 +591,7 @@ img {
 /* Ojo */
 
 .icono-ojo::before {
+
     content: "";
 
     position: absolute;
@@ -552,6 +610,7 @@ img {
 }
 
 .icono-ojo::after {
+
     content: "";
 
     position: absolute;
@@ -572,6 +631,7 @@ img {
 /* Descargar */
 
 .icono-descargar::before {
+
     content: "";
 
     position: absolute;
@@ -589,6 +649,7 @@ img {
 }
 
 .icono-descargar::after {
+
     content: "";
 
     position: absolute;
@@ -614,6 +675,7 @@ img {
 
 .icono-cerrar::before,
 .icono-cerrar::after {
+
     content: "";
 
     position: absolute;
@@ -644,6 +706,7 @@ img {
 /* Check */
 
 .icono-check::before {
+
     content: "";
 
     position: absolute;
@@ -668,6 +731,7 @@ img {
 /* Reloj */
 
 .icono-reloj {
+
     border:
         1.8px solid currentColor;
 
@@ -675,6 +739,7 @@ img {
 }
 
 .icono-reloj::before {
+
     content: "";
 
     position: absolute;
@@ -695,6 +760,7 @@ img {
 }
 
 .icono-reloj::after {
+
     content: "";
 
     position: absolute;
@@ -721,8 +787,9 @@ img {
 ========================================================= */
 
 .contenedor {
+
     width:
-        min(1180px, 92%);
+        min(1180px,92%);
 
     margin:
         42px auto 55px;
@@ -734,6 +801,7 @@ img {
 ========================================================= */
 
 .bienvenida {
+
     position: relative;
 
     overflow: hidden;
@@ -766,6 +834,7 @@ img {
 }
 
 .bienvenida::before {
+
     content: "";
 
     position: absolute;
@@ -781,11 +850,10 @@ img {
     border:
         35px solid
         rgba(71,153,182,.055);
-
-    pointer-events: none;
 }
 
 .bienvenida::after {
+
     content: "";
 
     position: absolute;
@@ -801,16 +869,15 @@ img {
     border:
         48px solid
         rgba(74,110,176,.045);
-
-    pointer-events: none;
 }
 
 
 /* =========================================================
-   TEXTO HERO
+   TEXTO PRINCIPAL
 ========================================================= */
 
 .bienvenida-texto {
+
     position: relative;
 
     z-index: 2;
@@ -823,6 +890,7 @@ img {
 }
 
 .etiqueta {
+
     display: inline-flex;
 
     align-items: center;
@@ -848,6 +916,7 @@ img {
 }
 
 .etiqueta::before {
+
     content: "";
 
     width: 7px;
@@ -862,6 +931,7 @@ img {
 }
 
 .bienvenida-texto h2 {
+
     margin-top: 20px;
 
     max-width: 620px;
@@ -870,7 +940,7 @@ img {
         var(--eden-dark);
 
     font-size:
-        clamp(48px, 5.1vw, 70px);
+        clamp(48px,5.1vw,70px);
 
     font-weight: 900;
 
@@ -880,11 +950,13 @@ img {
 }
 
 .bienvenida-texto h2 span {
+
     color:
         var(--bondi);
 }
 
 .linea-destacada {
+
     width: 82px;
     height: 5px;
 
@@ -898,6 +970,7 @@ img {
 }
 
 .bienvenida-texto > p {
+
     max-width: 540px;
 
     color:
@@ -910,10 +983,11 @@ img {
 
 
 /* =========================================================
-   BENEFICIOS HERO
+   BENEFICIOS
 ========================================================= */
 
 .beneficios-hero {
+
     display: flex;
 
     align-items: center;
@@ -924,6 +998,7 @@ img {
 }
 
 .beneficio-hero {
+
     display: grid;
 
     grid-template-columns:
@@ -935,6 +1010,7 @@ img {
 }
 
 .beneficio-hero strong {
+
     color:
         var(--eden);
 
@@ -942,6 +1018,7 @@ img {
 }
 
 .beneficio-hero small {
+
     grid-column: 2;
 
     margin-top: -3px;
@@ -957,6 +1034,7 @@ img {
 }
 
 .beneficio-icono {
+
     grid-row:
         1 / span 2;
 
@@ -972,6 +1050,7 @@ img {
 }
 
 .beneficio-icono.seguro {
+
     background:
         var(--blue-light);
 
@@ -980,6 +1059,7 @@ img {
 }
 
 .beneficio-icono.facil {
+
     background:
         var(--yellow-light);
 
@@ -988,6 +1068,7 @@ img {
 }
 
 .beneficio-icono.tiempo {
+
     background:
         var(--purple-light);
 
@@ -996,6 +1077,7 @@ img {
 }
 
 .separador-beneficio {
+
     width: 1px;
     height: 45px;
 
@@ -1005,10 +1087,11 @@ img {
 
 
 /* =========================================================
-   DECORACIÓN HERO
+   DECORACIÓN
 ========================================================= */
 
 .decoracion-hero {
+
     position: absolute;
 
     right: 7%;
@@ -1021,6 +1104,7 @@ img {
 .forma-verde,
 .forma-amarilla,
 .forma-azul {
+
     position: absolute;
 
     bottom: 0;
@@ -1029,6 +1113,7 @@ img {
 }
 
 .forma-verde {
+
     left: 0;
 
     width: 75px;
@@ -1039,6 +1124,7 @@ img {
 }
 
 .forma-amarilla {
+
     left: 66px;
 
     width: 47px;
@@ -1049,6 +1135,7 @@ img {
 }
 
 .forma-azul {
+
     right: 0;
 
     width: 31px;
@@ -1064,6 +1151,7 @@ img {
 ========================================================= */
 
 .buscador {
+
     position: relative;
 
     z-index: 4;
@@ -1088,6 +1176,7 @@ img {
 }
 
 .buscador::before {
+
     content: "";
 
     position: absolute;
@@ -1116,6 +1205,7 @@ img {
 ========================================================= */
 
 .cabecera-buscador {
+
     display: flex;
 
     align-items: center;
@@ -1126,6 +1216,7 @@ img {
 }
 
 .icono-buscador {
+
     width: 52px;
     height: 52px;
 
@@ -1146,6 +1237,7 @@ img {
 }
 
 .cabecera-buscador h2 {
+
     color:
         var(--eden-dark);
 
@@ -1155,6 +1247,7 @@ img {
 }
 
 .cabecera-buscador p {
+
     margin-top: 5px;
 
     color:
@@ -1171,6 +1264,7 @@ img {
 ========================================================= */
 
 .titulo-selector {
+
     display: block;
 
     margin-bottom: 9px;
@@ -1184,6 +1278,7 @@ img {
 }
 
 .opciones-quincena {
+
     display: grid;
 
     grid-template-columns:
@@ -1195,12 +1290,14 @@ img {
 }
 
 .opcion-quincena {
+
     position: relative;
 
     cursor: pointer;
 }
 
 .opcion-quincena input {
+
     position: absolute;
 
     opacity: 0;
@@ -1209,6 +1306,7 @@ img {
 }
 
 .opcion-quincena span {
+
     position: relative;
 
     min-height: 69px;
@@ -1218,6 +1316,7 @@ img {
     flex-direction: column;
 
     align-items: center;
+
     justify-content: center;
 
     gap: 4px;
@@ -1240,10 +1339,12 @@ img {
 }
 
 .opcion-quincena strong {
+
     font-size: 12px;
 }
 
 .opcion-quincena small {
+
     color:
         var(--text-soft);
 
@@ -1251,6 +1352,7 @@ img {
 }
 
 .opcion-quincena span:hover {
+
     border-color:
         var(--bondi);
 
@@ -1263,6 +1365,7 @@ img {
 }
 
 .opcion-quincena input:checked + span {
+
     border-color:
         var(--bondi);
 
@@ -1278,16 +1381,18 @@ img {
 }
 
 .opcion-quincena input:checked + span small {
+
     color:
         rgba(255,255,255,.84);
 }
 
 
 /* =========================================================
-   CÓDIGO DE EMPLEADO
+   CÓDIGO DE EMPLEADO — DESKTOP
 ========================================================= */
 
 .label-codigo {
+
     display: block;
 
     margin-bottom: 8px;
@@ -1301,6 +1406,7 @@ img {
 }
 
 .fila-busqueda {
+
     display: grid;
 
     grid-template-columns:
@@ -1310,8 +1416,16 @@ img {
     gap: 10px;
 }
 
+
+/* =========================================================
+   CAMPO
+========================================================= */
+
 .campo-codigo {
+
     position: relative;
+
+    width: 100%;
 
     min-height: 58px;
 
@@ -1325,7 +1439,7 @@ img {
     border-radius: 13px;
 
     background:
-        white;
+        #FFFFFF;
 
     transition:
         border-color .2s ease,
@@ -1333,6 +1447,7 @@ img {
 }
 
 .campo-codigo:focus-within {
+
     border-color:
         var(--bondi);
 
@@ -1342,6 +1457,7 @@ img {
 }
 
 .icono-id {
+
     position: absolute;
 
     left: 15px;
@@ -1356,9 +1472,12 @@ img {
         1.6px solid currentColor;
 
     border-radius: 3px;
+
+    pointer-events: none;
 }
 
 .icono-id::before {
+
     content: "";
 
     position: absolute;
@@ -1375,14 +1494,21 @@ img {
     border-radius: 50%;
 }
 
+
+/* =========================================================
+   INPUT
+========================================================= */
+
 .campo-codigo input {
+
     width: 100%;
+
     height: 100%;
 
     min-height: 54px;
 
     padding:
-        0 15px 0 47px;
+        0 16px 0 48px;
 
     border: 0;
 
@@ -1394,16 +1520,20 @@ img {
     color:
         var(--text);
 
-    /*
-       16px evita el zoom automático
-       de Safari en iPhone.
-    */
     font-size: 16px;
 
     font-weight: 600;
+
+    line-height: 1.2;
+
+    /*
+       NO bajar de 16px:
+       evita el zoom automático de Safari.
+    */
 }
 
 .campo-codigo input::placeholder {
+
     color:
         var(--text-light);
 
@@ -1414,10 +1544,11 @@ img {
 
 
 /* =========================================================
-   CONSULTAR
+   BOTÓN
 ========================================================= */
 
 #buscar {
+
     min-height: 58px;
 
     padding:
@@ -1446,23 +1577,22 @@ img {
 }
 
 #buscar:hover {
+
     background:
         var(--bondi-dark);
 
     transform:
         translateY(-1px);
-
-    box-shadow:
-        0 12px 24px
-        rgba(71,153,182,.27);
 }
 
 #buscar:active {
+
     transform:
         translateY(0);
 }
 
 .ayuda {
+
     margin-top: 8px;
 
     color:
@@ -1474,6 +1604,7 @@ img {
 }
 
 #mensaje {
+
     min-height: 20px;
 
     margin-top: 9px;
@@ -1488,10 +1619,11 @@ img {
 
 
 /* =========================================================
-   SEGURIDAD MINI
+   SEGURIDAD
 ========================================================= */
 
 .seguridad-mini {
+
     display: flex;
 
     align-items: center;
@@ -1512,6 +1644,7 @@ img {
 }
 
 .seguridad-mini-icono {
+
     width: 35px;
     height: 35px;
 
@@ -1532,6 +1665,7 @@ img {
 }
 
 .seguridad-mini strong {
+
     display: block;
 
     color:
@@ -1541,6 +1675,7 @@ img {
 }
 
 .seguridad-mini p {
+
     margin-top: 3px;
 
     color:
@@ -1557,6 +1692,7 @@ img {
 ========================================================= */
 
 .beneficios {
+
     display: grid;
 
     grid-template-columns:
@@ -1585,6 +1721,7 @@ img {
 }
 
 .beneficio {
+
     display: flex;
 
     align-items: center;
@@ -1593,6 +1730,7 @@ img {
 }
 
 .beneficio-grande {
+
     width: 46px;
     height: 46px;
 
@@ -1607,6 +1745,7 @@ img {
 }
 
 .beneficio-grande.verde {
+
     background:
         var(--blue-light);
 
@@ -1615,6 +1754,7 @@ img {
 }
 
 .beneficio-grande.amarillo {
+
     background:
         var(--yellow-light);
 
@@ -1623,6 +1763,7 @@ img {
 }
 
 .beneficio-grande.azul {
+
     background:
         var(--purple-light);
 
@@ -1631,6 +1772,7 @@ img {
 }
 
 .beneficio strong {
+
     display: block;
 
     color:
@@ -1640,6 +1782,7 @@ img {
 }
 
 .beneficio p {
+
     margin-top: 3px;
 
     color:
@@ -1651,6 +1794,7 @@ img {
 }
 
 .linea-beneficio {
+
     width: 1px;
     height: 40px;
 
@@ -1664,6 +1808,7 @@ img {
 ========================================================= */
 
 .resultado {
+
     margin-top: 28px;
 
     padding: 30px;
@@ -1681,6 +1826,7 @@ img {
 }
 
 .empleado {
+
     display: flex;
 
     align-items: center;
@@ -1694,6 +1840,7 @@ img {
 }
 
 .avatar {
+
     width: 57px;
     height: 57px;
 
@@ -1714,10 +1861,12 @@ img {
 }
 
 .datos-empleado {
+
     flex: 1;
 }
 
 .datos-empleado > span {
+
     color:
         var(--bondi-dark);
 
@@ -1729,6 +1878,7 @@ img {
 }
 
 .datos-empleado h2 {
+
     margin-top: 5px;
 
     color:
@@ -1740,6 +1890,7 @@ img {
 }
 
 .datos-empleado p {
+
     margin-top: 4px;
 
     color:
@@ -1749,6 +1900,7 @@ img {
 }
 
 .datos-empleado strong {
+
     color:
         var(--bondi-dark);
 }
@@ -1759,9 +1911,11 @@ img {
 ========================================================= */
 
 .boton-secundario {
+
     display: inline-flex;
 
     align-items: center;
+
     justify-content: center;
 
     gap: 7px;
@@ -1791,6 +1945,7 @@ img {
 }
 
 .boton-secundario:hover {
+
     background:
         var(--blue-light);
 
@@ -1803,10 +1958,11 @@ img {
 
 
 /* =========================================================
-   TÍTULO RECIBOS
+   RECIBOS
 ========================================================= */
 
 .titulo-seccion {
+
     display: flex;
 
     align-items: flex-end;
@@ -1819,6 +1975,7 @@ img {
 }
 
 .titulo-seccion h2 {
+
     margin-top: 6px;
 
     color:
@@ -1832,6 +1989,7 @@ img {
 }
 
 .periodo {
+
     padding:
         9px 12px;
 
@@ -1848,16 +2006,13 @@ img {
     font-weight: 900;
 }
 
-
-/* =========================================================
-   RECIBO
-========================================================= */
-
 .recibos {
+
     margin-top: 18px;
 }
 
 .recibo {
+
     display: flex;
 
     align-items: center;
@@ -1880,6 +2035,7 @@ img {
 }
 
 .recibo:hover {
+
     transform:
         translateY(-2px);
 
@@ -1889,6 +2045,7 @@ img {
 }
 
 .icono-recibo {
+
     width: 56px;
     height: 56px;
 
@@ -1909,10 +2066,12 @@ img {
 }
 
 .informacion-recibo {
+
     flex: 1;
 }
 
 .informacion-recibo > span {
+
     color:
         var(--bondi-dark);
 
@@ -1924,6 +2083,7 @@ img {
 }
 
 .informacion-recibo h3 {
+
     margin-top: 5px;
 
     color:
@@ -1933,6 +2093,7 @@ img {
 }
 
 .informacion-recibo p {
+
     margin-top: 5px;
 
     color:
@@ -1943,12 +2104,8 @@ img {
     line-height: 1.5;
 }
 
-
-/* =========================================================
-   VER RECIBO
-========================================================= */
-
 .ver-recibo {
+
     min-height: 50px;
 
     padding:
@@ -1974,16 +2131,10 @@ img {
     font-size: 11px;
 
     font-weight: 900;
-
-    box-shadow:
-        0 9px 20px
-        rgba(74,110,176,.20);
-
-    transition:
-        all .2s ease;
 }
 
 .ver-recibo:hover {
+
     background:
         var(--san-marino-dark);
 
@@ -1997,6 +2148,7 @@ img {
 ========================================================= */
 
 .visor {
+
     margin-top: 28px;
 
     overflow: hidden;
@@ -2014,6 +2166,7 @@ img {
 }
 
 .cabecera-visor {
+
     display: flex;
 
     align-items: center;
@@ -2030,6 +2183,7 @@ img {
 }
 
 .cabecera-visor h2 {
+
     margin-top: 5px;
 
     color:
@@ -2039,6 +2193,7 @@ img {
 }
 
 .acciones-visor {
+
     display: flex;
 
     align-items: center;
@@ -2047,6 +2202,7 @@ img {
 }
 
 .visor-pdf {
+
     min-height: 450px;
 
     padding: 20px;
@@ -2056,6 +2212,7 @@ img {
 }
 
 .visor-mensaje {
+
     min-height: 390px;
 
     display: flex;
@@ -2077,6 +2234,7 @@ img {
 ========================================================= */
 
 .aviso {
+
     display: flex;
 
     align-items: center;
@@ -2105,6 +2263,7 @@ img {
 }
 
 .aviso-icono {
+
     width: 44px;
     height: 44px;
 
@@ -2125,6 +2284,7 @@ img {
 }
 
 .aviso h3 {
+
     color:
         var(--eden);
 
@@ -2132,6 +2292,7 @@ img {
 }
 
 .aviso p {
+
     margin-top: 4px;
 
     color:
@@ -2148,6 +2309,7 @@ img {
 ========================================================= */
 
 .modal-overlay {
+
     position: fixed;
 
     inset: 0;
@@ -2169,6 +2331,7 @@ img {
 }
 
 .modal {
+
     position: relative;
 
     width:
@@ -2192,31 +2355,10 @@ img {
     box-shadow:
         0 25px 70px
         rgba(17,76,95,.22);
-
-    animation:
-        entradaModal .22s ease;
-}
-
-@keyframes entradaModal {
-
-    from {
-        opacity: 0;
-
-        transform:
-            translateY(10px)
-            scale(.98);
-    }
-
-    to {
-        opacity: 1;
-
-        transform:
-            translateY(0)
-            scale(1);
-    }
 }
 
 .modal-cerrar {
+
     position: absolute;
 
     top: 15px;
@@ -2241,15 +2383,8 @@ img {
         var(--text-soft);
 }
 
-.modal-cerrar:hover {
-    background:
-        var(--blue-light);
-
-    color:
-        var(--eden);
-}
-
 .modal-icono {
+
     width: 52px;
     height: 52px;
 
@@ -2264,6 +2399,7 @@ img {
 }
 
 .modal-icono.verde {
+
     background:
         var(--blue-light);
 
@@ -2272,6 +2408,7 @@ img {
 }
 
 .modal-icono.azul {
+
     background:
         var(--purple-light);
 
@@ -2280,6 +2417,7 @@ img {
 }
 
 .modal-icono.amarillo {
+
     background:
         var(--yellow-light);
 
@@ -2288,6 +2426,7 @@ img {
 }
 
 .modal-etiqueta {
+
     color:
         var(--bondi-dark);
 
@@ -2299,6 +2438,7 @@ img {
 }
 
 .modal h2 {
+
     margin-top: 6px;
 
     color:
@@ -2308,6 +2448,7 @@ img {
 }
 
 .modal-introduccion {
+
     margin-top: 12px;
 
     color:
@@ -2318,16 +2459,13 @@ img {
     line-height: 1.7;
 }
 
-
-/* =========================================================
-   PASOS
-========================================================= */
-
 .modal-seccion {
+
     margin-top: 23px;
 }
 
 .modal-seccion h3 {
+
     margin-bottom: 11px;
 
     color:
@@ -2337,6 +2475,7 @@ img {
 }
 
 .paso {
+
     display: flex;
 
     align-items: center;
@@ -2348,6 +2487,7 @@ img {
 }
 
 .paso > span {
+
     width: 34px;
     height: 34px;
 
@@ -2372,6 +2512,7 @@ img {
 }
 
 .paso p {
+
     color:
         var(--text-soft);
 
@@ -2380,22 +2521,14 @@ img {
     line-height: 1.5;
 }
 
-.paso strong {
-    color:
-        var(--eden);
-}
-
-
-/* =========================================================
-   SEGURIDAD / AYUDA
-========================================================= */
-
 .seguridad-lista,
 .ayuda-lista {
+
     margin-top: 20px;
 }
 
 .seguridad-lista > div {
+
     display: flex;
 
     align-items: center;
@@ -2407,6 +2540,7 @@ img {
 }
 
 .lista-icono {
+
     width: 38px;
     height: 38px;
 
@@ -2427,6 +2561,7 @@ img {
 }
 
 .seguridad-lista p {
+
     color:
         var(--text-soft);
 
@@ -2436,6 +2571,7 @@ img {
 }
 
 .ayuda-item {
+
     margin-bottom: 10px;
 
     padding: 15px;
@@ -2449,11 +2585,8 @@ img {
         var(--blue-soft);
 }
 
-.ayuda-item:last-child {
-    margin-bottom: 0;
-}
-
 .ayuda-item strong {
+
     display: block;
 
     color:
@@ -2463,6 +2596,7 @@ img {
 }
 
 .ayuda-item p {
+
     margin-top: 5px;
 
     color:
@@ -2474,6 +2608,7 @@ img {
 }
 
 .modal-principal {
+
     width: 100%;
 
     min-height: 48px;
@@ -2501,6 +2636,7 @@ img {
 ========================================================= */
 
 footer {
+
     width:
         min(1180px,92%);
 
@@ -2512,9 +2648,11 @@ footer {
 }
 
 .footer-contenido {
+
     display: flex;
 
     align-items: center;
+
     justify-content: space-between;
 
     gap: 20px;
@@ -2526,6 +2664,7 @@ footer {
 }
 
 .footer-bloque {
+
     display: flex;
 
     flex-direction: column;
@@ -2534,6 +2673,7 @@ footer {
 }
 
 .footer-bloque strong {
+
     color:
         var(--eden);
 
@@ -2541,6 +2681,7 @@ footer {
 }
 
 .footer-bloque span {
+
     color:
         var(--text-soft);
 
@@ -2548,16 +2689,19 @@ footer {
 }
 
 .footer-centro {
+
     font-size: 9px;
 
     text-align: center;
 }
 
 .footer-derecha {
+
     text-align: right;
 }
 
 .version {
+
     display: block;
 
     margin-top: 10px;
@@ -2591,6 +2735,7 @@ body.modal-abierto {
 @media (max-width: 1050px) {
 
     .bienvenida {
+
         grid-template-columns: 1fr;
 
         gap: 34px;
@@ -2599,16 +2744,19 @@ body.modal-abierto {
     }
 
     .bienvenida-texto h2 {
+
         max-width: 760px;
     }
 
     .beneficios {
+
         grid-template-columns: 1fr;
 
         gap: 15px;
     }
 
     .linea-beneficio {
+
         width: 100%;
 
         height: 1px;
@@ -2623,6 +2771,7 @@ body.modal-abierto {
 @media (max-width: 760px) {
 
     .encabezado {
+
         min-height: 78px;
 
         padding:
@@ -2630,14 +2779,17 @@ body.modal-abierto {
     }
 
     .empresa h1 {
+
         font-size: 17px;
     }
 
     .navegacion {
+
         gap: 2px;
     }
 
     .nav-link {
+
         min-width: 40px;
 
         padding: 8px;
@@ -2646,6 +2798,7 @@ body.modal-abierto {
     }
 
     .contenedor {
+
         width: 94%;
 
         margin:
@@ -2653,60 +2806,73 @@ body.modal-abierto {
     }
 
     .bienvenida {
+
         padding: 31px;
 
         border-radius: 23px;
     }
 
     .bienvenida-texto h2 {
+
         font-size:
-            clamp(42px, 8vw, 58px);
+            clamp(42px,8vw,58px);
     }
 
     .fila-busqueda {
+
         grid-template-columns: 1fr;
     }
 
     #buscar {
+
         width: 100%;
     }
 
     .resultado {
+
         padding: 24px;
     }
 
     .empleado {
+
         flex-wrap: wrap;
     }
 
     .datos-empleado {
+
         min-width:
             calc(100% - 72px);
     }
 
     .boton-secundario {
+
         width: 100%;
     }
 
     .titulo-seccion {
-        align-items: flex-start;
 
-        flex-direction: column;
+        align-items:
+            flex-start;
+
+        flex-direction:
+            column;
     }
 }
 
 
 /* =========================================================
-   CELULAR
+   CELULAR — DISEÑO GRANDE
 ========================================================= */
 
 @media (max-width: 600px) {
+
 
     /* ---------------------------------------------
        ENCABEZADO
     --------------------------------------------- */
 
     .encabezado {
+
         min-height: 72px;
 
         padding:
@@ -2716,6 +2882,7 @@ body.modal-abierto {
     }
 
     .logo {
+
         width: 45px;
         height: 45px;
 
@@ -2727,24 +2894,28 @@ body.modal-abierto {
     }
 
     .marca {
+
         gap: 9px;
 
         flex: 1;
     }
 
     .empresa h1 {
+
         max-width: 220px;
 
         font-size: 12px;
     }
 
     .empresa p {
+
         margin-top: 3px;
 
         font-size: 8px;
     }
 
     .nav-link {
+
         min-width: 39px;
 
         min-height: 40px;
@@ -2758,6 +2929,7 @@ body.modal-abierto {
     --------------------------------------------- */
 
     .contenedor {
+
         width: 94%;
 
         margin:
@@ -2770,12 +2942,13 @@ body.modal-abierto {
     --------------------------------------------- */
 
     .bienvenida {
+
         display: block;
 
         min-height: auto;
 
         padding:
-            26px 21px 22px;
+            27px 21px 23px;
 
         border-radius: 22px;
     }
@@ -2786,6 +2959,7 @@ body.modal-abierto {
     --------------------------------------------- */
 
     .etiqueta {
+
         padding:
             9px 13px;
 
@@ -2793,17 +2967,20 @@ body.modal-abierto {
     }
 
     .bienvenida-texto h2 {
+
         margin-top: 18px;
 
         font-size:
-            clamp(39px, 10.5vw, 47px);
+            clamp(40px,10.5vw,48px);
 
         line-height: .98;
 
-        letter-spacing: -2px;
+        letter-spacing:
+            -2px;
     }
 
     .bienvenida-texto > p {
+
         margin-top: 14px;
 
         font-size: 14px;
@@ -2813,10 +2990,11 @@ body.modal-abierto {
 
 
     /* ---------------------------------------------
-       BENEFICIOS HERO
+       BENEFICIOS
     --------------------------------------------- */
 
     .beneficios-hero {
+
         display: grid;
 
         grid-template-columns:
@@ -2828,28 +3006,33 @@ body.modal-abierto {
     }
 
     .separador-beneficio {
+
         display: none;
     }
 
     .beneficio-hero {
+
         grid-template-columns:
-            39px 1fr;
+            40px 1fr;
 
         column-gap: 8px;
     }
 
     .beneficio-icono {
-        width: 39px;
-        height: 39px;
+
+        width: 40px;
+        height: 40px;
 
         border-radius: 11px;
     }
 
     .beneficio-hero strong {
+
         font-size: 10px;
     }
 
     .beneficio-hero small {
+
         font-size: 8px;
     }
 
@@ -2859,34 +3042,41 @@ body.modal-abierto {
     --------------------------------------------- */
 
     .buscador {
+
         margin-top: 25px;
 
         padding:
-            25px 20px 22px;
+            26px 18px 24px;
 
         border-radius: 21px;
     }
 
     .cabecera-buscador {
+
         gap: 12px;
 
-        margin-bottom: 21px;
+        margin-bottom: 22px;
     }
 
     .icono-buscador {
-        width: 48px;
-        height: 48px;
 
-        flex-basis: 48px;
+        width: 50px;
+        height: 50px;
+
+        flex-basis: 50px;
 
         border-radius: 14px;
     }
 
     .cabecera-buscador h2 {
+
         font-size: 20px;
     }
 
     .cabecera-buscador p {
+
+        margin-top: 4px;
+
         font-size: 9px;
     }
 
@@ -2896,122 +3086,188 @@ body.modal-abierto {
     --------------------------------------------- */
 
     .titulo-selector {
-        margin-bottom: 9px;
 
-        font-size: 13px;
-    }
-
-    .opciones-quincena {
-        grid-template-columns:
-            1fr 1fr;
-
-        gap: 9px;
-
-        margin-bottom: 23px;
-    }
-
-    .opcion-quincena span {
-        min-height: 70px;
-
-        border-radius: 14px;
-    }
-
-    .opcion-quincena strong {
-        font-size: 12px;
-    }
-
-    .opcion-quincena small {
-        font-size: 10px;
-    }
-
-
-    /* ---------------------------------------------
-       CAMPO DE CÓDIGO — GRANDE
-    --------------------------------------------- */
-
-    .label-codigo {
         margin-bottom: 10px;
 
         font-size: 14px;
     }
 
+    .opciones-quincena {
+
+        grid-template-columns:
+            1fr 1fr;
+
+        gap: 10px;
+
+        margin-bottom: 25px;
+    }
+
+    .opcion-quincena span {
+
+        min-height: 72px;
+
+        border-radius: 15px;
+    }
+
+    .opcion-quincena strong {
+
+        font-size: 13px;
+    }
+
+    .opcion-quincena small {
+
+        font-size: 10px;
+    }
+
+
+    /* =====================================================
+       CAMPO DE CÓDIGO — MUY GRANDE
+    ===================================================== */
+
+    .label-codigo {
+
+        margin-bottom: 11px;
+
+        font-size: 15px;
+
+        font-weight: 800;
+    }
+
     .fila-busqueda {
+
         grid-template-columns: 1fr;
 
-        gap: 12px;
+        gap: 13px;
     }
 
     .campo-codigo {
 
-        width: 100%;
+        position: relative;
 
-        min-height: 68px;
+        width: 100% !important;
 
-        height: 68px;
+        height: 82px !important;
 
-        border-width: 2px;
+        min-height: 82px !important;
 
-        border-radius: 15px;
+        display: flex !important;
+
+        align-items: center !important;
+
+        border:
+            2px solid var(--border) !important;
+
+        border-radius:
+            17px !important;
+
+        background:
+            #FFFFFF !important;
     }
+
+    .campo-codigo:focus-within {
+
+        border-color:
+            var(--bondi) !important;
+
+        box-shadow:
+            0 0 0 5px
+            rgba(71,153,182,.11) !important;
+    }
+
+
+    /* ICONO MÁS GRANDE */
+
+    .icono-id {
+
+        position: absolute !important;
+
+        left: 19px !important;
+
+        width: 23px !important;
+
+        height: 18px !important;
+
+        pointer-events: none;
+    }
+
+
+    /* INPUT GRANDE */
 
     .campo-codigo input {
 
-        width: 100%;
+        display: block !important;
 
-        height: 64px;
+        width: 100% !important;
 
-        min-height: 64px;
+        height: 78px !important;
+
+        min-height: 78px !important;
 
         padding:
-            0 16px 0 52px;
+            0 18px 0 60px !important;
+
+        border: 0 !important;
+
+        outline: none !important;
+
+        background:
+            transparent !important;
+
+        color:
+            var(--text) !important;
 
         /*
-           18px = campo claramente legible
-           y evita el zoom automático de Safari.
+           18px:
+           evita el zoom automático de Safari
+           y hace el código claramente visible.
         */
 
-        font-size: 18px !important;
+        font-size:
+            18px !important;
 
-        font-weight: 600;
+        font-weight:
+            700 !important;
 
-        line-height: 1.2;
+        line-height:
+            1.2 !important;
     }
 
     .campo-codigo input::placeholder {
 
-        font-size: 16px;
-
-        font-weight: 500;
-
         color:
-            var(--text-light);
-    }
+            var(--text-light) !important;
 
-    .icono-id {
+        opacity:
+            1 !important;
 
-        left: 17px;
+        font-size:
+            16px !important;
 
-        width: 21px;
-
-        height: 17px;
+        font-weight:
+            500 !important;
     }
 
 
     /* ---------------------------------------------
-       CONSULTAR — PROPORCIONAL AL CAMPO
+       BOTÓN CONSULTAR
     --------------------------------------------- */
 
     #buscar {
 
-        width: 100%;
+        width: 100% !important;
 
-        min-height: 62px;
+        height: 64px !important;
 
-        height: 62px;
+        min-height: 64px !important;
 
-        border-radius: 15px;
+        border-radius:
+            16px !important;
 
-        font-size: 15px;
+        font-size:
+            15px !important;
+
+        font-weight:
+            900 !important;
     }
 
 
@@ -3021,17 +3277,18 @@ body.modal-abierto {
 
     .ayuda {
 
-        margin-top: 9px;
+        margin-top: 10px;
 
         font-size: 11px;
 
-        line-height: 1.45;
+        line-height: 1.5;
     }
 
     #mensaje {
-        margin-top: 8px;
 
-        font-size: 10px;
+        margin-top: 9px;
+
+        font-size: 11px;
     }
 
 
@@ -3041,57 +3298,34 @@ body.modal-abierto {
 
     .seguridad-mini {
 
-        align-items: flex-start;
+        align-items:
+            flex-start;
 
-        margin-top: 17px;
+        margin-top: 18px;
 
-        padding: 13px;
+        padding: 14px;
 
-        border-radius: 13px;
+        border-radius: 14px;
     }
 
     .seguridad-mini-icono {
 
-        width: 36px;
-        height: 36px;
+        width: 38px;
+        height: 38px;
 
-        flex-basis: 36px;
+        flex-basis: 38px;
     }
 
     .seguridad-mini strong {
-        font-size: 10px;
+
+        font-size: 11px;
     }
 
     .seguridad-mini p {
+
         font-size: 9px;
 
-        line-height: 1.45;
-    }
-
-
-    /* ---------------------------------------------
-       BENEFICIOS INFERIORES
-    --------------------------------------------- */
-
-    .beneficios {
-        padding: 18px;
-
-        border-radius: 18px;
-    }
-
-    .beneficio-grande {
-        width: 43px;
-        height: 43px;
-
-        flex-basis: 43px;
-    }
-
-    .beneficio strong {
-        font-size: 10px;
-    }
-
-    .beneficio p {
-        font-size: 8px;
+        line-height: 1.5;
     }
 
 
@@ -3110,10 +3344,10 @@ body.modal-abierto {
 
     .avatar {
 
-        width: 54px;
-        height: 54px;
+        width: 55px;
+        height: 55px;
 
-        flex-basis: 54px;
+        flex-basis: 55px;
     }
 
     .datos-empleado h2 {
@@ -3137,7 +3371,7 @@ body.modal-abierto {
 
         gap: 10px;
 
-        margin-top: 24px;
+        margin-top: 25px;
     }
 
     .titulo-seccion h2 {
@@ -3168,16 +3402,16 @@ body.modal-abierto {
 
     .icono-recibo {
 
-        width: 53px;
-        height: 53px;
+        width: 54px;
+        height: 54px;
 
-        flex-basis: 53px;
+        flex-basis: 54px;
     }
 
     .informacion-recibo {
 
         min-width:
-            calc(100% - 67px);
+            calc(100% - 68px);
     }
 
     .informacion-recibo h3 {
@@ -3194,46 +3428,11 @@ body.modal-abierto {
 
         width: 100%;
 
-        min-height: 53px;
+        min-height: 55px;
 
         margin-top: 4px;
 
         font-size: 13px;
-    }
-
-
-    /* ---------------------------------------------
-       AVISO
-    --------------------------------------------- */
-
-    .aviso {
-
-        align-items:
-            flex-start;
-
-        padding: 15px;
-
-        border-radius: 15px;
-    }
-
-    .aviso-icono {
-
-        width: 40px;
-        height: 40px;
-
-        flex-basis: 40px;
-    }
-
-    .aviso h3 {
-
-        font-size: 11px;
-    }
-
-    .aviso p {
-
-        font-size: 9px;
-
-        line-height: 1.45;
     }
 
 
@@ -3269,6 +3468,41 @@ body.modal-abierto {
         flex: 1;
 
         width: auto;
+    }
+
+
+    /* ---------------------------------------------
+       AVISO
+    --------------------------------------------- */
+
+    .aviso {
+
+        align-items:
+            flex-start;
+
+        padding: 15px;
+
+        border-radius: 15px;
+    }
+
+    .aviso-icono {
+
+        width: 41px;
+        height: 41px;
+
+        flex-basis: 41px;
+    }
+
+    .aviso h3 {
+
+        font-size: 11px;
+    }
+
+    .aviso p {
+
+        font-size: 9px;
+
+        line-height: 1.45;
     }
 
 
@@ -3378,7 +3612,7 @@ body.modal-abierto {
     .buscador {
 
         padding:
-            22px 17px 20px;
+            23px 16px 21px;
     }
 
     .cabecera-buscador h2 {
@@ -3388,55 +3622,69 @@ body.modal-abierto {
 
     .opcion-quincena span {
 
-        min-height: 66px;
+        min-height: 69px;
     }
 
-    /* Campo de código un poco menor,
-       pero todavía grande */
+
+    /* ---------------------------------------------
+       CAMPO GRANDE EN IPHONE PEQUEÑO
+    --------------------------------------------- */
 
     .campo-codigo {
 
-        min-height: 65px;
+        height:
+            78px !important;
 
-        height: 65px;
+        min-height:
+            78px !important;
     }
 
     .campo-codigo input {
 
-        height: 61px;
+        height:
+            74px !important;
 
-        min-height: 61px;
+        min-height:
+            74px !important;
 
-        padding-left: 50px;
+        padding-left:
+            57px !important;
 
-        font-size: 17px !important;
+        font-size:
+            17px !important;
     }
 
     .campo-codigo input::placeholder {
 
-        font-size: 15px;
+        font-size:
+            15px !important;
     }
 
     #buscar {
 
-        min-height: 60px;
+        height:
+            61px !important;
 
-        height: 60px;
+        min-height:
+            61px !important;
     }
 
     .resultado {
 
-        padding: 19px;
+        padding:
+            19px;
     }
 
     .datos-empleado h2 {
 
-        font-size: 19px;
+        font-size:
+            19px;
     }
 
     .titulo-seccion h2 {
 
-        font-size: 26px;
+        font-size:
+            26px;
     }
 
     .modal {
@@ -3447,7 +3695,8 @@ body.modal-abierto {
 
     .modal h2 {
 
-        font-size: 23px;
+        font-size:
+            23px;
     }
 }
 
@@ -3460,35 +3709,41 @@ body.modal-abierto {
 
     .contenedor {
 
-        max-width: 1250px;
+        max-width:
+            1250px;
     }
 
     .bienvenida {
 
-        min-height: 490px;
+        min-height:
+            490px;
 
-        padding: 50px;
+        padding:
+            50px;
     }
 
     .bienvenida-texto h2 {
 
-        font-size: 74px;
+        font-size:
+            74px;
     }
 
     .bienvenida-texto > p {
 
-        font-size: 16px;
+        font-size:
+            16px;
     }
 
     .buscador {
 
-        padding: 35px;
+        padding:
+            35px;
     }
 }
 
 
 /* =========================================================
-   DISPOSITIVOS TÁCTILES
+   TOUCH
 ========================================================= */
 
 @media (hover: none) and (pointer: coarse) {
@@ -3532,7 +3787,8 @@ body.modal-abierto {
     background:
         var(--sinbad);
 
-    border-radius: 20px;
+    border-radius:
+        20px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -3543,5 +3799,5 @@ body.modal-abierto {
 
 
 /* =========================================================
-   FIN COA OCEAN V7
+   FIN COA OCEAN V8
 ========================================================= */

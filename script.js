@@ -11,9 +11,9 @@
 const PERIODOS = {
 
     q1: {
-        nombre: "Quincena 1",
-        mes: "Julio 2026",
-        periodoPago: "1 al 15 de julio de 2026",
+        nombre: "Prueba 1",
+        mes: "Prueba 2026",
+        periodoPago: "10 al 5 de julio de 2026",
         archivo: "RECIBOS QUINCENA 1.pdf"
     },
 

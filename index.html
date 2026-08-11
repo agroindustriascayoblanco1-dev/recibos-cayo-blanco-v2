@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-
     <meta charset="UTF-8">
 
     <meta
@@ -14,20 +12,24 @@
         Recibos de Pago | Agroindustrias Cayo Blanco
     </title>
 
+    <!-- PDF.JS -->
     <script
         src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js">
     </script>
 
+    <!-- jsPDF: permite descargar solamente el recibo consultado -->
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js">
+    </script>
+
+    <!-- ESTILOS -->
     <link
         rel="stylesheet"
         href="style.css?v=22"
     >
-
 </head>
 
-
 <body>
-
 
     <!-- ==================================================
          ENCABEZADO
@@ -35,13 +37,11 @@
 
     <header class="encabezado">
 
-
         <div class="marca">
 
             <div class="logo">
                 COA
             </div>
-
 
             <div class="empresa">
 
@@ -58,13 +58,11 @@
         </div>
 
 
-
         <!-- ==================================================
              NAVEGACIÓN
         =================================================== -->
 
         <nav class="navegacion">
-
 
             <a
                 href="#inicio"
@@ -81,7 +79,7 @@
                 id="btnInformacion"
             >
                 <span class="icono icono-info"></span>
-                <span>Información</span>
+                Información
             </button>
 
 
@@ -91,7 +89,7 @@
                 id="btnSeguridad"
             >
                 <span class="icono icono-seguridad"></span>
-                <span>Seguridad</span>
+                Seguridad
             </button>
 
 
@@ -101,19 +99,17 @@
                 id="btnAyuda"
             >
                 <span class="icono icono-ayuda"></span>
-                <span>Ayuda</span>
+                Ayuda
             </button>
 
-
         </nav>
-
 
     </header>
 
 
 
     <!-- ==================================================
-         CONTENIDO PRINCIPAL
+         CONTENIDO
     =================================================== -->
 
     <main
@@ -123,7 +119,7 @@
 
 
         <!-- ==================================================
-             BIENVENIDA
+             HERO
         =================================================== -->
 
         <section class="bienvenida">
@@ -131,21 +127,17 @@
 
             <div class="bienvenida-texto">
 
-
                 <span class="etiqueta">
                     RECURSOS HUMANOS
                 </span>
 
 
                 <h2>
-
                     Estamos aquí
                     <br>
-
                     <span>
                         para ti
                     </span>
-
                 </h2>
 
 
@@ -153,13 +145,10 @@
 
 
                 <p>
-
                     Consulta tus recibos de pago
                     de manera rápida, sencilla
                     y confidencial.
-
                 </p>
-
 
 
                 <!-- BENEFICIOS -->
@@ -169,85 +158,61 @@
 
                     <div class="beneficio-hero">
 
-
                         <div class="beneficio-icono seguro">
-
                             <span class="icono icono-escudo"></span>
-
                         </div>
-
 
                         <strong>
                             Seguro
                         </strong>
 
-
                         <small>
                             Tu información está protegida
                         </small>
 
-
                     </div>
-
 
 
                     <div class="separador-beneficio"></div>
 
 
-
                     <div class="beneficio-hero">
 
-
                         <div class="beneficio-icono facil">
-
                             <span class="icono icono-documento"></span>
-
                         </div>
-
 
                         <strong>
                             Fácil
                         </strong>
 
-
                         <small>
                             Accede en pocos pasos
                         </small>
 
-
                     </div>
-
 
 
                     <div class="separador-beneficio"></div>
 
 
-
                     <div class="beneficio-hero">
 
-
                         <div class="beneficio-icono tiempo">
-
                             <span class="icono icono-reloj"></span>
-
                         </div>
-
 
                         <strong>
                             Disponible 24/7
                         </strong>
 
-
                         <small>
                             Cuando lo necesites
                         </small>
 
-
                     </div>
 
-
                 </div>
-
 
 
                 <div class="decoracion-hero">
@@ -259,7 +224,6 @@
                     <span class="forma-azul"></span>
 
                 </div>
-
 
             </div>
 
@@ -274,7 +238,6 @@
 
                 <div class="cabecera-buscador">
 
-
                     <div class="icono-buscador">
 
                         <span class="icono icono-documento-grande"></span>
@@ -288,7 +251,6 @@
                             Consulta tu recibo
                         </h2>
 
-
                         <p>
                             Selecciona la quincena y
                             escribe tu código de empleado.
@@ -296,15 +258,15 @@
 
                     </div>
 
-
                 </div>
 
 
 
-                <!-- QUINCENAS -->
+                <!-- ==================================================
+                     QUINCENAS
+                =================================================== -->
 
                 <div class="selector-quincena">
-
 
                     <label class="titulo-selector">
                         Selecciona la quincena
@@ -364,12 +326,13 @@
 
                     </div>
 
-
                 </div>
 
 
 
-                <!-- CÓDIGO -->
+                <!-- ==================================================
+                     CÓDIGO
+                =================================================== -->
 
                 <label
                     for="codigo"
@@ -399,6 +362,7 @@
                     </div>
 
 
+
                     <button
                         id="buscar"
                         type="button"
@@ -423,10 +387,11 @@
 
 
 
-                <!-- SEGURIDAD -->
+                <!-- ==================================================
+                     SEGURIDAD
+                =================================================== -->
 
                 <div class="seguridad-mini">
-
 
                     <div class="seguridad-mini-icono">
 
@@ -441,7 +406,6 @@
                             Tu información está protegida
                         </strong>
 
-
                         <p>
                             Este portal es exclusivo para
                             colaboradores de Agroindustrias
@@ -450,26 +414,23 @@
 
                     </div>
 
-
                 </div>
 
 
             </div>
-
 
         </section>
 
 
 
         <!-- ==================================================
-             BENEFICIOS INFERIORES
+             BENEFICIOS
         =================================================== -->
 
         <section class="beneficios">
 
 
             <div class="beneficio">
-
 
                 <div class="beneficio-grande verde">
 
@@ -491,7 +452,6 @@
 
                 </div>
 
-
             </div>
 
 
@@ -501,7 +461,6 @@
 
 
             <div class="beneficio">
-
 
                 <div class="beneficio-grande amarillo">
 
@@ -523,7 +482,6 @@
 
                 </div>
 
-
             </div>
 
 
@@ -533,7 +491,6 @@
 
 
             <div class="beneficio">
-
 
                 <div class="beneficio-grande azul">
 
@@ -554,7 +511,6 @@
                     </p>
 
                 </div>
-
 
             </div>
 
@@ -585,7 +541,6 @@
 
                 <div class="datos-empleado">
 
-
                     <span>
                         COLABORADOR ENCONTRADO
                     </span>
@@ -606,8 +561,8 @@
 
                     </p>
 
-
                 </div>
+
 
 
                 <button
@@ -673,7 +628,9 @@
 
 
                         <span id="textoQuincena">
+
                             QUINCENA 1 · AGOSTO 2026
+
                         </span>
 
 
@@ -683,13 +640,16 @@
 
 
                         <p>
+
                             Consulta el detalle de tu
                             recibo correspondiente al
                             período seleccionado.
+
                         </p>
 
 
                     </div>
+
 
 
                     <button
@@ -716,7 +676,7 @@
 
 
         <!-- ==================================================
-             VISOR PDF
+             VISOR DEL RECIBO
         =================================================== -->
 
         <section
@@ -742,6 +702,7 @@
                 </div>
 
 
+
                 <div class="acciones-visor">
 
 
@@ -756,6 +717,7 @@
                         Guardar recibo
 
                     </button>
+
 
 
                     <button
@@ -775,6 +737,7 @@
 
 
             </div>
+
 
 
             <div class="visor-pdf">
@@ -839,7 +802,6 @@
     <div
         id="modalInformacion"
         class="modal-overlay oculto"
-        aria-hidden="true"
     >
 
 
@@ -855,12 +817,13 @@
                 type="button"
                 class="modal-cerrar"
                 data-cerrar-modal
-                aria-label="Cerrar información"
+                aria-label="Cerrar"
             >
 
                 <span class="icono icono-cerrar"></span>
 
             </button>
+
 
 
             <div class="modal-icono verde">
@@ -890,6 +853,7 @@
             </p>
 
 
+
             <div class="modal-seccion">
 
 
@@ -900,7 +864,9 @@
 
                 <div class="paso">
 
-                    <span>01</span>
+                    <span>
+                        01
+                    </span>
 
                     <p>
                         Selecciona la quincena
@@ -912,7 +878,9 @@
 
                 <div class="paso">
 
-                    <span>02</span>
+                    <span>
+                        02
+                    </span>
 
                     <p>
                         Escribe tu código completo
@@ -924,13 +892,18 @@
 
                 <div class="paso">
 
-                    <span>03</span>
+                    <span>
+                        03
+                    </span>
 
                     <p>
+
                         Presiona
+
                         <strong>
                             Consultar recibo
                         </strong>.
+
                     </p>
 
                 </div>
@@ -938,7 +911,9 @@
 
                 <div class="paso">
 
-                    <span>04</span>
+                    <span>
+                        04
+                    </span>
 
                     <p>
                         Revisa y visualiza tu
@@ -949,6 +924,7 @@
 
 
             </div>
+
 
 
             <button
@@ -962,7 +938,6 @@
 
         </div>
 
-
     </div>
 
 
@@ -974,7 +949,6 @@
     <div
         id="modalSeguridad"
         class="modal-overlay oculto"
-        aria-hidden="true"
     >
 
 
@@ -990,12 +964,13 @@
                 type="button"
                 class="modal-cerrar"
                 data-cerrar-modal
-                aria-label="Cerrar seguridad"
+                aria-label="Cerrar"
             >
 
                 <span class="icono icono-cerrar"></span>
 
             </button>
+
 
 
             <div class="modal-icono azul">
@@ -1024,6 +999,7 @@
             </p>
 
 
+
             <div class="seguridad-lista">
 
 
@@ -1034,7 +1010,6 @@
                         <span class="icono icono-check"></span>
 
                     </span>
-
 
                     <p>
                         Consulta únicamente tu propio recibo.
@@ -1051,7 +1026,6 @@
 
                     </span>
 
-
                     <p>
                         No compartas tu código de empleado.
                     </p>
@@ -1067,7 +1041,6 @@
 
                     </span>
 
-
                     <p>
                         Cierra el portal cuando termines
                         de consultar tu información.
@@ -1077,6 +1050,7 @@
 
 
             </div>
+
 
 
             <button
@@ -1090,7 +1064,6 @@
 
         </div>
 
-
     </div>
 
 
@@ -1102,7 +1075,6 @@
     <div
         id="modalAyuda"
         class="modal-overlay oculto"
-        aria-hidden="true"
     >
 
 
@@ -1118,12 +1090,13 @@
                 type="button"
                 class="modal-cerrar"
                 data-cerrar-modal
-                aria-label="Cerrar ayuda"
+                aria-label="Cerrar"
             >
 
                 <span class="icono icono-cerrar"></span>
 
             </button>
+
 
 
             <div class="modal-icono amarillo">
@@ -1143,42 +1116,41 @@
             </h2>
 
 
+
             <div class="ayuda-lista">
 
 
                 <div class="ayuda-item">
 
-
                     <strong>
                         No encuentro mi recibo
                     </strong>
 
-
                     <p>
+
                         Verifica que hayas seleccionado
                         la quincena correcta y que hayas
                         escrito tu código completo.
-                    </p>
 
+                    </p>
 
                 </div>
 
 
 
                 <div class="ayuda-item">
-
 
                     <strong>
                         El sistema no encuentra mi código
                     </strong>
 
-
                     <p>
+
                         Debes ingresar el código completo
                         de empleado, exactamente como
                         aparece en tu documentación laboral.
-                    </p>
 
+                    </p>
 
                 </div>
 
@@ -1186,23 +1158,23 @@
 
                 <div class="ayuda-item">
 
-
                     <strong>
                         ¿Todavía tienes problemas?
                     </strong>
 
-
                     <p>
+
                         Comunícate con Recursos Humanos
                         para verificar la información
                         correspondiente a tu período de pago.
-                    </p>
 
+                    </p>
 
                 </div>
 
 
             </div>
+
 
 
             <button
@@ -1215,7 +1187,6 @@
 
 
         </div>
-
 
     </div>
 
@@ -1275,12 +1246,10 @@
 
 
     <!-- ==================================================
-         SCRIPT
+         JAVASCRIPT
     =================================================== -->
 
     <script src="script.js?v=22"></script>
 
-
 </body>
-
 </html>

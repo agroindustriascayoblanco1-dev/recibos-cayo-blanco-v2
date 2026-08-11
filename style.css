@@ -5244,3 +5244,321 @@ button:active .icono {
 }
 
 /* FIN DE LA MEJORA */
+/* =========================================================
+   MEJORA DE LEGIBILIDAD
+   V24 — TEXTOS MÁS EQUILIBRADOS
+   NO AFECTA LA FUNCIONALIDAD
+========================================================= */
+
+
+/* =========================================================
+   TEXTOS GENERALES
+========================================================= */
+
+.bienvenida-texto > p {
+    font-size: 15px !important;
+    line-height: 1.65 !important;
+}
+
+.ayuda {
+    font-size: 11px !important;
+    line-height: 1.5 !important;
+}
+
+
+/* =========================================================
+   QUINCENAS
+========================================================= */
+
+.opcion-quincena strong {
+    font-size: 13px !important;
+}
+
+.opcion-quincena small {
+    font-size: 11px !important;
+}
+
+
+/* =========================================================
+   SEGURIDAD
+========================================================= */
+
+.seguridad-mini strong {
+    font-size: 11px !important;
+}
+
+.seguridad-mini p {
+    font-size: 10px !important;
+    line-height: 1.55 !important;
+}
+
+
+/* =========================================================
+   BENEFICIOS
+========================================================= */
+
+.beneficio-hero strong {
+    font-size: 11px !important;
+}
+
+.beneficio-hero small {
+    font-size: 10px !important;
+    line-height: 1.45 !important;
+}
+
+.beneficio strong {
+    font-size: 11px !important;
+}
+
+.beneficio p {
+    font-size: 10px !important;
+    line-height: 1.5 !important;
+}
+
+
+/* =========================================================
+   RESULTADO DEL EMPLEADO
+========================================================= */
+
+.datos-empleado > span {
+    font-size: 9px !important;
+}
+
+.datos-empleado h2 {
+    font-size: 22px !important;
+}
+
+.datos-empleado p {
+    font-size: 11px !important;
+}
+
+
+/* =========================================================
+   RECIBO
+========================================================= */
+
+.informacion-recibo > span {
+    font-size: 9px !important;
+}
+
+.informacion-recibo h3 {
+    font-size: 19px !important;
+}
+
+.informacion-recibo p {
+    font-size: 11px !important;
+    line-height: 1.55 !important;
+}
+
+.ver-recibo {
+    font-size: 12px !important;
+}
+
+
+/* =========================================================
+   PERÍODO
+========================================================= */
+
+.periodo {
+    font-size: 9px !important;
+}
+
+
+/* =========================================================
+   BOTONES SECUNDARIOS
+========================================================= */
+
+.boton-secundario {
+    font-size: 11px !important;
+}
+
+
+/* =========================================================
+   VISOR PDF
+========================================================= */
+
+.cabecera-visor h2 {
+    font-size: 23px !important;
+}
+
+.acciones-visor .boton-secundario {
+    font-size: 10px !important;
+}
+
+
+/* =========================================================
+   AVISO
+========================================================= */
+
+.aviso h3 {
+    font-size: 13px !important;
+}
+
+.aviso p {
+    font-size: 10px !important;
+    line-height: 1.6 !important;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.footer-bloque strong {
+    font-size: 11px !important;
+}
+
+.footer-bloque span {
+    font-size: 10px !important;
+}
+
+.footer-centro {
+    font-size: 10px !important;
+}
+
+.version {
+    font-size: 9px !important;
+}
+
+
+/* =========================================================
+   CELULAR
+========================================================= */
+
+@media (max-width: 700px) {
+
+    .bienvenida-texto > p {
+        font-size: 13px !important;
+        line-height: 1.6 !important;
+    }
+
+    .ayuda {
+        font-size: 10px !important;
+    }
+
+
+    .opcion-quincena strong {
+        font-size: 12px !important;
+    }
+
+    .opcion-quincena small {
+        font-size: 10px !important;
+    }
+
+
+    .seguridad-mini strong {
+        font-size: 10px !important;
+    }
+
+    .seguridad-mini p {
+        font-size: 9px !important;
+        line-height: 1.5 !important;
+    }
+
+
+    .beneficio-hero strong {
+        font-size: 10px !important;
+    }
+
+    .beneficio-hero small {
+        font-size: 9px !important;
+    }
+
+    .beneficio strong {
+        font-size: 10px !important;
+    }
+
+    .beneficio p {
+        font-size: 9px !important;
+    }
+
+
+    .datos-empleado h2 {
+        font-size: 18px !important;
+    }
+
+    .datos-empleado p {
+        font-size: 10px !important;
+    }
+
+
+    .informacion-recibo > span {
+        font-size: 9px !important;
+    }
+
+    .informacion-recibo h3 {
+        font-size: 17px !important;
+    }
+
+    .informacion-recibo p {
+        font-size: 10px !important;
+        line-height: 1.5 !important;
+    }
+
+
+    .periodo {
+        font-size: 9px !important;
+    }
+
+
+    .boton-secundario {
+        font-size: 10px !important;
+    }
+
+
+    .aviso h3 {
+        font-size: 12px !important;
+    }
+
+    .aviso p {
+        font-size: 9px !important;
+        line-height: 1.55 !important;
+    }
+
+
+    .footer-bloque strong {
+        font-size: 10px !important;
+    }
+
+    .footer-bloque span {
+        font-size: 9px !important;
+    }
+
+    .footer-centro {
+        font-size: 9px !important;
+    }
+
+    .version {
+        font-size: 8px !important;
+    }
+
+}
+
+
+/* =========================================================
+   CELULAR MUY PEQUEÑO
+========================================================= */
+
+@media (max-width: 380px) {
+
+    .bienvenida-texto > p {
+        font-size: 12px !important;
+    }
+
+    .beneficio-hero small {
+        font-size: 9px !important;
+    }
+
+    .seguridad-mini p {
+        font-size: 9px !important;
+    }
+
+    .datos-empleado h2 {
+        font-size: 17px !important;
+    }
+
+    .informacion-recibo p {
+        font-size: 10px !important;
+    }
+
+}

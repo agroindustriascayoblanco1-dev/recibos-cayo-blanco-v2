@@ -3801,3 +3801,38 @@ body.modal-abierto {
 /* =========================================================
    FIN COA OCEAN V8
 ========================================================= */
+/* =====================================================
+   SOLO AUMENTAR CAMPO DE CÓDIGO EN CELULAR
+===================================================== */
+
+@media (max-width: 600px) {
+
+    /* Contenedor del campo */
+    .campo-codigo {
+        width: 100% !important;
+        height: 90px !important;
+        min-height: 90px !important;
+    }
+
+    /* Campo donde realmente se escribe */
+    #codigo {
+        width: 100% !important;
+        height: 90px !important;
+        min-height: 90px !important;
+
+        box-sizing: border-box !important;
+
+        padding-left: 60px !important;
+        padding-right: 20px !important;
+
+        font-size: 18px !important;
+
+        border-radius: 18px !important;
+    }
+
+    /* Texto de ejemplo */
+    #codigo::placeholder {
+        font-size: 16px !important;
+    }
+
+}

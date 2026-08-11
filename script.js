@@ -11,16 +11,16 @@
 const PERIODOS = {
 
     q1: {
-        nombre: "Quincena 1",
+        nombre: "Quincena 1 Julio",
         mes: "Julio 2026",
-        periodoPago: "1 al 15 de julio de 2026",
+        periodoPago: "11 de Junio al 25 de Junio de 2026",
         archivo: "RECIBOS QUINCENA 1.pdf"
     },
 
     q2: {
-        nombre: "Quincena 2",
+        nombre: "Quincena 2 Julio",
         mes: "Julio 2026",
-        periodoPago: "16 al 31 de julio de 2026",
+        periodoPago: "26 de Junio al 10 de Julio de 2026",
         archivo: "RECIBOS QUINCENA 2.pdf"
     }
 };

@@ -5888,3 +5888,185 @@ button:active .icono {
     }
 
 }
+/* =========================================================
+   V26 — AJUSTE DE ESCALA VISUAL
+========================================================= */
+
+/* TEXTO DESCRIPTIVO PRINCIPAL */
+.bienvenida-texto > p {
+    font-size: 16px !important;
+    line-height: 1.6 !important;
+}
+
+
+/* BUSCADOR */
+.titulo-selector {
+    font-size: 13px !important;
+    font-weight: 800 !important;
+}
+
+.opcion-quincena strong {
+    font-size: 14px !important;
+}
+
+.opcion-quincena small {
+    font-size: 11px !important;
+}
+
+
+/* CÓDIGO */
+.label-codigo {
+    font-size: 13px !important;
+    font-weight: 800 !important;
+}
+
+#codigo {
+    text-align: center !important;
+    font-size: 18px !important;
+    font-weight: 700 !important;
+    letter-spacing: 1px !important;
+}
+
+#codigo::placeholder {
+    text-align: center !important;
+    font-size: 14px !important;
+    font-weight: 400 !important;
+    letter-spacing: 0 !important;
+}
+
+
+/* BOTÓN */
+#buscar {
+    font-size: 13px !important;
+    font-weight: 800 !important;
+}
+
+
+/* ETIQUETAS VERDES */
+.etiqueta {
+    font-size: 9px !important;
+    letter-spacing: 1.2px !important;
+}
+
+
+/* AVISO DE CONFIDENCIALIDAD */
+.aviso h3 {
+    font-size: 14px !important;
+}
+
+.aviso p {
+    font-size: 11px !important;
+    line-height: 1.55 !important;
+}
+
+
+/* RESULTADO */
+.datos-empleado > span {
+    font-size: 10px !important;
+}
+
+.datos-empleado h2 {
+    font-size: 23px !important;
+}
+
+.datos-empleado p {
+    font-size: 12px !important;
+}
+
+
+/* RECIBO */
+.informacion-recibo > span {
+    font-size: 10px !important;
+}
+
+.informacion-recibo h3 {
+    font-size: 20px !important;
+}
+
+.informacion-recibo p {
+    font-size: 11px !important;
+    line-height: 1.55 !important;
+}
+
+.ver-recibo {
+    font-size: 13px !important;
+}
+
+
+/* PERÍODO */
+.periodo {
+    font-size: 10px !important;
+}
+
+
+/* BOTONES SECUNDARIOS */
+.boton-secundario {
+    font-size: 12px !important;
+}
+
+
+/* =========================================================
+   CELULAR
+========================================================= */
+
+@media (max-width: 700px) {
+
+    .bienvenida-texto > p {
+        font-size: 14px !important;
+    }
+
+    .titulo-selector {
+        font-size: 12px !important;
+    }
+
+    .opcion-quincena strong {
+        font-size: 13px !important;
+    }
+
+    .opcion-quincena small {
+        font-size: 10px !important;
+    }
+
+    .label-codigo {
+        font-size: 12px !important;
+    }
+
+    #codigo {
+        text-align: center !important;
+        font-size: 17px !important;
+    }
+
+    #codigo::placeholder {
+        text-align: center !important;
+        font-size: 14px !important;
+    }
+
+    #buscar {
+        font-size: 13px !important;
+    }
+
+    .aviso h3 {
+        font-size: 13px !important;
+    }
+
+    .aviso p {
+        font-size: 10px !important;
+    }
+
+    .datos-empleado h2 {
+        font-size: 19px !important;
+    }
+
+    .datos-empleado p {
+        font-size: 11px !important;
+    }
+
+    .informacion-recibo h3 {
+        font-size: 18px !important;
+    }
+
+    .informacion-recibo p {
+        font-size: 10px !important;
+    }
+
+}

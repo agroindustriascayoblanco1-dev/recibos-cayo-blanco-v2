@@ -1,29 +1,33 @@
 /* =========================================================
    COA - RECIBOS DE PAGO
-   STYLE.CSS
-   VERSIÓN RESPONSIVE
+   AGROINDUSTRIAS CAYO BLANCO
+   DISEÑO RESPONSIVE - PC + CELULAR
    ========================================================= */
 
 
 /* =========================================================
-   RESET
+   RESET GENERAL
    ========================================================= */
 
 * {
     box-sizing: border-box;
 }
 
-
 html {
     scroll-behavior: smooth;
 }
 
-
 body {
     margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    background: #f4f7f5;
-    color: #1f2933;
+    padding: 0;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background: #f3f7f5;
+    color: #17352a;
 }
 
 
@@ -33,16 +37,18 @@ body {
 
 .encabezado {
     width: 100%;
+
     min-height: 82px;
+
+    padding: 15px 6%;
 
     background: #08743b;
     color: white;
 
     display: flex;
+
     align-items: center;
     justify-content: space-between;
-
-    padding: 16px 6%;
 
     gap: 20px;
 }
@@ -50,33 +56,48 @@ body {
 
 .marca {
     display: flex;
+
     align-items: center;
+
     gap: 14px;
+
+    min-width: 0;
 }
 
 
 .logo {
-    width: 52px;
-    height: 52px;
+    width: 54px;
+    height: 54px;
 
-    border-radius: 12px;
+    flex-shrink: 0;
+
+    border-radius: 14px;
 
     background: white;
+
     color: #08743b;
 
     display: flex;
+
     align-items: center;
     justify-content: center;
 
-    font-size: 20px;
+    font-size: 21px;
+
     font-weight: bold;
+}
+
+
+.empresa {
+    min-width: 0;
 }
 
 
 .empresa h1 {
     margin: 0;
 
-    font-size: 18px;
+    font-size: 19px;
+
     line-height: 1.2;
 }
 
@@ -86,24 +107,26 @@ body {
 
     font-size: 13px;
 
-    opacity: 0.9;
+    opacity: .92;
 }
 
 
 .confidencial-top {
     font-size: 13px;
-    opacity: 0.95;
 
     white-space: nowrap;
+
+    opacity: .95;
 }
 
 
 /* =========================================================
-   CONTENEDOR
+   CONTENEDOR PRINCIPAL
    ========================================================= */
 
 .contenedor {
     width: 100%;
+
     max-width: 1180px;
 
     margin: 0 auto;
@@ -113,32 +136,40 @@ body {
 
 
 /* =========================================================
-   BIENVENIDA
+   TARJETA PRINCIPAL
    ========================================================= */
 
 .bienvenida {
+    width: 100%;
+
     background: white;
 
-    border-radius: 22px;
+    border-radius: 24px;
 
-    padding: 40px;
+    padding: 42px;
 
     display: grid;
 
     grid-template-columns:
-        minmax(0, 0.9fr)
+        minmax(0, .9fr)
         minmax(0, 1.1fr);
 
     gap: 45px;
 
     box-shadow:
-        0 10px 35px rgba(0, 0, 0, 0.07);
+        0 10px 35px rgba(0, 0, 0, .07);
 }
 
 
+/* =========================================================
+   TEXTO DE BIENVENIDA
+   ========================================================= */
+
 .bienvenida-texto {
     display: flex;
+
     flex-direction: column;
+
     justify-content: center;
 }
 
@@ -146,39 +177,39 @@ body {
 .etiqueta {
     display: inline-block;
 
+    margin-bottom: 8px;
+
     color: #08743b;
 
     font-size: 12px;
 
     font-weight: bold;
 
-    letter-spacing: 0.8px;
-
-    margin-bottom: 8px;
+    letter-spacing: 1px;
 }
 
 
 .bienvenida-texto h2 {
-    margin: 0 0 16px;
-
-    font-size: 42px;
-
-    line-height: 1.08;
+    margin: 0 0 17px;
 
     color: #17352a;
+
+    font-size: 43px;
+
+    line-height: 1.08;
 }
 
 
 .bienvenida-texto p {
+    max-width: 520px;
+
     margin: 0;
 
-    max-width: 520px;
+    color: #667085;
 
     font-size: 16px;
 
     line-height: 1.65;
-
-    color: #667085;
 }
 
 
@@ -189,13 +220,13 @@ body {
 .buscador {
     width: 100%;
 
-    background: #f8faf9;
-
-    border-radius: 18px;
-
     padding: 28px;
 
-    border: 1px solid #e4ebe7;
+    background: #f7faf8;
+
+    border: 1px solid #e0e9e4;
+
+    border-radius: 18px;
 }
 
 
@@ -215,15 +246,17 @@ body {
 
     margin-bottom: 12px;
 
+    color: #344054;
+
     font-size: 15px;
 
     font-weight: bold;
-
-    color: #344054;
 }
 
 
 .opciones-quincena {
+    width: 100%;
+
     display: grid;
 
     grid-template-columns: 1fr 1fr;
@@ -233,15 +266,17 @@ body {
 
 
 .opcion-quincena {
+    width: 100%;
+
     min-height: 68px;
 
     padding: 12px 14px;
 
-    border: 1px solid #dce5df;
-
-    border-radius: 12px;
-
     background: white;
+
+    border: 1px solid #d9e4de;
+
+    border-radius: 13px;
 
     display: flex;
 
@@ -252,9 +287,7 @@ body {
     cursor: pointer;
 
     transition:
-        border-color 0.2s ease,
-        box-shadow 0.2s ease,
-        background 0.2s ease;
+        .2s ease;
 }
 
 
@@ -262,17 +295,19 @@ body {
     border-color: #08743b;
 
     box-shadow:
-        0 4px 12px rgba(0, 0, 0, 0.05);
+        0 5px 15px rgba(8, 116, 59, .08);
 }
 
 
 .opcion-quincena input {
-    width: 18px;
-    height: 18px;
+    width: 19px;
+    height: 19px;
 
-    accent-color: #08743b;
+    margin: 0;
 
     flex-shrink: 0;
+
+    accent-color: #08743b;
 }
 
 
@@ -281,11 +316,15 @@ body {
 
     flex-direction: column;
 
-    gap: 3px;
+    align-items: flex-start;
+
+    gap: 4px;
+
+    color: #344054;
 
     font-size: 15px;
 
-    color: #344054;
+    line-height: 1.2;
 }
 
 
@@ -295,6 +334,8 @@ body {
 
 
 .opcion-quincena small {
+    display: block;
+
     color: #667085;
 
     font-size: 12px;
@@ -302,7 +343,7 @@ body {
 
 
 /* =========================================================
-   CÓDIGO
+   CÓDIGO DE EMPLEADO
    ========================================================= */
 
 .label-codigo {
@@ -310,11 +351,11 @@ body {
 
     margin-bottom: 8px;
 
+    color: #344054;
+
     font-size: 15px;
 
     font-weight: bold;
-
-    color: #344054;
 }
 
 
@@ -332,27 +373,27 @@ body {
 .fila-busqueda input {
     flex: 1;
 
+    width: 100%;
+
     min-width: 0;
 
     height: 50px;
 
-    padding: 0 15px;
-
-    border: 1px solid #ccd7d1;
-
-    border-radius: 10px;
+    padding: 0 16px;
 
     background: white;
 
-    color: #1f2933;
+    border: 1px solid #cbd8d1;
 
-    font-size: 15px;
+    border-radius: 11px;
 
     outline: none;
 
-    transition:
-        border-color 0.2s ease,
-        box-shadow 0.2s ease;
+    color: #17352a;
+
+    font-size: 15px;
+
+    transition: .2s ease;
 }
 
 
@@ -360,18 +401,27 @@ body {
     border-color: #08743b;
 
     box-shadow:
-        0 0 0 3px rgba(8, 116, 59, 0.12);
+        0 0 0 3px rgba(8, 116, 59, .12);
+}
+
+
+.fila-busqueda input::placeholder {
+    color: #98a2b3;
 }
 
 
 .fila-busqueda button {
+    width: auto;
+
     min-width: 165px;
 
     height: 50px;
 
+    padding: 0 20px;
+
     border: none;
 
-    border-radius: 10px;
+    border-radius: 11px;
 
     background: #08743b;
 
@@ -383,11 +433,7 @@ body {
 
     cursor: pointer;
 
-    padding: 0 18px;
-
-    transition:
-        background 0.2s ease,
-        transform 0.1s ease;
+    transition: .2s ease;
 }
 
 
@@ -397,12 +443,12 @@ body {
 
 
 .fila-busqueda button:active {
-    transform: scale(0.98);
+    transform: scale(.98);
 }
 
 
 .fila-busqueda button:disabled {
-    opacity: 0.7;
+    opacity: .7;
 
     cursor: wait;
 }
@@ -435,16 +481,18 @@ body {
    ========================================================= */
 
 .resultado {
+    width: 100%;
+
     margin-top: 30px;
+
+    padding: 32px;
 
     background: white;
 
     border-radius: 22px;
 
-    padding: 32px;
-
     box-shadow:
-        0 10px 35px rgba(0, 0, 0, 0.07);
+        0 10px 35px rgba(0, 0, 0, .07);
 }
 
 
@@ -454,10 +502,12 @@ body {
 
 
 /* =========================================================
-   EMPLEADO
+   DATOS DEL EMPLEADO
    ========================================================= */
 
 .empleado {
+    width: 100%;
+
     display: flex;
 
     align-items: center;
@@ -466,7 +516,7 @@ body {
 
     padding-bottom: 28px;
 
-    border-bottom: 1px solid #e8eeea;
+    border-bottom: 1px solid #e5ece8;
 }
 
 
@@ -499,24 +549,26 @@ body {
 .datos-empleado > span {
     display: block;
 
+    margin-bottom: 5px;
+
     color: #08743b;
 
     font-size: 11px;
 
     font-weight: bold;
 
-    letter-spacing: 0.5px;
-
-    margin-bottom: 5px;
+    letter-spacing: .5px;
 }
 
 
 .datos-empleado h2 {
     margin: 0;
 
+    color: #17352a;
+
     font-size: 24px;
 
-    color: #17352a;
+    line-height: 1.25;
 
     word-break: break-word;
 }
@@ -531,18 +583,22 @@ body {
 }
 
 
+/* =========================================================
+   BOTONES SECUNDARIOS
+   ========================================================= */
+
 .boton-secundario {
-    border: 1px solid #cfdad3;
-
-    background: white;
-
-    color: #344054;
-
-    border-radius: 10px;
-
     min-height: 44px;
 
     padding: 10px 15px;
+
+    background: white;
+
+    border: 1px solid #ccd9d1;
+
+    border-radius: 10px;
+
+    color: #344054;
 
     font-size: 14px;
 
@@ -550,9 +606,7 @@ body {
 
     cursor: pointer;
 
-    transition:
-        background 0.2s ease,
-        border-color 0.2s ease;
+    transition: .2s ease;
 }
 
 
@@ -564,10 +618,14 @@ body {
 
 
 /* =========================================================
-   TÍTULO DE SECCIÓN
+   TÍTULO RECIBO
    ========================================================= */
 
 .titulo-seccion {
+    width: 100%;
+
+    margin: 30px 0 18px;
+
     display: flex;
 
     align-items: center;
@@ -575,8 +633,6 @@ body {
     justify-content: space-between;
 
     gap: 20px;
-
-    margin: 30px 0 18px;
 }
 
 
@@ -593,14 +649,13 @@ body {
     display: inline-flex;
 
     align-items: center;
-
     justify-content: center;
 
     padding: 8px 12px;
 
-    border-radius: 999px;
-
     background: #e8f5ee;
+
+    border-radius: 999px;
 
     color: #08743b;
 
@@ -624,19 +679,19 @@ body {
 .recibo {
     width: 100%;
 
+    padding: 20px;
+
+    background: #fbfdfc;
+
+    border: 1px solid #dfe8e3;
+
+    border-radius: 15px;
+
     display: flex;
 
     align-items: center;
 
     gap: 18px;
-
-    padding: 20px;
-
-    border: 1px solid #e1e9e4;
-
-    border-radius: 15px;
-
-    background: #fbfdfc;
 }
 
 
@@ -669,13 +724,13 @@ body {
 .informacion-recibo > span {
     display: block;
 
+    margin-bottom: 5px;
+
     color: #08743b;
 
     font-size: 12px;
 
     font-weight: bold;
-
-    margin-bottom: 5px;
 }
 
 
@@ -702,15 +757,15 @@ body {
 .ver-recibo {
     min-height: 48px;
 
+    padding: 10px 18px;
+
+    background: #08743b;
+
     border: none;
 
     border-radius: 10px;
 
-    background: #08743b;
-
     color: white;
-
-    padding: 10px 18px;
 
     font-size: 14px;
 
@@ -720,8 +775,7 @@ body {
 
     white-space: nowrap;
 
-    transition:
-        background 0.2s ease;
+    transition: .2s ease;
 }
 
 
@@ -731,24 +785,30 @@ body {
 
 
 /* =========================================================
-   VISOR
+   VISOR PDF
    ========================================================= */
 
 .visor {
+    width: 100%;
+
     margin-top: 30px;
+
+    padding: 30px;
 
     background: white;
 
     border-radius: 22px;
 
-    padding: 30px;
-
     box-shadow:
-        0 10px 35px rgba(0, 0, 0, 0.07);
+        0 10px 35px rgba(0, 0, 0, .07);
 }
 
 
 .cabecera-visor {
+    width: 100%;
+
+    margin-bottom: 20px;
+
     display: flex;
 
     align-items: center;
@@ -756,8 +816,6 @@ body {
     justify-content: space-between;
 
     gap: 20px;
-
-    margin-bottom: 20px;
 }
 
 
@@ -782,13 +840,13 @@ body {
 .visor-pdf {
     width: 100%;
 
-    overflow: hidden;
+    min-height: 200px;
 
-    border-radius: 14px;
+    overflow: hidden;
 
     background: #eef2ef;
 
-    min-height: 200px;
+    border-radius: 14px;
 }
 
 
@@ -804,19 +862,21 @@ body {
 .visor-mensaje {
     padding: 50px 20px;
 
-    text-align: center;
-
     color: #08743b;
 
     font-size: 16px;
+
+    text-align: center;
 }
 
 
 /* =========================================================
-   AVISO
+   AVISO DE CONFIDENCIALIDAD
    ========================================================= */
 
 .aviso {
+    width: 100%;
+
     margin-top: 30px;
 
     padding: 22px;
@@ -836,9 +896,9 @@ body {
 
 
 .aviso-icono {
-    font-size: 25px;
-
     flex-shrink: 0;
+
+    font-size: 25px;
 }
 
 
@@ -863,17 +923,17 @@ body {
 
 
 /* =========================================================
-   FOOTER
+   PIE DE PÁGINA
    ========================================================= */
 
 footer {
     padding: 24px;
 
-    text-align: center;
-
     color: #667085;
 
     font-size: 12px;
+
+    text-align: center;
 }
 
 
@@ -890,284 +950,338 @@ footer span {
    TABLET
    ========================================================= */
 
-@media (max-width: 900px) {
+@media screen and (max-width: 900px) {
 
     .encabezado {
-        padding: 15px 4%;
+        padding-left: 4%;
+        padding-right: 4%;
     }
-
 
     .contenedor {
         padding: 30px 18px 50px;
     }
 
-
     .bienvenida {
         grid-template-columns: 1fr;
 
-        gap: 25px;
+        gap: 28px;
 
         padding: 30px;
     }
 
-
     .bienvenida-texto h2 {
         font-size: 36px;
     }
-
 }
 
 
 /* =========================================================
-   CELULARES
+   CELULAR
    ========================================================= */
 
-@media (max-width: 700px) {
+@media screen and (max-width: 700px) {
 
 
-    /* -----------------------------------------------
+    /* -----------------------------------------------------
        ENCABEZADO
-    ------------------------------------------------ */
+       ----------------------------------------------------- */
 
     .encabezado {
         min-height: auto;
 
-        padding: 15px;
+        padding: 16px 18px;
 
         flex-direction: column;
 
         align-items: flex-start;
 
-        gap: 12px;
+        justify-content: flex-start;
+
+        gap: 10px;
     }
 
 
     .marca {
         width: 100%;
+
+        gap: 13px;
     }
 
 
     .logo {
-        width: 48px;
-        height: 48px;
+        width: 54px;
+        height: 54px;
 
-        font-size: 18px;
+        border-radius: 14px;
+
+        font-size: 20px;
+    }
+
+
+    .empresa {
+        flex: 1;
     }
 
 
     .empresa h1 {
-        font-size: 16px;
+        font-size: 17px;
+
+        line-height: 1.2;
     }
 
 
     .empresa p {
+        margin-top: 4px;
+
         font-size: 12px;
     }
 
 
     .confidencial-top {
-        font-size: 12px;
+        display: none;
     }
 
 
-
-    /* -----------------------------------------------
+    /* -----------------------------------------------------
        CONTENEDOR
-    ------------------------------------------------ */
+       ----------------------------------------------------- */
 
     .contenedor {
         width: 100%;
 
-        padding: 20px 12px 45px;
+        padding: 20px 14px 45px;
     }
 
 
-
-    /* -----------------------------------------------
-       BIENVENIDA
-    ------------------------------------------------ */
+    /* -----------------------------------------------------
+       TARJETA PRINCIPAL
+       ----------------------------------------------------- */
 
     .bienvenida {
         width: 100%;
 
         display: block;
 
-        padding: 22px 16px;
+        padding: 28px 18px 20px;
 
-        border-radius: 18px;
+        border-radius: 22px;
+
+        box-shadow:
+            0 8px 28px rgba(0, 0, 0, .06);
     }
 
 
+    /* -----------------------------------------------------
+       TEXTO
+       ----------------------------------------------------- */
+
     .bienvenida-texto {
-        margin-bottom: 24px;
+        width: 100%;
+
+        margin-bottom: 25px;
+    }
+
+
+    .etiqueta {
+        font-size: 12px;
+
+        letter-spacing: 1.5px;
     }
 
 
     .bienvenida-texto h2 {
-        font-size: 30px;
+        margin-bottom: 16px;
 
-        line-height: 1.15;
+        font-size: 31px;
+
+        line-height: 1.13;
     }
 
 
     .bienvenida-texto p {
-        font-size: 14px;
+        font-size: 15px;
 
         line-height: 1.6;
     }
 
 
-
-    /* -----------------------------------------------
+    /* -----------------------------------------------------
        BUSCADOR
-    ------------------------------------------------ */
+       ----------------------------------------------------- */
 
     .buscador {
         width: 100%;
 
-        padding: 18px 14px;
+        padding: 22px 15px;
 
-        border-radius: 15px;
+        border-radius: 17px;
     }
 
 
+    /* -----------------------------------------------------
+       SELECTOR DE QUINCENA
+       ----------------------------------------------------- */
 
-    /* -----------------------------------------------
-       QUINCENAS
-    ------------------------------------------------ */
+    .selector-quincena {
+        margin-bottom: 25px;
+    }
+
 
     .titulo-selector {
-        font-size: 15px;
+        margin-bottom: 12px;
 
-        margin-bottom: 10px;
+        font-size: 17px;
     }
 
 
     .opciones-quincena {
-        display: flex;
-
-        flex-direction: column;
-
         width: 100%;
 
-        gap: 10px;
+        display: flex !important;
+
+        flex-direction: column !important;
+
+        gap: 10px !important;
     }
 
 
     .opcion-quincena {
-        width: 100%;
+        width: 100% !important;
 
-        min-height: 62px;
+        min-height: 66px !important;
 
-        padding: 12px 14px;
+        padding: 12px 15px !important;
 
-        border-radius: 12px;
+        display: flex !important;
+
+        align-items: center !important;
+
+        gap: 12px !important;
+
+        border-radius: 14px !important;
+
+        white-space: normal !important;
     }
 
 
     .opcion-quincena input {
-        width: 20px;
+        width: 21px !important;
+        height: 21px !important;
 
-        height: 20px;
+        margin: 0 !important;
+
+        flex-shrink: 0 !important;
     }
 
 
     .opcion-quincena span {
-        font-size: 16px;
+        display: flex !important;
+
+        flex-direction: column !important;
+
+        align-items: flex-start !important;
+
+        gap: 4px !important;
+
+        line-height: 1.2 !important;
     }
 
 
     .opcion-quincena strong {
-        font-size: 16px;
+        font-size: 16px !important;
     }
 
 
     .opcion-quincena small {
-        font-size: 13px;
+        display: block !important;
+
+        margin: 0 !important;
+
+        font-size: 13px !important;
+
+        color: #667085 !important;
     }
 
 
-
-    /* -----------------------------------------------
-       CÓDIGO DE EMPLEADO
-    ------------------------------------------------ */
+    /* -----------------------------------------------------
+       CÓDIGO
+       ----------------------------------------------------- */
 
     .label-codigo {
         margin-top: 22px;
 
         margin-bottom: 9px;
 
-        font-size: 16px;
+        font-size: 17px;
     }
 
 
     .fila-busqueda {
+        width: 100% !important;
 
-        width: 100%;
+        display: flex !important;
 
-        display: flex;
+        flex-direction: column !important;
 
-        flex-direction: column;
+        align-items: stretch !important;
 
-        gap: 12px;
-
+        gap: 12px !important;
     }
 
 
-    /* CAMPO GRANDE PARA EL CELULAR */
-
     .fila-busqueda input {
+        display: block !important;
 
-        width: 100%;
+        width: 100% !important;
 
-        height: 58px;
+        height: 60px !important;
 
-        min-height: 58px;
+        min-height: 60px !important;
 
-        padding: 0 16px;
+        padding: 0 18px !important;
 
-        border-radius: 12px;
+        border-radius: 13px !important;
 
-        font-size: 18px;
+        font-size: 19px !important;
 
-        line-height: normal;
+        line-height: normal !important;
 
         -webkit-appearance: none;
 
         appearance: none;
-
     }
 
 
     .fila-busqueda input::placeholder {
-        font-size: 15px;
+        font-size: 16px;
 
-        color: #98a2b3;
+        color: #a0a7ae;
     }
 
 
-    /* BOTÓN GRANDE */
-
     .fila-busqueda button {
+        display: block !important;
 
-        width: 100%;
+        width: 100% !important;
 
-        height: 56px;
+        min-width: 0 !important;
 
-        min-height: 56px;
+        height: 58px !important;
 
-        border-radius: 12px;
+        min-height: 58px !important;
 
-        font-size: 17px;
+        padding: 0 18px !important;
 
-        padding: 0 16px;
+        border-radius: 13px !important;
+
+        font-size: 18px !important;
     }
 
 
     .ayuda {
-        margin-top: 10px;
+        margin-top: 11px;
 
-        font-size: 12px;
+        font-size: 13px;
 
         line-height: 1.5;
     }
@@ -1180,21 +1294,24 @@ footer span {
     }
 
 
-
-    /* -----------------------------------------------
+    /* -----------------------------------------------------
        RESULTADO
-    ------------------------------------------------ */
+       ----------------------------------------------------- */
 
     .resultado {
         width: 100%;
 
-        padding: 20px 16px;
+        margin-top: 22px;
 
-        border-radius: 18px;
+        padding: 22px 16px;
+
+        border-radius: 19px;
     }
 
 
     .empleado {
+        width: 100%;
+
         display: flex;
 
         flex-direction: column;
@@ -1222,8 +1339,6 @@ footer span {
         font-size: 22px;
 
         line-height: 1.25;
-
-        word-break: break-word;
     }
 
 
@@ -1235,30 +1350,29 @@ footer span {
     .empleado .boton-secundario {
         width: 100%;
 
-        min-height: 48px;
+        min-height: 49px;
     }
 
 
-
-    /* -----------------------------------------------
+    /* -----------------------------------------------------
        TÍTULO RECIBO
-    ------------------------------------------------ */
+       ----------------------------------------------------- */
 
     .titulo-seccion {
+        margin: 25px 0 17px;
+
         display: flex;
 
         flex-direction: column;
 
         align-items: flex-start;
 
-        gap: 12px;
-
-        margin-top: 25px;
+        gap: 11px;
     }
 
 
     .titulo-seccion h2 {
-        font-size: 23px;
+        font-size: 24px;
 
         line-height: 1.2;
     }
@@ -1267,20 +1381,25 @@ footer span {
     .periodo {
         max-width: 100%;
 
+        padding: 8px 11px;
+
         font-size: 12px;
 
-        line-height: 1.4;
+        line-height: 1.35;
 
         white-space: normal;
     }
 
 
-
-    /* -----------------------------------------------
-       RECIBO
-    ------------------------------------------------ */
+    /* -----------------------------------------------------
+       TARJETA DEL RECIBO
+       ----------------------------------------------------- */
 
     .recibo {
+        width: 100%;
+
+        padding: 18px;
+
         display: flex;
 
         flex-direction: column;
@@ -1289,18 +1408,27 @@ footer span {
 
         gap: 14px;
 
-        padding: 17px;
+        border-radius: 15px;
     }
 
 
     .icono-recibo {
         width: 50px;
         height: 50px;
+
+        font-size: 23px;
     }
 
 
     .informacion-recibo {
         width: 100%;
+    }
+
+
+    .informacion-recibo > span {
+        font-size: 11px;
+
+        line-height: 1.4;
     }
 
 
@@ -1327,28 +1455,31 @@ footer span {
     }
 
 
-
-    /* -----------------------------------------------
+    /* -----------------------------------------------------
        VISOR
-    ------------------------------------------------ */
+       ----------------------------------------------------- */
 
     .visor {
         width: 100%;
 
+        margin-top: 22px;
+
         padding: 20px 14px;
 
-        border-radius: 18px;
+        border-radius: 19px;
     }
 
 
     .cabecera-visor {
+        width: 100%;
+
         display: flex;
 
         flex-direction: column;
 
         align-items: flex-start;
 
-        gap: 15px;
+        gap: 14px;
     }
 
 
@@ -1387,6 +1518,8 @@ footer span {
 
 
     .visor-pdf canvas {
+        display: block;
+
         width: 100% !important;
 
         max-width: 100% !important;
@@ -1395,17 +1528,20 @@ footer span {
     }
 
 
-
-    /* -----------------------------------------------
+    /* -----------------------------------------------------
        AVISO
-    ------------------------------------------------ */
+       ----------------------------------------------------- */
 
     .aviso {
         width: 100%;
 
+        margin-top: 22px;
+
         padding: 17px;
 
         gap: 11px;
+
+        border-radius: 15px;
     }
 
 
@@ -1416,6 +1552,8 @@ footer span {
 
     .aviso h3 {
         font-size: 16px;
+
+        line-height: 1.3;
     }
 
 
@@ -1426,10 +1564,9 @@ footer span {
     }
 
 
-
-    /* -----------------------------------------------
+    /* -----------------------------------------------------
        FOOTER
-    ------------------------------------------------ */
+       ----------------------------------------------------- */
 
     footer {
         padding: 20px 12px;
@@ -1446,51 +1583,76 @@ footer span {
    CELULARES PEQUEÑOS
    ========================================================= */
 
-@media (max-width: 400px) {
-
+@media screen and (max-width: 400px) {
 
     .contenedor {
         padding-left: 9px;
-
         padding-right: 9px;
     }
 
 
     .bienvenida {
-        padding: 19px 12px;
+        padding: 24px 13px 17px;
     }
 
 
     .bienvenida-texto h2 {
-        font-size: 27px;
+        font-size: 28px;
+    }
+
+
+    .bienvenida-texto p {
+        font-size: 14px;
     }
 
 
     .buscador {
-        padding: 16px 11px;
+        padding: 18px 11px;
     }
 
 
-    .fila-busqueda input {
-        height: 56px;
-
-        min-height: 56px;
-
-        font-size: 17px;
-    }
-
-
-    .fila-busqueda button {
-        height: 54px;
-
-        min-height: 54px;
-
+    .titulo-selector {
         font-size: 16px;
     }
 
 
+    .opcion-quincena {
+        min-height: 63px !important;
+
+        padding: 11px 13px !important;
+    }
+
+
+    .opcion-quincena strong {
+        font-size: 15px !important;
+    }
+
+
+    .opcion-quincena small {
+        font-size: 12px !important;
+    }
+
+
+    .fila-busqueda input {
+        height: 58px !important;
+
+        min-height: 58px !important;
+
+        font-size: 18px !important;
+    }
+
+
+    .fila-busqueda button {
+        height: 56px !important;
+
+        min-height: 56px !important;
+
+        font-size: 17px !important;
+    }
+
+
     .resultado {
-        padding: 18px 13px;
+        padding: 19px 13px;
     }
 
 

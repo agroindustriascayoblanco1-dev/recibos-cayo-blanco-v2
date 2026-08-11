@@ -447,10 +447,12 @@ async function buscarEmpleado() {
 
 
         // ------------------------------------------
-        // MOSTRAR RESULTADO
+        // MOSTRAR RECIBO DIRECTAMENTE
         // ------------------------------------------
 
-        resultado.classList.remove(
+        // Ocultar la tarjeta intermedia de
+        // "Tu recibo de pago".
+        resultado.classList.add(
             "oculto"
         );
 
@@ -460,15 +462,13 @@ async function buscarEmpleado() {
         );
 
 
-        resultado.scrollIntoView({
+        // Abrir automáticamente el recibo
+        // encontrado en el PDF.
+        setTimeout(() => {
 
-            behavior:
-                "smooth",
+            abrirRecibo();
 
-            block:
-                "start"
-
-        });
+        }, 300);
 
 
     } catch (error) {
@@ -1324,4 +1324,3 @@ document
 
 // ======================================================
 // FIN
-// ======================================================

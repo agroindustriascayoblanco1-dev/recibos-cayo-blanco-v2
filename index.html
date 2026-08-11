@@ -14,15 +14,13 @@
         Recibos de Pago | Agroindustrias Cayo Blanco
     </title>
 
-
     <script
         src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js">
     </script>
 
-
     <link
         rel="stylesheet"
-        href="style.css?v=21"
+        href="style.css?v=22"
     >
 
 </head>
@@ -83,7 +81,7 @@
                 id="btnInformacion"
             >
                 <span class="icono icono-info"></span>
-                Información
+                <span>Información</span>
             </button>
 
 
@@ -93,7 +91,7 @@
                 id="btnSeguridad"
             >
                 <span class="icono icono-seguridad"></span>
-                Seguridad
+                <span>Seguridad</span>
             </button>
 
 
@@ -103,7 +101,7 @@
                 id="btnAyuda"
             >
                 <span class="icono icono-ayuda"></span>
-                Ayuda
+                <span>Ayuda</span>
             </button>
 
 
@@ -115,7 +113,7 @@
 
 
     <!-- ==================================================
-         CONTENIDO
+         CONTENIDO PRINCIPAL
     =================================================== -->
 
     <main
@@ -125,7 +123,7 @@
 
 
         <!-- ==================================================
-             HERO
+             BIENVENIDA
         =================================================== -->
 
         <section class="bienvenida">
@@ -303,17 +301,13 @@
 
 
 
-                <!-- ==================================================
-                     QUINCENAS
-                =================================================== -->
+                <!-- QUINCENAS -->
 
                 <div class="selector-quincena">
 
 
                     <label class="titulo-selector">
-
                         Selecciona la quincena
-
                     </label>
 
 
@@ -322,14 +316,12 @@
 
                         <label class="opcion-quincena">
 
-
                             <input
                                 type="radio"
                                 name="quincena"
                                 value="q1"
                                 checked
                             >
-
 
                             <span>
 
@@ -343,20 +335,17 @@
 
                             </span>
 
-
                         </label>
 
 
 
                         <label class="opcion-quincena">
 
-
                             <input
                                 type="radio"
                                 name="quincena"
                                 value="q2"
                             >
-
 
                             <span>
 
@@ -370,7 +359,6 @@
 
                             </span>
 
-
                         </label>
 
 
@@ -381,17 +369,13 @@
 
 
 
-                <!-- ==================================================
-                     CÓDIGO
-                =================================================== -->
+                <!-- CÓDIGO -->
 
                 <label
                     for="codigo"
                     class="label-codigo"
                 >
-
                     Código de empleado
-
                 </label>
 
 
@@ -399,7 +383,6 @@
 
 
                     <div class="campo-codigo">
-
 
                         <span class="icono icono-id"></span>
 
@@ -412,7 +395,6 @@
                             spellcheck="false"
                             maxlength="8"
                         >
-
 
                     </div>
 
@@ -433,9 +415,7 @@
 
 
                 <p class="ayuda">
-
                     Ingresa tu código completo de 8 caracteres.
-
                 </p>
 
 
@@ -443,9 +423,7 @@
 
 
 
-                <!-- ==================================================
-                     SEGURIDAD
-                =================================================== -->
+                <!-- SEGURIDAD -->
 
                 <div class="seguridad-mini">
 
@@ -484,7 +462,7 @@
 
 
         <!-- ==================================================
-             BENEFICIOS
+             BENEFICIOS INFERIORES
         =================================================== -->
 
         <section class="beneficios">
@@ -670,9 +648,7 @@
                     id="periodoSeleccionado"
                     class="periodo"
                 >
-
                     QUINCENA 1 · AGOSTO 2026
-
                 </span>
 
 
@@ -803,13 +779,11 @@
 
             <div class="visor-pdf">
 
-
                 <div class="visor-mensaje">
 
                     Selecciona tu recibo para visualizarlo.
 
                 </div>
-
 
             </div>
 
@@ -848,7 +822,6 @@
 
                 </p>
 
-
             </div>
 
 
@@ -866,6 +839,7 @@
     <div
         id="modalInformacion"
         class="modal-overlay oculto"
+        aria-hidden="true"
     >
 
 
@@ -881,9 +855,11 @@
                 type="button"
                 class="modal-cerrar"
                 data-cerrar-modal
-                aria-label="Cerrar"
+                aria-label="Cerrar información"
             >
+
                 <span class="icono icono-cerrar"></span>
+
             </button>
 
 
@@ -980,9 +956,7 @@
                 class="modal-principal"
                 data-cerrar-modal
             >
-
                 Entendido
-
             </button>
 
 
@@ -1000,6 +974,7 @@
     <div
         id="modalSeguridad"
         class="modal-overlay oculto"
+        aria-hidden="true"
     >
 
 
@@ -1015,7 +990,7 @@
                 type="button"
                 class="modal-cerrar"
                 data-cerrar-modal
-                aria-label="Cerrar"
+                aria-label="Cerrar seguridad"
             >
 
                 <span class="icono icono-cerrar"></span>
@@ -1055,8 +1030,11 @@
                 <div>
 
                     <span class="lista-icono">
+
                         <span class="icono icono-check"></span>
+
                     </span>
+
 
                     <p>
                         Consulta únicamente tu propio recibo.
@@ -1068,8 +1046,11 @@
                 <div>
 
                     <span class="lista-icono">
+
                         <span class="icono icono-candado"></span>
+
                     </span>
+
 
                     <p>
                         No compartas tu código de empleado.
@@ -1081,8 +1062,11 @@
                 <div>
 
                     <span class="lista-icono">
+
                         <span class="icono icono-persona"></span>
+
                     </span>
+
 
                     <p>
                         Cierra el portal cuando termines
@@ -1100,9 +1084,7 @@
                 class="modal-principal"
                 data-cerrar-modal
             >
-
                 Entendido
-
             </button>
 
 
@@ -1120,6 +1102,7 @@
     <div
         id="modalAyuda"
         class="modal-overlay oculto"
+        aria-hidden="true"
     >
 
 
@@ -1135,7 +1118,7 @@
                 type="button"
                 class="modal-cerrar"
                 data-cerrar-modal
-                aria-label="Cerrar"
+                aria-label="Cerrar ayuda"
             >
 
                 <span class="icono icono-cerrar"></span>
@@ -1227,9 +1210,7 @@
                 class="modal-principal"
                 data-cerrar-modal
             >
-
                 Entendido
-
             </button>
 
 
@@ -1252,16 +1233,13 @@
 
             <div class="footer-bloque">
 
-
                 <strong>
                     Agroindustrias Cayo Blanco
                 </strong>
 
-
                 <span>
                     Recursos Humanos
                 </span>
-
 
             </div>
 
@@ -1296,7 +1274,11 @@
 
 
 
-    <script src="script.js?v=21"></script>
+    <!-- ==================================================
+         SCRIPT
+    =================================================== -->
+
+    <script src="script.js?v=22"></script>
 
 
 </body>

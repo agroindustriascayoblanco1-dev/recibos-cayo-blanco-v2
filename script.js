@@ -39,6 +39,34 @@ let pdfActual = null;
 let paginaActual = null;
 
 let quincenaSeleccionada = "q1";
+function actualizarSelectorQuincenas() {
+
+    const q1 = PERIODOS.q1;
+    const q2 = PERIODOS.q2;
+
+    const nombreQ1 = document.getElementById("nombreQ1");
+    const mesQ1 = document.getElementById("mesQ1");
+
+    const nombreQ2 = document.getElementById("nombreQ2");
+    const mesQ2 = document.getElementById("mesQ2");
+
+    if (nombreQ1) {
+        nombreQ1.textContent = q1.nombre;
+    }
+
+    if (mesQ1) {
+        mesQ1.textContent = q1.mes;
+    }
+
+    if (nombreQ2) {
+        nombreQ2.textContent = q2.nombre;
+    }
+
+    if (mesQ2) {
+        mesQ2.textContent = q2.mes;
+    }
+
+}
 
 function actualizarSelectorQuincenas() {
 

@@ -5913,22 +5913,14 @@ body.centro-modal-abierto {
 
 }
 /* =========================================================
-   COA — NUEVO DISEÑO CENTRO DE INFORMACIÓN
-   TARJETAS POR TEMA
-========================================================= */
-
-
-/* =========================================================
-   CONTENEDOR
+   COA — CENTRO DE INFORMACIÓN
+   AJUSTE FINAL DE TARJETAS
 ========================================================= */
 
 .centro-informacion {
-
     position: relative;
-
     margin-top: 28px;
-
-    padding: 30px;
+    padding: 27px 30px 29px;
 
     background:
         linear-gradient(
@@ -5937,64 +5929,41 @@ body.centro-modal-abierto {
             #f8fbfc 100%
         );
 
-    border:
-        1px solid var(--border);
-
+    border: 1px solid var(--border);
     border-radius: 24px;
 
     box-shadow:
-        0 15px 40px rgba(14,45,58,.07);
-
+        0 14px 38px rgba(14,45,58,.065);
 }
 
 
 /* =========================================================
-   TITULO
+   TÍTULO
 ========================================================= */
 
 .centro-titulo {
-
     text-align: center;
-
-    margin-bottom: 24px;
-
+    margin-bottom: 22px;
 }
-
 
 .centro-titulo h2 {
+    margin: 6px 0 7px;
 
-    margin:
-        7px 0 8px;
+    color: var(--navy-dark);
 
-    color:
-        var(--navy-dark);
-
-    font-size:
-        23px;
-
-    font-weight:
-        900;
-
+    font-size: 22px;
+    font-weight: 900;
 }
 
-
 .centro-titulo p {
+    margin: 0 auto;
 
-    margin:
-        0 auto;
+    max-width: 560px;
 
-    max-width:
-        560px;
+    color: var(--text-soft);
 
-    color:
-        var(--text-soft);
-
-    font-size:
-        12px;
-
-    line-height:
-        1.6;
-
+    font-size: 12px;
+    line-height: 1.5;
 }
 
 
@@ -6003,16 +5972,12 @@ body.centro-modal-abierto {
 ========================================================= */
 
 .centro-opciones {
-
-    display:
-        grid;
+    display: grid;
 
     grid-template-columns:
         repeat(3, 1fr);
 
-    gap:
-        14px;
-
+    gap: 14px;
 }
 
 
@@ -6021,101 +5986,70 @@ body.centro-modal-abierto {
 ========================================================= */
 
 .centro-card {
+    position: relative;
 
-    position:
-        relative;
+    width: 100%;
+    min-height: 132px;
 
-    min-height:
-        145px;
+    padding: 21px 19px 25px;
 
-    width:
-        100%;
+    display: flex;
 
-    padding:
-        24px 20px 27px;
+    align-items: flex-start;
+    justify-content: space-between;
 
-    display:
-        flex;
+    box-sizing: border-box;
 
-    align-items:
-        flex-start;
+    text-align: left;
 
-    justify-content:
-        space-between;
+    border: 1px solid transparent;
+    border-radius: 17px;
 
-    text-align:
-        left;
+    overflow: hidden;
 
-    border:
-        1px solid transparent;
+    cursor: pointer;
 
-    border-radius:
-        18px;
-
-    overflow:
-        hidden;
-
-    cursor:
-        pointer;
-
-    font-family:
-        inherit;
-
-    background:
-        #ffffff;
+    font-family: inherit;
 
     box-shadow:
-        0 5px 18px rgba(14,45,58,.06);
+        0 4px 15px rgba(14,45,58,.055);
 
     transition:
         transform .25s ease,
         box-shadow .25s ease,
         border-color .25s ease;
-
 }
 
 
 /* =========================================================
-   INFORMACIÓN — VERDE
+   INFORMACIÓN
 ========================================================= */
 
 .tarjeta-informacion {
-
     background:
         linear-gradient(
             145deg,
             #f0fbf6 0%,
-            #e4f7ef 100%
+            #e5f7ef 100%
         );
 
-    border-color:
-        #ccebdd;
-
+    border-color: #ccebdd;
 }
-
 
 .tarjeta-informacion .centro-texto strong {
-
-    color:
-        #087b5d;
-
+    color: #087b5d;
 }
 
-
 .tarjeta-informacion .centro-texto::after {
-
-    background:
-        #17b889;
-
+    background: #17b889;
 }
 
 
 /* =========================================================
-   SEGURIDAD — AZUL
+   SEGURIDAD
 ========================================================= */
 
 .tarjeta-seguridad {
-
     background:
         linear-gradient(
             145deg,
@@ -6123,34 +6057,23 @@ body.centro-modal-abierto {
             #e5f6fb 100%
         );
 
-    border-color:
-        #cceaf2;
-
+    border-color: #cceaf2;
 }
-
 
 .tarjeta-seguridad .centro-texto strong {
-
-    color:
-        #1689ad;
-
+    color: #1689ad;
 }
 
-
 .tarjeta-seguridad .centro-texto::after {
-
-    background:
-        #2ab6df;
-
+    background: #2ab6df;
 }
 
 
 /* =========================================================
-   AYUDA — AMARILLO / NARANJA
+   AYUDA
 ========================================================= */
 
 .tarjeta-ayuda {
-
     background:
         linear-gradient(
             145deg,
@@ -6158,25 +6081,15 @@ body.centro-modal-abierto {
             #fff4d3 100%
         );
 
-    border-color:
-        #f3e2a9;
-
+    border-color: #f3e2a9;
 }
-
 
 .tarjeta-ayuda .centro-texto strong {
-
-    color:
-        #927713;
-
+    color: #927713;
 }
 
-
 .tarjeta-ayuda .centro-texto::after {
-
-    background:
-        #f4c928;
-
+    background: #f4c928;
 }
 
 
@@ -6185,13 +6098,10 @@ body.centro-modal-abierto {
 ========================================================= */
 
 .centro-card:hover {
-
-    transform:
-        translateY(-4px);
+    transform: translateY(-3px);
 
     box-shadow:
-        0 14px 30px rgba(14,45,58,.11);
-
+        0 12px 26px rgba(14,45,58,.10);
 }
 
 
@@ -6200,76 +6110,43 @@ body.centro-modal-abierto {
 ========================================================= */
 
 .centro-texto {
+    position: relative;
+    z-index: 2;
 
-    position:
-        relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 
-    z-index:
-        2;
-
-    display:
-        flex;
-
-    flex-direction:
-        column;
-
-    align-items:
-        flex-start;
-
-    min-width:
-        0;
-
+    min-width: 0;
 }
-
-
-/* =========================================================
-   TITULO DE TARJETA
-========================================================= */
 
 .centro-texto strong {
+    display: block;
 
-    display:
-        block;
+    margin-bottom: 9px;
 
-    margin-bottom:
-        14px;
+    font-size: 15px;
+    font-weight: 900;
 
-    font-size:
-        16px;
-
-    font-weight:
-        900;
-
-    line-height:
-        1.2;
-
+    line-height: 1.2;
 }
 
 
 /* =========================================================
-   LINEA DE COLOR
+   LÍNEA DE COLOR
 ========================================================= */
 
 .centro-texto::after {
+    content: "";
 
-    content:
-        "";
+    display: block;
 
-    display:
-        block;
+    width: 35px;
+    height: 3px;
 
-    width:
-        38px;
+    margin-bottom: 10px;
 
-    height:
-        4px;
-
-    margin-bottom:
-        13px;
-
-    border-radius:
-        999px;
-
+    border-radius: 999px;
 }
 
 
@@ -6278,22 +6155,15 @@ body.centro-modal-abierto {
 ========================================================= */
 
 .centro-texto small {
+    display: block;
 
-    display:
-        block;
+    max-width: 190px;
 
-    max-width:
-        180px;
+    color: var(--text-soft);
 
-    color:
-        var(--text-soft);
+    font-size: 9.5px;
 
-    font-size:
-        10px;
-
-    line-height:
-        1.5;
-
+    line-height: 1.45;
 }
 
 
@@ -6302,162 +6172,96 @@ body.centro-modal-abierto {
 ========================================================= */
 
 .centro-flecha {
+    position: relative;
+    z-index: 3;
 
-    position:
-        relative;
+    width: 34px;
+    height: 34px;
 
-    z-index:
-        3;
+    flex: 0 0 34px;
 
-    width:
-        36px;
+    display: flex;
 
-    height:
-        36px;
+    align-items: center;
+    justify-content: center;
 
-    flex:
-        0 0 36px;
+    margin-left: 10px;
 
-    display:
-        flex;
-
-    align-items:
-        center;
-
-    justify-content:
-        center;
-
-    margin-left:
-        10px;
-
-    margin-top:
-        1px;
-
-    border-radius:
-        50%;
+    border-radius: 50%;
 
     background:
-        rgba(255,255,255,.72);
+        rgba(255,255,255,.78);
 
-    color:
-        var(--navy);
+    color: var(--navy);
 
-    font-size:
-        18px;
-
-    font-weight:
-        700;
+    font-size: 17px;
+    font-weight: 700;
 
     box-shadow:
-        0 3px 10px rgba(14,45,58,.06);
+        0 3px 9px rgba(14,45,58,.055);
 
     transition:
         transform .25s ease,
         background .25s ease;
-
 }
 
-
-/* =========================================================
-   FLECHA POR COLOR
-========================================================= */
 
 .tarjeta-informacion .centro-flecha {
-
-    color:
-        #087b5d;
-
+    color: #087b5d;
 }
-
 
 .tarjeta-seguridad .centro-flecha {
-
-    color:
-        #1689ad;
-
+    color: #1689ad;
 }
-
 
 .tarjeta-ayuda .centro-flecha {
-
-    color:
-        #927713;
-
+    color: #927713;
 }
 
-
 .centro-card:hover .centro-flecha {
+    transform: translateX(3px);
 
-    transform:
-        translateX(4px);
-
-    background:
-        #ffffff;
-
+    background: #ffffff;
 }
 
 
 /* =========================================================
-   ONDA DECORATIVA
+   ONDA INFERIOR
 ========================================================= */
 
 .centro-onda {
+    position: absolute;
 
-    position:
-        absolute;
+    left: -8%;
+    right: -8%;
 
-    left:
-        -10%;
+    bottom: -47px;
 
-    right:
-        -10%;
+    height: 72px;
 
-    bottom:
-        -42px;
+    border-radius: 50% 50% 0 0;
 
-    height:
-        75px;
+    opacity: .48;
 
-    border-radius:
-        50% 50% 0 0;
+    transform: rotate(-2deg);
 
-    opacity:
-        .55;
-
-    transform:
-        rotate(-2deg);
-
-    pointer-events:
-        none;
-
+    pointer-events: none;
 }
 
-
-/* =========================================================
-   COLOR DE ONDA
-========================================================= */
 
 .tarjeta-informacion .centro-onda {
-
     background:
-        rgba(23,184,137,.13);
-
+        rgba(23,184,137,.11);
 }
-
 
 .tarjeta-seguridad .centro-onda {
-
     background:
-        rgba(42,182,223,.13);
-
+        rgba(42,182,223,.11);
 }
 
-
 .tarjeta-ayuda .centro-onda {
-
     background:
-        rgba(244,201,40,.17);
-
+        rgba(244,201,40,.14);
 }
 
 
@@ -6466,79 +6270,53 @@ body.centro-modal-abierto {
 ========================================================= */
 
 .centro-card::after {
+    content: "";
 
-    content:
-        "";
+    position: absolute;
 
-    position:
-        absolute;
+    left: -15%;
+    right: 15%;
 
-    left:
-        -15%;
+    bottom: -57px;
 
-    right:
-        15%;
+    height: 72px;
 
-    bottom:
-        -55px;
+    border-radius: 50%;
 
-    height:
-        75px;
-
-    border-radius:
-        50%;
-
-    pointer-events:
-        none;
-
+    pointer-events: none;
 }
-
 
 .tarjeta-informacion::after {
-
     background:
-        rgba(23,184,137,.07);
-
+        rgba(23,184,137,.055);
 }
-
 
 .tarjeta-seguridad::after {
-
     background:
-        rgba(42,182,223,.07);
-
+        rgba(42,182,223,.055);
 }
 
-
 .tarjeta-ayuda::after {
-
     background:
-        rgba(244,201,40,.09);
-
+        rgba(244,201,40,.07);
 }
 
 
 /* =========================================================
-   QUITAR ESTILOS ANTIGUOS
+   OCULTAR ICONOS ANTIGUOS
 ========================================================= */
 
 .centro-card .centro-icono {
-
-    display:
-        none !important;
-
+    display: none !important;
 }
 
 
 /* =========================================================
-   EVITAR ESTILOS DE DETAILS ANTIGUOS
+   COMPATIBILIDAD CON CSS ANTERIOR
 ========================================================= */
 
 .centro-card summary {
-
-    all:
-        unset;
-
+    all: unset;
 }
 
 
@@ -6549,136 +6327,57 @@ body.centro-modal-abierto {
 @media (max-width: 700px) {
 
     .centro-informacion {
-
-        margin-top:
-            22px;
+        margin-top: 22px;
 
         padding:
-            22px 15px;
+            21px 15px 23px;
 
-        border-radius:
-            20px;
-
+        border-radius: 20px;
     }
-
 
     .centro-titulo {
-
-        margin-bottom:
-            18px;
-
+        margin-bottom: 18px;
     }
-
 
     .centro-titulo h2 {
-
-        font-size:
-            20px;
-
+        font-size: 20px;
     }
-
 
     .centro-titulo p {
-
-        font-size:
-            11px;
-
+        font-size: 11px;
     }
-
 
     .centro-opciones {
+        grid-template-columns: 1fr;
 
-        grid-template-columns:
-            1fr;
-
-        gap:
-            10px;
-
+        gap: 10px;
     }
-
 
     .centro-card {
-
-        min-height:
-            125px;
+        min-height: 116px;
 
         padding:
-            20px 17px 23px;
+            19px 16px 22px;
 
-        border-radius:
-            16px;
-
+        border-radius: 16px;
     }
-
 
     .centro-texto strong {
+        font-size: 14px;
 
-        font-size:
-            15px;
-
-        margin-bottom:
-            11px;
-
+        margin-bottom: 8px;
     }
-
 
     .centro-texto small {
+        max-width: 220px;
 
-        max-width:
-            220px;
-
-        font-size:
-            10px;
-
+        font-size: 9.5px;
     }
-
 
     .centro-flecha {
+        width: 33px;
+        height: 33px;
 
-        width:
-            34px;
-
-        height:
-            34px;
-
-        flex-basis:
-            34px;
-
+        flex-basis: 33px;
     }
-
-}
-
-
-/* =========================================================
-   CELULARES MUY PEQUEÑOS
-========================================================= */
-
-@media (max-width: 380px) {
-
-    .centro-card {
-
-        min-height:
-            118px;
-
-        padding:
-            18px 15px 21px;
-
-    }
-
-
-    .centro-texto strong {
-
-        font-size:
-            14px;
-
-    }
-
-
-    .centro-texto small {
-
-        font-size:
-            9px;
-
-    }
-
 }

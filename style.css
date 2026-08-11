@@ -4323,7 +4323,8 @@ button:active .icono {
 
 }
 /* =========================================================
-   AVISO DE CONFIDENCIALIDAD — MEJORA DE LEGIBILIDAD
+   AVISO DE CONFIDENCIALIDAD
+   MISMO TAMAÑO QUE EL TEXTO PRINCIPAL DESCRIPTIVO
 ========================================================= */
 
 .aviso {
@@ -4337,8 +4338,8 @@ button:active .icono {
 }
 
 .aviso p {
-    font-size: 12px !important;
-    line-height: 1.55 !important;
+    font-size: 15px !important;
+    line-height: 1.6 !important;
 }
 
 
@@ -4347,16 +4348,15 @@ button:active .icono {
 @media (max-width: 700px) {
 
     .aviso {
-        padding: 16px !important;
+        padding: 17px 16px !important;
     }
 
     .aviso h3 {
         font-size: 13px !important;
-        margin-bottom: 5px !important;
     }
 
     .aviso p {
-        font-size: 10px !important;
+        font-size: 13px !important;
         line-height: 1.55 !important;
     }
 

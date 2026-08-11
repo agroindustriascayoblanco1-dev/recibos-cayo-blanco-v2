@@ -15,22 +15,14 @@
     </title>
 
 
-    <!-- ==================================================
-         PDF.JS
-    =================================================== -->
-
     <script
         src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js">
     </script>
 
 
-    <!-- ==================================================
-         ESTILOS
-    =================================================== -->
-
     <link
         rel="stylesheet"
-        href="style.css?v=20"
+        href="style.css?v=21"
     >
 
 </head>
@@ -45,11 +37,13 @@
 
     <header class="encabezado">
 
+
         <div class="marca">
 
             <div class="logo">
                 COA
             </div>
+
 
             <div class="empresa">
 
@@ -66,46 +60,52 @@
         </div>
 
 
+
         <!-- ==================================================
              NAVEGACIÓN
         =================================================== -->
 
         <nav class="navegacion">
 
+
             <a
                 href="#inicio"
                 class="nav-link activo"
             >
-                <span>⌂</span>
+                <span class="icono icono-inicio"></span>
                 Inicio
             </a>
 
 
-            <a
-                href="#informacion"
+            <button
+                type="button"
                 class="nav-link"
+                id="btnInformacion"
             >
-                <span>ⓘ</span>
+                <span class="icono icono-info"></span>
                 Información
-            </a>
+            </button>
 
 
-            <a
-                href="#seguridad"
+            <button
+                type="button"
                 class="nav-link"
+                id="btnSeguridad"
             >
-                <span>♢</span>
+                <span class="icono icono-seguridad"></span>
                 Seguridad
-            </a>
+            </button>
 
 
-            <a
-                href="#ayuda"
+            <button
+                type="button"
                 class="nav-link nav-ayuda"
+                id="btnAyuda"
             >
-                <span>?</span>
+                <span class="icono icono-ayuda"></span>
                 Ayuda
-            </a>
+            </button>
+
 
         </nav>
 
@@ -115,7 +115,7 @@
 
 
     <!-- ==================================================
-         CONTENIDO PRINCIPAL
+         CONTENIDO
     =================================================== -->
 
     <main
@@ -125,15 +125,11 @@
 
 
         <!-- ==================================================
-             HERO PRINCIPAL
+             HERO
         =================================================== -->
 
         <section class="bienvenida">
 
-
-            <!-- ==================================================
-                 LADO IZQUIERDO
-            =================================================== -->
 
             <div class="bienvenida-texto">
 
@@ -161,34 +157,37 @@
                 <p>
 
                     Consulta tus recibos de pago
-                    de manera rápida, fácil y segura.
+                    de manera rápida, sencilla
+                    y confidencial.
 
                 </p>
 
 
-                <!-- ==================================================
-                     BENEFICIOS
-                =================================================== -->
 
-                <div
-                    class="beneficios-hero"
-                    id="informacion"
-                >
+                <!-- BENEFICIOS -->
+
+                <div class="beneficios-hero">
 
 
                     <div class="beneficio-hero">
 
+
                         <div class="beneficio-icono seguro">
-                            🔒
+
+                            <span class="icono icono-escudo"></span>
+
                         </div>
+
 
                         <strong>
                             Seguro
                         </strong>
 
+
                         <small>
                             Tu información está protegida
                         </small>
+
 
                     </div>
 
@@ -200,17 +199,23 @@
 
                     <div class="beneficio-hero">
 
+
                         <div class="beneficio-icono facil">
-                            ▣
+
+                            <span class="icono icono-documento"></span>
+
                         </div>
+
 
                         <strong>
                             Fácil
                         </strong>
 
+
                         <small>
                             Accede en pocos pasos
                         </small>
+
 
                     </div>
 
@@ -222,17 +227,23 @@
 
                     <div class="beneficio-hero">
 
+
                         <div class="beneficio-icono tiempo">
-                            ◷
+
+                            <span class="icono icono-reloj"></span>
+
                         </div>
+
 
                         <strong>
                             Disponible 24/7
                         </strong>
 
+
                         <small>
                             Cuando lo necesites
                         </small>
+
 
                     </div>
 
@@ -240,9 +251,6 @@
                 </div>
 
 
-                <!-- ==================================================
-                     DECORACIÓN
-                =================================================== -->
 
                 <div class="decoracion-hero">
 
@@ -270,7 +278,9 @@
 
 
                     <div class="icono-buscador">
-                        🧾
+
+                        <span class="icono icono-documento-grande"></span>
+
                     </div>
 
 
@@ -280,9 +290,10 @@
                             Consulta tu recibo
                         </h2>
 
+
                         <p>
-                            Selecciona la quincena
-                            y escribe tu código
+                            Selecciona la quincena y
+                            escribe tu código de empleado.
                         </p>
 
                     </div>
@@ -293,7 +304,7 @@
 
 
                 <!-- ==================================================
-                     SELECCIÓN DE QUINCENA
+                     QUINCENAS
                 =================================================== -->
 
                 <div class="selector-quincena">
@@ -309,9 +320,8 @@
                     <div class="opciones-quincena">
 
 
-                        <!-- QUINCENA 1 -->
-
                         <label class="opcion-quincena">
+
 
                             <input
                                 type="radio"
@@ -319,6 +329,7 @@
                                 value="q1"
                                 checked
                             >
+
 
                             <span>
 
@@ -332,19 +343,20 @@
 
                             </span>
 
+
                         </label>
 
 
 
-                        <!-- QUINCENA 2 -->
-
                         <label class="opcion-quincena">
+
 
                             <input
                                 type="radio"
                                 name="quincena"
                                 value="q2"
                             >
+
 
                             <span>
 
@@ -358,6 +370,7 @@
 
                             </span>
 
+
                         </label>
 
 
@@ -369,7 +382,7 @@
 
 
                 <!-- ==================================================
-                     CÓDIGO DE EMPLEADO
+                     CÓDIGO
                 =================================================== -->
 
                 <label
@@ -387,9 +400,8 @@
 
                     <div class="campo-codigo">
 
-                        <span class="icono-codigo">
-                            ▣
-                        </span>
+
+                        <span class="icono icono-id"></span>
 
 
                         <input
@@ -397,9 +409,10 @@
                             id="codigo"
                             placeholder="Ejemplo: CBEP0016"
                             autocomplete="off"
+                            spellcheck="false"
                             maxlength="8"
-                            inputmode="text"
                         >
+
 
                     </div>
 
@@ -409,7 +422,8 @@
                         type="button"
                     >
 
-                        🔎
+                        <span class="icono icono-lupa"></span>
+
                         Consultar recibo
 
                     </button>
@@ -430,14 +444,18 @@
 
 
                 <!-- ==================================================
-                     AVISO DENTRO DEL BUSCADOR
+                     SEGURIDAD
                 =================================================== -->
 
                 <div class="seguridad-mini">
 
+
                     <div class="seguridad-mini-icono">
-                        🛡️
+
+                        <span class="icono icono-escudo"></span>
+
                     </div>
+
 
                     <div>
 
@@ -445,13 +463,15 @@
                             Tu información está protegida
                         </strong>
 
+
                         <p>
-                            Este portal es exclusivo
-                            para colaboradores de
-                            Agroindustrias Cayo Blanco.
+                            Este portal es exclusivo para
+                            colaboradores de Agroindustrias
+                            Cayo Blanco.
                         </p>
 
                     </div>
+
 
                 </div>
 
@@ -464,20 +484,21 @@
 
 
         <!-- ==================================================
-             BENEFICIOS INFERIORES
+             BENEFICIOS
         =================================================== -->
 
-        <section
-            class="beneficios"
-            id="seguridad"
-        >
+        <section class="beneficios">
 
 
             <div class="beneficio">
 
+
                 <div class="beneficio-grande verde">
-                    ⚡
+
+                    <span class="icono icono-rayo"></span>
+
                 </div>
+
 
                 <div>
 
@@ -492,6 +513,7 @@
 
                 </div>
 
+
             </div>
 
 
@@ -502,9 +524,13 @@
 
             <div class="beneficio">
 
+
                 <div class="beneficio-grande amarillo">
-                    🛡️
+
+                    <span class="icono icono-check"></span>
+
                 </div>
+
 
                 <div>
 
@@ -519,6 +545,7 @@
 
                 </div>
 
+
             </div>
 
 
@@ -529,9 +556,13 @@
 
             <div class="beneficio">
 
+
                 <div class="beneficio-grande azul">
-                    👥
+
+                    <span class="icono icono-persona"></span>
+
                 </div>
+
 
                 <div>
 
@@ -546,6 +577,7 @@
 
                 </div>
 
+
             </div>
 
 
@@ -554,7 +586,7 @@
 
 
         <!-- ==================================================
-             RESULTADO DEL EMPLEADO
+             RESULTADO
         =================================================== -->
 
         <section
@@ -563,17 +595,18 @@
         >
 
 
-            <!-- DATOS DEL COLABORADOR -->
-
             <div class="empleado">
 
 
                 <div class="avatar">
-                    👤
+
+                    <span class="icono icono-persona"></span>
+
                 </div>
 
 
                 <div class="datos-empleado">
+
 
                     <span>
                         COLABORADOR ENCONTRADO
@@ -595,6 +628,7 @@
 
                     </p>
 
+
                 </div>
 
 
@@ -604,7 +638,9 @@
                     type="button"
                 >
 
-                    ↻ Nueva consulta
+                    <span class="icono icono-recargar"></span>
+
+                    Nueva consulta
 
                 </button>
 
@@ -612,10 +648,6 @@
             </div>
 
 
-
-            <!-- ==================================================
-                 RECIBO DISPONIBLE
-            =================================================== -->
 
             <div class="titulo-seccion">
 
@@ -639,7 +671,7 @@
                     class="periodo"
                 >
 
-                    QUINCENA 1
+                    QUINCENA 1 · AGOSTO 2026
 
                 </span>
 
@@ -655,7 +687,9 @@
 
 
                     <div class="icono-recibo">
-                        🧾
+
+                        <span class="icono icono-documento-grande"></span>
+
                     </div>
 
 
@@ -663,7 +697,7 @@
 
 
                         <span id="textoQuincena">
-                            QUINCENA 1
+                            QUINCENA 1 · AGOSTO 2026
                         </span>
 
 
@@ -688,7 +722,9 @@
                         type="button"
                     >
 
-                        👁️ Ver recibo
+                        <span class="icono icono-ojo"></span>
+
+                        Ver recibo
 
                     </button>
 
@@ -704,7 +740,7 @@
 
 
         <!-- ==================================================
-             VISOR DEL RECIBO
+             VISOR PDF
         =================================================== -->
 
         <section
@@ -739,7 +775,9 @@
                         type="button"
                     >
 
-                        📥 Guardar recibo
+                        <span class="icono icono-descargar"></span>
+
+                        Guardar recibo
 
                     </button>
 
@@ -750,7 +788,9 @@
                         type="button"
                     >
 
-                        ← Cerrar
+                        <span class="icono icono-cerrar"></span>
+
+                        Cerrar
 
                     </button>
 
@@ -761,15 +801,15 @@
             </div>
 
 
-            <!-- VISOR PDF -->
-
             <div class="visor-pdf">
+
 
                 <div class="visor-mensaje">
 
                     Selecciona tu recibo para visualizarlo.
 
                 </div>
+
 
             </div>
 
@@ -779,24 +819,23 @@
 
 
         <!-- ==================================================
-             AVISO DE CONFIDENCIALIDAD
+             AVISO
         =================================================== -->
 
-        <section
-            class="aviso"
-            id="ayuda"
-        >
+        <section class="aviso">
 
 
             <div class="aviso-icono">
-                🔐
+
+                <span class="icono icono-escudo"></span>
+
             </div>
 
 
             <div>
 
                 <h3>
-                    Tu información está protegida
+                    Tu información es confidencial
                 </h3>
 
 
@@ -821,7 +860,388 @@
 
 
     <!-- ==================================================
-         PIE DE PÁGINA
+         MODAL INFORMACIÓN
+    =================================================== -->
+
+    <div
+        id="modalInformacion"
+        class="modal-overlay oculto"
+    >
+
+
+        <div
+            class="modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="tituloModalInformacion"
+        >
+
+
+            <button
+                type="button"
+                class="modal-cerrar"
+                data-cerrar-modal
+                aria-label="Cerrar"
+            >
+                <span class="icono icono-cerrar"></span>
+            </button>
+
+
+            <div class="modal-icono verde">
+
+                <span class="icono icono-info"></span>
+
+            </div>
+
+
+            <span class="modal-etiqueta">
+                INFORMACIÓN
+            </span>
+
+
+            <h2 id="tituloModalInformacion">
+                Sobre este portal
+            </h2>
+
+
+            <p class="modal-introduccion">
+
+                Este portal permite a los colaboradores
+                de Agroindustrias Cayo Blanco consultar
+                sus recibos de pago de forma rápida,
+                sencilla y confidencial.
+
+            </p>
+
+
+            <div class="modal-seccion">
+
+
+                <h3>
+                    ¿Cómo consultar mi recibo?
+                </h3>
+
+
+                <div class="paso">
+
+                    <span>01</span>
+
+                    <p>
+                        Selecciona la quincena
+                        correspondiente.
+                    </p>
+
+                </div>
+
+
+                <div class="paso">
+
+                    <span>02</span>
+
+                    <p>
+                        Escribe tu código completo
+                        de empleado.
+                    </p>
+
+                </div>
+
+
+                <div class="paso">
+
+                    <span>03</span>
+
+                    <p>
+                        Presiona
+                        <strong>
+                            Consultar recibo
+                        </strong>.
+                    </p>
+
+                </div>
+
+
+                <div class="paso">
+
+                    <span>04</span>
+
+                    <p>
+                        Revisa y visualiza tu
+                        recibo de pago.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+
+            <button
+                type="button"
+                class="modal-principal"
+                data-cerrar-modal
+            >
+
+                Entendido
+
+            </button>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- ==================================================
+         MODAL SEGURIDAD
+    =================================================== -->
+
+    <div
+        id="modalSeguridad"
+        class="modal-overlay oculto"
+    >
+
+
+        <div
+            class="modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="tituloModalSeguridad"
+        >
+
+
+            <button
+                type="button"
+                class="modal-cerrar"
+                data-cerrar-modal
+                aria-label="Cerrar"
+            >
+
+                <span class="icono icono-cerrar"></span>
+
+            </button>
+
+
+            <div class="modal-icono azul">
+
+                <span class="icono icono-escudo"></span>
+
+            </div>
+
+
+            <span class="modal-etiqueta">
+                SEGURIDAD
+            </span>
+
+
+            <h2 id="tituloModalSeguridad">
+                Protegemos tu información
+            </h2>
+
+
+            <p class="modal-introduccion">
+
+                Tu recibo contiene información personal
+                y laboral. Por eso, el acceso está pensado
+                exclusivamente para cada colaborador.
+
+            </p>
+
+
+            <div class="seguridad-lista">
+
+
+                <div>
+
+                    <span class="lista-icono">
+                        <span class="icono icono-check"></span>
+                    </span>
+
+                    <p>
+                        Consulta únicamente tu propio recibo.
+                    </p>
+
+                </div>
+
+
+                <div>
+
+                    <span class="lista-icono">
+                        <span class="icono icono-candado"></span>
+                    </span>
+
+                    <p>
+                        No compartas tu código de empleado.
+                    </p>
+
+                </div>
+
+
+                <div>
+
+                    <span class="lista-icono">
+                        <span class="icono icono-persona"></span>
+                    </span>
+
+                    <p>
+                        Cierra el portal cuando termines
+                        de consultar tu información.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+
+            <button
+                type="button"
+                class="modal-principal"
+                data-cerrar-modal
+            >
+
+                Entendido
+
+            </button>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- ==================================================
+         MODAL AYUDA
+    =================================================== -->
+
+    <div
+        id="modalAyuda"
+        class="modal-overlay oculto"
+    >
+
+
+        <div
+            class="modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="tituloModalAyuda"
+        >
+
+
+            <button
+                type="button"
+                class="modal-cerrar"
+                data-cerrar-modal
+                aria-label="Cerrar"
+            >
+
+                <span class="icono icono-cerrar"></span>
+
+            </button>
+
+
+            <div class="modal-icono amarillo">
+
+                <span class="icono icono-ayuda"></span>
+
+            </div>
+
+
+            <span class="modal-etiqueta">
+                AYUDA
+            </span>
+
+
+            <h2 id="tituloModalAyuda">
+                ¿Necesitas ayuda?
+            </h2>
+
+
+            <div class="ayuda-lista">
+
+
+                <div class="ayuda-item">
+
+
+                    <strong>
+                        No encuentro mi recibo
+                    </strong>
+
+
+                    <p>
+                        Verifica que hayas seleccionado
+                        la quincena correcta y que hayas
+                        escrito tu código completo.
+                    </p>
+
+
+                </div>
+
+
+
+                <div class="ayuda-item">
+
+
+                    <strong>
+                        El sistema no encuentra mi código
+                    </strong>
+
+
+                    <p>
+                        Debes ingresar el código completo
+                        de empleado, exactamente como
+                        aparece en tu documentación laboral.
+                    </p>
+
+
+                </div>
+
+
+
+                <div class="ayuda-item">
+
+
+                    <strong>
+                        ¿Todavía tienes problemas?
+                    </strong>
+
+
+                    <p>
+                        Comunícate con Recursos Humanos
+                        para verificar la información
+                        correspondiente a tu período de pago.
+                    </p>
+
+
+                </div>
+
+
+            </div>
+
+
+            <button
+                type="button"
+                class="modal-principal"
+                data-cerrar-modal
+            >
+
+                Entendido
+
+            </button>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- ==================================================
+         FOOTER
     =================================================== -->
 
     <footer>
@@ -832,13 +1252,16 @@
 
             <div class="footer-bloque">
 
+
                 <strong>
                     Agroindustrias Cayo Blanco
                 </strong>
 
+
                 <span>
                     Recursos Humanos
                 </span>
+
 
             </div>
 
@@ -853,7 +1276,7 @@
             <div class="footer-bloque footer-derecha">
 
                 <strong>
-                    🛡️ Comprometidos contigo
+                    Comprometidos contigo
                 </strong>
 
             </div>
@@ -863,7 +1286,9 @@
 
 
         <span class="version">
+
             Portal de Recibos de Pago · COA
+
         </span>
 
 
@@ -871,11 +1296,7 @@
 
 
 
-    <!-- ==================================================
-         SCRIPT
-    =================================================== -->
-
-    <script src="script.js?v=20"></script>
+    <script src="script.js?v=21"></script>
 
 
 </body>

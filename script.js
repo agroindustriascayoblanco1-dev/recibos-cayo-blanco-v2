@@ -11,18 +11,19 @@
 const PERIODOS = {
 
     q1: {
-        nombre: "Quincena 1 Julio",
+        nombre: "Quincena 1",
         mes: "Julio 2026",
-        periodoPago: "11 de Junio al 25 de Junio de 2026",
+        periodoPago: "1 al 15 de julio de 2026",
         archivo: "RECIBOS QUINCENA 1.pdf"
     },
 
     q2: {
-        nombre: "Quincena 2 Julio",
+        nombre: "Quincena 2",
         mes: "Julio 2026",
-        periodoPago: "26 de Junio al 10 de Julio de 2026",
+        periodoPago: "16 al 31 de julio de 2026",
         archivo: "RECIBOS QUINCENA 2.pdf"
     }
+
 };
 
 // ======================================================
@@ -39,12 +40,44 @@ let paginaActual = null;
 
 let quincenaSeleccionada = "q1";
 
-function obtenerTextoPeriodoPago(periodo) {
-    return periodo && periodo.periodoPago
-        ? periodo.periodoPago
-        : "";
-}
+function actualizarSelectorQuincenas() {
 
+    const q1 = PERIODOS.q1;
+    const q2 = PERIODOS.q2;
+
+    const nombreQ1 = document.getElementById("nombreQ1");
+    const mesQ1 = document.getElementById("mesQ1");
+    const pagoQ1 = document.getElementById("periodoPagoQ1");
+
+    const nombreQ2 = document.getElementById("nombreQ2");
+    const mesQ2 = document.getElementById("mesQ2");
+    const pagoQ2 = document.getElementById("periodoPagoQ2");
+
+    if (nombreQ1) {
+        nombreQ1.textContent = q1.nombre;
+    }
+
+    if (mesQ1) {
+        mesQ1.textContent = q1.mes;
+    }
+
+    if (pagoQ1) {
+        pagoQ1.textContent = q1.periodoPago || "";
+    }
+
+    if (nombreQ2) {
+        nombreQ2.textContent = q2.nombre;
+    }
+
+    if (mesQ2) {
+        mesQ2.textContent = q2.mes;
+    }
+
+    if (pagoQ2) {
+        pagoQ2.textContent = q2.periodoPago || "";
+    }
+
+}
 
 // ======================================================
 // INICIAR CUANDO EL HTML ESTÉ LISTO
@@ -61,6 +94,7 @@ document.addEventListener(
 // ======================================================
 
 function iniciarSistema() {
+    actualizarSelectorQuincenas();
 
     console.log(
         "COA: sistema iniciado"

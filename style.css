@@ -5562,3 +5562,27 @@ button:active .icono {
     }
 
 }
+/* =========================================================
+   AJUSTE DEL CÓDIGO DE EMPLEADO
+========================================================= */
+
+#codigo {
+    text-align: center !important;
+    font-weight: 700 !important;
+    letter-spacing: .8px !important;
+}
+
+#codigo::placeholder {
+    text-align: center !important;
+    font-weight: 400 !important;
+    letter-spacing: 0 !important;
+}
+
+
+/* =========================================================
+   ELIMINAR TEXTO REPETIDO DE AYUDA
+========================================================= */
+
+.ayuda {
+    display: none !important;
+}

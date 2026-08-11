@@ -5586,3 +5586,305 @@ button:active .icono {
 .ayuda {
     display: none !important;
 }
+/* =========================================================
+   V25 — AJUSTE FINAL DE TIPOGRAFÍA Y CÓDIGO
+   SOLO DISEÑO — NO CAMBIA LA FUNCIONALIDAD
+========================================================= */
+
+
+/* =========================================================
+   TEXTO PRINCIPAL
+========================================================= */
+
+.bienvenida-texto > p {
+    font-size: 15px !important;
+    line-height: 1.65 !important;
+}
+
+
+/* =========================================================
+   ENCABEZADO DEL BUSCADOR
+========================================================= */
+
+.cabecera-buscador h2 {
+    font-size: 24px !important;
+}
+
+.cabecera-buscador p {
+    font-size: 11px !important;
+}
+
+
+/* =========================================================
+   SELECCIÓN DE QUINCENA
+========================================================= */
+
+.titulo-selector {
+    font-size: 12px !important;
+}
+
+.opcion-quincena strong {
+    font-size: 13px !important;
+}
+
+.opcion-quincena small {
+    font-size: 10px !important;
+}
+
+
+/* =========================================================
+   CÓDIGO DE EMPLEADO
+========================================================= */
+
+.label-codigo {
+    font-size: 12px !important;
+}
+
+
+/*
+   CENTRAR EL CÓDIGO ESCRITO
+*/
+
+#codigo {
+    text-align: center !important;
+    font-size: 17px !important;
+    font-weight: 700 !important;
+    letter-spacing: .8px !important;
+}
+
+
+/*
+   CENTRAR TAMBIÉN EL TEXTO DE EJEMPLO
+*/
+
+#codigo::placeholder {
+    text-align: center !important;
+    font-size: 14px !important;
+    font-weight: 400 !important;
+    letter-spacing: 0 !important;
+}
+
+
+/*
+   ELIMINAR LA SEGUNDA INDICACIÓN
+   "Escribe tu código de empleado."
+*/
+
+.ayuda {
+    display: none !important;
+}
+
+
+/* =========================================================
+   RESULTADO DEL EMPLEADO
+========================================================= */
+
+.datos-empleado > span {
+    font-size: 9px !important;
+}
+
+.datos-empleado h2 {
+    font-size: 22px !important;
+}
+
+.datos-empleado p {
+    font-size: 11px !important;
+}
+
+
+/* =========================================================
+   RECIBO
+========================================================= */
+
+.informacion-recibo > span {
+    font-size: 9px !important;
+}
+
+.informacion-recibo h3 {
+    font-size: 19px !important;
+}
+
+.informacion-recibo p {
+    font-size: 11px !important;
+    line-height: 1.55 !important;
+}
+
+.ver-recibo {
+    font-size: 12px !important;
+}
+
+
+/* =========================================================
+   PERÍODO
+========================================================= */
+
+.periodo {
+    font-size: 9px !important;
+}
+
+
+/* =========================================================
+   AVISO DE CONFIDENCIALIDAD
+========================================================= */
+
+.aviso h3 {
+    font-size: 13px !important;
+}
+
+.aviso p {
+    font-size: 10px !important;
+    line-height: 1.6 !important;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.footer-bloque strong {
+    font-size: 11px !important;
+}
+
+.footer-bloque span {
+    font-size: 10px !important;
+}
+
+.footer-centro {
+    font-size: 10px !important;
+}
+
+.version {
+    font-size: 9px !important;
+}
+
+
+/* =========================================================
+   CELULAR
+========================================================= */
+
+@media (max-width: 700px) {
+
+    .bienvenida-texto > p {
+        font-size: 13px !important;
+        line-height: 1.6 !important;
+    }
+
+
+    .cabecera-buscador h2 {
+        font-size: 20px !important;
+    }
+
+    .cabecera-buscador p {
+        font-size: 10px !important;
+    }
+
+
+    .titulo-selector {
+        font-size: 11px !important;
+    }
+
+    .opcion-quincena strong {
+        font-size: 12px !important;
+    }
+
+    .opcion-quincena small {
+        font-size: 10px !important;
+    }
+
+
+    .label-codigo {
+        font-size: 11px !important;
+    }
+
+
+    /*
+       CÓDIGO SIEMPRE CENTRADO EN CELULAR
+    */
+
+    #codigo {
+        width: 100% !important;
+        text-align: center !important;
+        font-size: 17px !important;
+        font-weight: 700 !important;
+        letter-spacing: .8px !important;
+    }
+
+    #codigo::placeholder {
+        text-align: center !important;
+        font-size: 14px !important;
+    }
+
+
+    .datos-empleado h2 {
+        font-size: 18px !important;
+    }
+
+    .datos-empleado p {
+        font-size: 10px !important;
+    }
+
+
+    .informacion-recibo h3 {
+        font-size: 17px !important;
+    }
+
+    .informacion-recibo p {
+        font-size: 10px !important;
+    }
+
+
+    .aviso h3 {
+        font-size: 12px !important;
+    }
+
+    .aviso p {
+        font-size: 9px !important;
+    }
+
+
+    .footer-bloque strong {
+        font-size: 10px !important;
+    }
+
+    .footer-bloque span {
+        font-size: 9px !important;
+    }
+
+    .footer-centro {
+        font-size: 9px !important;
+    }
+
+}
+
+
+/* =========================================================
+   CELULARES MUY PEQUEÑOS
+========================================================= */
+
+@media (max-width: 380px) {
+
+    .bienvenida-texto > p {
+        font-size: 12px !important;
+    }
+
+
+    #codigo {
+        text-align: center !important;
+        font-size: 16px !important;
+    }
+
+    #codigo::placeholder {
+        text-align: center !important;
+        font-size: 13px !important;
+    }
+
+
+    .datos-empleado h2 {
+        font-size: 17px !important;
+    }
+
+    .informacion-recibo p {
+        font-size: 10px !important;
+    }
+
+}

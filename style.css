@@ -4134,3 +4134,588 @@ input {
     }
 
 }
+/* =========================================================
+   COA — ICONOS MODERNOS
+   MEJORA VISUAL — NO AFECTA FUNCIONALIDAD
+========================================================= */
+
+.icono {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    flex: 0 0 18px;
+    color: currentColor;
+    transition: transform .2s ease;
+}
+
+
+/* =========================================================
+   NAVEGACIÓN
+========================================================= */
+
+.nav-link .icono {
+    width: 17px;
+    height: 17px;
+    flex-basis: 17px;
+    opacity: .85;
+}
+
+.nav-link:hover .icono {
+    transform: scale(1.08);
+}
+
+
+/* =========================================================
+   INFORMACIÓN
+========================================================= */
+
+.icono-info {
+    border: 1.8px solid currentColor;
+    border-radius: 50%;
+}
+
+.icono-info::before {
+    content: "";
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    top: 3px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 50%;
+    background: currentColor;
+}
+
+.icono-info::after {
+    content: "";
+    position: absolute;
+    width: 2px;
+    height: 7px;
+    top: 7px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 2px;
+    background: currentColor;
+}
+
+
+/* =========================================================
+   AYUDA
+========================================================= */
+
+.icono-ayuda {
+    border: 1.8px solid currentColor;
+    border-radius: 50%;
+}
+
+.icono-ayuda::before {
+    content: "?";
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Arial, sans-serif;
+    font-size: 11px;
+    font-weight: 900;
+}
+
+
+/* =========================================================
+   LUPA
+========================================================= */
+
+.icono-lupa::before {
+    content: "";
+    position: absolute;
+    width: 9px;
+    height: 9px;
+    left: 1px;
+    top: 1px;
+    border: 2px solid currentColor;
+    border-radius: 50%;
+}
+
+.icono-lupa::after {
+    content: "";
+    position: absolute;
+    width: 7px;
+    height: 2px;
+    left: 10px;
+    top: 11px;
+    border-radius: 3px;
+    background: currentColor;
+    transform: rotate(45deg);
+    transform-origin: left center;
+}
+
+
+/* =========================================================
+   DOCUMENTO
+========================================================= */
+
+.icono-documento {
+    border: 1.8px solid currentColor;
+    border-radius: 4px;
+}
+
+.icono-documento::before {
+    content: "";
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    right: -1px;
+    top: -1px;
+    background: inherit;
+    border-left: 1.8px solid currentColor;
+    border-bottom: 1.8px solid currentColor;
+    transform: rotate(45deg);
+}
+
+.icono-documento::after {
+    content: "";
+    position: absolute;
+    left: 4px;
+    right: 4px;
+    bottom: 4px;
+    height: 1.5px;
+    border-radius: 2px;
+    background: currentColor;
+    box-shadow: 0 -4px 0 currentColor;
+}
+
+
+/* =========================================================
+   DOCUMENTO GRANDE
+========================================================= */
+
+.icono-documento-grande {
+    width: 22px;
+    height: 25px;
+    flex-basis: 22px;
+    border: 1.8px solid currentColor;
+    border-radius: 4px;
+}
+
+.icono-documento-grande::before {
+    content: "";
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    right: -1px;
+    top: -1px;
+    background: inherit;
+    border-left: 1.8px solid currentColor;
+    border-bottom: 1.8px solid currentColor;
+    transform: rotate(45deg);
+}
+
+.icono-documento-grande::after {
+    content: "";
+    position: absolute;
+    left: 4px;
+    right: 4px;
+    bottom: 5px;
+    height: 1.5px;
+    border-radius: 2px;
+    background: currentColor;
+    box-shadow:
+        0 -5px 0 currentColor;
+}
+
+
+/* =========================================================
+   PERSONA
+========================================================= */
+
+.icono-persona::before {
+    content: "";
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    top: 1px;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 1.8px solid currentColor;
+    border-radius: 50%;
+}
+
+.icono-persona::after {
+    content: "";
+    position: absolute;
+    width: 14px;
+    height: 7px;
+    left: 50%;
+    bottom: 1px;
+    transform: translateX(-50%);
+    border: 1.8px solid currentColor;
+    border-bottom: 0;
+    border-radius: 9px 9px 0 0;
+}
+
+
+/* =========================================================
+   ESCUDO
+========================================================= */
+
+.icono-escudo {
+    width: 17px;
+    height: 20px;
+    flex-basis: 17px;
+    border: 1.8px solid currentColor;
+    border-radius: 8px 8px 10px 10px;
+    clip-path: polygon(
+        50% 0,
+        94% 15%,
+        88% 65%,
+        50% 100%,
+        12% 65%,
+        6% 15%
+    );
+}
+
+
+/* =========================================================
+   CANDADO
+========================================================= */
+
+.icono-candado {
+    width: 16px;
+    height: 12px;
+    flex-basis: 16px;
+    margin-top: 5px;
+    border: 1.8px solid currentColor;
+    border-radius: 3px;
+}
+
+.icono-candado::before {
+    content: "";
+    position: absolute;
+    width: 9px;
+    height: 9px;
+    left: 2px;
+    top: -8px;
+    border: 1.8px solid currentColor;
+    border-bottom: 0;
+    border-radius: 8px 8px 0 0;
+}
+
+
+/* =========================================================
+   RELOJ
+========================================================= */
+
+.icono-reloj {
+    border: 1.8px solid currentColor;
+    border-radius: 50%;
+}
+
+.icono-reloj::before {
+    content: "";
+    position: absolute;
+    width: 1.8px;
+    height: 6px;
+    left: 50%;
+    top: 3px;
+    transform: translateX(-50%);
+    border-radius: 2px;
+    background: currentColor;
+}
+
+.icono-reloj::after {
+    content: "";
+    position: absolute;
+    width: 6px;
+    height: 1.8px;
+    left: 50%;
+    top: 8px;
+    border-radius: 2px;
+    background: currentColor;
+    transform: rotate(30deg);
+    transform-origin: left center;
+}
+
+
+/* =========================================================
+   CHECK
+========================================================= */
+
+.icono-check::before {
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 6px;
+    left: 3px;
+    top: 4px;
+    border-left: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    transform: rotate(-45deg);
+}
+
+
+/* =========================================================
+   OJO
+========================================================= */
+
+.icono-ojo::before {
+    content: "";
+    position: absolute;
+    width: 17px;
+    height: 10px;
+    left: 0;
+    top: 3px;
+    border: 1.8px solid currentColor;
+    border-radius: 80% 20% 80% 20%;
+    transform: rotate(0deg);
+}
+
+.icono-ojo::after {
+    content: "";
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    left: 6px;
+    top: 6px;
+    border: 1.5px solid currentColor;
+    border-radius: 50%;
+}
+
+
+/* =========================================================
+   DESCARGAR
+========================================================= */
+
+.icono-descargar {
+    border-bottom: 1.8px solid currentColor;
+}
+
+.icono-descargar::before {
+    content: "";
+    position: absolute;
+    width: 2px;
+    height: 10px;
+    top: 2px;
+    left: 8px;
+    border-radius: 2px;
+    background: currentColor;
+}
+
+.icono-descargar::after {
+    content: "";
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    left: 5px;
+    top: 7px;
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    transform: rotate(45deg);
+}
+
+
+/* =========================================================
+   CERRAR
+========================================================= */
+
+.icono-cerrar::before,
+.icono-cerrar::after {
+    content: "";
+    position: absolute;
+    width: 15px;
+    height: 1.8px;
+    left: 1px;
+    top: 8px;
+    border-radius: 3px;
+    background: currentColor;
+}
+
+.icono-cerrar::before {
+    transform: rotate(45deg);
+}
+
+.icono-cerrar::after {
+    transform: rotate(-45deg);
+}
+
+
+/* =========================================================
+   ID / CÓDIGO
+========================================================= */
+
+.icono-id {
+    width: 18px;
+    height: 14px;
+    left: 13px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--navy-soft);
+    border: 1.7px solid currentColor;
+    border-radius: 3px;
+    pointer-events: none;
+}
+
+.icono-id::before {
+    content: "";
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    left: 2px;
+    top: 2px;
+    border: 1px solid currentColor;
+    border-radius: 50%;
+}
+
+.icono-id::after {
+    content: "";
+    position: absolute;
+    width: 5px;
+    height: 1px;
+    left: 2px;
+    bottom: 2px;
+    border-radius: 2px;
+    background: currentColor;
+    box-shadow: 6px 0 0 currentColor;
+}
+
+
+/* =========================================================
+   RAYO
+========================================================= */
+
+.icono-rayo::before {
+    content: "ϟ";
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 21px;
+    font-weight: 900;
+}
+
+
+/* =========================================================
+   RECARGAR
+========================================================= */
+
+.icono-recargar::before {
+    content: "↻";
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   COLORES DE ICONOS
+========================================================= */
+
+.beneficio-icono .icono,
+.icono-buscador .icono,
+.icono-recibo .icono {
+    color: var(--navy);
+}
+
+.beneficio-icono.seguro .icono {
+    color: var(--green-dark);
+}
+
+.beneficio-icono.facil .icono {
+    color: #9a7d00;
+}
+
+.beneficio-icono.tiempo .icono {
+    color: #1689ad;
+}
+
+.beneficio-grande.verde .icono {
+    color: var(--green-dark);
+}
+
+.beneficio-grande.amarillo .icono {
+    color: #9a7d00;
+}
+
+.beneficio-grande.azul .icono {
+    color: #1689ad;
+}
+
+
+/* =========================================================
+   NAV — ICONOS MÁS ELEGANTES
+========================================================= */
+
+.navegacion .nav-link {
+    gap: 7px;
+}
+
+.navegacion .nav-link .icono {
+    opacity: .72;
+}
+
+.navegacion .nav-link:hover .icono,
+.navegacion .nav-link.activo .icono {
+    opacity: 1;
+}
+
+
+/* =========================================================
+   MODALES
+========================================================= */
+
+.modal-cerrar .icono {
+    width: 15px;
+    height: 15px;
+}
+
+.modal-icono .icono {
+    transform: scale(1.12);
+}
+
+
+/* =========================================================
+   MICROINTERACCIONES
+========================================================= */
+
+button:hover .icono,
+.nav-link:hover .icono {
+    transform: scale(1.08);
+}
+
+button:active .icono {
+    transform: scale(.94);
+}
+
+
+/* =========================================================
+   CELULAR
+========================================================= */
+
+@media (max-width: 700px) {
+
+    .nav-link .icono {
+        width: 16px;
+        height: 16px;
+        flex-basis: 16px;
+    }
+
+    .icono-documento-grande {
+        width: 20px;
+        height: 23px;
+        flex-basis: 20px;
+    }
+
+    .icono-escudo {
+        width: 16px;
+        height: 19px;
+        flex-basis: 16px;
+    }
+
+}

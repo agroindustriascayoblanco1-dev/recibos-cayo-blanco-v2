@@ -3836,3 +3836,16 @@ body.modal-abierto {
     }
 
 }
+@media (max-width: 600px) {
+    body {
+        border: 8px solid red !important;
+    }
+
+    #codigo {
+        height: 120px !important;
+        min-height: 120px !important;
+        font-size: 25px !important;
+        background: yellow !important;
+    }
+}
+

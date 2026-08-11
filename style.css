@@ -3684,3 +3684,243 @@ body.modal-abierto {
 /* =========================================================
    FIN COA OCEAN V3
 ========================================================= */
+/* =========================================================
+   COA — AJUSTE FINAL PARA CELULAR
+   V4 MOBILE BALANCE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    /* -----------------------------------------------------
+       CONTENEDOR GENERAL
+    ----------------------------------------------------- */
+
+    .contenedor {
+        width: 94%;
+        margin: 18px auto 30px;
+    }
+
+
+    /* -----------------------------------------------------
+       HERO
+    ----------------------------------------------------- */
+
+    .bienvenida {
+        display: block;
+
+        min-height: auto;
+
+        padding: 24px 20px 20px;
+
+        border-radius: 22px;
+    }
+
+
+    /* -----------------------------------------------------
+       TÍTULO
+    ----------------------------------------------------- */
+
+    .bienvenida-texto h2 {
+        margin-top: 16px;
+
+        font-size: 42px;
+
+        line-height: .99;
+
+        letter-spacing: -2px;
+    }
+
+
+    /* -----------------------------------------------------
+       TEXTO DESCRIPTIVO
+    ----------------------------------------------------- */
+
+    .bienvenida-texto > p {
+        max-width: 100%;
+
+        margin-top: 12px;
+
+        font-size: 13px;
+
+        line-height: 1.55;
+    }
+
+
+    /* -----------------------------------------------------
+       QUITAR ESPACIO EXCESIVO
+    ----------------------------------------------------- */
+
+    .beneficios-hero {
+        margin-top: 18px;
+    }
+
+
+    /* -----------------------------------------------------
+       BUSCADOR
+    ----------------------------------------------------- */
+
+    .buscador {
+        margin-top: 24px;
+
+        padding: 23px 20px 21px;
+
+        border-radius: 20px;
+    }
+
+
+    .cabecera-buscador {
+        margin-bottom: 20px;
+    }
+
+
+    .cabecera-buscador h2 {
+        font-size: 19px;
+    }
+
+
+    .cabecera-buscador p {
+        font-size: 9px;
+    }
+
+
+    /* -----------------------------------------------------
+       QUINCENAS
+    ----------------------------------------------------- */
+
+    .titulo-selector {
+        margin-bottom: 8px;
+
+        font-size: 11px;
+    }
+
+
+    .opciones-quincena {
+        grid-template-columns: 1fr 1fr;
+
+        gap: 8px;
+
+        margin-bottom: 20px;
+    }
+
+
+    .opcion-quincena span {
+        min-height: 63px;
+
+        border-radius: 13px;
+    }
+
+
+    .opcion-quincena strong {
+        font-size: 11px;
+    }
+
+
+    .opcion-quincena small {
+        font-size: 9px;
+    }
+
+
+    /* -----------------------------------------------------
+       CÓDIGO DE EMPLEADO
+    ----------------------------------------------------- */
+
+    .label-codigo {
+        margin-bottom: 7px;
+
+        font-size: 11px;
+    }
+
+
+    .fila-busqueda {
+        grid-template-columns: 1fr;
+
+        gap: 9px;
+    }
+
+
+    .campo-codigo {
+        min-height: 52px;
+
+        border-radius: 12px;
+    }
+
+
+    .campo-codigo input {
+        min-height: 48px;
+
+        padding-left: 43px;
+
+        font-size: 14px;
+    }
+
+
+    .campo-codigo input::placeholder {
+        font-size: 13px;
+    }
+
+
+    /* -----------------------------------------------------
+       BOTÓN CONSULTAR
+    ----------------------------------------------------- */
+
+    #buscar {
+        min-height: 52px;
+
+        border-radius: 12px;
+
+        font-size: 13px;
+    }
+
+
+    /* -----------------------------------------------------
+       TEXTO DE AYUDA
+    ----------------------------------------------------- */
+
+    .ayuda {
+        margin-top: 7px;
+
+        font-size: 9px;
+    }
+
+
+    #mensaje {
+        margin-top: 7px;
+
+        font-size: 9px;
+    }
+
+
+    /* -----------------------------------------------------
+       SEGURIDAD
+    ----------------------------------------------------- */
+
+    .seguridad-mini {
+        margin-top: 15px;
+
+        padding: 11px;
+
+        border-radius: 11px;
+    }
+
+
+    .seguridad-mini-icono {
+        width: 33px;
+        height: 33px;
+
+        flex-basis: 33px;
+    }
+
+
+    .seguridad-mini strong {
+        font-size: 9px;
+    }
+
+
+    .seguridad-mini p {
+        font-size: 8px;
+
+        line-height: 1.4;
+    }
+
+
+    /*

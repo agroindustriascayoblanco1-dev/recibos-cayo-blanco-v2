@@ -4396,3 +4396,31 @@ button:active .icono {
         line-height: 1.55 !important;
     }
 }
+/* =========================================================
+   V27 — BORDE EXTERIOR DE LA TARJETA DE RECIBO
+========================================================= */
+
+/* Eliminamos la línea verde interna */
+.recibo::before {
+    display: none !important;
+}
+
+
+/* Borde exterior */
+.recibo {
+    border: 1px solid var(--border) !important;
+    border-left: 4px solid var(--green) !important;
+    border-radius: 17px !important;
+    overflow: hidden !important;
+}
+
+
+/* En celular */
+@media (max-width: 700px) {
+
+    .recibo {
+        border-left: 4px solid var(--green) !important;
+        border-radius: 16px !important;
+    }
+
+}

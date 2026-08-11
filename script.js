@@ -39,6 +39,12 @@ let paginaActual = null;
 
 let quincenaSeleccionada = "q1";
 
+function obtenerTextoPeriodoPago(periodo) {
+    return periodo && periodo.periodoPago
+        ? periodo.periodoPago
+        : "";
+}
+
 
 // ======================================================
 // INICIAR CUANDO EL HTML ESTÉ LISTO
@@ -764,6 +770,17 @@ async function consultarEmpleado() {
                     " · " +
                     periodo.mes
                 ).toUpperCase();
+        const periodoPagoElemento =
+    document.getElementById(
+        "periodoPago"
+    );
+
+if (periodoPagoElemento) {
+    periodoPagoElemento.textContent =
+        obtenerTextoPeriodoPago(
+            periodo
+        );
+}
 
 
         // ==================================================

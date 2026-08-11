@@ -12,13 +12,13 @@ const PERIODOS = {
 
     q1: {
         nombre: "Quincena 1",
-        mes: "Julio 2026",
+        mes: "Julio del 11 de junio al 25 de junio 2026",
         archivo: "RECIBOS QUINCENA 1.pdf"
     },
 
     q2: {
         nombre: "Quincena 2",
-        mes: "Julio 2026",
+        mes: "Julio 2026 del 26 de junio al 10 de julio",
         archivo: "RECIBOS QUINCENA 2.pdf"
     }
 

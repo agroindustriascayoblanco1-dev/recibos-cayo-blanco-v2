@@ -20,7 +20,7 @@
 
     --blanco: #ffffff;
 
-    --fondo: #f4f6f7;
+    --fondo: #f3f6f7;
     --fondo-suave: #f8fafb;
 
     --borde: #dfe5e8;
@@ -45,14 +45,11 @@
     padding: 0;
 }
 
-
 html {
     scroll-behavior: smooth;
 }
 
-
 body {
-
     min-height: 100vh;
 
     font-family:
@@ -69,7 +66,6 @@ body {
 
     color:
         var(--texto);
-
 }
 
 
@@ -78,7 +74,6 @@ body {
 ===================================================== */
 
 .encabezado {
-
     position: relative;
 
     min-height: 82px;
@@ -106,12 +101,9 @@ body {
     box-shadow:
         0 5px 25px
         rgba(16,45,59,.16);
-
 }
 
-
 .encabezado::after {
-
     content: "";
 
     position: absolute;
@@ -131,16 +123,9 @@ body {
         );
 
     opacity: .65;
-
 }
 
-
-/* =====================================================
-   MARCA
-===================================================== */
-
 .marca {
-
     display: flex;
 
     align-items: center;
@@ -148,12 +133,9 @@ body {
     gap: 14px;
 
     min-width: 0;
-
 }
 
-
 .logo {
-
     width: 56px;
     height: 56px;
 
@@ -183,42 +165,30 @@ body {
     box-shadow:
         0 5px 18px
         rgba(0,0,0,.12);
-
 }
-
 
 .empresa {
-
     min-width: 0;
-
 }
 
-
 .empresa h1 {
-
     font-size: 20px;
 
     line-height: 1.2;
 
     letter-spacing: .15px;
-
 }
 
-
 .empresa p {
-
     margin-top: 4px;
 
     color:
         rgba(255,255,255,.78);
 
     font-size: 12px;
-
 }
 
-
 .confidencial-top {
-
     padding:
         8px 13px;
 
@@ -239,7 +209,6 @@ body {
 
     white-space:
         nowrap;
-
 }
 
 
@@ -248,13 +217,11 @@ body {
 ===================================================== */
 
 .contenedor {
-
     width:
         min(1100px, 92%);
 
     margin:
         38px auto 48px;
-
 }
 
 
@@ -263,7 +230,6 @@ body {
 ===================================================== */
 
 .bienvenida {
-
     position: relative;
 
     overflow: hidden;
@@ -290,12 +256,9 @@ body {
 
     box-shadow:
         var(--sombra-fuerte);
-
 }
 
-
 .bienvenida::before {
-
     content: "";
 
     position: absolute;
@@ -312,21 +275,18 @@ body {
             var(--verde),
             var(--dorado)
         );
-
 }
 
-
 .bienvenida::after {
-
     content: "";
 
     position: absolute;
 
-    width: 240px;
-    height: 240px;
+    width: 260px;
+    height: 260px;
 
-    right: -130px;
-    top: -130px;
+    right: -140px;
+    top: -140px;
 
     border-radius: 50%;
 
@@ -336,21 +296,15 @@ body {
     opacity: .035;
 
     pointer-events: none;
-
 }
 
-
 .bienvenida-texto {
-
     position: relative;
 
     z-index: 1;
-
 }
 
-
 .etiqueta {
-
     display: inline-flex;
 
     align-items: center;
@@ -376,12 +330,9 @@ body {
     font-weight: 900;
 
     letter-spacing: 1.1px;
-
 }
 
-
 .etiqueta::before {
-
     content: "";
 
     width: 6px;
@@ -391,12 +342,9 @@ body {
 
     background:
         var(--verde);
-
 }
 
-
 .bienvenida-texto h2 {
-
     margin-bottom: 15px;
 
     color:
@@ -410,12 +358,9 @@ body {
 
     letter-spacing:
         -1.2px;
-
 }
 
-
 .bienvenida-texto p {
-
     max-width:
         550px;
 
@@ -427,101 +372,124 @@ body {
 
     line-height:
         1.75;
-
 }
 
 
 /* =====================================================
-   BUSCADOR
+   BUSCADOR PREMIUM
 ===================================================== */
 
 .buscador {
-
     position: relative;
 
     z-index: 2;
 
-    padding: 26px;
+    padding:
+        27px;
 
     background:
-        var(--fondo-suave);
+        linear-gradient(
+            145deg,
+            #ffffff,
+            #f6f9fa
+        );
 
     border:
-        1px solid var(--borde);
+        1px solid #d7e0e4;
 
     border-radius:
-        20px;
+        22px;
 
     box-shadow:
-        0 6px 20px
-        rgba(23,59,77,.035);
-
+        0 12px 30px
+        rgba(23,59,77,.08);
 }
 
+.buscador::before {
+    content:
+        "CONSULTA PERSONAL";
+
+    display:
+        block;
+
+    margin-bottom:
+        17px;
+
+    color:
+        var(--dorado);
+
+    font-size:
+        9px;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        1.5px;
+}
 
 .titulo-selector {
-
     display: block;
 
-    margin-bottom: 10px;
+    margin-bottom:
+        10px;
 
     color:
         var(--texto);
 
-    font-size: 13px;
+    font-size:
+        13px;
 
-    font-weight: 900;
-
+    font-weight:
+        900;
 }
 
-
 .opciones-quincena {
-
     display: grid;
 
     grid-template-columns:
         1fr 1fr;
 
-    gap: 9px;
+    gap:
+        9px;
 
-    margin-bottom: 20px;
-
+    margin-bottom:
+        21px;
 }
 
-
 .opcion-quincena {
-
     position: relative;
 
     cursor: pointer;
-
 }
 
-
 .opcion-quincena input {
-
     position: absolute;
 
     opacity: 0;
-
 }
 
-
 .opcion-quincena span {
+    min-height:
+        61px;
 
-    min-height: 59px;
+    display:
+        flex;
 
-    display: flex;
+    flex-direction:
+        column;
 
-    flex-direction: column;
+    align-items:
+        center;
 
-    align-items: center;
+    justify-content:
+        center;
 
-    justify-content: center;
+    gap:
+        3px;
 
-    gap: 3px;
-
-    text-align: center;
+    text-align:
+        center;
 
     border:
         2px solid var(--borde);
@@ -542,21 +510,18 @@ body {
         800;
 
     transition:
-        .2s ease;
-
+        all .2s ease;
 }
 
-
 .opcion-quincena span:hover {
-
     border-color:
         var(--azul-medio);
 
+    transform:
+        translateY(-1px);
 }
 
-
 .opcion-quincena input:checked + span {
-
     background:
         var(--azul);
 
@@ -567,75 +532,119 @@ body {
         white;
 
     box-shadow:
-        0 6px 16px
-        rgba(23,59,77,.16);
-
+        0 7px 18px
+        rgba(23,59,77,.17);
 }
 
-
 .opcion-quincena input:checked + span::after {
+    content:
+        "✓";
 
-    content: "✓";
+    position:
+        absolute;
 
-    position: absolute;
+    top:
+        6px;
 
-    top: 6px;
-    right: 8px;
+    right:
+        8px;
 
     color:
         rgba(255,255,255,.75);
 
     font-size:
         10px;
-
 }
 
 
 /* =====================================================
-   CÓDIGO
+   CÓDIGO DE EMPLEADO
 ===================================================== */
 
 .label-codigo {
+    display:
+        flex;
 
-    display: block;
+    align-items:
+        center;
 
-    margin-bottom: 8px;
+    gap:
+        7px;
+
+    margin-bottom:
+        8px;
 
     color:
         var(--texto);
 
-    font-size: 13px;
+    font-size:
+        13px;
 
-    font-weight: 900;
-
+    font-weight:
+        900;
 }
 
+.label-codigo::before {
+    content:
+        "ID";
+
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    width:
+        22px;
+
+    height:
+        18px;
+
+    border-radius:
+        5px;
+
+    background:
+        var(--verde-claro);
+
+    color:
+        var(--verde);
+
+    font-size:
+        8px;
+
+    font-weight:
+        900;
+}
 
 .fila-busqueda {
+    display:
+        flex;
 
-    display: flex;
-
-    gap: 9px;
-
+    gap:
+        9px;
 }
 
-
 #codigo {
+    flex:
+        1;
 
-    flex: 1;
+    min-width:
+        0;
 
-    min-width: 0;
-
-    height: 54px;
+    height:
+        56px;
 
     padding:
-        0 15px;
+        0 16px;
 
     border:
         2px solid var(--borde);
 
     border-radius:
-        12px;
+        13px;
 
     outline:
         none;
@@ -650,42 +659,48 @@ body {
         16px;
 
     font-weight:
-        600;
+        700;
+
+    letter-spacing:
+        .4px;
 
     transition:
         border-color .2s ease,
-        box-shadow .2s ease;
-
+        box-shadow .2s ease,
+        background .2s ease;
 }
 
-
 #codigo::placeholder {
-
     color:
         #9aa5aa;
 
     font-weight:
         400;
 
+    letter-spacing:
+        0;
 }
 
+#codigo:hover {
+    border-color:
+        #c7d3d8;
+}
 
 #codigo:focus {
-
     border-color:
         var(--azul);
+
+    background:
+        #fcfefe;
 
     box-shadow:
         0 0 0 4px
         rgba(23,59,77,.08);
-
 }
 
-
 #buscar {
-
     height:
-        54px;
+        56px;
 
     padding:
         0 21px;
@@ -694,10 +709,14 @@ body {
         none;
 
     border-radius:
-        12px;
+        13px;
 
     background:
-        var(--azul);
+        linear-gradient(
+            135deg,
+            var(--azul),
+            var(--azul-medio)
+        );
 
     color:
         white;
@@ -712,49 +731,45 @@ body {
         pointer;
 
     box-shadow:
-        0 5px 14px
-        rgba(23,59,77,.14);
+        0 7px 17px
+        rgba(23,59,77,.16);
 
     transition:
-        .2s ease;
-
+        all .2s ease;
 }
 
-
 #buscar:hover {
-
     background:
-        var(--azul-oscuro);
+        linear-gradient(
+            135deg,
+            var(--azul-oscuro),
+            var(--azul)
+        );
 
     transform:
         translateY(-1px);
 
+    box-shadow:
+        0 9px 20px
+        rgba(23,59,77,.19);
 }
-
 
 #buscar:active {
-
     transform:
         scale(.98);
-
 }
 
-
 #buscar:disabled {
-
     opacity:
         .62;
 
     cursor:
         wait;
-
 }
 
-
 .ayuda {
-
     margin-top:
-        8px;
+        9px;
 
     color:
         var(--texto-suave);
@@ -762,13 +777,13 @@ body {
     font-size:
         11px;
 
+    line-height:
+        1.5;
 }
 
-
 #mensaje {
-
     min-height:
-        21px;
+        22px;
 
     margin-top:
         10px;
@@ -779,6 +794,8 @@ body {
     font-weight:
         800;
 
+    line-height:
+        1.4;
 }
 
 
@@ -787,15 +804,11 @@ body {
 ===================================================== */
 
 .oculto {
-
     display:
         none !important;
-
 }
 
-
 .resultado {
-
     margin-top:
         26px;
 
@@ -816,41 +829,34 @@ body {
 
     animation:
         aparecer .3s ease;
-
 }
-
 
 @keyframes aparecer {
 
     from {
-
         opacity:
             0;
 
         transform:
             translateY(8px);
-
     }
 
     to {
-
         opacity:
             1;
 
         transform:
             translateY(0);
-
     }
 
 }
 
 
 /* =====================================================
-   EMPLEADO
+   COLABORADOR
 ===================================================== */
 
 .empleado {
-
     display:
         flex;
 
@@ -865,12 +871,9 @@ body {
 
     border-bottom:
         1px solid var(--borde);
-
 }
 
-
 .avatar {
-
     width:
         59px;
 
@@ -890,35 +893,37 @@ body {
         center;
 
     border-radius:
-        16px;
+        17px;
 
     background:
-        #eef3f5;
+        linear-gradient(
+            145deg,
+            #edf3f5,
+            #e5eee9
+        );
 
     font-size:
         25px;
 
+    box-shadow:
+        inset 0 0 0 1px
+        rgba(23,59,77,.05);
 }
 
-
 .datos-empleado {
-
     flex:
         1;
 
     min-width:
         0;
-
 }
 
-
 .datos-empleado > span {
-
     display:
         block;
 
     margin-bottom:
-        4px;
+        5px;
 
     color:
         var(--verde);
@@ -931,12 +936,9 @@ body {
 
     letter-spacing:
         1px;
-
 }
 
-
 .datos-empleado h2 {
-
     margin-bottom:
         4px;
 
@@ -951,18 +953,14 @@ body {
 
     overflow-wrap:
         anywhere;
-
 }
 
-
 .datos-empleado p {
-
     color:
         var(--texto-suave);
 
     font-size:
         12px;
-
 }
 
 
@@ -971,7 +969,6 @@ body {
 ===================================================== */
 
 .boton-secundario {
-
     min-height:
         43px;
 
@@ -982,7 +979,7 @@ body {
         1px solid var(--borde);
 
     border-radius:
-        10px;
+        11px;
 
     background:
         white;
@@ -1000,13 +997,10 @@ body {
         pointer;
 
     transition:
-        .2s ease;
-
+        all .2s ease;
 }
 
-
 .boton-secundario:hover {
-
     border-color:
         var(--azul-medio);
 
@@ -1016,15 +1010,16 @@ body {
     background:
         #f2f6f7;
 
+    transform:
+        translateY(-1px);
 }
 
 
 /* =====================================================
-   SECCIÓN RECIBO
+   TÍTULO RECIBO
 ===================================================== */
 
 .titulo-seccion {
-
     display:
         flex;
 
@@ -1038,26 +1033,23 @@ body {
         15px;
 
     margin:
-        26px 0 15px;
-
+        27px 0 15px;
 }
 
-
 .titulo-seccion h2 {
-
     color:
         var(--azul-oscuro);
 
     font-size:
         24px;
 
+    letter-spacing:
+        -.3px;
 }
 
-
 .periodo {
-
     padding:
-        7px 11px;
+        8px 11px;
 
     border-radius:
         999px;
@@ -1076,15 +1068,19 @@ body {
 
     white-space:
         nowrap;
-
 }
 
 
 /* =====================================================
-   RECIBO
+   TARJETA DE RECIBO PREMIUM
 ===================================================== */
 
 .recibo {
+    position:
+        relative;
+
+    overflow:
+        hidden;
 
     display:
         grid;
@@ -1096,49 +1092,73 @@ body {
         center;
 
     gap:
-        15px;
+        17px;
 
     padding:
-        19px;
+        20px;
 
     border:
         1px solid var(--borde);
 
     border-radius:
-        17px;
+        18px;
 
     background:
         linear-gradient(
             145deg,
             #ffffff,
-            #fafcfc
+            #f8fafb
         );
 
     transition:
-        .2s ease;
-
+        all .2s ease;
 }
 
+.recibo::before {
+    content:
+        "";
+
+    position:
+        absolute;
+
+    left:
+        0;
+
+    top:
+        0;
+
+    bottom:
+        0;
+
+    width:
+        3px;
+
+    background:
+        linear-gradient(
+            180deg,
+            var(--verde),
+            var(--dorado)
+        );
+}
 
 .recibo:hover {
-
     border-color:
         #cbd7dc;
 
     box-shadow:
-        0 8px 22px
-        rgba(23,59,77,.06);
+        0 10px 25px
+        rgba(23,59,77,.07);
 
+    transform:
+        translateY(-1px);
 }
 
-
 .icono-recibo {
-
     width:
-        57px;
+        58px;
 
     height:
-        57px;
+        58px;
 
     display:
         flex;
@@ -1150,7 +1170,7 @@ body {
         center;
 
     border-radius:
-        15px;
+        16px;
 
     background:
         var(--verde-claro);
@@ -1158,24 +1178,22 @@ body {
     font-size:
         24px;
 
+    box-shadow:
+        inset 0 0 0 1px
+        rgba(77,128,102,.08);
 }
-
 
 .informacion-recibo {
-
     min-width:
         0;
-
 }
 
-
 .informacion-recibo > span {
-
     display:
         block;
 
     margin-bottom:
-        4px;
+        5px;
 
     color:
         var(--verde);
@@ -1186,25 +1204,22 @@ body {
     font-weight:
         900;
 
+    letter-spacing:
+        .7px;
 }
 
-
 .informacion-recibo h3 {
-
     margin-bottom:
-        4px;
+        5px;
 
     color:
         var(--azul-oscuro);
 
     font-size:
-        17px;
-
+        18px;
 }
 
-
 .informacion-recibo p {
-
     color:
         var(--texto-suave);
 
@@ -1212,18 +1227,15 @@ body {
         11px;
 
     line-height:
-        1.5;
-
+        1.55;
 }
 
-
 .ver-recibo {
-
     min-height:
-        46px;
+        47px;
 
     padding:
-        0 19px;
+        0 20px;
 
     border:
         none;
@@ -1247,32 +1259,36 @@ body {
         pointer;
 
     box-shadow:
-        0 5px 14px
+        0 6px 15px
         rgba(55,99,78,.15);
 
     transition:
-        .2s ease;
-
+        all .2s ease;
 }
 
-
 .ver-recibo:hover {
-
     background:
         var(--verde-oscuro);
 
     transform:
         translateY(-1px);
 
+    box-shadow:
+        0 8px 18px
+        rgba(55,99,78,.20);
+}
+
+.ver-recibo:active {
+    transform:
+        scale(.98);
 }
 
 
 /* =====================================================
-   VISOR
+   VISOR PDF
 ===================================================== */
 
 .visor {
-
     margin-top:
         25px;
 
@@ -1290,12 +1306,9 @@ body {
 
     box-shadow:
         var(--sombra-fuerte);
-
 }
 
-
 .cabecera-visor {
-
     display:
         flex;
 
@@ -1310,34 +1323,25 @@ body {
 
     margin-bottom:
         18px;
-
 }
 
-
 .cabecera-visor h2 {
-
     color:
         var(--azul-oscuro);
 
     font-size:
         21px;
-
 }
 
-
 .acciones-visor {
-
     display:
         flex;
 
     gap:
         8px;
-
 }
 
-
 .visor-pdf {
-
     width:
         100%;
 
@@ -1367,12 +1371,9 @@ body {
 
     border-radius:
         13px;
-
 }
 
-
 .visor-pdf canvas {
-
     display:
         block;
 
@@ -1388,12 +1389,9 @@ body {
     box-shadow:
         0 5px 20px
         rgba(0,0,0,.15);
-
 }
 
-
 .visor-mensaje {
-
     width:
         100%;
 
@@ -1414,16 +1412,14 @@ body {
 
     text-align:
         center;
-
 }
 
 
 /* =====================================================
-   AVISO CONFIDENCIALIDAD
+   AVISO
 ===================================================== */
 
 .aviso {
-
     display:
         flex;
 
@@ -1450,20 +1446,14 @@ body {
 
     border-radius:
         14px;
-
 }
-
 
 .aviso-icono {
-
     font-size:
         22px;
-
 }
 
-
 .aviso h3 {
-
     margin-bottom:
         5px;
 
@@ -1472,12 +1462,9 @@ body {
 
     font-size:
         15px;
-
 }
 
-
 .aviso p {
-
     color:
         var(--texto-suave);
 
@@ -1486,7 +1473,6 @@ body {
 
     line-height:
         1.6;
-
 }
 
 
@@ -1495,7 +1481,6 @@ body {
 ===================================================== */
 
 footer {
-
     padding:
         23px 15px 32px;
 
@@ -1507,7 +1492,6 @@ footer {
 
     font-size:
         10px;
-
 }
 
 
@@ -1518,13 +1502,11 @@ footer {
 @media (max-width: 900px) {
 
     .bienvenida {
-
         grid-template-columns:
             1fr;
 
         gap:
             26px;
-
     }
 
 }
@@ -1536,30 +1518,20 @@ footer {
 
 @media (max-width: 700px) {
 
-
-    /* ENCABEZADO */
-
     .encabezado {
-
         min-height:
             70px;
 
         padding:
             10px 14px;
-
     }
-
 
     .marca {
-
         gap:
             10px;
-
     }
 
-
     .logo {
-
         width:
             45px;
 
@@ -1574,57 +1546,44 @@ footer {
 
         font-size:
             15px;
-
     }
 
-
     .empresa h1 {
-
         font-size:
             13px;
 
         line-height:
             1.2;
-
     }
 
-
     .empresa p {
-
         margin-top:
             2px;
 
         font-size:
             9px;
-
     }
 
-
     .confidencial-top {
-
         display:
             none;
-
     }
 
 
     /* CONTENEDOR */
 
     .contenedor {
-
         width:
             calc(100% - 20px);
 
         margin:
             15px auto 28px;
-
     }
 
 
     /* PRINCIPAL */
 
     .bienvenida {
-
         display:
             block;
 
@@ -1633,74 +1592,62 @@ footer {
 
         border-radius:
             20px;
-
     }
-
 
     .bienvenida-texto {
-
         margin-bottom:
             20px;
-
     }
 
-
     .bienvenida-texto h2 {
-
         font-size:
             31px;
 
         line-height:
             1.08;
-
     }
 
-
     .bienvenida-texto p {
-
         font-size:
             12px;
 
         line-height:
             1.65;
-
     }
 
 
     /* BUSCADOR */
 
     .buscador {
-
         padding:
-            18px 13px;
+            19px 13px;
 
         border-radius:
-            17px;
-
+            18px;
     }
 
-
-    .titulo-selector {
+    .buscador::before {
+        margin-bottom:
+            14px;
 
         font-size:
-            12px;
-
+            8px;
     }
 
+    .titulo-selector {
+        font-size:
+            12px;
+    }
 
     .opciones-quincena {
-
         gap:
             7px;
 
         margin-bottom:
             18px;
-
     }
 
-
     .opcion-quincena span {
-
         min-height:
             62px;
 
@@ -1709,30 +1656,22 @@ footer {
 
         font-size:
             11px;
-
     }
 
-
     .opcion-quincena span small {
-
         font-size:
             9px;
-
     }
 
 
     /* CÓDIGO */
 
     .fila-busqueda {
-
         display:
             block;
-
     }
 
-
     #codigo {
-
         width:
             100%;
 
@@ -1747,25 +1686,17 @@ footer {
 
         font-size:
             18px;
-
-        letter-spacing:
-            .3px;
-
     }
 
-
     #codigo::placeholder {
-
         font-size:
             14px;
-
     }
 
 
     /* BOTÓN */
 
     #buscar {
-
         width:
             100%;
 
@@ -1780,22 +1711,17 @@ footer {
 
         font-size:
             15px;
-
     }
 
-
     #mensaje {
-
         font-size:
             12px;
-
     }
 
 
     /* RESULTADO */
 
     .resultado {
-
         margin-top:
             18px;
 
@@ -1804,12 +1730,9 @@ footer {
 
         border-radius:
             19px;
-
     }
 
-
     .empleado {
-
         display:
             grid;
 
@@ -1821,12 +1744,9 @@ footer {
 
         gap:
             11px;
-
     }
 
-
     .avatar {
-
         width:
             52px;
 
@@ -1841,31 +1761,22 @@ footer {
 
         font-size:
             22px;
-
     }
 
-
     .datos-empleado h2 {
-
         font-size:
             17px;
 
         line-height:
             1.25;
-
     }
-
 
     .datos-empleado p {
-
         font-size:
             11px;
-
     }
 
-
     .empleado .boton-secundario {
-
         grid-column:
             1 / -1;
 
@@ -1874,33 +1785,25 @@ footer {
 
         min-height:
             45px;
-
     }
 
 
     /* TÍTULO */
 
     .titulo-seccion {
-
         display:
             block;
 
         margin:
             20px 0 13px;
-
     }
-
 
     .titulo-seccion h2 {
-
         font-size:
             21px;
-
     }
 
-
     .periodo {
-
         display:
             inline-block;
 
@@ -1909,44 +1812,39 @@ footer {
 
         font-size:
             9px;
-
     }
 
 
     /* RECIBO */
 
     .recibo {
-
         display:
             block;
 
         padding:
-            17px 14px;
+            18px 14px;
 
         border-radius:
-            16px;
-
+            17px;
     }
 
-
     .icono-recibo {
+        width:
+            53px;
+
+        height:
+            53px;
 
         margin-bottom:
             12px;
-
     }
-
 
     .informacion-recibo h3 {
-
         font-size:
             18px;
-
     }
 
-
     .ver-recibo {
-
         width:
             100%;
 
@@ -1961,14 +1859,12 @@ footer {
 
         font-size:
             14px;
-
     }
 
 
     /* VISOR */
 
     .visor {
-
         margin-top:
             18px;
 
@@ -1977,31 +1873,22 @@ footer {
 
         border-radius:
             19px;
-
     }
-
 
     .cabecera-visor {
-
         display:
             block;
-
     }
 
-
     .cabecera-visor h2 {
-
         margin-bottom:
             13px;
 
         font-size:
             20px;
-
     }
 
-
     .acciones-visor {
-
         display:
             grid;
 
@@ -2010,12 +1897,9 @@ footer {
 
         gap:
             7px;
-
     }
 
-
     .acciones-visor .boton-secundario {
-
         width:
             100%;
 
@@ -2027,12 +1911,9 @@ footer {
 
         font-size:
             10px;
-
     }
 
-
     .visor-pdf {
-
         min-height:
             300px;
 
@@ -2041,25 +1922,20 @@ footer {
 
         border-radius:
             11px;
-
     }
 
-
     .visor-pdf canvas {
-
         width:
             100% !important;
 
         height:
             auto !important;
-
     }
 
 
     /* AVISO */
 
     .aviso {
-
         gap:
             10px;
 
@@ -2071,47 +1947,35 @@ footer {
 
         border-radius:
             13px;
-
     }
-
 
     .aviso-icono {
-
         font-size:
             20px;
-
     }
-
 
     .aviso h3 {
-
         font-size:
             13px;
-
     }
 
-
     .aviso p {
-
         font-size:
             10px;
 
         line-height:
             1.55;
-
     }
 
 
     /* FOOTER */
 
     footer {
-
         padding:
             18px 12px 25px;
 
         font-size:
             9px;
-
     }
 
 }
@@ -2124,48 +1988,34 @@ footer {
 @media (max-width: 380px) {
 
     .bienvenida-texto h2 {
-
         font-size:
             29px;
-
     }
-
 
     .opcion-quincena span {
-
         font-size:
             10px;
-
     }
-
 
     .opcion-quincena span small {
-
         font-size:
             8px;
-
     }
 
-
     #codigo {
-
         height:
             56px;
 
         font-size:
             17px;
-
     }
 
-
     #buscar {
-
         height:
             54px;
 
         font-size:
             14px;
-
     }
 
 }
@@ -2184,7 +2034,6 @@ input:focus-visible {
 
     outline-offset:
         2px;
-
 }
 
 
@@ -2194,17 +2043,12 @@ input:focus-visible {
 
 img,
 canvas {
-
     max-width:
         100%;
-
 }
-
 
 button,
 input {
-
     font-family:
         inherit;
-
 }

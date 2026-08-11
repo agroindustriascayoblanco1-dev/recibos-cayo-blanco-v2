@@ -101,7 +101,7 @@ body {
 
     position: relative;
 
-    min-height: 76px;
+    min-height: 96px;
 
     padding:
         10px clamp(16px,5vw,72px);

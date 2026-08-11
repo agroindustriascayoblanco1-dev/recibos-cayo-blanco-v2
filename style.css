@@ -4286,3 +4286,6 @@ button:active .icono {
         flex-basis: 16px;
     }
 }
+#textoQuincena {
+    display: none !important;
+}

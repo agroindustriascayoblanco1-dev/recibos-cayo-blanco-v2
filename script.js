@@ -1523,3 +1523,34 @@ async function guardarPDF() {
     }
 
 }
+// ======================================================
+// CENTRO DE INFORMACIÓN
+// SOLO UNA SECCIÓN ABIERTA A LA VEZ
+// ======================================================
+
+document
+    .querySelectorAll(".centro-card")
+    .forEach(function(card) {
+
+        card.addEventListener(
+            "toggle",
+            function() {
+
+                if (!card.open) {
+                    return;
+                }
+
+                document
+                    .querySelectorAll(".centro-card")
+                    .forEach(function(otraCard) {
+
+                        if (otraCard !== card) {
+                            otraCard.open = false;
+                        }
+
+                    });
+
+            }
+        );
+
+    });

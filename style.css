@@ -5912,3 +5912,773 @@ body.centro-modal-abierto {
     }
 
 }
+/* =========================================================
+   COA — NUEVO DISEÑO CENTRO DE INFORMACIÓN
+   TARJETAS POR TEMA
+========================================================= */
+
+
+/* =========================================================
+   CONTENEDOR
+========================================================= */
+
+.centro-informacion {
+
+    position: relative;
+
+    margin-top: 28px;
+
+    padding: 30px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #ffffff 0%,
+            #f8fbfc 100%
+        );
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 24px;
+
+    box-shadow:
+        0 15px 40px rgba(14,45,58,.07);
+
+}
+
+
+/* =========================================================
+   TITULO
+========================================================= */
+
+.centro-titulo {
+
+    text-align: center;
+
+    margin-bottom: 24px;
+
+}
+
+
+.centro-titulo h2 {
+
+    margin:
+        7px 0 8px;
+
+    color:
+        var(--navy-dark);
+
+    font-size:
+        23px;
+
+    font-weight:
+        900;
+
+}
+
+
+.centro-titulo p {
+
+    margin:
+        0 auto;
+
+    max-width:
+        560px;
+
+    color:
+        var(--text-soft);
+
+    font-size:
+        12px;
+
+    line-height:
+        1.6;
+
+}
+
+
+/* =========================================================
+   TARJETAS
+========================================================= */
+
+.centro-opciones {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap:
+        14px;
+
+}
+
+
+/* =========================================================
+   TARJETA BASE
+========================================================= */
+
+.centro-card {
+
+    position:
+        relative;
+
+    min-height:
+        145px;
+
+    width:
+        100%;
+
+    padding:
+        24px 20px 27px;
+
+    display:
+        flex;
+
+    align-items:
+        flex-start;
+
+    justify-content:
+        space-between;
+
+    text-align:
+        left;
+
+    border:
+        1px solid transparent;
+
+    border-radius:
+        18px;
+
+    overflow:
+        hidden;
+
+    cursor:
+        pointer;
+
+    font-family:
+        inherit;
+
+    background:
+        #ffffff;
+
+    box-shadow:
+        0 5px 18px rgba(14,45,58,.06);
+
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease,
+        border-color .25s ease;
+
+}
+
+
+/* =========================================================
+   INFORMACIÓN — VERDE
+========================================================= */
+
+.tarjeta-informacion {
+
+    background:
+        linear-gradient(
+            145deg,
+            #f0fbf6 0%,
+            #e4f7ef 100%
+        );
+
+    border-color:
+        #ccebdd;
+
+}
+
+
+.tarjeta-informacion .centro-texto strong {
+
+    color:
+        #087b5d;
+
+}
+
+
+.tarjeta-informacion .centro-texto::after {
+
+    background:
+        #17b889;
+
+}
+
+
+/* =========================================================
+   SEGURIDAD — AZUL
+========================================================= */
+
+.tarjeta-seguridad {
+
+    background:
+        linear-gradient(
+            145deg,
+            #f0faff 0%,
+            #e5f6fb 100%
+        );
+
+    border-color:
+        #cceaf2;
+
+}
+
+
+.tarjeta-seguridad .centro-texto strong {
+
+    color:
+        #1689ad;
+
+}
+
+
+.tarjeta-seguridad .centro-texto::after {
+
+    background:
+        #2ab6df;
+
+}
+
+
+/* =========================================================
+   AYUDA — AMARILLO / NARANJA
+========================================================= */
+
+.tarjeta-ayuda {
+
+    background:
+        linear-gradient(
+            145deg,
+            #fffaf0 0%,
+            #fff4d3 100%
+        );
+
+    border-color:
+        #f3e2a9;
+
+}
+
+
+.tarjeta-ayuda .centro-texto strong {
+
+    color:
+        #927713;
+
+}
+
+
+.tarjeta-ayuda .centro-texto::after {
+
+    background:
+        #f4c928;
+
+}
+
+
+/* =========================================================
+   EFECTO HOVER
+========================================================= */
+
+.centro-card:hover {
+
+    transform:
+        translateY(-4px);
+
+    box-shadow:
+        0 14px 30px rgba(14,45,58,.11);
+
+}
+
+
+/* =========================================================
+   TEXTO
+========================================================= */
+
+.centro-texto {
+
+    position:
+        relative;
+
+    z-index:
+        2;
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    align-items:
+        flex-start;
+
+    min-width:
+        0;
+
+}
+
+
+/* =========================================================
+   TITULO DE TARJETA
+========================================================= */
+
+.centro-texto strong {
+
+    display:
+        block;
+
+    margin-bottom:
+        14px;
+
+    font-size:
+        16px;
+
+    font-weight:
+        900;
+
+    line-height:
+        1.2;
+
+}
+
+
+/* =========================================================
+   LINEA DE COLOR
+========================================================= */
+
+.centro-texto::after {
+
+    content:
+        "";
+
+    display:
+        block;
+
+    width:
+        38px;
+
+    height:
+        4px;
+
+    margin-bottom:
+        13px;
+
+    border-radius:
+        999px;
+
+}
+
+
+/* =========================================================
+   DESCRIPCIÓN
+========================================================= */
+
+.centro-texto small {
+
+    display:
+        block;
+
+    max-width:
+        180px;
+
+    color:
+        var(--text-soft);
+
+    font-size:
+        10px;
+
+    line-height:
+        1.5;
+
+}
+
+
+/* =========================================================
+   FLECHA
+========================================================= */
+
+.centro-flecha {
+
+    position:
+        relative;
+
+    z-index:
+        3;
+
+    width:
+        36px;
+
+    height:
+        36px;
+
+    flex:
+        0 0 36px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    margin-left:
+        10px;
+
+    margin-top:
+        1px;
+
+    border-radius:
+        50%;
+
+    background:
+        rgba(255,255,255,.72);
+
+    color:
+        var(--navy);
+
+    font-size:
+        18px;
+
+    font-weight:
+        700;
+
+    box-shadow:
+        0 3px 10px rgba(14,45,58,.06);
+
+    transition:
+        transform .25s ease,
+        background .25s ease;
+
+}
+
+
+/* =========================================================
+   FLECHA POR COLOR
+========================================================= */
+
+.tarjeta-informacion .centro-flecha {
+
+    color:
+        #087b5d;
+
+}
+
+
+.tarjeta-seguridad .centro-flecha {
+
+    color:
+        #1689ad;
+
+}
+
+
+.tarjeta-ayuda .centro-flecha {
+
+    color:
+        #927713;
+
+}
+
+
+.centro-card:hover .centro-flecha {
+
+    transform:
+        translateX(4px);
+
+    background:
+        #ffffff;
+
+}
+
+
+/* =========================================================
+   ONDA DECORATIVA
+========================================================= */
+
+.centro-onda {
+
+    position:
+        absolute;
+
+    left:
+        -10%;
+
+    right:
+        -10%;
+
+    bottom:
+        -42px;
+
+    height:
+        75px;
+
+    border-radius:
+        50% 50% 0 0;
+
+    opacity:
+        .55;
+
+    transform:
+        rotate(-2deg);
+
+    pointer-events:
+        none;
+
+}
+
+
+/* =========================================================
+   COLOR DE ONDA
+========================================================= */
+
+.tarjeta-informacion .centro-onda {
+
+    background:
+        rgba(23,184,137,.13);
+
+}
+
+
+.tarjeta-seguridad .centro-onda {
+
+    background:
+        rgba(42,182,223,.13);
+
+}
+
+
+.tarjeta-ayuda .centro-onda {
+
+    background:
+        rgba(244,201,40,.17);
+
+}
+
+
+/* =========================================================
+   SEGUNDA ONDA
+========================================================= */
+
+.centro-card::after {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    left:
+        -15%;
+
+    right:
+        15%;
+
+    bottom:
+        -55px;
+
+    height:
+        75px;
+
+    border-radius:
+        50%;
+
+    pointer-events:
+        none;
+
+}
+
+
+.tarjeta-informacion::after {
+
+    background:
+        rgba(23,184,137,.07);
+
+}
+
+
+.tarjeta-seguridad::after {
+
+    background:
+        rgba(42,182,223,.07);
+
+}
+
+
+.tarjeta-ayuda::after {
+
+    background:
+        rgba(244,201,40,.09);
+
+}
+
+
+/* =========================================================
+   QUITAR ESTILOS ANTIGUOS
+========================================================= */
+
+.centro-card .centro-icono {
+
+    display:
+        none !important;
+
+}
+
+
+/* =========================================================
+   EVITAR ESTILOS DE DETAILS ANTIGUOS
+========================================================= */
+
+.centro-card summary {
+
+    all:
+        unset;
+
+}
+
+
+/* =========================================================
+   CELULAR
+========================================================= */
+
+@media (max-width: 700px) {
+
+    .centro-informacion {
+
+        margin-top:
+            22px;
+
+        padding:
+            22px 15px;
+
+        border-radius:
+            20px;
+
+    }
+
+
+    .centro-titulo {
+
+        margin-bottom:
+            18px;
+
+    }
+
+
+    .centro-titulo h2 {
+
+        font-size:
+            20px;
+
+    }
+
+
+    .centro-titulo p {
+
+        font-size:
+            11px;
+
+    }
+
+
+    .centro-opciones {
+
+        grid-template-columns:
+            1fr;
+
+        gap:
+            10px;
+
+    }
+
+
+    .centro-card {
+
+        min-height:
+            125px;
+
+        padding:
+            20px 17px 23px;
+
+        border-radius:
+            16px;
+
+    }
+
+
+    .centro-texto strong {
+
+        font-size:
+            15px;
+
+        margin-bottom:
+            11px;
+
+    }
+
+
+    .centro-texto small {
+
+        max-width:
+            220px;
+
+        font-size:
+            10px;
+
+    }
+
+
+    .centro-flecha {
+
+        width:
+            34px;
+
+        height:
+            34px;
+
+        flex-basis:
+            34px;
+
+    }
+
+}
+
+
+/* =========================================================
+   CELULARES MUY PEQUEÑOS
+========================================================= */
+
+@media (max-width: 380px) {
+
+    .centro-card {
+
+        min-height:
+            118px;
+
+        padding:
+            18px 15px 21px;
+
+    }
+
+
+    .centro-texto strong {
+
+        font-size:
+            14px;
+
+    }
+
+
+    .centro-texto small {
+
+        font-size:
+            9px;
+
+    }
+
+}

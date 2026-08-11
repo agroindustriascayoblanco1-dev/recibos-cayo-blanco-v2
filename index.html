@@ -2,24 +2,38 @@
 <html lang="es">
 
 <head>
+
     <meta charset="UTF-8">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>
         Recibos de Pago | Agroindustrias Cayo Blanco
     </title>
 
+
     <!-- PDF.JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js">
+    </script>
+
 
     <!-- ESTILOS -->
-    <link rel="stylesheet" href="style.css?v=1">
+
+    <link
+        rel="stylesheet"
+        href="style.css?v=1"
+    >
+
 </head>
 
 
 <body>
+
 
     <!-- ==================================================
          ENCABEZADO
@@ -32,6 +46,7 @@
             <div class="logo">
                 COA
             </div>
+
 
             <div class="empresa">
 
@@ -47,11 +62,15 @@
 
         </div>
 
+
         <div class="confidencial-top">
+
             🔒 Información confidencial
+
         </div>
 
     </header>
+
 
 
     <!-- ==================================================
@@ -74,10 +93,12 @@
                     RECURSOS HUMANOS
                 </span>
 
+
                 <h2>
                     Consulta tus<br>
                     recibos de pago
                 </h2>
+
 
                 <p>
                     Selecciona la quincena e ingresa
@@ -89,20 +110,28 @@
             </div>
 
 
+
             <div class="buscador">
 
 
-                <!-- SELECCIÓN DE QUINCENA -->
+                <!-- ==================================================
+                     SELECCIÓN DE QUINCENA
+                =================================================== -->
 
                 <div class="selector-quincena">
 
+
                     <label class="titulo-selector">
+
                         Selecciona la quincena
+
                     </label>
 
 
                     <div class="opciones-quincena">
 
+
+                        <!-- QUINCENA 1 -->
 
                         <label class="opcion-quincena">
 
@@ -113,12 +142,24 @@
                                 checked
                             >
 
+
                             <span>
-                                Quincena 1
+
+                                <strong>
+                                    Quincena 1
+                                </strong>
+
+                                <small>
+                                    Agosto 2026
+                                </small>
+
                             </span>
 
                         </label>
 
+
+
+                        <!-- QUINCENA 2 -->
 
                         <label class="opcion-quincena">
 
@@ -128,8 +169,17 @@
                                 value="q2"
                             >
 
+
                             <span>
-                                Quincena 2
+
+                                <strong>
+                                    Quincena 2
+                                </strong>
+
+                                <small>
+                                    Agosto 2026
+                                </small>
+
                             </span>
 
                         </label>
@@ -140,17 +190,23 @@
                 </div>
 
 
-                <!-- CÓDIGO DE EMPLEADO -->
+
+                <!-- ==================================================
+                     CÓDIGO DE EMPLEADO
+                =================================================== -->
 
                 <label
                     for="codigo"
                     class="label-codigo"
                 >
+
                     Código de empleado
+
                 </label>
 
 
                 <div class="fila-busqueda">
+
 
                     <input
                         type="text"
@@ -164,15 +220,20 @@
                         id="buscar"
                         type="button"
                     >
+
                         🔎 Consultar
+
                     </button>
+
 
                 </div>
 
 
                 <p class="ayuda">
+
                     Ingresa tu código tal como aparece
                     en tu documentación laboral.
+
                 </p>
 
 
@@ -205,13 +266,16 @@
 
                 <div class="datos-empleado">
 
+
                     <span>
                         COLABORADOR ENCONTRADO
                     </span>
 
+
                     <h2 id="nombreEmpleado">
                         —
                     </h2>
+
 
                     <p>
 
@@ -223,6 +287,7 @@
 
                     </p>
 
+
                 </div>
 
 
@@ -231,7 +296,9 @@
                     class="boton-secundario"
                     type="button"
                 >
+
                     ↻ Nueva consulta
+
                 </button>
 
 
@@ -248,13 +315,20 @@
 
                 <div>
 
+
                     <span class="etiqueta">
+
                         DOCUMENTO DISPONIBLE
+
                     </span>
 
+
                     <h2>
+
                         Tu recibo de pago
+
                     </h2>
+
 
                 </div>
 
@@ -263,7 +337,9 @@
                     id="periodoSeleccionado"
                     class="periodo"
                 >
-                    QUINCENA 1
+
+                    QUINCENA 1 · AGOSTO 2026
+
                 </span>
 
 
@@ -278,25 +354,37 @@
 
 
                     <div class="icono-recibo">
+
                         🧾
+
                     </div>
 
 
                     <div class="informacion-recibo">
 
+
                         <span id="textoQuincena">
-                            QUINCENA 1
+
+                            QUINCENA 1 · AGOSTO 2026
+
                         </span>
 
+
                         <h3>
+
                             Recibo de pago
+
                         </h3>
 
+
                         <p>
+
                             Consulta el detalle de tu
                             recibo correspondiente al
                             período seleccionado.
+
                         </p>
+
 
                     </div>
 
@@ -306,7 +394,9 @@
                         class="ver-recibo"
                         type="button"
                     >
+
                         👁️ Ver recibo
+
                     </button>
 
 
@@ -335,15 +425,23 @@
 
                 <div>
 
+
                     <span class="etiqueta">
+
                         RECIBO DE PAGO
+
                     </span>
 
+
                     <h2 id="visorTitulo">
+
                         Recibo
+
                     </h2>
 
+
                 </div>
+
 
 
                 <div class="acciones-visor">
@@ -354,7 +452,9 @@
                         class="boton-secundario"
                         type="button"
                     >
+
                         📥 Guardar recibo
+
                     </button>
 
 
@@ -363,7 +463,9 @@
                         class="boton-secundario"
                         type="button"
                     >
+
                         ← Cerrar
+
                     </button>
 
 
@@ -373,15 +475,18 @@
             </div>
 
 
-            <!-- AQUÍ SE MOSTRARÁ LA PÁGINA DEL PDF -->
+
+            <!-- VISOR PDF -->
 
             <div class="visor-pdf">
+
 
                 <div class="visor-mensaje">
 
                     Selecciona tu recibo para visualizarlo.
 
                 </div>
+
 
             </div>
 
@@ -391,29 +496,38 @@
 
 
         <!-- ==================================================
-             AVISO DE CONFIDENCIALIDAD
+             AVISO
         =================================================== -->
 
         <section class="aviso">
 
 
             <div class="aviso-icono">
+
                 🔐
+
             </div>
 
 
             <div>
 
+
                 <h3>
+
                     Tu información es confidencial
+
                 </h3>
 
+
                 <p>
+
                     Los recibos de pago contienen
                     información personal. Consulta
                     únicamente tu propio recibo y no
                     compartas tu código de empleado.
+
                 </p>
+
 
             </div>
 
@@ -434,7 +548,9 @@
         RRHH · Agroindustrias Cayo Blanco · COA
 
         <span>
+
             Versión 2
+
         </span>
 
     </footer>
@@ -442,10 +558,11 @@
 
 
     <!-- ==================================================
-         SCRIPT PRINCIPAL
+         SCRIPT
     =================================================== -->
 
-    <script src="script.js?v=1"></script>
+    <script src="script.js?v=2"></script>
+
 
 </body>
 

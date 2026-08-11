@@ -2,34 +2,24 @@
 <html lang="es">
 
 <head>
-
     <meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
     <title>
         Recibos de Pago | Agroindustrias Cayo Blanco
     </title>
 
     <!-- PDF.JS -->
-    <script
-        src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js">
-    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 
     <!-- ESTILOS -->
-    <link
-        rel="stylesheet"
-        href="style.css?v=6"
-    >
-
+    <link rel="stylesheet" href="style.css?v=1">
 </head>
 
 
 <body>
-
 
     <!-- ==================================================
          ENCABEZADO
@@ -57,19 +47,15 @@
 
         </div>
 
-
         <div class="confidencial-top">
-
             🔒 Información confidencial
-
         </div>
 
     </header>
 
 
-
     <!-- ==================================================
-         CONTENIDO
+         CONTENIDO PRINCIPAL
     =================================================== -->
 
     <main class="contenedor">
@@ -88,12 +74,10 @@
                     RECURSOS HUMANOS
                 </span>
 
-
                 <h2>
-                    Consulta tus
+                    Consulta tus<br>
                     recibos de pago
                 </h2>
-
 
                 <p>
                     Selecciona la quincena e ingresa
@@ -105,18 +89,15 @@
             </div>
 
 
-
             <div class="buscador">
 
 
-                <!-- QUINCENA -->
+                <!-- SELECCIÓN DE QUINCENA -->
 
                 <div class="selector-quincena">
 
                     <label class="titulo-selector">
-
                         Selecciona la quincena
-
                     </label>
 
 
@@ -159,16 +140,13 @@
                 </div>
 
 
-
-                <!-- CÓDIGO -->
+                <!-- CÓDIGO DE EMPLEADO -->
 
                 <label
                     for="codigo"
                     class="label-codigo"
                 >
-
                     Código de empleado
-
                 </label>
 
 
@@ -186,19 +164,15 @@
                         id="buscar"
                         type="button"
                     >
-
-                        🔎 Consultar recibo
-
+                        🔎 Consultar
                     </button>
 
                 </div>
 
 
                 <p class="ayuda">
-
                     Ingresa tu código tal como aparece
                     en tu documentación laboral.
-
                 </p>
 
 
@@ -221,8 +195,6 @@
         >
 
 
-            <!-- DATOS DEL COLABORADOR -->
-
             <div class="empleado">
 
 
@@ -233,16 +205,13 @@
 
                 <div class="datos-empleado">
 
-
                     <span>
                         COLABORADOR ENCONTRADO
                     </span>
 
-
                     <h2 id="nombreEmpleado">
                         —
                     </h2>
-
 
                     <p>
 
@@ -254,7 +223,6 @@
 
                     </p>
 
-
                 </div>
 
 
@@ -263,9 +231,7 @@
                     class="boton-secundario"
                     type="button"
                 >
-
                     ↻ Nueva consulta
-
                 </button>
 
 
@@ -286,7 +252,6 @@
                         DOCUMENTO DISPONIBLE
                     </span>
 
-
                     <h2>
                         Tu recibo de pago
                     </h2>
@@ -298,9 +263,7 @@
                     id="periodoSeleccionado"
                     class="periodo"
                 >
-
                     QUINCENA 1
-
                 </span>
 
 
@@ -321,23 +284,19 @@
 
                     <div class="informacion-recibo">
 
-
                         <span id="textoQuincena">
                             QUINCENA 1
                         </span>
 
-
                         <h3>
                             Recibo de pago
                         </h3>
-
 
                         <p>
                             Consulta el detalle de tu
                             recibo correspondiente al
                             período seleccionado.
                         </p>
-
 
                     </div>
 
@@ -347,9 +306,7 @@
                         class="ver-recibo"
                         type="button"
                     >
-
                         👁️ Ver recibo
-
                     </button>
 
 
@@ -382,7 +339,6 @@
                         RECIBO DE PAGO
                     </span>
 
-
                     <h2 id="visorTitulo">
                         Recibo
                     </h2>
@@ -390,13 +346,7 @@
                 </div>
 
 
-                <div
-                    style="
-                        display:flex;
-                        gap:10px;
-                        flex-wrap:wrap;
-                    "
-                >
+                <div class="acciones-visor">
 
 
                     <button
@@ -404,9 +354,7 @@
                         class="boton-secundario"
                         type="button"
                     >
-
                         📥 Guardar recibo
-
                     </button>
 
 
@@ -415,9 +363,7 @@
                         class="boton-secundario"
                         type="button"
                     >
-
                         ← Cerrar
-
                     </button>
 
 
@@ -427,24 +373,15 @@
             </div>
 
 
-
-            <!-- VISOR PDF -->
+            <!-- AQUÍ SE MOSTRARÁ LA PÁGINA DEL PDF -->
 
             <div class="visor-pdf">
 
-
-                <div
-                    style="
-                        text-align:center;
-                        padding:50px;
-                        color:#08743b;
-                    "
-                >
+                <div class="visor-mensaje">
 
                     Selecciona tu recibo para visualizarlo.
 
                 </div>
-
 
             </div>
 
@@ -470,7 +407,6 @@
                 <h3>
                     Tu información es confidencial
                 </h3>
-
 
                 <p>
                     Los recibos de pago contienen
@@ -506,11 +442,10 @@
 
 
     <!-- ==================================================
-         SCRIPT
+         SCRIPT PRINCIPAL
     =================================================== -->
 
-    <script src="script.js?v=6"></script>
-
+    <script src="script.js?v=1"></script>
 
 </body>
 

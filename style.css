@@ -1,13 +1,7 @@
-/* =========================================================
+/* =====================================================
    COA - RECIBOS DE PAGO
-   DISEÑO PREMIUM RESPONSIVE
-   AGROINDUSTRIAS CAYO BLANCO
-   ========================================================= */
-
-
-/* =========================================================
-   VARIABLES
-   ========================================================= */
+   VERSIÓN 2 - DISEÑO RESPONSIVE
+   ===================================================== */
 
 :root {
 
@@ -15,50 +9,41 @@
         #087a3f;
 
     --verde-oscuro:
-        #045a2d;
-
-    --verde-profundo:
-        #033f21;
+        #005b30;
 
     --verde-claro:
-        #e8f6ee;
+        #eaf7f0;
 
     --verde-suave:
-        #f5faf7;
-
-    --verde-borde:
-        #cfe5d8;
+        #f4faf7;
 
     --texto:
         #12352a;
 
-    --texto-suave:
-        #60736b;
-
-    --gris:
-        #f3f7f5;
+    --texto-secundario:
+        #61736c;
 
     --blanco:
         #ffffff;
 
+    --gris-fondo:
+        #f3f7f5;
+
     --borde:
-        #dce8e1;
+        #dbe7e1;
 
     --rojo:
-        #c62828;
+        #d62828;
 
     --sombra:
-        0 12px 40px rgba(0, 55, 30, .08);
-
-    --sombra-fuerte:
-        0 18px 50px rgba(0, 55, 30, .13);
+        0 10px 35px rgba(0, 70, 40, 0.08);
 
 }
 
 
-/* =========================================================
+/* =====================================================
    RESET
-   ========================================================= */
+   ===================================================== */
 
 * {
 
@@ -93,11 +78,7 @@ body {
         sans-serif;
 
     background:
-        linear-gradient(
-            180deg,
-            #f2f7f4 0%,
-            #f7faf8 100%
-        );
+        var(--gris-fondo);
 
     color:
         var(--texto);
@@ -105,23 +86,17 @@ body {
 }
 
 
-/* =========================================================
+/* =====================================================
    ENCABEZADO
-   ========================================================= */
+   ===================================================== */
 
 .encabezado {
-
-    position:
-        relative;
 
     width:
         100%;
 
-    min-height:
-        82px;
-
     padding:
-        16px 6%;
+        18px 6%;
 
     display:
         flex;
@@ -135,54 +110,21 @@ body {
     gap:
         20px;
 
-    color:
-        white;
-
     background:
         linear-gradient(
             135deg,
-            var(--verde-profundo),
-            var(--verde-oscuro) 45%,
+            var(--verde-oscuro),
             var(--verde)
         );
 
+    color:
+        white;
+
     box-shadow:
-        0 4px 20px rgba(0, 55, 30, .15);
+        0 4px 18px rgba(0, 60, 30, .12);
 
 }
 
-
-/* pequeño detalle decorativo */
-
-.encabezado::after {
-
-    content:
-        "";
-
-    position:
-        absolute;
-
-    left:
-        0;
-
-    right:
-        0;
-
-    bottom:
-        0;
-
-    height:
-        3px;
-
-    background:
-        rgba(255,255,255,.16);
-
-}
-
-
-/* =========================================================
-   MARCA
-   ========================================================= */
 
 .marca {
 
@@ -193,10 +135,7 @@ body {
         center;
 
     gap:
-        15px;
-
-    min-width:
-        0;
+        14px;
 
 }
 
@@ -204,13 +143,10 @@ body {
 .logo {
 
     width:
-        58px;
+        56px;
 
     height:
-        58px;
-
-    flex:
-        0 0 58px;
+        56px;
 
     display:
         flex;
@@ -222,7 +158,7 @@ body {
         center;
 
     border-radius:
-        16px;
+        14px;
 
     background:
         white;
@@ -231,24 +167,13 @@ body {
         var(--verde);
 
     font-size:
-        20px;
+        19px;
 
     font-weight:
         900;
 
-    letter-spacing:
-        -.5px;
-
     box-shadow:
-        0 5px 18px rgba(0,0,0,.14);
-
-}
-
-
-.empresa {
-
-    min-width:
-        0;
+        0 4px 14px rgba(0,0,0,.12);
 
 }
 
@@ -256,13 +181,10 @@ body {
 .empresa h1 {
 
     font-size:
-        21px;
+        20px;
 
     line-height:
         1.2;
-
-    letter-spacing:
-        .25px;
 
 }
 
@@ -270,10 +192,10 @@ body {
 .empresa p {
 
     margin-top:
-        5px;
+        4px;
 
     font-size:
-        13px;
+        12px;
 
     opacity:
         .88;
@@ -283,17 +205,8 @@ body {
 
 .confidencial-top {
 
-    display:
-        flex;
-
-    align-items:
-        center;
-
-    gap:
-        7px;
-
     padding:
-        9px 13px;
+        8px 13px;
 
     border:
         1px solid rgba(255,255,255,.18);
@@ -305,151 +218,92 @@ body {
         rgba(255,255,255,.08);
 
     font-size:
-        12px;
-
-    white-space:
-        nowrap;
+        11px;
 
 }
 
 
-/* =========================================================
+/* =====================================================
    CONTENEDOR
-   ========================================================= */
+   ===================================================== */
 
 .contenedor {
 
     width:
-        min(1120px, 92%);
+        min(1100px, 92%);
 
     margin:
-        38px auto 50px;
+        35px auto 45px;
 
 }
 
 
-/* =========================================================
+/* =====================================================
    BIENVENIDA
-   ========================================================= */
+   ===================================================== */
 
 .bienvenida {
-
-    position:
-        relative;
-
-    overflow:
-        hidden;
 
     display:
         grid;
 
     grid-template-columns:
-        1.05fr .95fr;
+        1fr 1fr;
 
     align-items:
         center;
 
     gap:
-        48px;
+        40px;
 
     padding:
-        44px;
+        38px;
 
     background:
         var(--blanco);
 
     border:
-        1px solid rgba(207,229,216,.75);
+        1px solid var(--borde);
 
     border-radius:
-        28px;
+        24px;
 
     box-shadow:
-        var(--sombra-fuerte);
+        var(--sombra);
 
 }
 
 
-/* detalle verde lateral */
+.bienvenida-texto h2 {
 
-.bienvenida::before {
+    margin-bottom:
+        14px;
 
-    content:
-        "";
+    color:
+        var(--texto);
 
-    position:
-        absolute;
+    font-size:
+        clamp(32px, 4vw, 46px);
 
-    left:
-        0;
-
-    top:
-        0;
-
-    bottom:
-        0;
-
-    width:
-        5px;
-
-    background:
-        linear-gradient(
-            180deg,
-            var(--verde),
-            #0b9250
-        );
+    line-height:
+        1.08;
 
 }
 
 
-/* brillo decorativo */
+.bienvenida-texto p {
 
-.bienvenida::after {
+    max-width:
+        540px;
 
-    content:
-        "";
+    color:
+        var(--texto-secundario);
 
-    position:
-        absolute;
+    font-size:
+        14px;
 
-    width:
-        220px;
-
-    height:
-        220px;
-
-    right:
-        -100px;
-
-    top:
-        -100px;
-
-    border-radius:
-        50%;
-
-    background:
-        var(--verde-claro);
-
-    opacity:
-        .55;
-
-    pointer-events:
-        none;
-
-}
-
-
-/* =========================================================
-   TEXTO BIENVENIDA
-   ========================================================= */
-
-.bienvenida-texto {
-
-    position:
-        relative;
-
-    z-index:
-        1;
+    line-height:
+        1.7;
 
 }
 
@@ -457,19 +311,13 @@ body {
 .etiqueta {
 
     display:
-        inline-flex;
-
-    align-items:
-        center;
-
-    gap:
-        7px;
+        inline-block;
 
     margin-bottom:
-        13px;
+        12px;
 
     padding:
-        7px 11px;
+        6px 10px;
 
     border-radius:
         999px;
@@ -481,119 +329,42 @@ body {
         var(--verde);
 
     font-size:
-        11px;
+        10px;
 
     font-weight:
         900;
 
     letter-spacing:
-        1.4px;
+        1px;
 
 }
 
 
-.etiqueta::before {
-
-    content:
-        "";
-
-    width:
-        6px;
-
-    height:
-        6px;
-
-    border-radius:
-        50%;
-
-    background:
-        var(--verde);
-
-}
-
-
-.bienvenida-texto h2 {
-
-    max-width:
-        600px;
-
-    margin-bottom:
-        17px;
-
-    color:
-        var(--texto);
-
-    font-size:
-        clamp(35px, 4vw, 50px);
-
-    line-height:
-        1.04;
-
-    letter-spacing:
-        -1.4px;
-
-}
-
-
-.bienvenida-texto p {
-
-    max-width:
-        560px;
-
-    color:
-        var(--texto-suave);
-
-    font-size:
-        15px;
-
-    line-height:
-        1.7;
-
-}
-
-
-/* =========================================================
+/* =====================================================
    BUSCADOR
-   ========================================================= */
+   ===================================================== */
 
 .buscador {
 
-    position:
-        relative;
-
-    z-index:
-        2;
-
     padding:
-        28px;
+        25px;
 
     background:
-        linear-gradient(
-            145deg,
-            #f7fbf9,
-            #f0f8f3
-        );
+        var(--verde-suave);
 
     border:
-        1px solid var(--verde-borde);
+        1px solid var(--borde);
 
     border-radius:
-        22px;
-
-    box-shadow:
-        0 8px 25px rgba(0,60,30,.05);
+        18px;
 
 }
 
-
-/* =========================================================
-   SELECTOR DE QUINCENA
-   ========================================================= */
 
 .selector-quincena {
 
     margin-bottom:
-        22px;
+        20px;
 
 }
 
@@ -604,10 +375,7 @@ body {
         block;
 
     margin-bottom:
-        11px;
-
-    color:
-        var(--texto);
+        10px;
 
     font-size:
         13px;
@@ -627,14 +395,10 @@ body {
         1fr 1fr;
 
     gap:
-        10px;
+        9px;
 
 }
 
-
-/* =========================================================
-   OPCIÓN QUINCENA
-   ========================================================= */
 
 .opcion-quincena {
 
@@ -652,12 +416,6 @@ body {
     position:
         absolute;
 
-    width:
-        1px;
-
-    height:
-        1px;
-
     opacity:
         0;
 
@@ -667,10 +425,10 @@ body {
 .opcion-quincena span {
 
     min-height:
-        58px;
+        55px;
 
     padding:
-        10px 12px;
+        9px;
 
     display:
         flex;
@@ -684,9 +442,6 @@ body {
     justify-content:
         center;
 
-    gap:
-        3px;
-
     text-align:
         center;
 
@@ -694,7 +449,7 @@ body {
         2px solid var(--borde);
 
     border-radius:
-        14px;
+        12px;
 
     background:
         white;
@@ -703,27 +458,18 @@ body {
         var(--texto);
 
     font-size:
-        13px;
+        12px;
 
     font-weight:
         800;
 
-    line-height:
-        1.25;
-
     transition:
-        transform .18s ease,
-        border-color .18s ease,
-        background .18s ease,
-        box-shadow .18s ease;
+        .2s ease;
 
 }
 
 
 .opcion-quincena span:hover {
-
-    transform:
-        translateY(-1px);
 
     border-color:
         var(--verde);
@@ -737,27 +483,20 @@ body {
         var(--verde);
 
     background:
-        linear-gradient(
-            145deg,
-            var(--verde),
-            #09934c
-        );
+        var(--verde);
 
     color:
         white;
 
     box-shadow:
-        0 8px 20px rgba(8,122,63,.20);
-
-    transform:
-        translateY(-1px);
+        0 5px 15px rgba(8,122,63,.18);
 
 }
 
 
-/* =========================================================
+/* =====================================================
    CÓDIGO
-   ========================================================= */
+   ===================================================== */
 
 .label-codigo {
 
@@ -766,9 +505,6 @@ body {
 
     margin-bottom:
         8px;
-
-    color:
-        var(--texto);
 
     font-size:
         13px;
@@ -785,7 +521,7 @@ body {
         flex;
 
     gap:
-        10px;
+        9px;
 
 }
 
@@ -799,16 +535,16 @@ body {
         0;
 
     height:
-        54px;
+        52px;
 
     padding:
-        0 16px;
+        0 15px;
 
     border:
         2px solid var(--borde);
 
     border-radius:
-        13px;
+        12px;
 
     outline:
         none;
@@ -820,25 +556,7 @@ body {
         var(--texto);
 
     font-size:
-        16px;
-
-    font-weight:
-        600;
-
-    transition:
-        border-color .2s ease,
-        box-shadow .2s ease;
-
-}
-
-
-#codigo::placeholder {
-
-    color:
-        #9aa9a2;
-
-    font-weight:
-        400;
+        15px;
 
 }
 
@@ -849,7 +567,7 @@ body {
         var(--verde);
 
     box-shadow:
-        0 0 0 4px rgba(8,122,63,.09);
+        0 0 0 4px rgba(8,122,63,.08);
 
 }
 
@@ -857,29 +575,25 @@ body {
 #buscar {
 
     height:
-        54px;
+        52px;
 
     padding:
-        0 23px;
+        0 20px;
 
     border:
         none;
 
     border-radius:
-        13px;
+        12px;
 
     background:
-        linear-gradient(
-            135deg,
-            var(--verde),
-            #09934c
-        );
+        var(--verde);
 
     color:
         white;
 
     font-size:
-        14px;
+        13px;
 
     font-weight:
         900;
@@ -887,32 +601,19 @@ body {
     cursor:
         pointer;
 
-    box-shadow:
-        0 6px 16px rgba(8,122,63,.17);
-
     transition:
-        transform .18s ease,
-        box-shadow .18s ease,
-        background .18s ease;
+        .2s ease;
 
 }
 
 
 #buscar:hover {
 
+    background:
+        var(--verde-oscuro);
+
     transform:
         translateY(-1px);
-
-    box-shadow:
-        0 9px 22px rgba(8,122,63,.22);
-
-}
-
-
-#buscar:active {
-
-    transform:
-        translateY(0);
 
 }
 
@@ -925,25 +626,19 @@ body {
     cursor:
         wait;
 
-    transform:
-        none;
-
 }
 
 
 .ayuda {
 
     margin-top:
-        9px;
+        8px;
 
     color:
-        var(--texto-suave);
+        var(--texto-secundario);
 
     font-size:
         11px;
-
-    line-height:
-        1.5;
 
 }
 
@@ -951,13 +646,13 @@ body {
 #mensaje {
 
     min-height:
-        21px;
+        20px;
 
     margin-top:
-        12px;
+        10px;
 
     font-size:
-        13px;
+        12px;
 
     font-weight:
         800;
@@ -965,40 +660,44 @@ body {
 }
 
 
-/* =========================================================
-   RESULTADO
-   ========================================================= */
-
-.resultado {
-
-    margin-top:
-        28px;
-
-    padding:
-        28px;
-
-    background:
-        white;
-
-    border:
-        1px solid rgba(207,229,216,.75);
-
-    border-radius:
-        25px;
-
-    box-shadow:
-        var(--sombra-fuerte);
-
-    animation:
-        aparecer .35s ease;
-
-}
-
+/* =====================================================
+   OCULTO
+   ===================================================== */
 
 .oculto {
 
     display:
         none !important;
+
+}
+
+
+/* =====================================================
+   RESULTADO
+   ===================================================== */
+
+.resultado {
+
+    margin-top:
+        25px;
+
+    padding:
+        25px;
+
+    background:
+        white;
+
+    border:
+        1px solid var(--borde);
+
+    border-radius:
+        21px;
+
+    box-shadow:
+        var(--sombra);
+
+    animation:
+        aparecer .3s ease;
 
 }
 
@@ -1011,7 +710,7 @@ body {
             0;
 
         transform:
-            translateY(10px);
+            translateY(8px);
 
     }
 
@@ -1028,9 +727,9 @@ body {
 }
 
 
-/* =========================================================
-   INFORMACIÓN DEL EMPLEADO
-   ========================================================= */
+/* =====================================================
+   EMPLEADO
+   ===================================================== */
 
 .empleado {
 
@@ -1041,23 +740,19 @@ body {
         center;
 
     gap:
-        17px;
+        15px;
 
     padding:
-        21px;
+        18px;
 
     background:
-        linear-gradient(
-            135deg,
-            #f5fbf7,
-            #edf8f1
-        );
+        var(--verde-suave);
 
     border:
-        1px solid var(--verde-borde);
+        1px solid var(--borde);
 
     border-radius:
-        18px;
+        16px;
 
 }
 
@@ -1065,13 +760,13 @@ body {
 .avatar {
 
     width:
-        60px;
+        55px;
 
     height:
-        60px;
+        55px;
 
     flex:
-        0 0 60px;
+        0 0 55px;
 
     display:
         flex;
@@ -1082,11 +777,8 @@ body {
     justify-content:
         center;
 
-    border:
-        1px solid #c9e3d3;
-
     border-radius:
-        17px;
+        15px;
 
     background:
         white;
@@ -1095,10 +787,10 @@ body {
         var(--verde);
 
     font-size:
-        27px;
+        25px;
 
     box-shadow:
-        0 5px 15px rgba(0,60,30,.06);
+        0 4px 12px rgba(0,60,30,.06);
 
 }
 
@@ -1120,19 +812,19 @@ body {
         block;
 
     margin-bottom:
-        5px;
+        4px;
 
     color:
         var(--verde);
 
     font-size:
-        10px;
+        9px;
 
     font-weight:
         900;
 
     letter-spacing:
-        1.1px;
+        1px;
 
 }
 
@@ -1140,19 +832,13 @@ body {
 .datos-empleado h2 {
 
     margin-bottom:
-        5px;
-
-    color:
-        var(--texto);
+        4px;
 
     font-size:
-        21px;
+        20px;
 
     line-height:
         1.25;
-
-    overflow-wrap:
-        anywhere;
 
 }
 
@@ -1160,31 +846,31 @@ body {
 .datos-empleado p {
 
     color:
-        var(--texto-suave);
+        var(--texto-secundario);
 
     font-size:
-        13px;
+        12px;
 
 }
 
 
-/* =========================================================
+/* =====================================================
    BOTÓN SECUNDARIO
-   ========================================================= */
+   ===================================================== */
 
 .boton-secundario {
 
     min-height:
-        44px;
+        43px;
 
     padding:
-        0 17px;
+        0 15px;
 
     border:
         1px solid var(--borde);
 
     border-radius:
-        11px;
+        10px;
 
     background:
         white;
@@ -1193,16 +879,13 @@ body {
         var(--texto);
 
     font-size:
-        12px;
+        11px;
 
     font-weight:
         900;
 
     cursor:
         pointer;
-
-    transition:
-        .18s ease;
 
 }
 
@@ -1215,15 +898,12 @@ body {
     color:
         var(--verde);
 
-    background:
-        var(--verde-suave);
-
 }
 
 
-/* =========================================================
-   TÍTULO
-   ========================================================= */
+/* =====================================================
+   TÍTULO DE SECCIÓN
+   ===================================================== */
 
 .titulo-seccion {
 
@@ -1237,47 +917,26 @@ body {
         space-between;
 
     gap:
-        20px;
+        15px;
 
     margin:
-        32px 0 18px;
+        28px 0 15px;
 
 }
 
 
 .titulo-seccion h2 {
 
-    color:
-        var(--texto);
-
     font-size:
-        24px;
-
-    line-height:
-        1.2;
+        23px;
 
 }
 
 
 .periodo {
 
-    display:
-        inline-flex;
-
-    align-items:
-        center;
-
-    justify-content:
-        center;
-
-    min-height:
-        32px;
-
     padding:
-        7px 12px;
-
-    border:
-        1px solid var(--verde-borde);
+        7px 11px;
 
     border-radius:
         999px;
@@ -1289,20 +948,17 @@ body {
         var(--verde);
 
     font-size:
-        10px;
+        9px;
 
     font-weight:
         900;
 
-    white-space:
-        nowrap;
-
 }
 
 
-/* =========================================================
-   TARJETA RECIBO
-   ========================================================= */
+/* =====================================================
+   RECIBO
+   ===================================================== */
 
 .recibos {
 
@@ -1324,10 +980,10 @@ body {
         center;
 
     gap:
-        18px;
+        16px;
 
     padding:
-        21px;
+        19px;
 
     background:
         white;
@@ -1336,26 +992,7 @@ body {
         1px solid var(--borde);
 
     border-radius:
-        18px;
-
-    transition:
-        transform .18s ease,
-        box-shadow .18s ease,
-        border-color .18s ease;
-
-}
-
-
-.recibo:hover {
-
-    transform:
-        translateY(-2px);
-
-    border-color:
-        #b7d8c4;
-
-    box-shadow:
-        0 10px 28px rgba(0,60,30,.07);
+        16px;
 
 }
 
@@ -1363,13 +1000,13 @@ body {
 .icono-recibo {
 
     width:
-        56px;
+        53px;
 
     height:
-        56px;
+        53px;
 
     flex:
-        0 0 56px;
+        0 0 53px;
 
     display:
         flex;
@@ -1380,11 +1017,8 @@ body {
     justify-content:
         center;
 
-    border:
-        1px solid var(--verde-borde);
-
     border-radius:
-        15px;
+        14px;
 
     background:
         var(--verde-claro);
@@ -1393,7 +1027,7 @@ body {
         var(--verde);
 
     font-size:
-        25px;
+        23px;
 
 }
 
@@ -1402,9 +1036,6 @@ body {
 
     flex:
         1;
-
-    min-width:
-        0;
 
 }
 
@@ -1415,19 +1046,16 @@ body {
         block;
 
     margin-bottom:
-        4px;
+        3px;
 
     color:
         var(--verde);
 
     font-size:
-        10px;
+        9px;
 
     font-weight:
         900;
-
-    letter-spacing:
-        .7px;
 
 }
 
@@ -1437,11 +1065,8 @@ body {
     margin:
         3px 0;
 
-    color:
-        var(--texto);
-
     font-size:
-        18px;
+        17px;
 
 }
 
@@ -1449,10 +1074,10 @@ body {
 .informacion-recibo p {
 
     color:
-        var(--texto-suave);
+        var(--texto-secundario);
 
     font-size:
-        12px;
+        11px;
 
     line-height:
         1.5;
@@ -1463,29 +1088,25 @@ body {
 .ver-recibo {
 
     min-height:
-        47px;
+        45px;
 
     padding:
-        0 20px;
+        0 18px;
 
     border:
         none;
 
     border-radius:
-        11px;
+        10px;
 
     background:
-        linear-gradient(
-            135deg,
-            var(--verde),
-            #09934c
-        );
+        var(--verde);
 
     color:
         white;
 
     font-size:
-        13px;
+        12px;
 
     font-weight:
         900;
@@ -1493,52 +1114,40 @@ body {
     cursor:
         pointer;
 
-    box-shadow:
-        0 6px 15px rgba(8,122,63,.15);
-
-    transition:
-        .18s ease;
-
 }
 
 
 .ver-recibo:hover {
 
-    transform:
-        translateY(-1px);
-
-    box-shadow:
-        0 9px 20px rgba(8,122,63,.21);
+    background:
+        var(--verde-oscuro);
 
 }
 
 
-/* =========================================================
+/* =====================================================
    VISOR
-   ========================================================= */
+   ===================================================== */
 
 .visor {
 
     margin-top:
-        28px;
+        25px;
 
     padding:
-        25px;
+        23px;
 
     background:
         white;
 
     border:
-        1px solid rgba(207,229,216,.75);
+        1px solid var(--borde);
 
     border-radius:
-        25px;
+        21px;
 
     box-shadow:
-        var(--sombra-fuerte);
-
-    animation:
-        aparecer .35s ease;
+        var(--sombra);
 
 }
 
@@ -1555,21 +1164,18 @@ body {
         space-between;
 
     gap:
-        20px;
+        15px;
 
     margin-bottom:
-        20px;
+        18px;
 
 }
 
 
 .cabecera-visor h2 {
 
-    color:
-        var(--texto);
-
     font-size:
-        22px;
+        21px;
 
 }
 
@@ -1580,7 +1186,7 @@ body {
         100%;
 
     padding:
-        12px;
+        10px;
 
     overflow:
         hidden;
@@ -1589,17 +1195,17 @@ body {
         #edf2ef;
 
     border:
-        1px solid #dbe6df;
+        1px solid var(--borde);
 
     border-radius:
-        15px;
+        13px;
 
 }
 
 
-/* =========================================================
+/* =====================================================
    AVISO
-   ========================================================= */
+   ===================================================== */
 
 .aviso {
 
@@ -1610,40 +1216,33 @@ body {
         flex-start;
 
     gap:
-        14px;
+        12px;
 
     margin-top:
-        27px;
+        25px;
 
     padding:
-        20px 22px;
+        18px;
 
     background:
-        linear-gradient(
-            135deg,
-            #eef9f2,
-            #e7f5ec
-        );
+        var(--verde-claro);
 
     border:
-        1px solid var(--verde-borde);
+        1px solid var(--borde);
 
     border-left:
-        5px solid var(--verde);
+        4px solid var(--verde);
 
     border-radius:
-        16px;
+        14px;
 
 }
 
 
 .aviso-icono {
 
-    flex:
-        0 0 auto;
-
     font-size:
-        25px;
+        23px;
 
 }
 
@@ -1651,13 +1250,13 @@ body {
 .aviso h3 {
 
     margin-bottom:
-        6px;
+        5px;
 
     color:
         var(--verde-oscuro);
 
     font-size:
-        16px;
+        15px;
 
 }
 
@@ -1665,61 +1264,44 @@ body {
 .aviso p {
 
     color:
-        #4e675d;
-
-    font-size:
-        12px;
-
-    line-height:
-        1.65;
-
-}
-
-
-/* =========================================================
-   FOOTER
-   ========================================================= */
-
-footer {
-
-    padding:
-        24px 15px 30px;
-
-    color:
-        var(--texto-suave);
+        var(--texto-secundario);
 
     font-size:
         11px;
 
     line-height:
-        1.5;
+        1.6;
+
+}
+
+
+/* =====================================================
+   FOOTER
+   ===================================================== */
+
+footer {
+
+    padding:
+        22px 15px 28px;
+
+    color:
+        var(--texto-secundario);
+
+    font-size:
+        10px;
 
     text-align:
         center;
 
-}
-
-
-footer span {
-
-    display:
-        block;
-
-    margin-top:
-        5px;
-
-    color:
-        var(--verde);
-
-    font-weight:
-        800;
+    line-height:
+        1.5;
 
 }
 
 
-/* =========================================================
+/* =====================================================
    TABLET
-   ========================================================= */
+   ===================================================== */
 
 @media (
     max-width: 900px
@@ -1731,7 +1313,7 @@ footer span {
             94%;
 
         margin:
-            28px auto 45px;
+            27px auto 40px;
 
     }
 
@@ -1742,47 +1324,31 @@ footer span {
             1fr;
 
         gap:
-            28px;
+            25px;
 
         padding:
-            32px;
-
-    }
-
-
-    .bienvenida-texto h2 {
-
-        font-size:
-            39px;
+            30px;
 
     }
 
 }
 
 
-/* =========================================================
+/* =====================================================
    CELULAR
-   ========================================================= */
+   ===================================================== */
 
 @media (
     max-width: 600px
 ) {
 
-
-    /* -----------------------------------------------------
-       ENCABEZADO
-       ----------------------------------------------------- */
-
     .encabezado {
-
-        min-height:
-            72px;
 
         padding:
             13px 14px;
 
-        gap:
-            10px;
+        min-height:
+            70px;
 
     }
 
@@ -1790,19 +1356,13 @@ footer span {
     .logo {
 
         width:
-            47px;
+            46px;
 
         height:
-            47px;
-
-        flex:
-            0 0 47px;
-
-        border-radius:
-            13px;
+            46px;
 
         font-size:
-            17px;
+            16px;
 
     }
 
@@ -1810,7 +1370,7 @@ footer span {
     .marca {
 
         gap:
-            10px;
+            9px;
 
     }
 
@@ -1820,19 +1380,13 @@ footer span {
         font-size:
             14px;
 
-        line-height:
-            1.2;
-
     }
 
 
     .empresa p {
 
-        margin-top:
-            3px;
-
         font-size:
-            10px;
+            9px;
 
     }
 
@@ -1845,24 +1399,16 @@ footer span {
     }
 
 
-    /* -----------------------------------------------------
-       CONTENEDOR
-       ----------------------------------------------------- */
-
     .contenedor {
 
         width:
-            calc(100% - 20px);
+            calc(100% - 18px);
 
         margin:
-            14px auto 35px;
+            13px auto 30px;
 
     }
 
-
-    /* -----------------------------------------------------
-       BIENVENIDA
-       ----------------------------------------------------- */
 
     .bienvenida {
 
@@ -1870,18 +1416,10 @@ footer span {
             block;
 
         padding:
-            22px 16px 17px;
+            22px 15px 16px;
 
         border-radius:
-            21px;
-
-    }
-
-
-    .bienvenida::before {
-
-        width:
-            4px;
+            19px;
 
     }
 
@@ -1889,41 +1427,18 @@ footer span {
     .bienvenida-texto {
 
         margin-bottom:
-            19px;
-
-    }
-
-
-    .etiqueta {
-
-        margin-bottom:
-            10px;
-
-        padding:
-            6px 9px;
-
-        font-size:
-            9px;
-
-        letter-spacing:
-            1.1px;
+            18px;
 
     }
 
 
     .bienvenida-texto h2 {
 
-        margin-bottom:
-            12px;
-
         font-size:
-            31px;
+            30px;
 
-        line-height:
-            1.08;
-
-        letter-spacing:
-            -.7px;
+        margin-bottom:
+            10px;
 
     }
 
@@ -1931,47 +1446,34 @@ footer span {
     .bienvenida-texto p {
 
         font-size:
-            13px;
-
-        line-height:
-            1.6;
+            12px;
 
     }
 
 
-    /* -----------------------------------------------------
-       BUSCADOR
-       ----------------------------------------------------- */
+    .etiqueta {
+
+        font-size:
+            9px;
+
+    }
+
 
     .buscador {
 
         padding:
-            17px 13px;
+            16px 12px;
 
         border-radius:
-            17px;
-
-    }
-
-
-    .titulo-selector {
-
-        margin-bottom:
-            9px;
-
-        font-size:
-            13px;
+            16px;
 
     }
 
 
     .opciones-quincena {
 
-        grid-template-columns:
-            1fr 1fr;
-
         gap:
-            8px;
+            7px;
 
     }
 
@@ -1979,16 +1481,10 @@ footer span {
     .opcion-quincena span {
 
         min-height:
-            57px;
-
-        padding:
-            8px 7px;
-
-        border-radius:
-            12px;
+            55px;
 
         font-size:
-            12px;
+            11px;
 
     }
 
@@ -1999,7 +1495,7 @@ footer span {
             column;
 
         gap:
-            9px;
+            8px;
 
     }
 
@@ -2010,16 +1506,10 @@ footer span {
             100%;
 
         height:
-            56px;
-
-        padding:
-            0 16px;
-
-        border-radius:
-            13px;
+            55px;
 
         font-size:
-            17px;
+            16px;
 
     }
 
@@ -2030,53 +1520,24 @@ footer span {
             100%;
 
         height:
-            55px;
-
-        border-radius:
-            13px;
+            53px;
 
         font-size:
-            15px;
+            14px;
 
     }
 
-
-    .ayuda {
-
-        margin-top:
-            8px;
-
-        font-size:
-            11px;
-
-    }
-
-
-    #mensaje {
-
-        margin-top:
-            10px;
-
-        font-size:
-            12px;
-
-    }
-
-
-    /* -----------------------------------------------------
-       RESULTADO
-       ----------------------------------------------------- */
 
     .resultado {
 
         margin-top:
-            19px;
+            18px;
 
         padding:
-            15px;
+            14px;
 
         border-radius:
-            20px;
+            18px;
 
     }
 
@@ -2090,13 +1551,10 @@ footer span {
             auto 1fr;
 
         gap:
-            12px;
+            11px;
 
         padding:
-            15px;
-
-        border-radius:
-            15px;
+            14px;
 
     }
 
@@ -2104,16 +1562,10 @@ footer span {
     .avatar {
 
         width:
-            48px;
+            47px;
 
         height:
-            48px;
-
-        flex:
-            none;
-
-        border-radius:
-            13px;
+            47px;
 
         font-size:
             21px;
@@ -2124,10 +1576,7 @@ footer span {
     .datos-empleado h2 {
 
         font-size:
-            17px;
-
-        line-height:
-            1.25;
+            16px;
 
     }
 
@@ -2135,15 +1584,7 @@ footer span {
     .datos-empleado p {
 
         font-size:
-            11px;
-
-    }
-
-
-    .datos-empleado span {
-
-        font-size:
-            9px;
+            10px;
 
     }
 
@@ -2157,14 +1598,10 @@ footer span {
             100%;
 
         min-height:
-            46px;
+            45px;
 
     }
 
-
-    /* -----------------------------------------------------
-       TÍTULO
-       ----------------------------------------------------- */
 
     .titulo-seccion {
 
@@ -2175,10 +1612,10 @@ footer span {
             column;
 
         gap:
-            8px;
+            7px;
 
         margin:
-            24px 0 14px;
+            22px 0 13px;
 
     }
 
@@ -2186,28 +1623,10 @@ footer span {
     .titulo-seccion h2 {
 
         font-size:
-            21px;
+            20px;
 
     }
 
-
-    .periodo {
-
-        min-height:
-            29px;
-
-        padding:
-            6px 10px;
-
-        font-size:
-            9px;
-
-    }
-
-
-    /* -----------------------------------------------------
-       RECIBO
-       ----------------------------------------------------- */
 
     .recibo {
 
@@ -2218,12 +1637,9 @@ footer span {
             auto 1fr;
 
         gap:
-            12px;
+            11px;
 
         padding:
-            16px;
-
-        border-radius:
             15px;
 
     }
@@ -2232,27 +1648,13 @@ footer span {
     .icono-recibo {
 
         width:
-            48px;
+            47px;
 
         height:
-            48px;
-
-        flex:
-            none;
-
-        border-radius:
-            13px;
+            47px;
 
         font-size:
-            21px;
-
-    }
-
-
-    .informacion-recibo span {
-
-        font-size:
-            9px;
+            20px;
 
     }
 
@@ -2260,7 +1662,7 @@ footer span {
     .informacion-recibo h3 {
 
         font-size:
-            16px;
+            15px;
 
     }
 
@@ -2268,7 +1670,7 @@ footer span {
     .informacion-recibo p {
 
         font-size:
-            11px;
+            10px;
 
     }
 
@@ -2282,28 +1684,21 @@ footer span {
             100%;
 
         min-height:
-            50px;
+            48px;
 
         font-size:
-            14px;
+            13px;
 
     }
 
 
-    /* -----------------------------------------------------
-       VISOR
-       ----------------------------------------------------- */
-
     .visor {
 
-        margin-top:
-            20px;
-
         padding:
-            14px;
+            13px;
 
         border-radius:
-            20px;
+            18px;
 
     }
 
@@ -2315,9 +1710,6 @@ footer span {
 
         align-items:
             stretch;
-
-        gap:
-            12px;
 
     }
 
@@ -2339,7 +1731,7 @@ footer span {
             flex;
 
         gap:
-            8px;
+            7px;
 
     }
 
@@ -2350,7 +1742,7 @@ footer span {
             1;
 
         min-height:
-            46px;
+            45px;
 
     }
 
@@ -2360,37 +1752,16 @@ footer span {
         padding:
             4px;
 
-        border-radius:
-            10px;
-
     }
 
-
-    /* -----------------------------------------------------
-       AVISO
-       ----------------------------------------------------- */
 
     .aviso {
 
-        margin-top:
-            20px;
-
         padding:
-            16px;
+            15px;
 
         gap:
-            10px;
-
-        border-radius:
-            14px;
-
-    }
-
-
-    .aviso-icono {
-
-        font-size:
-            21px;
+            9px;
 
     }
 
@@ -2406,24 +1777,6 @@ footer span {
     .aviso p {
 
         font-size:
-            11px;
-
-        line-height:
-            1.55;
-
-    }
-
-
-    /* -----------------------------------------------------
-       FOOTER
-       ----------------------------------------------------- */
-
-    footer {
-
-        padding:
-            20px 10px;
-
-        font-size:
             10px;
 
     }
@@ -2431,14 +1784,13 @@ footer span {
 }
 
 
-/* =========================================================
-   TELÉFONOS MUY PEQUEÑOS
-   ========================================================= */
+/* =====================================================
+   TELÉFONOS PEQUEÑOS
+   ===================================================== */
 
 @media (
     max-width: 380px
 ) {
-
 
     .empresa h1 {
 
@@ -2451,7 +1803,7 @@ footer span {
     .empresa p {
 
         font-size:
-            9px;
+            8px;
 
     }
 
@@ -2459,7 +1811,7 @@ footer span {
     .bienvenida {
 
         padding:
-            20px 13px 15px;
+            19px 12px 14px;
 
     }
 
@@ -2467,15 +1819,7 @@ footer span {
     .bienvenida-texto h2 {
 
         font-size:
-            28px;
-
-    }
-
-
-    .buscador {
-
-        padding:
-            15px 11px;
+            27px;
 
     }
 
@@ -2491,23 +1835,7 @@ footer span {
     .opcion-quincena span {
 
         min-height:
-            53px;
-
-    }
-
-
-    .resultado {
-
-        padding:
-            13px;
-
-    }
-
-
-    .visor {
-
-        padding:
-            11px;
+            50px;
 
     }
 

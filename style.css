@@ -5524,3 +5524,391 @@ body.centro-modal-abierto {
         font-size: 11px;
     }
 }
+/* =========================================================
+   CONTACTOS DE RECURSOS HUMANOS
+========================================================= */
+
+.centro-contacto {
+
+    margin-top: 20px;
+
+    padding: 18px;
+
+    background: rgba(248, 251, 249, 0.95);
+
+    border: 1px solid #dce9e2;
+
+    border-radius: 18px;
+
+}
+
+
+/* =========================================================
+   ENCABEZADO
+========================================================= */
+
+.contacto-cabecera {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    margin-bottom: 16px;
+
+}
+
+
+.contacto-icono {
+
+    width: 44px;
+
+    height: 44px;
+
+    flex: 0 0 44px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 13px;
+
+    background: var(--yellow-soft);
+
+    font-size: 20px;
+
+}
+
+
+.contacto-cabecera strong {
+
+    display: block;
+
+    margin-bottom: 4px;
+
+    color: var(--navy);
+
+    font-size: 13px;
+
+    font-weight: 900;
+
+}
+
+
+.contacto-cabecera p {
+
+    margin: 0;
+
+    color: var(--text-soft);
+
+    font-size: 10px;
+
+    line-height: 1.5;
+
+}
+
+
+/* =========================================================
+   LISTA DE TELÉFONOS
+========================================================= */
+
+.contacto-telefonos {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+
+}
+
+
+/* =========================================================
+   TARJETA DEL TELÉFONO
+========================================================= */
+
+.contacto-telefono {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 11px;
+
+    width: 100%;
+
+    min-height: 52px;
+
+    padding: 8px 9px;
+
+    box-sizing: border-box;
+
+    background: #ffffff;
+
+    border: 1px solid #e1ebe6;
+
+    border-radius: 12px;
+
+    color: var(--green-dark);
+
+    text-decoration: none;
+
+    box-shadow: 0 2px 5px rgba(14, 45, 58, .03);
+
+    transition:
+        transform .2s ease,
+        box-shadow .2s ease,
+        border-color .2s ease;
+
+}
+
+
+/* =========================================================
+   EFECTO AL PASAR EL MOUSE
+========================================================= */
+
+.contacto-telefono:hover {
+
+    transform: translateY(-2px);
+
+    border-color: var(--green);
+
+    box-shadow:
+        0 7px 18px rgba(14, 45, 58, .09);
+
+}
+
+
+/* =========================================================
+   ICONO DEL TELÉFONO
+========================================================= */
+
+.telefono-icono {
+
+    width: 35px;
+
+    height: 35px;
+
+    flex: 0 0 35px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 10px;
+
+    background: var(--green-soft);
+
+    color: var(--green-dark);
+
+    font-size: 15px;
+
+}
+
+
+/* =========================================================
+   NÚMERO
+========================================================= */
+
+.telefono-numero {
+
+    flex: 1;
+
+    color: var(--navy);
+
+    font-size: 12px;
+
+    font-weight: 800;
+
+    letter-spacing: .2px;
+
+}
+
+
+/* =========================================================
+   BOTÓN LLAMAR
+========================================================= */
+
+.telefono-llamar {
+
+    width: 35px;
+
+    height: 35px;
+
+    flex: 0 0 35px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 10px;
+
+    background: var(--green);
+
+    color: #ffffff;
+
+    font-size: 15px;
+
+    box-shadow:
+        0 3px 8px rgba(0, 120, 70, .16);
+
+}
+
+
+/* =========================================================
+   NOTA INFERIOR
+========================================================= */
+
+.contacto-nota {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    margin-top: 14px;
+
+    padding: 11px 12px;
+
+    border-radius: 11px;
+
+    background: #edf7f1;
+
+    border: 1px solid #dceee4;
+
+}
+
+
+.contacto-nota > span {
+
+    width: 28px;
+
+    height: 28px;
+
+    flex: 0 0 28px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: var(--green);
+
+    color: #ffffff;
+
+    font-size: 14px;
+
+    font-weight: 900;
+
+}
+
+
+.contacto-nota p {
+
+    margin: 0;
+
+    color: var(--green-dark);
+
+    font-size: 10px;
+
+    line-height: 1.45;
+
+}
+
+
+/* =========================================================
+   CELULAR
+========================================================= */
+
+@media (max-width: 700px) {
+
+    .centro-contacto {
+
+        padding: 15px;
+
+        border-radius: 16px;
+
+    }
+
+
+    .contacto-cabecera {
+
+        gap: 10px;
+
+    }
+
+
+    .contacto-icono {
+
+        width: 40px;
+
+        height: 40px;
+
+        flex-basis: 40px;
+
+        font-size: 18px;
+
+    }
+
+
+    .contacto-cabecera strong {
+
+        font-size: 12px;
+
+    }
+
+
+    .contacto-cabecera p {
+
+        font-size: 9.5px;
+
+    }
+
+
+    .contacto-telefono {
+
+        min-height: 49px;
+
+    }
+
+
+    .telefono-icono {
+
+        width: 33px;
+
+        height: 33px;
+
+        flex-basis: 33px;
+
+    }
+
+
+    .telefono-numero {
+
+        font-size: 11px;
+
+    }
+
+
+    .telefono-llamar {
+
+        width: 33px;
+
+        height: 33px;
+
+        flex-basis: 33px;
+
+    }
+
+}

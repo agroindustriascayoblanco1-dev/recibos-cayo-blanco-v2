@@ -1,1860 +1,1501 @@
-/* =====================================================
+/* =========================================================
    COA - RECIBOS DE PAGO
-   VERSIÓN 2 - DISEÑO RESPONSIVE
-   ===================================================== */
+   STYLE.CSS
+   VERSIÓN RESPONSIVE
+   ========================================================= */
 
 
-/* =====================================================
-   VARIABLES
-   ===================================================== */
-
-:root {
-
-    --verde:
-        #087a3f;
-
-    --verde-oscuro:
-        #005b30;
-
-    --verde-claro:
-        #eaf7f0;
-
-    --verde-suave:
-        #f4faf7;
-
-    --texto:
-        #12352a;
-
-    --texto-secundario:
-        #61736c;
-
-    --blanco:
-        #ffffff;
-
-    --gris-fondo:
-        #f3f7f5;
-
-    --borde:
-        #dbe7e1;
-
-    --rojo:
-        #d62828;
-
-    --sombra:
-        0 10px 35px rgba(0, 70, 40, 0.08);
-
-}
-
-
-/* =====================================================
+/* =========================================================
    RESET
-   ===================================================== */
+   ========================================================= */
 
 * {
-
-    box-sizing:
-        border-box;
-
-    margin:
-        0;
-
-    padding:
-        0;
-
+    box-sizing: border-box;
 }
 
 
 html {
-
-    scroll-behavior:
-        smooth;
-
+    scroll-behavior: smooth;
 }
 
 
 body {
-
-    font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
-
-    background:
-        var(--gris-fondo);
-
-    color:
-        var(--texto);
-
-    min-height:
-        100vh;
-
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f4f7f5;
+    color: #1f2933;
 }
 
 
-/* =====================================================
+/* =========================================================
    ENCABEZADO
-   ===================================================== */
+   ========================================================= */
 
 .encabezado {
+    width: 100%;
+    min-height: 82px;
 
-    width:
-        100%;
+    background: #08743b;
+    color: white;
 
-    background:
-        linear-gradient(
-            135deg,
-            var(--verde-oscuro),
-            var(--verde)
-        );
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
-    color:
-        white;
+    padding: 16px 6%;
 
-    padding:
-        18px 6%;
-
-    display:
-        flex;
-
-    align-items:
-        center;
-
-    justify-content:
-        space-between;
-
-    gap:
-        20px;
-
+    gap: 20px;
 }
 
 
 .marca {
-
-    display:
-        flex;
-
-    align-items:
-        center;
-
-    gap:
-        15px;
-
+    display: flex;
+    align-items: center;
+    gap: 14px;
 }
 
 
 .logo {
+    width: 52px;
+    height: 52px;
 
-    width:
-        58px;
+    border-radius: 12px;
 
-    height:
-        58px;
+    background: white;
+    color: #08743b;
 
-    border-radius:
-        16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    background:
-        white;
-
-    color:
-        var(--verde);
-
-    display:
-        flex;
-
-    align-items:
-        center;
-
-    justify-content:
-        center;
-
-    font-size:
-        21px;
-
-    font-weight:
-        900;
-
-    box-shadow:
-        0 5px 15px rgba(0,0,0,0.12);
-
+    font-size: 20px;
+    font-weight: bold;
 }
 
 
 .empresa h1 {
+    margin: 0;
 
-    font-size:
-        22px;
-
-    line-height:
-        1.2;
-
-    letter-spacing:
-        .3px;
-
+    font-size: 18px;
+    line-height: 1.2;
 }
 
 
 .empresa p {
+    margin: 4px 0 0;
 
-    margin-top:
-        4px;
+    font-size: 13px;
 
-    font-size:
-        14px;
-
-    opacity:
-        .9;
-
+    opacity: 0.9;
 }
 
 
 .confidencial-top {
+    font-size: 13px;
+    opacity: 0.95;
 
-    font-size:
-        13px;
-
-    white-space:
-        nowrap;
-
-    opacity:
-        .95;
-
+    white-space: nowrap;
 }
 
 
-/* =====================================================
+/* =========================================================
    CONTENEDOR
-   ===================================================== */
+   ========================================================= */
 
 .contenedor {
+    width: 100%;
+    max-width: 1180px;
 
-    width:
-        min(1100px, 92%);
+    margin: 0 auto;
 
-    margin:
-        42px auto;
-
+    padding: 42px 24px 60px;
 }
 
 
-/* =====================================================
-   BIENVENIDA / BUSCADOR
-   ===================================================== */
+/* =========================================================
+   BIENVENIDA
+   ========================================================= */
 
 .bienvenida {
+    background: white;
 
-    background:
-        var(--blanco);
+    border-radius: 22px;
 
-    border-radius:
-        25px;
+    padding: 40px;
 
-    padding:
-        42px;
-
-    box-shadow:
-        var(--sombra);
-
-    display:
-        grid;
+    display: grid;
 
     grid-template-columns:
-        1.15fr .85fr;
+        minmax(0, 0.9fr)
+        minmax(0, 1.1fr);
 
-    gap:
-        45px;
+    gap: 45px;
 
-    align-items:
-        center;
-
+    box-shadow:
+        0 10px 35px rgba(0, 0, 0, 0.07);
 }
 
 
 .bienvenida-texto {
-
-    padding:
-        5px;
-
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 
 .etiqueta {
+    display: inline-block;
 
-    display:
-        inline-block;
+    color: #08743b;
 
-    color:
-        var(--verde);
+    font-size: 12px;
 
-    font-size:
-        13px;
+    font-weight: bold;
 
-    font-weight:
-        800;
+    letter-spacing: 0.8px;
 
-    letter-spacing:
-        1.5px;
-
-    margin-bottom:
-        12px;
-
+    margin-bottom: 8px;
 }
 
 
 .bienvenida-texto h2 {
+    margin: 0 0 16px;
 
-    font-size:
-        clamp(34px, 4vw, 48px);
+    font-size: 42px;
 
-    line-height:
-        1.05;
+    line-height: 1.08;
 
-    color:
-        var(--texto);
-
-    margin-bottom:
-        18px;
-
+    color: #17352a;
 }
 
 
 .bienvenida-texto p {
+    margin: 0;
 
-    color:
-        var(--texto-secundario);
+    max-width: 520px;
 
-    font-size:
-        16px;
+    font-size: 16px;
 
-    line-height:
-        1.7;
+    line-height: 1.65;
 
-    max-width:
-        580px;
-
+    color: #667085;
 }
 
 
-/* =====================================================
+/* =========================================================
    BUSCADOR
-   ===================================================== */
+   ========================================================= */
 
 .buscador {
+    width: 100%;
 
-    background:
-        var(--verde-suave);
+    background: #f8faf9;
 
-    border:
-        1px solid var(--borde);
+    border-radius: 18px;
 
-    border-radius:
-        22px;
+    padding: 28px;
 
-    padding:
-        28px;
-
+    border: 1px solid #e4ebe7;
 }
 
 
-/* =====================================================
+/* =========================================================
    SELECTOR DE QUINCENA
-   ===================================================== */
+   ========================================================= */
 
 .selector-quincena {
+    width: 100%;
 
-    margin-bottom:
-        22px;
-
+    margin-bottom: 24px;
 }
 
 
 .titulo-selector {
+    display: block;
 
-    display:
-        block;
+    margin-bottom: 12px;
 
-    font-size:
-        14px;
+    font-size: 15px;
 
-    font-weight:
-        800;
+    font-weight: bold;
 
-    margin-bottom:
-        10px;
-
+    color: #344054;
 }
 
 
 .opciones-quincena {
+    display: grid;
 
-    display:
-        grid;
+    grid-template-columns: 1fr 1fr;
 
-    grid-template-columns:
-        1fr 1fr;
-
-    gap:
-        10px;
-
+    gap: 12px;
 }
 
 
 .opcion-quincena {
+    min-height: 68px;
 
-    cursor:
-        pointer;
+    padding: 12px 14px;
 
+    border: 1px solid #dce5df;
+
+    border-radius: 12px;
+
+    background: white;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    cursor: pointer;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+
+.opcion-quincena:hover {
+    border-color: #08743b;
+
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
 
 .opcion-quincena input {
+    width: 18px;
+    height: 18px;
 
-    position:
-        absolute;
+    accent-color: #08743b;
 
-    opacity:
-        0;
-
+    flex-shrink: 0;
 }
 
 
 .opcion-quincena span {
+    display: flex;
 
-    display:
-        flex;
+    flex-direction: column;
 
-    align-items:
-        center;
+    gap: 3px;
 
-    justify-content:
-        center;
+    font-size: 15px;
 
-    min-height:
-        48px;
-
-    border:
-        2px solid var(--borde);
-
-    border-radius:
-        12px;
-
-    background:
-        white;
-
-    color:
-        var(--texto);
-
-    font-size:
-        14px;
-
-    font-weight:
-        700;
-
-    transition:
-        .2s ease;
-
+    color: #344054;
 }
 
 
-.opcion-quincena input:checked + span {
-
-    background:
-        var(--verde);
-
-    border-color:
-        var(--verde);
-
-    color:
-        white;
-
-    box-shadow:
-        0 5px 15px rgba(8,122,63,.18);
-
+.opcion-quincena strong {
+    font-size: 15px;
 }
 
 
-.opcion-quincena span:hover {
+.opcion-quincena small {
+    color: #667085;
 
-    border-color:
-        var(--verde);
-
+    font-size: 12px;
 }
 
 
-/* =====================================================
+/* =========================================================
    CÓDIGO
-   ===================================================== */
+   ========================================================= */
 
 .label-codigo {
+    display: block;
 
-    display:
-        block;
+    margin-bottom: 8px;
 
-    font-size:
-        14px;
+    font-size: 15px;
 
-    font-weight:
-        800;
+    font-weight: bold;
 
-    margin-bottom:
-        8px;
-
+    color: #344054;
 }
 
 
 .fila-busqueda {
+    width: 100%;
 
-    display:
-        flex;
+    display: flex;
 
-    gap:
-        10px;
+    align-items: stretch;
 
+    gap: 10px;
 }
 
 
-#codigo {
+.fila-busqueda input {
+    flex: 1;
 
-    flex:
-        1;
+    min-width: 0;
 
-    min-width:
-        0;
+    height: 50px;
 
-    height:
-        52px;
+    padding: 0 15px;
 
-    padding:
-        0 15px;
+    border: 1px solid #ccd7d1;
 
-    border:
-        2px solid var(--borde);
+    border-radius: 10px;
 
-    border-radius:
-        12px;
+    background: white;
 
-    background:
-        white;
+    color: #1f2933;
 
-    color:
-        var(--texto);
+    font-size: 15px;
 
-    font-size:
-        15px;
-
-    outline:
-        none;
+    outline: none;
 
     transition:
-        .2s;
-
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
 }
 
 
-#codigo:focus {
-
-    border-color:
-        var(--verde);
+.fila-busqueda input:focus {
+    border-color: #08743b;
 
     box-shadow:
-        0 0 0 4px rgba(8,122,63,.08);
-
+        0 0 0 3px rgba(8, 116, 59, 0.12);
 }
 
 
-#buscar {
+.fila-busqueda button {
+    min-width: 165px;
 
-    height:
-        52px;
+    height: 50px;
 
-    padding:
-        0 24px;
+    border: none;
 
-    border:
-        none;
+    border-radius: 10px;
 
-    border-radius:
-        12px;
+    background: #08743b;
 
-    background:
-        var(--verde);
+    color: white;
 
-    color:
-        white;
+    font-size: 15px;
 
-    font-size:
-        15px;
+    font-weight: bold;
 
-    font-weight:
-        800;
+    cursor: pointer;
 
-    cursor:
-        pointer;
+    padding: 0 18px;
 
     transition:
-        .2s;
-
+        background 0.2s ease,
+        transform 0.1s ease;
 }
 
 
-#buscar:hover {
-
-    background:
-        var(--verde-oscuro);
-
-    transform:
-        translateY(-1px);
-
+.fila-busqueda button:hover {
+    background: #075f31;
 }
 
 
-#buscar:disabled {
+.fila-busqueda button:active {
+    transform: scale(0.98);
+}
 
-    opacity:
-        .65;
 
-    cursor:
-        wait;
+.fila-busqueda button:disabled {
+    opacity: 0.7;
 
+    cursor: wait;
 }
 
 
 .ayuda {
+    margin: 10px 0 0;
 
-    color:
-        var(--texto-secundario);
+    color: #667085;
 
-    font-size:
-        12px;
+    font-size: 12px;
 
-    margin-top:
-        10px;
-
-    line-height:
-        1.5;
-
+    line-height: 1.5;
 }
 
 
 #mensaje {
+    min-height: 22px;
 
-    min-height:
-        22px;
+    margin-top: 10px;
 
-    margin-top:
-        13px;
+    font-size: 14px;
 
-    font-size:
-        14px;
-
-    font-weight:
-        700;
-
+    font-weight: 600;
 }
 
 
-/* =====================================================
-   RESULTADO DEL EMPLEADO
-   ===================================================== */
+/* =========================================================
+   RESULTADO
+   ========================================================= */
 
 .resultado {
+    margin-top: 30px;
 
-    margin-top:
-        28px;
+    background: white;
 
-    background:
-        white;
+    border-radius: 22px;
 
-    border-radius:
-        25px;
-
-    padding:
-        30px;
+    padding: 32px;
 
     box-shadow:
-        var(--sombra);
-
+        0 10px 35px rgba(0, 0, 0, 0.07);
 }
 
 
 .oculto {
-
-    display:
-        none !important;
-
+    display: none !important;
 }
 
 
-/* =====================================================
-   DATOS DEL EMPLEADO
-   ===================================================== */
+/* =========================================================
+   EMPLEADO
+   ========================================================= */
 
 .empleado {
+    display: flex;
 
-    display:
-        flex;
+    align-items: center;
 
-    align-items:
-        center;
+    gap: 16px;
 
-    gap:
-        16px;
+    padding-bottom: 28px;
 
-    padding:
-        20px;
-
-    border:
-        1px solid var(--borde);
-
-    border-radius:
-        18px;
-
-    background:
-        var(--verde-suave);
-
+    border-bottom: 1px solid #e8eeea;
 }
 
 
 .avatar {
+    width: 58px;
+    height: 58px;
 
-    width:
-        58px;
+    flex-shrink: 0;
 
-    height:
-        58px;
+    border-radius: 50%;
 
-    flex:
-        0 0 58px;
+    background: #e8f5ee;
 
-    border-radius:
-        16px;
+    display: flex;
 
-    background:
-        var(--verde-claro);
+    align-items: center;
+    justify-content: center;
 
-    display:
-        flex;
-
-    align-items:
-        center;
-
-    justify-content:
-        center;
-
-    font-size:
-        26px;
-
+    font-size: 25px;
 }
 
 
 .datos-empleado {
+    flex: 1;
 
-    flex:
-        1;
-
-    min-width:
-        0;
-
+    min-width: 0;
 }
 
 
-.datos-empleado span {
+.datos-empleado > span {
+    display: block;
 
-    display:
-        block;
+    color: #08743b;
 
-    font-size:
-        11px;
+    font-size: 11px;
 
-    font-weight:
-        800;
+    font-weight: bold;
 
-    color:
-        var(--verde);
+    letter-spacing: 0.5px;
 
-    letter-spacing:
-        1px;
-
-    margin-bottom:
-        5px;
-
+    margin-bottom: 5px;
 }
 
 
 .datos-empleado h2 {
+    margin: 0;
 
-    font-size:
-        20px;
+    font-size: 24px;
 
-    margin-bottom:
-        5px;
+    color: #17352a;
 
-    overflow-wrap:
-        anywhere;
-
+    word-break: break-word;
 }
 
 
 .datos-empleado p {
+    margin: 6px 0 0;
 
-    color:
-        var(--texto-secundario);
+    color: #667085;
 
-    font-size:
-        13px;
-
+    font-size: 14px;
 }
 
 
 .boton-secundario {
+    border: 1px solid #cfdad3;
 
-    min-height:
-        44px;
+    background: white;
 
-    padding:
-        0 17px;
+    color: #344054;
 
-    border:
-        1px solid var(--borde);
+    border-radius: 10px;
 
-    border-radius:
-        11px;
+    min-height: 44px;
 
-    background:
-        white;
+    padding: 10px 15px;
 
-    color:
-        var(--texto);
+    font-size: 14px;
 
-    font-size:
-        13px;
+    font-weight: 600;
 
-    font-weight:
-        800;
-
-    cursor:
-        pointer;
+    cursor: pointer;
 
     transition:
-        .2s;
-
+        background 0.2s ease,
+        border-color 0.2s ease;
 }
 
 
 .boton-secundario:hover {
+    background: #f4f8f5;
 
-    border-color:
-        var(--verde);
-
-    color:
-        var(--verde);
-
+    border-color: #08743b;
 }
 
 
-/* =====================================================
+/* =========================================================
    TÍTULO DE SECCIÓN
-   ===================================================== */
+   ========================================================= */
 
 .titulo-seccion {
+    display: flex;
 
-    display:
-        flex;
+    align-items: center;
 
-    align-items:
-        center;
+    justify-content: space-between;
 
-    justify-content:
-        space-between;
+    gap: 20px;
 
-    gap:
-        20px;
-
-    margin:
-        35px 0 20px;
-
+    margin: 30px 0 18px;
 }
 
 
 .titulo-seccion h2 {
+    margin: 0;
 
-    font-size:
-        24px;
+    color: #17352a;
 
+    font-size: 27px;
 }
 
 
 .periodo {
+    display: inline-flex;
 
-    display:
-        inline-flex;
+    align-items: center;
 
-    align-items:
-        center;
+    justify-content: center;
 
-    justify-content:
-        center;
+    padding: 8px 12px;
 
-    padding:
-        9px 13px;
+    border-radius: 999px;
 
-    border-radius:
-        20px;
+    background: #e8f5ee;
 
-    background:
-        var(--verde-claro);
+    color: #08743b;
 
-    color:
-        var(--verde);
+    font-size: 12px;
 
-    font-size:
-        11px;
+    font-weight: bold;
 
-    font-weight:
-        900;
-
+    text-align: center;
 }
 
 
-/* =====================================================
-   TARJETA DEL RECIBO
-   ===================================================== */
+/* =========================================================
+   RECIBO
+   ========================================================= */
 
 .recibos {
-
-    display:
-        grid;
-
-    grid-template-columns:
-        1fr;
-
+    width: 100%;
 }
 
 
 .recibo {
+    width: 100%;
 
-    border:
-        1px solid var(--borde);
+    display: flex;
 
-    border-radius:
-        18px;
+    align-items: center;
 
-    padding:
-        22px;
+    gap: 18px;
 
-    display:
-        flex;
+    padding: 20px;
 
-    align-items:
-        center;
+    border: 1px solid #e1e9e4;
 
-    gap:
-        18px;
+    border-radius: 15px;
 
-    background:
-        white;
-
-    transition:
-        .2s;
-
-}
-
-
-.recibo:hover {
-
-    border-color:
-        #b8d8c8;
-
-    box-shadow:
-        0 8px 25px rgba(0,70,40,.06);
-
+    background: #fbfdfc;
 }
 
 
 .icono-recibo {
+    width: 52px;
+    height: 52px;
 
-    width:
-        55px;
+    flex-shrink: 0;
 
-    height:
-        55px;
+    border-radius: 12px;
 
-    flex:
-        0 0 55px;
+    background: #e8f5ee;
 
-    border-radius:
-        15px;
+    display: flex;
 
-    background:
-        var(--verde-claro);
+    align-items: center;
+    justify-content: center;
 
-    display:
-        flex;
-
-    align-items:
-        center;
-
-    justify-content:
-        center;
-
-    font-size:
-        25px;
-
+    font-size: 24px;
 }
 
 
 .informacion-recibo {
+    flex: 1;
 
-    flex:
-        1;
-
+    min-width: 0;
 }
 
 
-.informacion-recibo span {
+.informacion-recibo > span {
+    display: block;
 
-    color:
-        var(--verde);
+    color: #08743b;
 
-    font-size:
-        11px;
+    font-size: 12px;
 
-    font-weight:
-        900;
+    font-weight: bold;
 
+    margin-bottom: 5px;
 }
 
 
 .informacion-recibo h3 {
+    margin: 0;
 
-    margin:
-        4px 0;
+    color: #17352a;
 
-    font-size:
-        18px;
-
+    font-size: 20px;
 }
 
 
 .informacion-recibo p {
+    margin: 6px 0 0;
 
-    color:
-        var(--texto-secundario);
+    color: #667085;
 
-    font-size:
-        13px;
+    font-size: 13px;
 
-    line-height:
-        1.5;
-
+    line-height: 1.5;
 }
 
 
 .ver-recibo {
+    min-height: 48px;
 
-    min-height:
-        46px;
+    border: none;
 
-    padding:
-        0 20px;
+    border-radius: 10px;
 
-    border:
-        none;
+    background: #08743b;
 
-    border-radius:
-        11px;
+    color: white;
 
-    background:
-        var(--verde);
+    padding: 10px 18px;
 
-    color:
-        white;
+    font-size: 14px;
 
-    font-weight:
-        800;
+    font-weight: bold;
 
-    cursor:
-        pointer;
+    cursor: pointer;
 
+    white-space: nowrap;
+
+    transition:
+        background 0.2s ease;
 }
 
 
 .ver-recibo:hover {
-
-    background:
-        var(--verde-oscuro);
-
+    background: #075f31;
 }
 
 
-/* =====================================================
+/* =========================================================
    VISOR
-   ===================================================== */
+   ========================================================= */
 
 .visor {
+    margin-top: 30px;
 
-    margin-top:
-        28px;
+    background: white;
 
-    background:
-        white;
+    border-radius: 22px;
 
-    border-radius:
-        25px;
-
-    padding:
-        25px;
+    padding: 30px;
 
     box-shadow:
-        var(--sombra);
-
+        0 10px 35px rgba(0, 0, 0, 0.07);
 }
 
 
 .cabecera-visor {
+    display: flex;
 
-    display:
-        flex;
+    align-items: center;
 
-    align-items:
-        center;
+    justify-content: space-between;
 
-    justify-content:
-        space-between;
+    gap: 20px;
 
-    gap:
-        20px;
-
-    margin-bottom:
-        20px;
-
+    margin-bottom: 20px;
 }
 
 
 .cabecera-visor h2 {
+    margin: 0;
 
-    font-size:
-        22px;
+    color: #17352a;
 
+    font-size: 27px;
+}
+
+
+.acciones-visor {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
 }
 
 
 .visor-pdf {
+    width: 100%;
 
-    width:
-        100%;
+    overflow: hidden;
 
-    overflow:
-        hidden;
+    border-radius: 14px;
 
-    border-radius:
-        15px;
+    background: #eef2ef;
 
-    background:
-        #eef2f0;
-
-    padding:
-        15px;
-
+    min-height: 200px;
 }
 
 
-/* =====================================================
+.visor-pdf canvas {
+    display: block;
+
+    max-width: 100%;
+
+    height: auto;
+}
+
+
+.visor-mensaje {
+    padding: 50px 20px;
+
+    text-align: center;
+
+    color: #08743b;
+
+    font-size: 16px;
+}
+
+
+/* =========================================================
    AVISO
-   ===================================================== */
+   ========================================================= */
 
 .aviso {
+    margin-top: 30px;
 
-    margin-top:
-        28px;
+    padding: 22px;
 
-    padding:
-        22px 25px;
+    background: #edf7f1;
 
-    background:
-        var(--verde-claro);
+    border: 1px solid #d6eadc;
 
-    border-left:
-        5px solid var(--verde);
+    border-radius: 16px;
 
-    border-radius:
-        16px;
+    display: flex;
 
-    display:
-        flex;
+    align-items: flex-start;
 
-    align-items:
-        flex-start;
-
-    gap:
-        16px;
-
+    gap: 15px;
 }
 
 
 .aviso-icono {
+    font-size: 25px;
 
-    font-size:
-        27px;
-
+    flex-shrink: 0;
 }
 
 
 .aviso h3 {
+    margin: 0 0 6px;
 
-    color:
-        var(--verde-oscuro);
+    color: #17352a;
 
-    font-size:
-        17px;
-
-    margin-bottom:
-        7px;
-
+    font-size: 17px;
 }
 
 
 .aviso p {
+    margin: 0;
 
-    color:
-        #49635a;
+    color: #667085;
 
-    font-size:
-        13px;
+    font-size: 13px;
 
-    line-height:
-        1.6;
-
+    line-height: 1.6;
 }
 
 
-/* =====================================================
+/* =========================================================
    FOOTER
-   ===================================================== */
+   ========================================================= */
 
 footer {
+    padding: 24px;
 
-    text-align:
-        center;
+    text-align: center;
 
-    padding:
-        25px;
+    color: #667085;
 
-    color:
-        var(--texto-secundario);
-
-    font-size:
-        12px;
-
+    font-size: 12px;
 }
 
 
 footer span {
+    display: block;
 
-    display:
-        block;
+    margin-top: 5px;
 
-    margin-top:
-        5px;
-
-    color:
-        var(--verde);
-
-    font-weight:
-        700;
-
+    color: #98a2b3;
 }
 
 
-/* =====================================================
+/* =========================================================
    TABLET
-   ===================================================== */
+   ========================================================= */
 
-@media (
-    max-width: 850px
-) {
+@media (max-width: 900px) {
+
+    .encabezado {
+        padding: 15px 4%;
+    }
+
 
     .contenedor {
-
-        width:
-            94%;
-
-        margin:
-            25px auto;
-
+        padding: 30px 18px 50px;
     }
 
 
     .bienvenida {
+        grid-template-columns: 1fr;
 
-        grid-template-columns:
-            1fr;
+        gap: 25px;
 
-        gap:
-            25px;
-
-        padding:
-            30px;
-
+        padding: 30px;
     }
 
 
     .bienvenida-texto h2 {
-
-        font-size:
-            38px;
-
+        font-size: 36px;
     }
 
 }
 
 
-/* =====================================================
-   CELULAR
-   ===================================================== */
+/* =========================================================
+   CELULARES
+   ========================================================= */
 
-@media (
-    max-width: 600px
-) {
+@media (max-width: 700px) {
 
 
-    /* ------------------------------
+    /* -----------------------------------------------
        ENCABEZADO
-    ------------------------------ */
+    ------------------------------------------------ */
 
     .encabezado {
+        min-height: auto;
 
-        padding:
-            15px;
+        padding: 15px;
 
-        gap:
-            10px;
+        flex-direction: column;
 
-    }
+        align-items: flex-start;
 
-
-    .logo {
-
-        width:
-            48px;
-
-        height:
-            48px;
-
-        border-radius:
-            13px;
-
-        font-size:
-            18px;
-
+        gap: 12px;
     }
 
 
     .marca {
+        width: 100%;
+    }
 
-        gap:
-            10px;
 
+    .logo {
+        width: 48px;
+        height: 48px;
+
+        font-size: 18px;
     }
 
 
     .empresa h1 {
-
-        font-size:
-            15px;
-
+        font-size: 16px;
     }
 
 
     .empresa p {
-
-        font-size:
-            11px;
-
+        font-size: 12px;
     }
 
 
     .confidencial-top {
-
-        display:
-            none;
-
+        font-size: 12px;
     }
 
 
-    /* ------------------------------
+
+    /* -----------------------------------------------
        CONTENEDOR
-    ------------------------------ */
+    ------------------------------------------------ */
 
     .contenedor {
+        width: 100%;
 
-        width:
-            calc(100% - 24px);
-
-        margin:
-            18px auto;
-
+        padding: 20px 12px 45px;
     }
 
 
-    /* ------------------------------
+
+    /* -----------------------------------------------
        BIENVENIDA
-    ------------------------------ */
+    ------------------------------------------------ */
 
     .bienvenida {
+        width: 100%;
 
-        padding:
-            22px;
+        display: block;
 
-        border-radius:
-            20px;
+        padding: 22px 16px;
 
-        gap:
-            20px;
+        border-radius: 18px;
+    }
 
+
+    .bienvenida-texto {
+        margin-bottom: 24px;
     }
 
 
     .bienvenida-texto h2 {
+        font-size: 30px;
 
-        font-size:
-            32px;
-
-        line-height:
-            1.08;
-
-        margin-bottom:
-            12px;
-
+        line-height: 1.15;
     }
 
 
     .bienvenida-texto p {
+        font-size: 14px;
 
-        font-size:
-            14px;
-
-        line-height:
-            1.6;
-
+        line-height: 1.6;
     }
 
 
-    /* ------------------------------
+
+    /* -----------------------------------------------
        BUSCADOR
-    ------------------------------ */
+    ------------------------------------------------ */
 
     .buscador {
+        width: 100%;
 
-        padding:
-            18px;
+        padding: 18px 14px;
 
-        border-radius:
-            17px;
+        border-radius: 15px;
+    }
 
+
+
+    /* -----------------------------------------------
+       QUINCENAS
+    ------------------------------------------------ */
+
+    .titulo-selector {
+        font-size: 15px;
+
+        margin-bottom: 10px;
     }
 
 
     .opciones-quincena {
+        display: flex;
 
-        gap:
-            8px;
+        flex-direction: column;
 
+        width: 100%;
+
+        gap: 10px;
+    }
+
+
+    .opcion-quincena {
+        width: 100%;
+
+        min-height: 62px;
+
+        padding: 12px 14px;
+
+        border-radius: 12px;
+    }
+
+
+    .opcion-quincena input {
+        width: 20px;
+
+        height: 20px;
     }
 
 
     .opcion-quincena span {
+        font-size: 16px;
+    }
 
-        min-height:
-            46px;
 
-        font-size:
-            13px;
+    .opcion-quincena strong {
+        font-size: 16px;
+    }
 
+
+    .opcion-quincena small {
+        font-size: 13px;
+    }
+
+
+
+    /* -----------------------------------------------
+       CÓDIGO DE EMPLEADO
+    ------------------------------------------------ */
+
+    .label-codigo {
+        margin-top: 22px;
+
+        margin-bottom: 9px;
+
+        font-size: 16px;
     }
 
 
     .fila-busqueda {
 
-        flex-direction:
-            column;
+        width: 100%;
 
-        gap:
-            9px;
+        display: flex;
 
-    }
+        flex-direction: column;
 
-
-    #codigo {
-
-        width:
-            100%;
-
-        height:
-            52px;
-
-        font-size:
-            16px;
+        gap: 12px;
 
     }
 
 
-    #buscar {
+    /* CAMPO GRANDE PARA EL CELULAR */
 
-        width:
-            100%;
+    .fila-busqueda input {
 
-        height:
-            52px;
+        width: 100%;
 
-        font-size:
-            15px;
+        height: 58px;
+
+        min-height: 58px;
+
+        padding: 0 16px;
+
+        border-radius: 12px;
+
+        font-size: 18px;
+
+        line-height: normal;
+
+        -webkit-appearance: none;
+
+        appearance: none;
 
     }
 
 
-    /* ------------------------------
+    .fila-busqueda input::placeholder {
+        font-size: 15px;
+
+        color: #98a2b3;
+    }
+
+
+    /* BOTÓN GRANDE */
+
+    .fila-busqueda button {
+
+        width: 100%;
+
+        height: 56px;
+
+        min-height: 56px;
+
+        border-radius: 12px;
+
+        font-size: 17px;
+
+        padding: 0 16px;
+    }
+
+
+    .ayuda {
+        margin-top: 10px;
+
+        font-size: 12px;
+
+        line-height: 1.5;
+    }
+
+
+    #mensaje {
+        font-size: 14px;
+
+        line-height: 1.4;
+    }
+
+
+
+    /* -----------------------------------------------
        RESULTADO
-    ------------------------------ */
+    ------------------------------------------------ */
 
     .resultado {
+        width: 100%;
 
-        padding:
-            18px;
+        padding: 20px 16px;
 
-        border-radius:
-            20px;
-
+        border-radius: 18px;
     }
 
 
     .empleado {
+        display: flex;
 
-        padding:
-            17px;
+        flex-direction: column;
 
-        display:
-            grid;
+        align-items: flex-start;
 
-        grid-template-columns:
-            auto 1fr;
-
-        gap:
-            12px;
-
+        gap: 13px;
     }
 
 
     .avatar {
+        width: 52px;
+        height: 52px;
 
-        width:
-            48px;
+        font-size: 23px;
+    }
 
-        height:
-            48px;
 
-        flex:
-            none;
-
-        border-radius:
-            13px;
-
-        font-size:
-            22px;
-
+    .datos-empleado {
+        width: 100%;
     }
 
 
     .datos-empleado h2 {
+        font-size: 22px;
 
-        font-size:
-            17px;
+        line-height: 1.25;
 
-        line-height:
-            1.25;
+        word-break: break-word;
+    }
 
+
+    .datos-empleado p {
+        font-size: 13px;
     }
 
 
     .empleado .boton-secundario {
+        width: 100%;
 
-        grid-column:
-            1 / -1;
-
-        width:
-            100%;
-
+        min-height: 48px;
     }
 
 
-    /* ------------------------------
-       TÍTULO
-    ------------------------------ */
+
+    /* -----------------------------------------------
+       TÍTULO RECIBO
+    ------------------------------------------------ */
 
     .titulo-seccion {
+        display: flex;
 
-        align-items:
-            flex-start;
+        flex-direction: column;
 
-        flex-direction:
-            column;
+        align-items: flex-start;
 
-        gap:
-            9px;
+        gap: 12px;
 
-        margin:
-            28px 0 15px;
-
+        margin-top: 25px;
     }
 
 
     .titulo-seccion h2 {
+        font-size: 23px;
 
-        font-size:
-            21px;
-
+        line-height: 1.2;
     }
 
 
-    /* ------------------------------
+    .periodo {
+        max-width: 100%;
+
+        font-size: 12px;
+
+        line-height: 1.4;
+
+        white-space: normal;
+    }
+
+
+
+    /* -----------------------------------------------
        RECIBO
-    ------------------------------ */
+    ------------------------------------------------ */
 
     .recibo {
+        display: flex;
 
-        padding:
-            17px;
+        flex-direction: column;
 
-        display:
-            grid;
+        align-items: flex-start;
 
-        grid-template-columns:
-            auto 1fr;
+        gap: 14px;
 
-        gap:
-            12px;
-
+        padding: 17px;
     }
 
 
     .icono-recibo {
+        width: 50px;
+        height: 50px;
+    }
 
-        width:
-            48px;
 
-        height:
-            48px;
-
-        flex:
-            none;
-
-        border-radius:
-            13px;
-
-        font-size:
-            22px;
-
+    .informacion-recibo {
+        width: 100%;
     }
 
 
     .informacion-recibo h3 {
-
-        font-size:
-            16px;
-
+        font-size: 20px;
     }
 
 
     .informacion-recibo p {
+        font-size: 13px;
 
-        font-size:
-            12px;
-
+        line-height: 1.5;
     }
 
 
     .ver-recibo {
+        width: 100%;
 
-        grid-column:
-            1 / -1;
+        height: 54px;
 
-        width:
-            100%;
+        min-height: 54px;
 
-        min-height:
-            48px;
-
+        font-size: 17px;
     }
 
 
-    /* ------------------------------
+
+    /* -----------------------------------------------
        VISOR
-    ------------------------------ */
+    ------------------------------------------------ */
 
     .visor {
+        width: 100%;
 
-        padding:
-            15px;
+        padding: 20px 14px;
 
-        border-radius:
-            20px;
-
+        border-radius: 18px;
     }
 
 
     .cabecera-visor {
+        display: flex;
 
-        flex-direction:
-            column;
+        flex-direction: column;
 
-        align-items:
-            stretch;
+        align-items: flex-start;
 
+        gap: 15px;
     }
 
 
     .cabecera-visor h2 {
+        font-size: 22px;
 
-        font-size:
-            19px;
-
+        line-height: 1.25;
     }
 
 
-    .cabecera-visor > div:last-child {
+    .acciones-visor {
+        width: 100%;
 
-        width:
-            100%;
+        display: flex;
 
+        flex-direction: column;
+
+        gap: 10px;
     }
 
 
-    .cabecera-visor > div:last-child button {
+    .acciones-visor button {
+        width: 100%;
 
-        flex:
-            1;
-
+        min-height: 50px;
     }
 
 
     .visor-pdf {
+        width: 100%;
 
-        padding:
-            5px;
+        overflow-x: hidden;
 
-        border-radius:
-            10px;
-
+        border-radius: 10px;
     }
 
 
-    /* ------------------------------
+    .visor-pdf canvas {
+        width: 100% !important;
+
+        max-width: 100% !important;
+
+        height: auto !important;
+    }
+
+
+
+    /* -----------------------------------------------
        AVISO
-    ------------------------------ */
+    ------------------------------------------------ */
 
     .aviso {
+        width: 100%;
 
-        padding:
-            18px;
+        padding: 17px;
 
-        gap:
-            11px;
-
+        gap: 11px;
     }
 
 
     .aviso-icono {
-
-        font-size:
-            23px;
-
+        font-size: 22px;
     }
 
 
     .aviso h3 {
-
-        font-size:
-            15px;
-
+        font-size: 16px;
     }
 
 
     .aviso p {
+        font-size: 12px;
 
-        font-size:
-            12px;
-
+        line-height: 1.55;
     }
 
 
-    /* ------------------------------
+
+    /* -----------------------------------------------
        FOOTER
-    ------------------------------ */
+    ------------------------------------------------ */
 
     footer {
+        padding: 20px 12px;
 
-        padding:
-            20px 10px;
+        font-size: 11px;
 
+        line-height: 1.5;
     }
 
 }
 
 
-/* =====================================================
-   TELÉFONOS MUY PEQUEÑOS
-   ===================================================== */
+/* =========================================================
+   CELULARES PEQUEÑOS
+   ========================================================= */
 
-@media (
-    max-width: 380px
-) {
+@media (max-width: 400px) {
 
 
-    .empresa h1 {
+    .contenedor {
+        padding-left: 9px;
 
-        font-size:
-            13px;
-
+        padding-right: 9px;
     }
 
 
-    .empresa p {
-
-        font-size:
-            10px;
-
+    .bienvenida {
+        padding: 19px 12px;
     }
 
 
     .bienvenida-texto h2 {
-
-        font-size:
-            28px;
-
+        font-size: 27px;
     }
 
 
     .buscador {
-
-        padding:
-            15px;
-
+        padding: 16px 11px;
     }
 
 
-    .opciones-quincena {
+    .fila-busqueda input {
+        height: 56px;
 
-        grid-template-columns:
-            1fr;
+        min-height: 56px;
 
+        font-size: 17px;
+    }
+
+
+    .fila-busqueda button {
+        height: 54px;
+
+        min-height: 54px;
+
+        font-size: 16px;
     }
 
 
     .resultado {
+        padding: 18px 13px;
+    }
 
-        padding:
-            14px;
 
+    .visor {
+        padding: 18px 11px;
     }
 
 }

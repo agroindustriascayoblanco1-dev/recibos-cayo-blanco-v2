@@ -467,14 +467,13 @@ body {
     color:
         var(--navy-dark);
 
-    font-size:
-        clamp(39px,5vw,64px);
+    font-size: 48px;
 
     font-weight: 900;
 
-    line-height: .97;
+    line-height: 1.12;
 
-    letter-spacing: -2.8px;
+    letter-spacing: -1.8px;
 
 }
 
@@ -514,9 +513,9 @@ body {
     color:
         var(--text-soft);
 
-    font-size: 14px;
+    font-size: 15px;
 
-    line-height: 1.72;
+    line-height: 1.65;
 
 }
 
@@ -563,14 +562,24 @@ body {
 
 .beneficio-hero small {
 
+
     max-width: 125px;
 
+
+
     color:
+
+
         var(--text-soft);
 
-    font-size: 8px;
+
+
+    font-size: 9px;
+
+
 
     line-height: 1.45;
+
 
 }
 
@@ -720,11 +729,11 @@ body {
 
     overflow: hidden;
 
-    padding: 28px;
+    padding: 30px;
 
     border: 1px solid var(--border);
 
-    border-radius: 23px;
+    border-radius: 24px;
 
     background:
         linear-gradient(
@@ -802,11 +811,11 @@ body {
     color:
         var(--navy-dark);
 
-    font-size: 23px;
+    font-size: 24px;
 
     font-weight: 900;
 
-    line-height: 1.1;
+    line-height: 1.15;
 
 }
 
@@ -818,9 +827,9 @@ body {
     color:
         var(--text-soft);
 
-    font-size: 10px;
+    font-size: 11px;
 
-    line-height: 1.45;
+    line-height: 1.5;
 
 }
 
@@ -838,9 +847,9 @@ body {
     color:
         var(--text);
 
-    font-size: 11px;
+    font-size: 13px;
 
-    font-weight: 900;
+    font-weight: 800;
 
 }
 
@@ -911,19 +920,15 @@ body {
 
 
 .opcion-quincena strong {
-
-    font-size: 11px;
-
+    font-size: 14px;
 }
 
 
 .opcion-quincena small {
-
     color:
         var(--text-soft);
 
-    font-size: 9px;
-
+    font-size: 11px;
 }
 
 
@@ -968,7 +973,6 @@ body {
 ========================================================= */
 
 .label-codigo {
-
     display: block;
 
     margin-bottom: 8px;
@@ -976,10 +980,9 @@ body {
     color:
         var(--text);
 
-    font-size: 11px;
+    font-size: 13px;
 
-    font-weight: 900;
-
+    font-weight: 800;
 }
 
 
@@ -1002,16 +1005,15 @@ body {
 
 
 #codigo {
-
     width: 100%;
 
-    height: 54px;
+    height: 58px;
 
-    padding: 0 14px 0 40px;
+    padding: 0 18px;
 
     border: 2px solid var(--border);
 
-    border-radius: 12px;
+    border-radius: 14px;
 
     outline: none;
 
@@ -1021,28 +1023,31 @@ body {
     color:
         var(--text);
 
-    font-size: 15px;
+    font-size: 18px;
 
     font-weight: 700;
 
-    letter-spacing: .5px;
+    letter-spacing: 1px;
+
+    text-align: center;
 
     transition:
         border-color .2s ease,
         box-shadow .2s ease;
-
 }
 
 
 #codigo::placeholder {
-
     color:
         #a3afb4;
+
+    text-align: center;
+
+    font-size: 14px;
 
     font-weight: 400;
 
     letter-spacing: 0;
-
 }
 
 
@@ -1127,14 +1132,7 @@ body {
 
 
 .ayuda {
-
-    margin-top: 8px;
-
-    color:
-        var(--text-soft);
-
-    font-size: 9px;
-
+    display: none;
 }
 
 
@@ -1198,12 +1196,26 @@ body {
 
 .seguridad-mini p {
 
+
     color:
+
+
         #66847a;
 
-    font-size: 8px;
 
-    line-height: 1.5;
+
+    font-size:
+
+
+        9px;
+
+
+
+    line-height:
+
+
+        1.5;
+
 
 }
 
@@ -1308,14 +1320,24 @@ body {
 
 .beneficio p {
 
+
     margin-top: 3px;
 
+
+
     color:
+
+
         var(--text-soft);
 
-    font-size: 8px;
+
+
+    font-size: 10px;
+
+
 
     line-height: 1.45;
+
 
 }
 
@@ -1440,7 +1462,6 @@ body {
 
 
 .datos-empleado > span {
-
     display: block;
 
     margin-bottom: 5px;
@@ -1448,39 +1469,34 @@ body {
     color:
         var(--green-dark);
 
-    font-size: 8px;
+    font-size: 10px;
 
     font-weight: 900;
 
     letter-spacing: 1.1px;
-
 }
 
 
 .datos-empleado h2 {
-
     margin-bottom: 4px;
 
     color:
         var(--navy-dark);
 
-    font-size: 21px;
+    font-size: 23px;
 
     line-height: 1.25;
 
     overflow-wrap:
         anywhere;
-
 }
 
 
 .datos-empleado p {
-
     color:
         var(--text-soft);
 
-    font-size: 11px;
-
+    font-size: 12px;
 }
 
 
@@ -1566,7 +1582,6 @@ body {
 
 
 .periodo {
-
     padding: 8px 12px;
 
     border-radius: 999px;
@@ -1577,12 +1592,11 @@ body {
     color:
         #826b12;
 
-    font-size: 8px;
+    font-size: 10px;
 
     font-weight: 900;
 
     white-space: nowrap;
-
 }
 
 
@@ -1591,7 +1605,6 @@ body {
 ========================================================= */
 
 .recibo {
-
     position: relative;
 
     overflow: hidden;
@@ -1609,6 +1622,8 @@ body {
 
     border: 1px solid var(--border);
 
+    border-left: 4px solid var(--green);
+
     border-radius: 17px;
 
     background:
@@ -1620,29 +1635,6 @@ body {
 
     transition:
         all .2s ease;
-
-}
-
-
-.recibo::before {
-
-    content: "";
-
-    position: absolute;
-
-    left: 0;
-    top: 0;
-    bottom: 0;
-
-    width: 4px;
-
-    background:
-        linear-gradient(
-            180deg,
-            var(--green),
-            var(--blue)
-        );
-
 }
 
 
@@ -1685,7 +1677,6 @@ body {
 
 
 .informacion-recibo > span {
-
     display: block;
 
     margin-bottom: 5px;
@@ -1693,41 +1684,35 @@ body {
     color:
         var(--green-dark);
 
-    font-size: 8px;
+    font-size: 10px;
 
     font-weight: 900;
 
     letter-spacing: 1px;
-
 }
 
 
 .informacion-recibo h3 {
-
     margin-bottom: 4px;
 
     color:
         var(--navy-dark);
 
-    font-size: 18px;
-
+    font-size: 20px;
 }
 
 
 .informacion-recibo p {
-
     color:
         var(--text-soft);
 
-    font-size: 10px;
+    font-size: 15px;
 
-    line-height: 1.5;
-
+    line-height: 1.6;
 }
 
 
 .ver-recibo {
-
     min-height: 47px;
 
     padding: 0 19px;
@@ -1742,7 +1727,7 @@ body {
     color:
         var(--white);
 
-    font-size: 11px;
+    font-size: 13px;
 
     font-weight: 900;
 
@@ -1753,7 +1738,6 @@ body {
 
     transition:
         all .2s ease;
-
 }
 
 
@@ -1920,26 +1904,24 @@ body {
 
 
 .aviso h3 {
-
-    margin-bottom: 4px;
+    margin-bottom: 5px;
 
     color:
         var(--navy-dark);
 
-    font-size: 13px;
+    font-size: 15px;
 
+    line-height: 1.3;
 }
 
 
 .aviso p {
-
     color:
         var(--text-soft);
 
-    font-size: 10px;
+    font-size: 15px;
 
     line-height: 1.6;
-
 }
 
 
@@ -1990,31 +1972,25 @@ footer {
 
 
 .footer-bloque strong {
-
-    font-size: 10px;
-
+    font-size: 11px;
 }
 
 
 .footer-bloque span {
-
     color:
         rgba(255,255,255,.55);
 
-    font-size: 8px;
-
+    font-size: 10px;
 }
 
 
 .footer-centro {
-
     color:
         rgba(255,255,255,.52);
 
-    font-size: 8px;
+    font-size: 10px;
 
     text-align: center;
-
 }
 
 
@@ -2026,7 +2002,6 @@ footer {
 
 
 .version {
-
     display: block;
 
     margin-top: 18px;
@@ -2034,10 +2009,9 @@ footer {
     color:
         rgba(255,255,255,.30);
 
-    font-size: 8px;
+    font-size: 9px;
 
     text-align: center;
-
 }
 
 
@@ -2667,16 +2641,52 @@ input {
 
     .empresa h1 {
 
-        font-size:
-            11px;
+
+        color:
+
+
+            var(--navy-dark);
+
+
+
+        font-size: 15px;
+
+
+
+        font-weight: 900;
+
+
+
+        line-height: 1.15;
+
+
+
+        letter-spacing: .2px;
+
 
     }
 
 
     .empresa p {
 
-        font-size:
-            8px;
+
+        margin-top: 5px;
+
+
+
+        color:
+
+
+            var(--text-soft);
+
+
+
+        font-size: 9px;
+
+
+
+        line-height: 1.3;
+
 
     }
 
@@ -2716,14 +2726,54 @@ input {
 
     .bienvenida-texto h2 {
 
+
         margin-top:
+
+
             14px;
 
+
+
+        margin-bottom:
+
+
+            16px;
+
+
+
+        color:
+
+
+            var(--navy-dark);
+
+
+
         font-size:
-            37px;
+
+
+            36px;
+
+
+
+        font-weight:
+
+
+            900;
+
+
+
+        line-height:
+
+
+            1.10;
+
+
 
         letter-spacing:
-            -1.7px;
+
+
+            -1.3px;
+
 
     }
 
@@ -2744,11 +2794,30 @@ input {
 
     .bienvenida-texto > p {
 
+
+        max-width: 475px;
+
+
+
+        color:
+
+
+            var(--text-soft);
+
+
+
         font-size:
-            12px;
+
+
+            14px;
+
+
 
         line-height:
-            1.65;
+
+
+            1.6;
+
 
     }
 
@@ -2780,19 +2849,43 @@ input {
 
     .beneficio-hero strong {
 
-        font-size:
-            9px;
+
+        color:
+
+
+            var(--navy);
+
+
+
+        font-size: 9px;
+
 
     }
 
 
     .beneficio-hero small {
 
+
         max-width:
+
+
             75px;
 
-        font-size:
-            7px;
+
+
+        color:
+
+
+            var(--text-soft);
+
+
+
+        font-size: 8px;
+
+
+
+        line-height: 1.45;
+
 
     }
 
@@ -2824,14 +2917,55 @@ input {
 
     .buscador {
 
-        margin-top:
-            20px;
 
-        padding:
-            21px 13px;
+        position: relative;
 
-        border-radius:
-            18px;
+
+
+        z-index: 5;
+
+
+
+        overflow: hidden;
+
+
+
+        padding: 22px 14px;
+
+
+
+        border: 1px solid var(--border);
+
+
+
+        border-radius: 20px;
+
+
+
+        background:
+
+
+            linear-gradient(
+
+
+                145deg,
+
+
+                #ffffff 0%,
+
+
+                #f7fafb 100%
+
+
+            );
+
+
+
+        box-shadow:
+
+
+            0 18px 42px rgba(18,52,66,.09);
+
 
     }
 
@@ -2866,16 +3000,63 @@ input {
 
     .cabecera-buscador h2 {
 
+
+        color:
+
+
+            var(--navy-dark);
+
+
+
         font-size:
-            19px;
+
+
+            20px;
+
+
+
+        font-weight:
+
+
+            900;
+
+
+
+        line-height:
+
+
+            1.1;
+
 
     }
 
 
     .cabecera-buscador p {
 
+
+        margin-top: 5px;
+
+
+
+        color:
+
+
+            var(--text-soft);
+
+
+
         font-size:
-            9px;
+
+
+            10px;
+
+
+
+        line-height:
+
+
+            1.45;
+
 
     }
 
@@ -2901,16 +3082,25 @@ input {
 
     .opcion-quincena strong {
 
-        font-size:
-            10px;
+
+        font-size: 13px;
+
 
     }
 
 
     .opcion-quincena small {
 
-        font-size:
-            8px;
+
+        color:
+
+
+            var(--text-soft);
+
+
+
+        font-size: 10px;
+
 
     }
 
@@ -2925,17 +3115,69 @@ input {
 
     #codigo {
 
-        height:
-            55px;
 
-        padding-left:
-            40px;
+        width: 100%;
 
-        border-radius:
-            12px;
 
-        font-size:
-            17px;
+
+        height: 58px;
+
+
+
+        padding: 0 18px;
+
+
+
+        border: 2px solid var(--border);
+
+
+
+        border-radius: 12px;
+
+
+
+        outline: none;
+
+
+
+        background:
+
+
+            var(--white);
+
+
+
+        color:
+
+
+            var(--text);
+
+
+
+        font-size: 17px;
+
+
+
+        font-weight: 700;
+
+
+
+        letter-spacing: 1px;
+
+
+
+        text-align: center;
+
+
+
+        transition:
+
+
+            border-color .2s ease,
+
+
+            box-shadow .2s ease;
+
 
     }
 
@@ -2958,17 +3200,7 @@ input {
             13px;
 
     }
-
-
-    .ayuda {
-
-        font-size:
-            8px;
-
-    }
-
-
-    .seguridad-mini {
+.seguridad-mini {
 
         padding:
             11px;
@@ -2978,16 +3210,44 @@ input {
 
     .seguridad-mini strong {
 
-        font-size:
-            9px;
+
+        display: block;
+
+
+
+        margin-bottom: 3px;
+
+
+
+        color:
+
+
+            var(--green-dark);
+
+
+
+        font-size: 10px;
+
 
     }
 
 
     .seguridad-mini p {
 
-        font-size:
-            7px;
+
+        color:
+
+
+            #66847a;
+
+
+
+        font-size: 9px;
+
+
+
+        line-height: 1.5;
+
 
     }
 
@@ -3166,8 +3426,20 @@ input {
 
     .informacion-recibo p {
 
-        font-size:
-            9px;
+
+        color:
+
+
+            var(--text-soft);
+
+
+
+        font-size: 13px;
+
+
+
+        line-height: 1.55;
+
 
     }
 
@@ -3299,8 +3571,20 @@ input {
 
     .aviso p {
 
-        font-size:
-            9px;
+
+        color:
+
+
+            var(--text-soft);
+
+
+
+        font-size: 13px;
+
+
+
+        line-height: 1.55;
+
 
     }
 
@@ -3432,8 +3716,39 @@ input {
 
     .bienvenida-texto h2 {
 
+        margin-top:
+
+            14px;
+
+
+        margin-bottom:
+
+            15px;
+
+
+        color:
+
+            var(--navy-dark);
+
+
         font-size:
-            34px;
+
+            32px;
+
+
+        font-weight:
+
+            900;
+
+
+        line-height:
+
+            1.10;
+
+
+        letter-spacing:
+
+            -1px;
 
     }
 
@@ -3456,22 +3771,85 @@ input {
 
     .opcion-quincena strong {
 
-        font-size:
-            9px;
+
+        font-size: 12px;
+
 
     }
 
 
     #codigo {
 
-        font-size:
-            16px;
+
+        width: 100%;
+
+
+
+        height: 56px;
+
+
+
+        padding: 0 18px;
+
+
+
+        border: 2px solid var(--border);
+
+
+
+        border-radius: 12px;
+
+
+
+        outline: none;
+
+
+
+        background:
+
+
+            var(--white);
+
+
+
+        color:
+
+
+            var(--text);
+
+
+
+        font-size: 16px;
+
+
+
+        font-weight: 700;
+
+
+
+        letter-spacing: 1px;
+
+
+
+        text-align: center;
+
+
+
+        transition:
+
+
+            border-color .2s ease,
+
+
+            box-shadow .2s ease;
+
 
     }
 
 }
+
 /* =========================================================
-   COA — ICONOS MODERNOS
+   ICONOS MODERNOS
    MEJORA VISUAL — NO AFECTA FUNCIONALIDAD
 ========================================================= */
 
@@ -3907,520 +4285,4 @@ button:active .icono {
         height: 19px;
         flex-basis: 16px;
     }
-}
-
-/* =========================================================
-   AJUSTES FINALES DE DISEÑO
-   - Tipografía equilibrada
-   - Código centrado
-   - Ayuda duplicada oculta
-   - Encabezado centrado
-   - Adaptación móvil
-========================================================= */
-
-/* ENCABEZADO */
-.encabezado {
-    justify-content: center;
-}
-
-.marca,
-.empresa {
-    text-align: center;
-}
-
-
-/* TEXTO PRINCIPAL */
-.bienvenida-texto > p {
-    font-size: 15px;
-    line-height: 1.65;
-}
-
-
-/* BUSCADOR */
-.buscador {
-    padding: 30px;
-    border-radius: 24px;
-}
-
-.cabecera-buscador h2 {
-    font-size: 24px;
-    line-height: 1.15;
-}
-
-.cabecera-buscador p {
-    font-size: 11px;
-    line-height: 1.5;
-}
-
-
-/* QUINCENAS */
-.titulo-selector {
-    font-size: 13px;
-    font-weight: 800;
-}
-
-.opciones-quincena {
-    gap: 10px;
-}
-
-.opcion-quincena span {
-    min-height: 68px;
-    padding: 10px;
-    border-radius: 15px;
-}
-
-.opcion-quincena strong {
-    font-size: 14px;
-}
-
-.opcion-quincena small {
-    font-size: 11px;
-}
-
-
-/* CÓDIGO DE EMPLEADO */
-.label-codigo {
-    font-size: 13px;
-    font-weight: 800;
-}
-
-#codigo {
-    height: 58px;
-    min-height: 58px;
-    padding: 0 18px;
-    border-radius: 14px;
-    font-size: 18px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    text-align: center;
-}
-
-#codigo::placeholder {
-    text-align: center;
-    font-size: 14px;
-    font-weight: 400;
-    letter-spacing: 0;
-}
-
-/* Evita la indicación repetida debajo del campo. */
-.ayuda {
-    display: none;
-}
-
-
-/* MENSAJES */
-#mensaje {
-    font-size: 11px;
-}
-
-
-/* RESULTADO */
-.datos-empleado > span {
-    font-size: 10px;
-}
-
-.datos-empleado h2 {
-    font-size: 23px;
-}
-
-.datos-empleado p {
-    font-size: 12px;
-}
-
-
-/* RECIBO */
-.informacion-recibo > span {
-    font-size: 10px;
-}
-
-.informacion-recibo h3 {
-    font-size: 20px;
-}
-
-.informacion-recibo p {
-    font-size: 11px;
-    line-height: 1.55;
-}
-
-.ver-recibo {
-    font-size: 13px;
-}
-
-.periodo {
-    font-size: 10px;
-}
-
-
-/* AVISO DE CONFIDENCIALIDAD */
-.aviso h3 {
-    font-size: 14px;
-}
-
-.aviso p {
-    font-size: 11px;
-    line-height: 1.55;
-}
-
-
-/* FOOTER */
-.footer-bloque strong {
-    font-size: 11px;
-}
-
-.footer-bloque span,
-.footer-centro {
-    font-size: 10px;
-}
-
-.version {
-    font-size: 9px;
-}
-
-
-/* =========================================================
-   TABLET Y MÓVIL
-========================================================= */
-
-@media (max-width: 700px) {
-
-    .encabezado {
-        min-height: 72px;
-        padding: 10px 12px;
-    }
-
-    .encabezado .empresa h1 {
-        font-size: 17px;
-        line-height: 1.15;
-    }
-
-    .encabezado .empresa p {
-        font-size: 10px;
-        margin-top: 4px;
-    }
-
-    .bienvenida-texto > p {
-        font-size: 14px;
-        line-height: 1.6;
-    }
-
-    .buscador {
-        padding: 22px 14px;
-        border-radius: 20px;
-    }
-
-    .cabecera-buscador h2 {
-        font-size: 20px;
-    }
-
-    .cabecera-buscador p {
-        font-size: 10px;
-    }
-
-    .titulo-selector {
-        font-size: 12px;
-    }
-
-    .opciones-quincena {
-        gap: 7px;
-    }
-
-    .opcion-quincena span {
-        min-height: 64px;
-        padding: 8px;
-        border-radius: 14px;
-    }
-
-    .opcion-quincena strong {
-        font-size: 13px;
-    }
-
-    .opcion-quincena small {
-        font-size: 10px;
-    }
-
-    .label-codigo {
-        font-size: 12px;
-    }
-
-    .fila-busqueda {
-        display: block;
-    }
-
-    #codigo {
-        width: 100%;
-        height: 58px;
-        min-height: 58px;
-        padding: 0 18px;
-        font-size: 17px;
-        text-align: center;
-    }
-
-    #codigo::placeholder {
-        font-size: 14px;
-        text-align: center;
-    }
-
-    #buscar {
-        width: 100%;
-        height: 56px;
-        min-height: 56px;
-        margin-top: 9px;
-        font-size: 13px;
-    }
-
-    .datos-empleado h2 {
-        font-size: 19px;
-    }
-
-    .datos-empleado p {
-        font-size: 11px;
-    }
-
-    .informacion-recibo h3 {
-        font-size: 18px;
-    }
-
-    .informacion-recibo p {
-        font-size: 10px;
-    }
-
-    .aviso h3 {
-        font-size: 13px;
-    }
-
-    .aviso p {
-        font-size: 10px;
-    }
-
-    .footer-bloque strong {
-        font-size: 10px;
-    }
-
-    .footer-bloque span,
-    .footer-centro {
-        font-size: 9px;
-    }
-}
-
-
-/* =========================================================
-   CELULAR PEQUEÑO
-========================================================= */
-
-@media (max-width: 390px) {
-
-    .encabezado {
-        min-height: 68px;
-        padding: 9px 10px;
-    }
-
-    .encabezado .empresa h1 {
-        font-size: 15px;
-    }
-
-    .encabezado .empresa p {
-        font-size: 9px;
-    }
-
-    .bienvenida-texto h2 {
-        font-size: 34px;
-    }
-
-    .bienvenida-texto > p {
-        font-size: 12px;
-    }
-
-    .buscador {
-        padding: 20px 12px;
-    }
-
-    .cabecera-buscador h2 {
-        font-size: 19px;
-    }
-
-    .opcion-quincena span {
-        min-height: 61px;
-    }
-
-    .opcion-quincena strong {
-        font-size: 12px;
-    }
-
-    .opcion-quincena small {
-        font-size: 10px;
-    }
-
-    #codigo {
-        height: 56px;
-        min-height: 56px;
-        font-size: 16px;
-    }
-
-    #codigo::placeholder {
-        font-size: 13px;
-    }
-
-    #buscar {
-        height: 54px;
-        min-height: 54px;
-    }
-
-    .datos-empleado h2 {
-        font-size: 17px;
-    }
-}
-/* =========================================================
-   AJUSTE DEFINITIVO DEL TÍTULO PRINCIPAL
-========================================================= */
-
-.bienvenida-texto h2 {
-    font-size: 48px !important;
-    line-height: 1.12 !important;
-    letter-spacing: -1.8px !important;
-    margin-top: 18px !important;
-    margin-bottom: 20px !important;
-}
-
-
-/* COMPUTADORA */
-
-@media (min-width: 701px) {
-
-    .bienvenida-texto h2 {
-        font-size: 48px !important;
-        line-height: 1.12 !important;
-        margin-bottom: 20px !important;
-    }
-
-}
-
-
-/* CELULAR */
-
-@media (max-width: 700px) {
-
-    .bienvenida-texto h2 {
-        font-size: 36px !important;
-        line-height: 1.10 !important;
-        letter-spacing: -1.3px !important;
-        margin-top: 14px !important;
-        margin-bottom: 16px !important;
-    }
-
-}
-
-
-/* CELULARES PEQUEÑOS */
-
-@media (max-width: 380px) {
-
-    .bienvenida-texto h2 {
-        font-size: 32px !important;
-        line-height: 1.10 !important;
-        letter-spacing: -1px !important;
-        margin-bottom: 15px !important;
-    }
-
-}
-/* =========================================================
-   AVISO DE CONFIDENCIALIDAD
-   MISMO TAMAÑO QUE EL TEXTO PRINCIPAL DESCRIPTIVO
-========================================================= */
-
-.aviso {
-    padding: 18px 24px !important;
-}
-
-.aviso h3 {
-    font-size: 15px !important;
-    line-height: 1.3 !important;
-    margin-bottom: 5px !important;
-}
-
-.aviso p {
-    font-size: 15px !important;
-    line-height: 1.6 !important;
-}
-
-
-/* CELULAR */
-
-@media (max-width: 700px) {
-
-    .aviso {
-        padding: 17px 16px !important;
-    }
-
-    .aviso h3 {
-        font-size: 13px !important;
-    }
-
-    .aviso p {
-        font-size: 13px !important;
-        line-height: 1.55 !important;
-    }
-
-}
-/* =========================================================
-   DESCRIPCIÓN DEL RECIBO
-========================================================= */
-
-.informacion-recibo p {
-    font-size: 15px !important;
-    line-height: 1.6 !important;
-}
-
-
-/* CELULAR */
-
-@media (max-width: 700px) {
-
-    .informacion-recibo p {
-        font-size: 13px !important;
-        line-height: 1.55 !important;
-    }
-
-}
-/* =========================================================
-   AJUSTE DEFINITIVO — DESCRIPCIÓN DEL RECIBO
-========================================================= */
-
-.informacion-recibo p {
-    font-size: 15px !important;
-    line-height: 1.6 !important;
-}
-
-@media (max-width: 700px) {
-    .informacion-recibo p {
-        font-size: 13px !important;
-        line-height: 1.55 !important;
-    }
-}
-/* =========================================================
-   V27 — BORDE EXTERIOR DE LA TARJETA DE RECIBO
-========================================================= */
-
-/* Eliminamos la línea verde interna */
-.recibo::before {
-    display: none !important;
-}
-
-
-/* Borde exterior */
-.recibo {
-    border: 1px solid var(--border) !important;
-    border-left: 4px solid var(--green) !important;
-    border-radius: 17px !important;
-    overflow: hidden !important;
-}
-
-
-/* En celular */
-@media (max-width: 700px) {
-
-    .recibo {
-        border-left: 4px solid var(--green) !important;
-        border-radius: 16px !important;
-    }
-
 }

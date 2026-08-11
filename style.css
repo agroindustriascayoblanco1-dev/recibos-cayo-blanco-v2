@@ -1,53 +1,54 @@
 /* =========================================================
-   COA - PORTAL DE RECIBOS DE PAGO
-   DISEÑO CORPORATIVO V20
+   COA — PORTAL DE RECIBOS DE PAGO
+   V21 — DISEÑO CORPORATIVO REFINADO
    ========================================================= */
 
 
 /* =========================================================
    VARIABLES
-   ========================================================= */
+========================================================= */
 
 :root {
 
-    --azul: #173b4d;
-    --azul-oscuro: #102d3b;
-    --azul-claro: #28566b;
+    --navy: #153c4d;
+    --navy-dark: #0e2d3a;
+    --navy-soft: #28596d;
 
-    --amarillo: #ffd522;
-    --amarillo-suave: #fff7cf;
+    --green: #17b889;
+    --green-dark: #07966f;
+    --green-soft: #e8f8f2;
 
-    --verde: #18b98b;
-    --verde-oscuro: #07956e;
-    --verde-suave: #e7f8f2;
+    --yellow: #f4c928;
+    --yellow-soft: #fff7d8;
 
-    --celeste: #25b9e8;
-    --celeste-suave: #e7f8fd;
+    --blue: #2ab6df;
+    --blue-soft: #e9f8fc;
 
-    --texto: #19313d;
-    --texto-suave: #718087;
+    --text: #19333e;
+    --text-soft: #71818a;
+    --text-light: #98a5aa;
 
-    --blanco: #ffffff;
+    --white: #ffffff;
 
-    --fondo: #eef5f7;
-    --fondo-claro: #f8fbfc;
+    --background: #eef5f7;
+    --background-soft: #f8fbfc;
 
-    --borde: #dce7eb;
+    --border: #dce7eb;
 
-    --error: #b54848;
+    --danger: #b84d4d;
 
-    --sombra:
-        0 15px 40px rgba(23, 59, 77, .08);
+    --shadow:
+        0 12px 35px rgba(18, 52, 66, .07);
 
-    --sombra-fuerte:
-        0 20px 55px rgba(23, 59, 77, .12);
+    --shadow-large:
+        0 22px 60px rgba(18, 52, 66, .11);
 
 }
 
 
 /* =========================================================
    RESET
-   ========================================================= */
+========================================================= */
 
 * {
 
@@ -77,7 +78,7 @@ body {
         sans-serif;
 
     color:
-        var(--texto);
+        var(--text);
 
     background:
         linear-gradient(
@@ -86,21 +87,24 @@ body {
             #f8fbfc 100%
         );
 
+    -webkit-font-smoothing:
+        antialiased;
+
 }
 
 
 /* =========================================================
    ENCABEZADO
-   ========================================================= */
+========================================================= */
 
 .encabezado {
 
     position: relative;
 
-    min-height: 78px;
+    min-height: 76px;
 
     padding:
-        10px 5%;
+        10px clamp(16px, 5vw, 72px);
 
     display: flex;
 
@@ -111,15 +115,15 @@ body {
     gap: 25px;
 
     background:
-        var(--blanco);
+        rgba(255,255,255,.97);
 
     border-bottom:
-        1px solid var(--borde);
+        1px solid var(--border);
 
     box-shadow:
-        0 4px 20px rgba(23,59,77,.05);
+        0 5px 24px rgba(18,52,66,.05);
 
-    z-index: 50;
+    z-index: 100;
 
 }
 
@@ -141,9 +145,9 @@ body {
     background:
         linear-gradient(
             90deg,
-            var(--amarillo),
-            var(--verde),
-            var(--celeste)
+            var(--yellow) 0%,
+            var(--green) 48%,
+            var(--blue) 100%
         );
 
 }
@@ -151,7 +155,7 @@ body {
 
 /* =========================================================
    MARCA
-   ========================================================= */
+========================================================= */
 
 .marca {
 
@@ -159,7 +163,7 @@ body {
 
     align-items: center;
 
-    gap: 13px;
+    gap: 12px;
 
     min-width: 0;
 
@@ -168,12 +172,11 @@ body {
 
 .logo {
 
-    width: 53px;
+    width: 52px;
 
-    height: 53px;
+    height: 52px;
 
-    flex:
-        0 0 53px;
+    flex: 0 0 52px;
 
     display: flex;
 
@@ -184,19 +187,19 @@ body {
     border-radius: 15px;
 
     background:
-        var(--azul);
+        var(--navy);
 
     color:
-        var(--blanco);
+        var(--white);
 
-    font-size: 17px;
+    font-size: 16px;
 
     font-weight: 900;
 
     letter-spacing: -.5px;
 
     box-shadow:
-        0 7px 18px rgba(23,59,77,.18);
+        0 7px 18px rgba(21,60,77,.18);
 
 }
 
@@ -211,9 +214,11 @@ body {
 .empresa h1 {
 
     color:
-        var(--azul-oscuro);
+        var(--navy-dark);
 
-    font-size: 17px;
+    font-size: 16px;
+
+    font-weight: 900;
 
     line-height: 1.2;
 
@@ -227,16 +232,18 @@ body {
     margin-top: 3px;
 
     color:
-        var(--texto-suave);
+        var(--text-soft);
 
-    font-size: 11px;
+    font-size: 10px;
+
+    line-height: 1.3;
 
 }
 
 
 /* =========================================================
    NAVEGACIÓN
-   ========================================================= */
+========================================================= */
 
 .navegacion {
 
@@ -244,12 +251,14 @@ body {
 
     align-items: center;
 
-    gap: 5px;
+    gap: 4px;
 
 }
 
 
 .nav-link {
+
+    position: relative;
 
     display: flex;
 
@@ -258,29 +267,24 @@ body {
     gap: 6px;
 
     padding:
-        9px 13px;
+        9px 12px;
 
     border-radius:
         999px;
 
     color:
-        var(--texto-suave);
+        var(--text-soft);
 
     text-decoration: none;
 
-    font-size: 11px;
+    font-size: 10px;
 
-    font-weight: 700;
+    font-weight: 800;
 
     transition:
-        .2s ease;
-
-}
-
-
-.nav-link span {
-
-    font-size: 12px;
+        color .2s ease,
+        background .2s ease,
+        transform .2s ease;
 
 }
 
@@ -288,10 +292,13 @@ body {
 .nav-link:hover {
 
     color:
-        var(--azul);
+        var(--navy);
 
     background:
         #f1f6f8;
+
+    transform:
+        translateY(-1px);
 
 }
 
@@ -299,32 +306,40 @@ body {
 .nav-link.activo {
 
     color:
-        var(--azul);
+        var(--navy);
 
     background:
-        var(--amarillo-suave);
+        var(--yellow-soft);
+
+}
+
+
+.nav-link span {
+
+    font-size:
+        11px;
 
 }
 
 
 /* =========================================================
    CONTENEDOR
-   ========================================================= */
+========================================================= */
 
 .contenedor {
 
     width:
-        min(1120px, 92%);
+        min(1140px, 92%);
 
     margin:
-        38px auto 45px;
+        42px auto 48px;
 
 }
 
 
 /* =========================================================
-   HERO
-   ========================================================= */
+   HERO PRINCIPAL
+========================================================= */
 
 .bienvenida {
 
@@ -335,29 +350,32 @@ body {
     display: grid;
 
     grid-template-columns:
-        1.05fr .95fr;
+        1.04fr .96fr;
+
+    gap:
+        38px;
 
     align-items: stretch;
-
-    gap: 35px;
 
     padding:
         38px;
 
     background:
-        var(--blanco);
+        var(--white);
 
     border:
-        1px solid var(--borde);
+        1px solid var(--border);
 
     border-radius:
-        27px;
+        28px;
 
     box-shadow:
-        var(--sombra-fuerte);
+        var(--shadow-large);
 
 }
 
+
+/* decoración */
 
 .bienvenida::before {
 
@@ -365,25 +383,61 @@ body {
 
     position: absolute;
 
-    width: 240px;
+    width: 330px;
 
-    height: 240px;
+    height: 330px;
 
-    left: -140px;
+    right: -210px;
 
-    bottom: -150px;
+    bottom: -220px;
 
-    border-radius: 50%;
+    border-radius:
+        50%;
 
     border:
-        25px solid rgba(37,185,232,.06);
+        45px solid rgba(42,182,223,.055);
+
+    pointer-events:
+        none;
 
 }
 
 
+.bienvenida::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 180px;
+
+    height: 180px;
+
+    left: -125px;
+
+    top: -125px;
+
+    border-radius:
+        50%;
+
+    border:
+        30px solid rgba(23,184,137,.035);
+
+    pointer-events:
+        none;
+
+}
+
+
+/* =========================================================
+   TEXTO HERO
+========================================================= */
+
 .bienvenida-texto {
 
     position: relative;
+
+    z-index: 2;
 
     display: flex;
 
@@ -411,19 +465,19 @@ body {
         999px;
 
     background:
-        var(--verde-suave);
+        var(--green-soft);
 
     color:
-        var(--verde-oscuro);
+        var(--green-dark);
 
     font-size:
-        9px;
+        8px;
 
     font-weight:
         900;
 
     letter-spacing:
-        1.3px;
+        1.4px;
 
 }
 
@@ -438,10 +492,11 @@ body {
 
     margin-right: 7px;
 
-    border-radius: 50%;
+    border-radius:
+        50%;
 
     background:
-        var(--verde);
+        var(--green);
 
 }
 
@@ -449,19 +504,22 @@ body {
 .bienvenida-texto h2 {
 
     margin-top:
-        17px;
+        18px;
 
     color:
-        var(--azul-oscuro);
+        var(--navy-dark);
 
     font-size:
-        clamp(38px, 5vw, 61px);
+        clamp(39px, 5vw, 64px);
+
+    font-weight:
+        900;
 
     line-height:
-        .99;
+        .97;
 
     letter-spacing:
-        -2.5px;
+        -2.8px;
 
 }
 
@@ -469,19 +527,21 @@ body {
 .bienvenida-texto h2 span {
 
     color:
-        var(--azul);
+        var(--navy);
 
 }
 
 
 .linea-destacada {
 
-    width: 82px;
+    width:
+        82px;
 
-    height: 5px;
+    height:
+        5px;
 
     margin:
-        17px 0 15px;
+        17px 0 16px;
 
     border-radius:
         999px;
@@ -489,8 +549,8 @@ body {
     background:
         linear-gradient(
             90deg,
-            var(--amarillo),
-            var(--verde)
+            var(--yellow),
+            var(--green)
         );
 
 }
@@ -499,47 +559,54 @@ body {
 .bienvenida-texto > p {
 
     max-width:
-        480px;
+        475px;
 
     color:
-        var(--texto-suave);
+        var(--text-soft);
 
     font-size:
         14px;
 
     line-height:
-        1.7;
+        1.72;
 
 }
 
 
 /* =========================================================
-   BENEFICIOS DEL HERO
-   ========================================================= */
+   BENEFICIOS HERO
+========================================================= */
 
 .beneficios-hero {
 
-    display: flex;
+    display:
+        flex;
 
-    align-items: center;
+    align-items:
+        center;
 
-    gap: 14px;
+    gap:
+        14px;
 
     margin-top:
-        27px;
+        28px;
 
 }
 
 
 .beneficio-hero {
 
-    display: flex;
+    display:
+        flex;
 
-    flex-direction: column;
+    flex-direction:
+        column;
 
-    gap: 4px;
+    gap:
+        3px;
 
-    min-width: 0;
+    min-width:
+        0;
 
 }
 
@@ -547,10 +614,10 @@ body {
 .beneficio-hero strong {
 
     color:
-        var(--azul);
+        var(--navy);
 
     font-size:
-        11px;
+        10px;
 
 }
 
@@ -558,37 +625,45 @@ body {
 .beneficio-hero small {
 
     max-width:
-        115px;
+        125px;
 
     color:
-        var(--texto-suave);
+        var(--text-soft);
 
     font-size:
         8px;
 
     line-height:
-        1.4;
+        1.45;
 
 }
 
 
 .beneficio-icono {
 
-    width: 34px;
+    width:
+        34px;
 
-    height: 34px;
+    height:
+        34px;
 
-    margin-bottom: 3px;
+    margin-bottom:
+        3px;
 
-    display: flex;
+    display:
+        flex;
 
-    align-items: center;
+    align-items:
+        center;
 
-    justify-content: center;
+    justify-content:
+        center;
 
-    border-radius: 10px;
+    border-radius:
+        10px;
 
-    font-size: 15px;
+    font-size:
+        15px;
 
 }
 
@@ -596,7 +671,7 @@ body {
 .beneficio-icono.seguro {
 
     background:
-        var(--verde-suave);
+        var(--green-soft);
 
 }
 
@@ -604,7 +679,7 @@ body {
 .beneficio-icono.facil {
 
     background:
-        var(--amarillo-suave);
+        var(--yellow-soft);
 
 }
 
@@ -612,40 +687,48 @@ body {
 .beneficio-icono.tiempo {
 
     background:
-        var(--celeste-suave);
+        var(--blue-soft);
 
 }
 
 
 .separador-beneficio {
 
-    width: 1px;
+    width:
+        1px;
 
-    height: 43px;
+    height:
+        42px;
 
     background:
-        var(--borde);
+        var(--border);
 
 }
 
 
 /* =========================================================
-   FORMAS DECORATIVAS
-   ========================================================= */
+   DECORACIÓN INFERIOR
+========================================================= */
 
 .decoracion-hero {
 
-    position: absolute;
+    position:
+        absolute;
 
-    right: 7%;
+    right:
+        6%;
 
-    bottom: 6%;
+    bottom:
+        6%;
 
-    width: 125px;
+    width:
+        125px;
 
-    height: 65px;
+    height:
+        25px;
 
-    opacity: .85;
+    z-index:
+        1;
 
 }
 
@@ -654,9 +737,14 @@ body {
 .forma-amarilla,
 .forma-azul {
 
-    position: absolute;
+    position:
+        absolute;
 
-    display: block;
+    bottom:
+        0;
+
+    display:
+        block;
 
     border-radius:
         999px;
@@ -666,67 +754,75 @@ body {
 
 .forma-verde {
 
-    width: 75px;
+    width:
+        72px;
 
-    height: 20px;
+    height:
+        18px;
 
-    left: 0;
-
-    bottom: 0;
+    left:
+        0;
 
     background:
-        var(--verde);
+        var(--green);
 
 }
 
 
 .forma-amarilla {
 
-    width: 48px;
+    width:
+        45px;
 
-    height: 20px;
+    height:
+        18px;
 
-    left: 68px;
-
-    bottom: 0;
+    left:
+        64px;
 
     background:
-        var(--amarillo);
+        var(--yellow);
 
 }
 
 
 .forma-azul {
 
-    width: 35px;
+    width:
+        30px;
 
-    height: 20px;
+    height:
+        18px;
 
-    right: 0;
-
-    bottom: 0;
+    right:
+        0;
 
     background:
-        var(--celeste);
+        var(--blue);
 
 }
 
 
 /* =========================================================
    BUSCADOR
-   ========================================================= */
+========================================================= */
 
 .buscador {
 
-    position: relative;
+    position:
+        relative;
 
-    overflow: hidden;
+    z-index:
+        5;
+
+    overflow:
+        hidden;
 
     padding:
-        27px;
+        28px;
 
     border:
-        1px solid var(--borde);
+        1px solid var(--border);
 
     border-radius:
         23px;
@@ -734,36 +830,42 @@ body {
     background:
         linear-gradient(
             145deg,
-            #ffffff,
-            #f7fafb
+            #ffffff 0%,
+            #f7fafb 100%
         );
 
     box-shadow:
-        0 15px 35px rgba(23,59,77,.08);
+        0 18px 42px rgba(18,52,66,.09);
 
 }
 
 
 .buscador::before {
 
-    content: "";
+    content:
+        "";
 
-    position: absolute;
+    position:
+        absolute;
 
-    top: 0;
+    left:
+        0;
 
-    left: 0;
+    top:
+        0;
 
-    right: 0;
+    right:
+        0;
 
-    height: 5px;
+    height:
+        5px;
 
     background:
         linear-gradient(
             90deg,
-            var(--verde),
-            var(--amarillo),
-            var(--celeste)
+            var(--green),
+            var(--yellow),
+            var(--blue)
         );
 
 }
@@ -771,11 +873,14 @@ body {
 
 .cabecera-buscador {
 
-    display: flex;
+    display:
+        flex;
 
-    align-items: center;
+    align-items:
+        center;
 
-    gap: 13px;
+    gap:
+        13px;
 
     margin-bottom:
         23px;
@@ -785,25 +890,32 @@ body {
 
 .icono-buscador {
 
-    width: 48px;
+    width:
+        50px;
 
-    height: 48px;
+    height:
+        50px;
 
     flex:
-        0 0 48px;
+        0 0 50px;
 
-    display: flex;
+    display:
+        flex;
 
-    align-items: center;
+    align-items:
+        center;
 
-    justify-content: center;
+    justify-content:
+        center;
 
-    border-radius: 14px;
+    border-radius:
+        15px;
 
     background:
-        var(--verde-suave);
+        var(--green-soft);
 
-    font-size: 23px;
+    font-size:
+        23px;
 
 }
 
@@ -811,10 +923,13 @@ body {
 .cabecera-buscador h2 {
 
     color:
-        var(--azul-oscuro);
+        var(--navy-dark);
 
     font-size:
         23px;
+
+    font-weight:
+        900;
 
     line-height:
         1.1;
@@ -828,30 +943,31 @@ body {
         5px;
 
     color:
-        var(--texto-suave);
+        var(--text-soft);
 
     font-size:
-        11px;
+        10px;
 
     line-height:
-        1.4;
+        1.45;
 
 }
 
 
 /* =========================================================
    QUINCENAS
-   ========================================================= */
+========================================================= */
 
 .titulo-selector {
 
-    display: block;
+    display:
+        block;
 
     margin-bottom:
         9px;
 
     color:
-        var(--texto);
+        var(--text);
 
     font-size:
         11px;
@@ -864,7 +980,8 @@ body {
 
 .opciones-quincena {
 
-    display: grid;
+    display:
+        grid;
 
     grid-template-columns:
         1fr 1fr;
@@ -880,26 +997,33 @@ body {
 
 .opcion-quincena {
 
-    position: relative;
+    position:
+        relative;
 
-    cursor: pointer;
+    cursor:
+        pointer;
 
 }
 
 
 .opcion-quincena input {
 
-    position: absolute;
+    position:
+        absolute;
 
-    opacity: 0;
+    opacity:
+        0;
 
 }
 
 
 .opcion-quincena span {
 
+    position:
+        relative;
+
     min-height:
-        57px;
+        59px;
 
     display:
         flex;
@@ -917,22 +1041,22 @@ body {
         4px;
 
     border:
-        2px solid var(--borde);
+        2px solid var(--border);
 
     border-radius:
-        12px;
+        13px;
 
     background:
-        var(--blanco);
+        var(--white);
 
     color:
-        var(--texto);
+        var(--text);
 
     text-align:
         center;
 
     transition:
-        .2s ease;
+        all .2s ease;
 
 }
 
@@ -948,7 +1072,7 @@ body {
 .opcion-quincena small {
 
     color:
-        var(--texto-suave);
+        var(--text-soft);
 
     font-size:
         9px;
@@ -959,7 +1083,7 @@ body {
 .opcion-quincena span:hover {
 
     border-color:
-        var(--azul-claro);
+        var(--navy-soft);
 
     transform:
         translateY(-1px);
@@ -970,17 +1094,16 @@ body {
 .opcion-quincena input:checked + span {
 
     border-color:
-        var(--azul);
+        var(--navy);
 
     background:
-        var(--azul);
+        var(--navy);
 
     color:
-        white;
+        var(--white);
 
     box-shadow:
-        0 7px 18px
-        rgba(23,59,77,.15);
+        0 8px 19px rgba(21,60,77,.16);
 
 }
 
@@ -994,18 +1117,19 @@ body {
 
 
 /* =========================================================
-   CÓDIGO
-   ========================================================= */
+   CÓDIGO DE EMPLEADO
+========================================================= */
 
 .label-codigo {
 
-    display: block;
+    display:
+        block;
 
     margin-bottom:
         8px;
 
     color:
-        var(--texto);
+        var(--text);
 
     font-size:
         11px;
@@ -1053,10 +1177,10 @@ body {
         translateY(-50%);
 
     color:
-        var(--verde);
+        var(--green);
 
     font-size:
-        14px;
+        13px;
 
     pointer-events:
         none;
@@ -1076,7 +1200,7 @@ body {
         0 14px 0 40px;
 
     border:
-        2px solid var(--borde);
+        2px solid var(--border);
 
     border-radius:
         12px;
@@ -1085,10 +1209,10 @@ body {
         none;
 
     background:
-        white;
+        var(--white);
 
     color:
-        var(--texto);
+        var(--text);
 
     font-size:
         15px;
@@ -1097,10 +1221,11 @@ body {
         700;
 
     letter-spacing:
-        .4px;
+        .5px;
 
     transition:
-        .2s ease;
+        border-color .2s ease,
+        box-shadow .2s ease;
 
 }
 
@@ -1108,7 +1233,7 @@ body {
 #codigo::placeholder {
 
     color:
-        #a2adb2;
+        #a3afb4;
 
     font-weight:
         400;
@@ -1122,7 +1247,7 @@ body {
 #codigo:hover {
 
     border-color:
-        #c5d4d9;
+        #c4d2d7;
 
 }
 
@@ -1130,11 +1255,10 @@ body {
 #codigo:focus {
 
     border-color:
-        var(--azul);
+        var(--navy);
 
     box-shadow:
-        0 0 0 4px
-        rgba(23,59,77,.08);
+        0 0 0 4px rgba(21,60,77,.08);
 
 }
 
@@ -1148,16 +1272,16 @@ body {
         0 20px;
 
     border:
-        none;
+        0;
 
     border-radius:
         12px;
 
     background:
-        var(--verde);
+        var(--green);
 
     color:
-        white;
+        var(--white);
 
     font-size:
         11px;
@@ -1172,11 +1296,10 @@ body {
         nowrap;
 
     box-shadow:
-        0 7px 16px
-        rgba(24,185,139,.18);
+        0 8px 18px rgba(23,184,137,.18);
 
     transition:
-        .2s ease;
+        all .2s ease;
 
 }
 
@@ -1184,10 +1307,13 @@ body {
 #buscar:hover {
 
     background:
-        var(--verde-oscuro);
+        var(--green-dark);
 
     transform:
         translateY(-1px);
+
+    box-shadow:
+        0 10px 22px rgba(23,184,137,.22);
 
 }
 
@@ -1217,7 +1343,7 @@ body {
         8px;
 
     color:
-        var(--texto-suave);
+        var(--text-soft);
 
     font-size:
         9px;
@@ -1233,6 +1359,9 @@ body {
     margin-top:
         9px;
 
+    color:
+        var(--green-dark);
+
     font-size:
         11px;
 
@@ -1246,8 +1375,8 @@ body {
 
 
 /* =========================================================
-   SEGURIDAD MINI
-   ========================================================= */
+   SEGURIDAD
+========================================================= */
 
 .seguridad-mini {
 
@@ -1267,13 +1396,13 @@ body {
         12px;
 
     border:
-        1px solid #dcebe6;
+        1px solid #d8ebe4;
 
     border-radius:
         12px;
 
     background:
-        var(--verde-suave);
+        var(--green-soft);
 
 }
 
@@ -1295,7 +1424,7 @@ body {
         3px;
 
     color:
-        var(--verde-oscuro);
+        var(--green-dark);
 
     font-size:
         10px;
@@ -1306,7 +1435,7 @@ body {
 .seguridad-mini p {
 
     color:
-        #668177;
+        #66847a;
 
     font-size:
         8px;
@@ -1319,7 +1448,7 @@ body {
 
 /* =========================================================
    BENEFICIOS INFERIORES
-   ========================================================= */
+========================================================= */
 
 .beneficios {
 
@@ -1342,16 +1471,16 @@ body {
         20px 25px;
 
     border:
-        1px solid var(--borde);
+        1px solid var(--border);
 
     border-radius:
         18px;
 
     background:
-        white;
+        var(--white);
 
     box-shadow:
-        0 8px 25px rgba(23,59,77,.05);
+        var(--shadow);
 
 }
 
@@ -1402,7 +1531,7 @@ body {
 .beneficio-grande.verde {
 
     background:
-        var(--verde-suave);
+        var(--green-soft);
 
 }
 
@@ -1410,7 +1539,7 @@ body {
 .beneficio-grande.amarillo {
 
     background:
-        var(--amarillo-suave);
+        var(--yellow-soft);
 
 }
 
@@ -1418,7 +1547,7 @@ body {
 .beneficio-grande.azul {
 
     background:
-        var(--celeste-suave);
+        var(--blue-soft);
 
 }
 
@@ -1429,7 +1558,7 @@ body {
         block;
 
     color:
-        var(--azul);
+        var(--navy);
 
     font-size:
         11px;
@@ -1443,13 +1572,13 @@ body {
         3px;
 
     color:
-        var(--texto-suave);
+        var(--text-soft);
 
     font-size:
         8px;
 
     line-height:
-        1.4;
+        1.45;
 
 }
 
@@ -1463,14 +1592,14 @@ body {
         38px;
 
     background:
-        var(--borde);
+        var(--border);
 
 }
 
 
 /* =========================================================
    RESULTADO
-   ========================================================= */
+========================================================= */
 
 .oculto {
 
@@ -1489,16 +1618,16 @@ body {
         27px;
 
     border:
-        1px solid var(--borde);
+        1px solid var(--border);
 
     border-radius:
         22px;
 
     background:
-        white;
+        var(--white);
 
     box-shadow:
-        var(--sombra-fuerte);
+        var(--shadow-large);
 
     animation:
         aparecer .3s ease;
@@ -1532,8 +1661,8 @@ body {
 
 
 /* =========================================================
-   EMPLEADO
-   ========================================================= */
+   EMPLEADO ENCONTRADO
+========================================================= */
 
 .empleado {
 
@@ -1550,7 +1679,7 @@ body {
         22px;
 
     border-bottom:
-        1px solid var(--borde);
+        1px solid var(--border);
 
 }
 
@@ -1579,7 +1708,7 @@ body {
         16px;
 
     background:
-        var(--celeste-suave);
+        var(--blue-soft);
 
     font-size:
         24px;
@@ -1607,7 +1736,7 @@ body {
         5px;
 
     color:
-        var(--verde-oscuro);
+        var(--green-dark);
 
     font-size:
         8px;
@@ -1627,7 +1756,7 @@ body {
         4px;
 
     color:
-        var(--azul-oscuro);
+        var(--navy-dark);
 
     font-size:
         21px;
@@ -1644,7 +1773,7 @@ body {
 .datos-empleado p {
 
     color:
-        var(--texto-suave);
+        var(--text-soft);
 
     font-size:
         11px;
@@ -1654,7 +1783,7 @@ body {
 
 /* =========================================================
    BOTONES SECUNDARIOS
-   ========================================================= */
+========================================================= */
 
 .boton-secundario {
 
@@ -1665,16 +1794,16 @@ body {
         0 14px;
 
     border:
-        1px solid var(--borde);
+        1px solid var(--border);
 
     border-radius:
         10px;
 
     background:
-        white;
+        var(--white);
 
     color:
-        var(--texto);
+        var(--text);
 
     font-size:
         10px;
@@ -1686,7 +1815,7 @@ body {
         pointer;
 
     transition:
-        .2s ease;
+        all .2s ease;
 
 }
 
@@ -1694,20 +1823,23 @@ body {
 .boton-secundario:hover {
 
     color:
-        var(--azul);
+        var(--navy);
 
     border-color:
-        var(--azul-claro);
+        var(--navy-soft);
 
     background:
         #f3f7f8;
+
+    transform:
+        translateY(-1px);
 
 }
 
 
 /* =========================================================
-   SECCIÓN RECIBO
-   ========================================================= */
+   TÍTULO RECIBO
+========================================================= */
 
 .titulo-seccion {
 
@@ -1732,10 +1864,10 @@ body {
 .titulo-seccion h2 {
 
     margin-top:
-        10px;
+        9px;
 
     color:
-        var(--azul-oscuro);
+        var(--navy-dark);
 
     font-size:
         25px;
@@ -1752,10 +1884,10 @@ body {
         999px;
 
     background:
-        var(--amarillo-suave);
+        var(--yellow-soft);
 
     color:
-        #866d10;
+        #826b12;
 
     font-size:
         8px;
@@ -1771,7 +1903,7 @@ body {
 
 /* =========================================================
    TARJETA RECIBO
-   ========================================================= */
+========================================================= */
 
 .recibo {
 
@@ -1797,7 +1929,7 @@ body {
         19px;
 
     border:
-        1px solid var(--borde);
+        1px solid var(--border);
 
     border-radius:
         17px;
@@ -1810,7 +1942,7 @@ body {
         );
 
     transition:
-        .2s ease;
+        all .2s ease;
 
 }
 
@@ -1838,8 +1970,8 @@ body {
     background:
         linear-gradient(
             180deg,
-            var(--verde),
-            var(--celeste)
+            var(--green),
+            var(--blue)
         );
 
 }
@@ -1851,7 +1983,7 @@ body {
         translateY(-1px);
 
     box-shadow:
-        0 10px 25px rgba(23,59,77,.07);
+        0 10px 28px rgba(18,52,66,.08);
 
 }
 
@@ -1877,7 +2009,7 @@ body {
         16px;
 
     background:
-        var(--verde-suave);
+        var(--green-soft);
 
     font-size:
         23px;
@@ -1902,7 +2034,7 @@ body {
         5px;
 
     color:
-        var(--verde-oscuro);
+        var(--green-dark);
 
     font-size:
         8px;
@@ -1922,7 +2054,7 @@ body {
         4px;
 
     color:
-        var(--azul-oscuro);
+        var(--navy-dark);
 
     font-size:
         18px;
@@ -1933,7 +2065,7 @@ body {
 .informacion-recibo p {
 
     color:
-        var(--texto-suave);
+        var(--text-soft);
 
     font-size:
         10px;
@@ -1953,16 +2085,16 @@ body {
         0 19px;
 
     border:
-        none;
+        0;
 
     border-radius:
         11px;
 
     background:
-        var(--verde);
+        var(--green);
 
     color:
-        white;
+        var(--white);
 
     font-size:
         11px;
@@ -1974,11 +2106,10 @@ body {
         pointer;
 
     box-shadow:
-        0 7px 16px
-        rgba(24,185,139,.17);
+        0 7px 16px rgba(23,184,137,.17);
 
     transition:
-        .2s ease;
+        all .2s ease;
 
 }
 
@@ -1986,7 +2117,7 @@ body {
 .ver-recibo:hover {
 
     background:
-        var(--verde-oscuro);
+        var(--green-dark);
 
     transform:
         translateY(-1px);
@@ -1995,8 +2126,8 @@ body {
 
 
 /* =========================================================
-   VISOR
-   ========================================================= */
+   VISOR PDF
+========================================================= */
 
 .visor {
 
@@ -2007,16 +2138,16 @@ body {
         23px;
 
     border:
-        1px solid var(--borde);
+        1px solid var(--border);
 
     border-radius:
         22px;
 
     background:
-        white;
+        var(--white);
 
     box-shadow:
-        var(--sombra-fuerte);
+        var(--shadow-large);
 
 }
 
@@ -2047,7 +2178,7 @@ body {
         9px;
 
     color:
-        var(--azul-oscuro);
+        var(--navy-dark);
 
     font-size:
         21px;
@@ -2083,17 +2214,17 @@ body {
     display:
         flex;
 
-    justify-content:
-        center;
-
     align-items:
         flex-start;
+
+    justify-content:
+        center;
 
     background:
         #edf3f5;
 
     border:
-        1px solid var(--borde);
+        1px solid var(--border);
 
     border-radius:
         13px;
@@ -2139,7 +2270,7 @@ body {
         center;
 
     color:
-        var(--texto-suave);
+        var(--text-soft);
 
     text-align:
         center;
@@ -2149,7 +2280,7 @@ body {
 
 /* =========================================================
    AVISO
-   ========================================================= */
+========================================================= */
 
 .aviso {
 
@@ -2169,16 +2300,16 @@ body {
         18px;
 
     border:
-        1px solid var(--borde);
+        1px solid var(--border);
 
     border-left:
-        4px solid var(--verde);
+        4px solid var(--green);
 
     border-radius:
         14px;
 
     background:
-        white;
+        var(--white);
 
 }
 
@@ -2197,7 +2328,7 @@ body {
         4px;
 
     color:
-        var(--azul-oscuro);
+        var(--navy-dark);
 
     font-size:
         13px;
@@ -2208,7 +2339,7 @@ body {
 .aviso p {
 
     color:
-        var(--texto-suave);
+        var(--text-soft);
 
     font-size:
         10px;
@@ -2221,18 +2352,18 @@ body {
 
 /* =========================================================
    FOOTER
-   ========================================================= */
+========================================================= */
 
 footer {
 
     padding:
-        25px 5% 30px;
+        27px 5% 30px;
 
     background:
-        var(--azul-oscuro);
+        var(--navy-dark);
 
     color:
-        white;
+        var(--white);
 
 }
 
@@ -2240,7 +2371,7 @@ footer {
 .footer-contenido {
 
     width:
-        min(1120px, 92%);
+        min(1140px, 92%);
 
     margin:
         auto;
@@ -2296,7 +2427,7 @@ footer {
 .footer-centro {
 
     color:
-        rgba(255,255,255,.55);
+        rgba(255,255,255,.52);
 
     font-size:
         8px;
@@ -2321,10 +2452,10 @@ footer {
         block;
 
     margin-top:
-        17px;
+        18px;
 
     color:
-        rgba(255,255,255,.35);
+        rgba(255,255,255,.30);
 
     font-size:
         8px;
@@ -2337,15 +2468,14 @@ footer {
 
 /* =========================================================
    ACCESIBILIDAD
-   ========================================================= */
+========================================================= */
 
 button:focus-visible,
 input:focus-visible,
 a:focus-visible {
 
     outline:
-        3px solid
-        rgba(37,185,232,.30);
+        3px solid rgba(42,182,223,.30);
 
     outline-offset:
         3px;
@@ -2354,8 +2484,8 @@ a:focus-visible {
 
 
 /* =========================================================
-   DESBORDAMIENTOS
-   ========================================================= */
+   PREVENIR DESBORDAMIENTOS
+========================================================= */
 
 img,
 canvas {
@@ -2377,7 +2507,7 @@ input {
 
 /* =========================================================
    TABLET
-   ========================================================= */
+========================================================= */
 
 @media (max-width: 900px) {
 
@@ -2387,7 +2517,7 @@ input {
             1fr;
 
         gap:
-            25px;
+            26px;
 
     }
 
@@ -2404,14 +2534,12 @@ input {
 
 /* =========================================================
    CELULAR
-   ========================================================= */
+========================================================= */
 
 @media (max-width: 700px) {
 
 
-    /* -----------------------------------------------
-       ENCABEZADO
-    ----------------------------------------------- */
+    /* HEADER */
 
     .encabezado {
 
@@ -2455,7 +2583,7 @@ input {
     .empresa h1 {
 
         font-size:
-            12px;
+            11px;
 
     }
 
@@ -2476,9 +2604,7 @@ input {
     }
 
 
-    /* -----------------------------------------------
-       CONTENEDOR
-    ----------------------------------------------- */
+    /* CONTENEDOR */
 
     .contenedor {
 
@@ -2486,14 +2612,12 @@ input {
             calc(100% - 16px);
 
         margin:
-            12px auto 25px;
+            13px auto 26px;
 
     }
 
 
-    /* -----------------------------------------------
-       HERO
-    ----------------------------------------------- */
+    /* HERO */
 
     .bienvenida {
 
@@ -2501,7 +2625,7 @@ input {
             block;
 
         padding:
-            24px 14px 15px;
+            23px 14px 14px;
 
         border-radius:
             20px;
@@ -2525,11 +2649,11 @@ input {
 
     .linea-destacada {
 
+        width:
+            68px;
+
         height:
             4px;
-
-        width:
-            70px;
 
         margin:
             13px 0;
@@ -2548,14 +2672,12 @@ input {
     }
 
 
-    /* -----------------------------------------------
-       BENEFICIOS HERO
-    ----------------------------------------------- */
+    /* BENEFICIOS */
 
     .beneficios-hero {
 
         gap:
-            8px;
+            7px;
 
         margin-top:
             21px;
@@ -2591,7 +2713,7 @@ input {
     .beneficio-hero small {
 
         max-width:
-            78px;
+            75px;
 
         font-size:
             7px;
@@ -2602,7 +2724,7 @@ input {
     .separador-beneficio {
 
         height:
-            36px;
+            35px;
 
     }
 
@@ -2610,7 +2732,7 @@ input {
     .decoracion-hero {
 
         right:
-            4%;
+            3%;
 
         bottom:
             2%;
@@ -2624,9 +2746,7 @@ input {
     }
 
 
-    /* -----------------------------------------------
-       BUSCADOR
-    ----------------------------------------------- */
+    /* BUSCADOR */
 
     .buscador {
 
@@ -2689,9 +2809,7 @@ input {
     }
 
 
-    /* -----------------------------------------------
-       QUINCENAS
-    ----------------------------------------------- */
+    /* QUINCENAS */
 
     .opciones-quincena {
 
@@ -2708,9 +2826,6 @@ input {
 
         min-height:
             58px;
-
-        padding:
-            6px 3px;
 
     }
 
@@ -2731,9 +2846,7 @@ input {
     }
 
 
-    /* -----------------------------------------------
-       CÓDIGO
-    ----------------------------------------------- */
+    /* CÓDIGO */
 
     .fila-busqueda {
 
@@ -2788,9 +2901,7 @@ input {
     }
 
 
-    /* -----------------------------------------------
-       SEGURIDAD
-    ----------------------------------------------- */
+    /* SEGURIDAD */
 
     .seguridad-mini {
 
@@ -2816,9 +2927,7 @@ input {
     }
 
 
-    /* -----------------------------------------------
-       BENEFICIOS INFERIORES
-    ----------------------------------------------- */
+    /* BENEFICIOS INFERIORES */
 
     .beneficios {
 
@@ -2851,17 +2960,7 @@ input {
     }
 
 
-    .beneficio {
-
-        padding:
-            2px;
-
-    }
-
-
-    /* -----------------------------------------------
-       RESULTADO
-    ----------------------------------------------- */
+    /* RESULTADO */
 
     .resultado {
 
@@ -2941,9 +3040,7 @@ input {
     }
 
 
-    /* -----------------------------------------------
-       RECIBO
-    ----------------------------------------------- */
+    /* RECIBO */
 
     .titulo-seccion {
 
@@ -3036,9 +3133,7 @@ input {
     }
 
 
-    /* -----------------------------------------------
-       VISOR
-    ----------------------------------------------- */
+    /* VISOR */
 
     .visor {
 
@@ -3077,6 +3172,9 @@ input {
 
         grid-template-columns:
             1fr 1fr;
+
+        gap:
+            7px;
 
         margin-top:
             12px;
@@ -3123,9 +3221,7 @@ input {
     }
 
 
-    /* -----------------------------------------------
-       AVISO
-    ----------------------------------------------- */
+    /* AVISO */
 
     .aviso {
 
@@ -3157,9 +3253,7 @@ input {
     }
 
 
-    /* -----------------------------------------------
-       FOOTER
-    ----------------------------------------------- */
+    /* FOOTER */
 
     footer {
 
@@ -3213,8 +3307,8 @@ input {
 
 
 /* =========================================================
-   CELULARES PEQUEÑOS
-   ========================================================= */
+   CELULARES MUY PEQUEÑOS
+========================================================= */
 
 @media (max-width: 380px) {
 

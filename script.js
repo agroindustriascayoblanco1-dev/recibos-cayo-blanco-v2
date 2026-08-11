@@ -1,12 +1,11 @@
 // ======================================================
 // COA - RECIBOS DE PAGO
-// VERSIÓN ESTABLE
-// Compatible con el index.html actual
+// SCRIPT ESTABLE
 // ======================================================
 
 
 // ======================================================
-// CONFIGURACIÓN
+// CONFIGURACIÓN DE LOS PDF
 // ======================================================
 
 const PERIODOS = {
@@ -27,7 +26,7 @@ const PERIODOS = {
 
 
 // ======================================================
-// ELEMENTOS
+// ELEMENTOS DEL HTML
 // ======================================================
 
 const codigoInput =
@@ -88,30 +87,65 @@ let paginaEncontrada = null;
 
 let paginaActual = null;
 
+let pdfActual = null;
+
 
 // ======================================================
-// PDF.JS
+// COMPROBAR QUE PDF.JS ESTÉ CARGADO
 // ======================================================
 
-if (window.pdfjsLib) {
+function pdfJSDisponible() {
 
-    pdfjsLib.GlobalWorkerOptions.workerSrc =
-        "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+    return (
+        typeof window.pdfjsLib !== "undefined"
+    );
 
 }
 
 
 // ======================================================
-// MENSAJES
+// CONFIGURAR PDF.JS
 // ======================================================
 
-function mostrarMensaje(texto, error = false) {
+function configurarPDFJS() {
+
+    if (!pdfJSDisponible()) {
+
+        console.error(
+            "PDF.js no está disponible."
+        );
+
+        return false;
+
+    }
+
+
+    pdfjsLib.GlobalWorkerOptions.workerSrc =
+        "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+
+
+    return true;
+
+}
+
+
+// ======================================================
+// MOSTRAR MENSAJE
+// ======================================================
+
+function mostrarMensaje(
+    texto,
+    error = false
+) {
 
     if (!mensaje) {
         return;
     }
 
-    mensaje.textContent = texto;
+
+    mensaje.textContent =
+        texto;
+
 
     mensaje.style.color =
         error
@@ -146,6 +180,7 @@ function obtenerQuincena() {
             'input[name="quincena"]:checked'
         );
 
+
     return seleccion
         ? seleccion.value
         : "q1";
@@ -154,10 +189,10 @@ function obtenerQuincena() {
 
 
 // ======================================================
-// LIMPIAR CONSULTA
+// LIMPIAR RESULTADOS
 // ======================================================
 
-function limpiarConsulta() {
+function limpiarResultados() {
 
     empleadoActual = null;
 
@@ -165,35 +200,45 @@ function limpiarConsulta() {
 
     paginaActual = null;
 
-
-    if (nombreEmpleado) {
-
-        nombreEmpleado.textContent = "—";
-
-    }
-
-
-    if (codigoEmpleado) {
-
-        codigoEmpleado.textContent = "—";
-
-    }
+    pdfActual = null;
 
 
     if (resultado) {
 
-        resultado.classList.add("oculto");
+        resultado.classList.add(
+            "oculto"
+        );
 
-        resultado.style.display = "none";
+        resultado.style.display =
+            "none";
 
     }
 
 
     if (visor) {
 
-        visor.classList.add("oculto");
+        visor.classList.add(
+            "oculto"
+        );
 
-        visor.style.display = "none";
+        visor.style.display =
+            "none";
+
+    }
+
+
+    if (nombreEmpleado) {
+
+        nombreEmpleado.textContent =
+            "—";
+
+    }
+
+
+    if (codigoEmpleado) {
+
+        codigoEmpleado.textContent =
+            "—";
 
     }
 
@@ -202,27 +247,13 @@ function limpiarConsulta() {
 
         visorPDF.innerHTML = `
 
-            <div
-                style="
-                    text-align:center;
-                    padding:50px;
-                    color:#08743b;
-                "
-            >
+            <div class="visor-mensaje">
+
                 Selecciona tu recibo para visualizarlo.
+
             </div>
 
         `;
-
-    }
-
-
-    if (guardarRecibo) {
-
-        guardarRecibo.disabled = false;
-
-        guardarRecibo.textContent =
-            "📥 Guardar recibo";
 
     }
 
@@ -233,9 +264,11 @@ function limpiarConsulta() {
 // CARGAR PDF
 // ======================================================
 
-async function cargarPDF(archivo) {
+async function cargarPDF(
+    archivo
+) {
 
-    if (!window.pdfjsLib) {
+    if (!configurarPDFJS()) {
 
         throw new Error(
             "PDF.js no está cargado."
@@ -244,23 +277,43 @@ async function cargarPDF(archivo) {
     }
 
 
-    pdfjsLib.GlobalWorkerOptions.workerSrc =
-        "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+    console.log(
+        "Intentando cargar:",
+        archivo
+    );
 
 
-    const documento =
-        await pdfjsLib.getDocument(
-            archivo
-        ).promise;
+    const pdf =
+        await pdfjsLib.getDocument({
+
+            url: archivo,
+
+            disableAutoFetch: false,
+
+            disableStream: false
+
+        }).promise;
 
 
-    return documento;
+    console.log(
+        "PDF cargado correctamente:",
+        archivo
+    );
+
+
+    console.log(
+        "Número de páginas:",
+        pdf.numPages
+    );
+
+
+    return pdf;
 
 }
 
 
 // ======================================================
-// BUSCAR CÓDIGO EN EL PDF
+// BUSCAR CÓDIGO EN PDF
 // ======================================================
 
 async function buscarEnPDF(
@@ -268,24 +321,23 @@ async function buscarEnPDF(
     codigo
 ) {
 
-    const pdf =
-        await cargarPDF(archivo);
-
-
     const codigoBuscado =
-        normalizarTexto(codigo);
+        normalizarTexto(
+            codigo
+        );
 
 
-    console.log(
-        "PDF cargado:",
-        archivo
-    );
+    if (!codigoBuscado) {
+
+        return null;
+
+    }
 
 
-    console.log(
-        "Páginas:",
-        pdf.numPages
-    );
+    const pdf =
+        await cargarPDF(
+            archivo
+        );
 
 
     for (
@@ -314,12 +366,20 @@ async function buscarEnPDF(
 
 
         const textoNormalizado =
-            normalizarTexto(texto);
+            normalizarTexto(
+                texto
+            );
 
 
-        // ------------------------------------------
-        // BUSCAR CÓDIGO
-        // ------------------------------------------
+        console.log(
+            "Revisando página:",
+            numeroPagina
+        );
+
+
+        // ==================================================
+        // COINCIDENCIA DEL CÓDIGO
+        // ==================================================
 
         if (
             textoNormalizado.includes(
@@ -331,9 +391,9 @@ async function buscarEnPDF(
                 "Colaborador";
 
 
-            // --------------------------------------
-            // OBTENER NOMBRE
-            // --------------------------------------
+            // ==================================================
+            // INTENTAR OBTENER NOMBRE
+            // ==================================================
 
             const encontrado =
                 texto.match(
@@ -344,16 +404,66 @@ async function buscarEnPDF(
             if (encontrado) {
 
                 nombre =
-                    encontrado[1].trim();
+                    encontrado[1]
+                        .trim();
+
+            }
+
+
+            // ==================================================
+            // SEGUNDO MÉTODO PARA EL NOMBRE
+            // ==================================================
+
+            if (
+                nombre === "Colaborador"
+            ) {
+
+                const encontrado2 =
+                    texto.match(
+                        /Empleado\s*:\s*(.+)/i
+                    );
+
+
+                if (encontrado2) {
+
+                    nombre =
+                        encontrado2[1]
+                            .trim()
+                            .split(
+                                "Sueldo"
+                            )[0]
+                            .trim();
+
+                }
 
             }
 
 
             console.log(
-                "Empleado encontrado:",
-                codigo,
+                "================================"
+            );
+
+            console.log(
+                "CÓDIGO ENCONTRADO"
+            );
+
+            console.log(
+                "Código:",
+                codigo
+            );
+
+            console.log(
+                "Nombre:",
+                nombre
+            );
+
+            console.log(
                 "Página:",
                 numeroPagina
+            );
+
+            console.log(
+                "================================"
             );
 
 
@@ -370,12 +480,13 @@ async function buscarEnPDF(
         }
 
 
-        // ------------------------------------------
-        // INFORMAR AVANCE
-        // ------------------------------------------
+        // ==================================================
+        // MOSTRAR AVANCE
+        // ==================================================
 
         if (
-            numeroPagina % 25 === 0
+            numeroPagina === 1 ||
+            numeroPagina % 10 === 0
         ) {
 
             mostrarMensaje(
@@ -404,15 +515,28 @@ async function buscarEnPDF(
 
 async function consultarEmpleado() {
 
+    console.log(
+        "================================"
+    );
+
+    console.log(
+        "BOTÓN CONSULTAR PRESIONADO"
+    );
+
+    console.log(
+        "================================"
+    );
+
+
     const codigo =
         codigoInput.value
             .trim()
             .toUpperCase();
 
 
-    // ------------------------------------------
-    // VALIDAR
-    // ------------------------------------------
+    // ==================================================
+    // VALIDAR CÓDIGO
+    // ==================================================
 
     if (!codigo) {
 
@@ -428,9 +552,32 @@ async function consultarEmpleado() {
     }
 
 
-    // ------------------------------------------
+    // ==================================================
+    // VALIDAR LONGITUD MÍNIMA
+    // ==================================================
+
+    if (
+        codigo.length < 6
+    ) {
+
+        mostrarMensaje(
+
+            "⚠️ Debes ingresar el código completo.",
+
+            true
+
+        );
+
+        codigoInput.focus();
+
+        return;
+
+    }
+
+
+    // ==================================================
     // QUINCENA
-    // ------------------------------------------
+    // ==================================================
 
     quincenaSeleccionada =
         obtenerQuincena();
@@ -445,7 +592,7 @@ async function consultarEmpleado() {
     if (!periodo) {
 
         mostrarMensaje(
-            "❌ No se encontró la configuración de la quincena.",
+            "❌ No se encontró la quincena seleccionada.",
             true
         );
 
@@ -454,9 +601,9 @@ async function consultarEmpleado() {
     }
 
 
-    // ------------------------------------------
-    // LIMPIAR ANTERIOR
-    // ------------------------------------------
+    // ==================================================
+    // LIMPIAR RESULTADOS ANTERIORES
+    // ==================================================
 
     empleadoActual = null;
 
@@ -465,27 +612,36 @@ async function consultarEmpleado() {
     paginaActual = null;
 
 
-    resultado.classList.add(
-        "oculto"
-    );
+    if (resultado) {
 
-    resultado.style.display =
-        "none";
+        resultado.classList.add(
+            "oculto"
+        );
 
+        resultado.style.display =
+            "none";
 
-    visor.classList.add(
-        "oculto"
-    );
-
-    visor.style.display =
-        "none";
+    }
 
 
-    // ------------------------------------------
-    // BOTÓN
-    // ------------------------------------------
+    if (visor) {
 
-    botonBuscar.disabled = true;
+        visor.classList.add(
+            "oculto"
+        );
+
+        visor.style.display =
+            "none";
+
+    }
+
+
+    // ==================================================
+    // DESACTIVAR BOTÓN
+    // ==================================================
+
+    botonBuscar.disabled =
+        true;
 
     botonBuscar.textContent =
         "Buscando...";
@@ -502,9 +658,24 @@ async function consultarEmpleado() {
 
     try {
 
-        // --------------------------------------
+        // ==================================================
+        // COMPROBAR PDF.JS
+        // ==================================================
+
+        if (
+            !pdfJSDisponible()
+        ) {
+
+            throw new Error(
+                "PDF.js no está cargado en la página."
+            );
+
+        }
+
+
+        // ==================================================
         // BUSCAR
-        // --------------------------------------
+        // ==================================================
 
         const encontrado =
             await buscarEnPDF(
@@ -516,9 +687,9 @@ async function consultarEmpleado() {
             );
 
 
-        // --------------------------------------
+        // ==================================================
         // NO ENCONTRADO
-        // --------------------------------------
+        // ==================================================
 
         if (!encontrado) {
 
@@ -539,9 +710,9 @@ async function consultarEmpleado() {
         }
 
 
-        // --------------------------------------
-        // GUARDAR INFORMACIÓN
-        // --------------------------------------
+        // ==================================================
+        // GUARDAR DATOS
+        // ==================================================
 
         paginaEncontrada =
             encontrado.pagina;
@@ -558,33 +729,61 @@ async function consultarEmpleado() {
         };
 
 
-        // --------------------------------------
-        // MOSTRAR EMPLEADO
-        // --------------------------------------
+        // ==================================================
+        // MOSTRAR NOMBRE
+        // ==================================================
 
-        nombreEmpleado.textContent =
-            empleadoActual.nombre;
+        if (nombreEmpleado) {
+
+            nombreEmpleado.textContent =
+                empleadoActual.nombre;
+
+        }
 
 
-        codigoEmpleado.textContent =
-            empleadoActual.codigo;
+        // ==================================================
+        // MOSTRAR CÓDIGO
+        // ==================================================
+
+        if (codigoEmpleado) {
+
+            codigoEmpleado.textContent =
+                empleadoActual.codigo;
+
+        }
 
 
-        // --------------------------------------
+        // ==================================================
         // MOSTRAR QUINCENA
-        // --------------------------------------
+        // ==================================================
 
-        textoQuincena.textContent =
-            periodo.nombre.toUpperCase();
+        if (textoQuincena) {
+
+            textoQuincena.textContent =
+                (
+                    periodo.nombre +
+                    " · " +
+                    periodo.mes
+                ).toUpperCase();
+
+        }
 
 
-        periodoSeleccionado.textContent =
-            periodo.nombre.toUpperCase();
+        if (periodoSeleccionado) {
+
+            periodoSeleccionado.textContent =
+                (
+                    periodo.nombre +
+                    " · " +
+                    periodo.mes
+                ).toUpperCase();
+
+        }
 
 
-        // --------------------------------------
-        // MOSTRAR RESULTADO
-        // --------------------------------------
+        // ==================================================
+        // MOSTRAR TARJETA
+        // ==================================================
 
         resultado.classList.remove(
             "oculto"
@@ -595,9 +794,13 @@ async function consultarEmpleado() {
 
 
         mostrarMensaje(
-            "✓ Empleado encontrado correctamente."
+            "✓ Colaborador encontrado correctamente."
         );
 
+
+        // ==================================================
+        // IR A LA TARJETA
+        // ==================================================
 
         resultado.scrollIntoView({
 
@@ -607,24 +810,36 @@ async function consultarEmpleado() {
             block:
                 "start"
 
-        );
+        });
 
 
     } catch (error) {
 
         console.error(
-            "ERROR COMPLETO:",
+            "================================"
+        );
+
+        console.error(
+            "ERROR EN LA CONSULTA"
+        );
+
+        console.error(
             error
+        );
+
+        console.error(
+            "================================"
         );
 
 
         mostrarMensaje(
 
-            "❌ No se pudo leer el PDF. Revisa el nombre del archivo.",
+            "❌ No se pudo realizar la consulta. Revisa la consola para ver el error.",
 
             true
 
         );
+
 
     } finally {
 
@@ -645,7 +860,10 @@ async function consultarEmpleado() {
 
 async function mostrarRecibo() {
 
-    if (!paginaEncontrada) {
+    if (
+        !empleadoActual ||
+        !paginaEncontrada
+    ) {
 
         alert(
             "Primero debes consultar un empleado."
@@ -662,9 +880,9 @@ async function mostrarRecibo() {
         ];
 
 
-    // ------------------------------------------
+    // ==================================================
     // MOSTRAR VISOR
-    // ------------------------------------------
+    // ==================================================
 
     visor.classList.remove(
         "oculto"
@@ -674,9 +892,9 @@ async function mostrarRecibo() {
         "block";
 
 
-    // ------------------------------------------
-    // OCULTAR TARJETA DEL COLABORADOR
-    // ------------------------------------------
+    // ==================================================
+    // OCULTAR TARJETA
+    // ==================================================
 
     resultado.classList.add(
         "oculto"
@@ -687,20 +905,19 @@ async function mostrarRecibo() {
 
 
     visorTitulo.textContent =
-        periodo.nombre;
+        periodo.nombre +
+        " · " +
+        periodo.mes;
 
 
     visorPDF.innerHTML = `
 
         <div
-            style="
-                text-align:center;
-                padding:50px;
-                color:#08743b;
-                font-size:18px;
-            "
+            class="visor-mensaje"
         >
+
             🔄 Cargando recibo...
+
         </div>
 
     `;
@@ -733,6 +950,10 @@ async function mostrarRecibo() {
 
         paginaActual =
             pagina;
+
+
+        pdfActual =
+            pdf;
 
 
         const viewportOriginal =
@@ -805,17 +1026,10 @@ async function mostrarRecibo() {
         canvas.style.height =
             "auto";
 
-        canvas.style.display =
-            "block";
 
-        canvas.style.background =
-            "#ffffff";
+        visorPDF.innerHTML =
+            "";
 
-        canvas.style.borderRadius =
-            "12px";
-
-
-        visorPDF.innerHTML = "";
 
         visorPDF.appendChild(
             canvas
@@ -836,7 +1050,7 @@ async function mostrarRecibo() {
     } catch (error) {
 
         console.error(
-            "ERROR MOSTRANDO RECIBO:",
+            "Error mostrando recibo:",
             error
         );
 
@@ -844,13 +1058,12 @@ async function mostrarRecibo() {
         visorPDF.innerHTML = `
 
             <div
-                style="
-                    text-align:center;
-                    padding:50px;
-                    color:#c62828;
-                "
+                class="visor-mensaje"
+                style="color:#c62828;"
             >
+
                 ❌ No se pudo mostrar el recibo.
+
             </div>
 
         `;
@@ -861,14 +1074,10 @@ async function mostrarRecibo() {
 
 
 // ======================================================
-// CERRAR VISOR
+// CERRAR RECIBO
 // ======================================================
 
 function cerrarRecibo() {
-
-    // ------------------------------------------
-    // OCULTAR RECIBO
-    // ------------------------------------------
 
     visor.classList.add(
         "oculto"
@@ -878,9 +1087,17 @@ function cerrarRecibo() {
         "none";
 
 
-    // ------------------------------------------
-    // VOLVER A MOSTRAR COLABORADOR
-    // ------------------------------------------
+    paginaActual =
+        null;
+
+
+    pdfActual =
+        null;
+
+
+    // ==================================================
+    // VOLVER A MOSTRAR TARJETA
+    // ==================================================
 
     if (empleadoActual) {
 
@@ -894,19 +1111,14 @@ function cerrarRecibo() {
     }
 
 
-    paginaActual = null;
-
-
     visorPDF.innerHTML = `
 
         <div
-            style="
-                text-align:center;
-                padding:50px;
-                color:#08743b;
-            "
+            class="visor-mensaje"
         >
+
             Selecciona tu recibo para visualizarlo.
+
         </div>
 
     `;
@@ -920,11 +1132,17 @@ function cerrarRecibo() {
 
 function iniciarNuevaConsulta() {
 
-    codigoInput.value = "";
+    codigoInput.value =
+        "";
 
-    mensaje.textContent = "";
 
-    limpiarConsulta();
+    mostrarMensaje(
+        ""
+    );
+
+
+    limpiarResultados();
+
 
     codigoInput.focus();
 
@@ -964,11 +1182,16 @@ document
                         this.value;
 
 
-                    codigoInput.value = "";
+                    codigoInput.value =
+                        "";
 
-                    mensaje.textContent = "";
 
-                    limpiarConsulta();
+                    mostrarMensaje(
+                        ""
+                    );
+
+
+                    limpiarResultados();
 
                 }
 
@@ -980,87 +1203,152 @@ document
 
 
 // ======================================================
-// BOTÓN CONSULTAR
+// BOTÓN BUSCAR
 // ======================================================
 
-botonBuscar.addEventListener(
+if (
+    botonBuscar
+) {
 
-    "click",
+    botonBuscar.addEventListener(
 
-    consultarEmpleado
+        "click",
 
-);
-
-
-// ======================================================
-// ENTER
-// ======================================================
-
-codigoInput.addEventListener(
-
-    "keydown",
-
-    function(evento) {
-
-        if (
-            evento.key === "Enter"
-        ) {
+        function() {
 
             consultarEmpleado();
 
         }
 
-    }
+    );
 
-);
+}
+
+
+// ======================================================
+// ENTER EN EL CAMPO
+// ======================================================
+
+if (
+    codigoInput
+) {
+
+    codigoInput.addEventListener(
+
+        "keydown",
+
+        function(evento) {
+
+            if (
+                evento.key === "Enter"
+            ) {
+
+                evento.preventDefault();
+
+                consultarEmpleado();
+
+            }
+
+        }
+
+    );
+
+}
 
 
 // ======================================================
 // VER RECIBO
 // ======================================================
 
-verRecibo.addEventListener(
+if (
+    verRecibo
+) {
 
-    "click",
+    verRecibo.addEventListener(
 
-    mostrarRecibo
+        "click",
 
-);
+        mostrarRecibo
+
+    );
+
+}
 
 
 // ======================================================
-// CERRAR
+// CERRAR VISOR
 // ======================================================
 
-cerrarVisor.addEventListener(
+if (
+    cerrarVisor
+) {
 
-    "click",
+    cerrarVisor.addEventListener(
 
-    cerrarRecibo
+        "click",
 
-);
+        cerrarRecibo
+
+    );
+
+}
 
 
 // ======================================================
 // NUEVA CONSULTA
 // ======================================================
 
-nuevaConsulta.addEventListener(
+if (
+    nuevaConsulta
+) {
 
-    "click",
+    nuevaConsulta.addEventListener(
 
-    iniciarNuevaConsulta
+        "click",
 
-);
+        iniciarNuevaConsulta
+
+    );
+
+}
 
 
 // ======================================================
 // INICIO
 // ======================================================
 
-mostrarMensaje("");
+console.log(
+    "======================================"
+);
+
+console.log(
+    "COA - RECIBOS DE PAGO"
+);
+
+console.log(
+    "SCRIPT CARGADO CORRECTAMENTE"
+);
+
+console.log(
+    "PDF.JS disponible:",
+    pdfJSDisponible()
+);
+
+console.log(
+    "======================================"
+);
 
 
-// ======================================================
-// FIN
-// ======================================================
+if (
+    !pdfJSDisponible()
+) {
+
+    mostrarMensaje(
+
+        "⚠️ El visor de PDF no terminó de cargar. Recarga la página.",
+
+        true
+
+    );
+
+}

@@ -13,17 +13,16 @@ const PERIODOS = {
     q1: {
         nombre: "Quincena 1",
         mes: "Agosto 2026",
-        archivo: "recibos-q1.pdf.pdf"
+        archivo: "RECIBOS QUINCENA 1.pdf"
     },
 
     q2: {
         nombre: "Quincena 2",
         mes: "Agosto 2026",
-        archivo: "recibos-q2.pdf.pdf"
+        archivo: "RECIBOS QUINCENA 2.pdf"
     }
 
 };
-
 
 // ======================================================
 // VARIABLES

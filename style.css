@@ -4668,96 +4668,226 @@ button:active .icono {
         left: 17px !important;
     }
 }
+
+
 /* =========================================================
-   ENCABEZADO — GRANDE Y SIEMPRE CENTRADO
+   AJUSTE FINAL — CAMPO DE CÓDIGO
+   MISMA FORMA EN COMPUTADORA Y CELULAR
 ========================================================= */
 
-.encabezado {
+.campo-codigo {
     position: relative !important;
-
     width: 100% !important;
-
-    min-height: 105px !important;
-
-    padding: 18px 20px !important;
-
-    display: flex !important;
-
-    align-items: center !important;
-
-    justify-content: center !important;
-
-    text-align: center !important;
+    height: 72px !important;
+    min-height: 72px !important;
+    box-sizing: border-box !important;
+    border-radius: 16px !important;
+    overflow: hidden;
 }
 
+#codigo {
+    display: block !important;
+    width: 100% !important;
+    height: 72px !important;
+    min-height: 72px !important;
+    box-sizing: border-box !important;
+    margin: 0 !important;
+    padding: 0 18px 0 58px !important;
+    border-radius: 16px !important;
+    outline: none !important;
+    font-family: inherit !important;
+    font-size: 18px !important;
+    font-weight: 600 !important;
+    line-height: 1.2 !important;
+    -webkit-appearance: none !important;
+    appearance: none !important;
+    -webkit-text-size-adjust: 100% !important;
+}
 
-/* Marca completamente centrada */
+#codigo::placeholder {
+    font-family: inherit !important;
+    font-size: 16px !important;
+    font-weight: 500 !important;
+    opacity: 1;
+}
+
+#codigo:focus {
+    outline: none !important;
+}
+
+.campo-codigo .icono-id {
+    position: absolute !important;
+    left: 18px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    z-index: 2 !important;
+    pointer-events: none !important;
+}
+
+@media (max-width: 600px) {
+    .campo-codigo {
+        width: 100% !important;
+        height: 72px !important;
+        min-height: 72px !important;
+        border-radius: 16px !important;
+    }
+
+    #codigo {
+        width: 100% !important;
+        height: 72px !important;
+        min-height: 72px !important;
+        padding: 0 18px 0 58px !important;
+        border-radius: 16px !important;
+        font-size: 18px !important;
+    }
+
+    #codigo::placeholder {
+        font-size: 16px !important;
+    }
+
+    .campo-codigo .icono-id {
+        left: 18px !important;
+    }
+}
+
+@media (max-width: 390px) {
+    .campo-codigo {
+        height: 70px !important;
+        min-height: 70px !important;
+        border-radius: 15px !important;
+    }
+
+    #codigo {
+        height: 70px !important;
+        min-height: 70px !important;
+        padding: 0 16px 0 55px !important;
+        border-radius: 15px !important;
+        font-size: 17px !important;
+    }
+
+    #codigo::placeholder {
+        font-size: 15px !important;
+    }
+
+    .campo-codigo .icono-id {
+        left: 17px !important;
+    }
+}
+
+/* FIN DEL AJUSTE FINAL */
+
+/* =========================================================
+   AJUSTE FINAL COA
+   CAMPO DE CÓDIGO CENTRADO + AYUDA VISIBLE
+   ENCABEZADO GRANDE Y CENTRADO
+========================================================= */
+
+/* ENCABEZADO */
+.encabezado {
+    width: 100% !important;
+    min-height: 105px !important;
+    padding: 18px 20px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+}
 
 .encabezado .marca {
     width: 100% !important;
-
     display: flex !important;
-
     align-items: center !important;
-
     justify-content: center !important;
-
     gap: 16px !important;
-
-    text-align: left !important;
 }
-
-
-/* Logo más grande */
 
 .encabezado .logo {
     width: 68px !important;
-
     height: 68px !important;
-
     min-width: 68px !important;
-
     font-size: 20px !important;
-
     border-radius: 18px !important;
 }
 
-
-/* Nombre de la empresa */
-
 .encabezado .empresa h1 {
     font-size: 22px !important;
-
     font-weight: 900 !important;
-
     line-height: 1.15 !important;
-
     text-align: center !important;
-
-    letter-spacing: .2px !important;
 }
-
-
-/* Subtítulo */
 
 .encabezado .empresa p {
     margin-top: 5px !important;
-
     font-size: 12px !important;
-
     text-align: center !important;
 }
 
+/* CAMPO DE CÓDIGO */
+.campo-codigo {
+    position: relative !important;
+    width: 100% !important;
+    height: 72px !important;
+    min-height: 72px !important;
+    box-sizing: border-box !important;
+    border-radius: 16px !important;
+    overflow: hidden;
+}
 
-/* =========================================================
-   CELULAR
-========================================================= */
+#codigo {
+    display: block !important;
+    width: 100% !important;
+    height: 72px !important;
+    min-height: 72px !important;
+    box-sizing: border-box !important;
+    margin: 0 !important;
+    padding: 0 18px !important;
+    border-radius: 16px !important;
+    outline: none !important;
+    font-family: inherit !important;
+    font-size: 18px !important;
+    font-weight: 600 !important;
+    line-height: 1.2 !important;
+    text-align: center !important;
+    -webkit-appearance: none !important;
+    appearance: none !important;
+    -webkit-text-size-adjust: 100% !important;
+}
 
+#codigo::placeholder {
+    text-align: center !important;
+    font-size: 16px !important;
+    font-weight: 500 !important;
+    opacity: 1;
+}
+
+#codigo:focus {
+    outline: none !important;
+}
+
+.campo-codigo .icono-id {
+    position: absolute !important;
+    left: 18px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    z-index: 2 !important;
+    pointer-events: none !important;
+}
+
+/* TEXTO DE AYUDA */
+.ayuda {
+    margin-top: 10px !important;
+    color: var(--text-soft) !important;
+    font-size: 13px !important;
+    font-weight: 500 !important;
+    line-height: 1.5 !important;
+    text-align: left !important;
+}
+
+/* CELULAR */
 @media (max-width: 600px) {
 
     .encabezado {
         min-height: 100px !important;
-
         padding: 16px 12px !important;
     }
 
@@ -4767,32 +4897,57 @@ button:active .icono {
 
     .encabezado .logo {
         width: 58px !important;
-
         height: 58px !important;
-
         min-width: 58px !important;
-
         font-size: 17px !important;
-
         border-radius: 16px !important;
     }
 
     .encabezado .empresa h1 {
         font-size: 17px !important;
-
         line-height: 1.15 !important;
     }
 
     .encabezado .empresa p {
         font-size: 10px !important;
-
         margin-top: 4px !important;
     }
-}
-/* =========================================================
-   CELULAR PEQUEÑO
-========================================================= */
 
+    .campo-codigo {
+        width: 100% !important;
+        height: 72px !important;
+        min-height: 72px !important;
+        border-radius: 16px !important;
+    }
+
+    #codigo {
+        width: 100% !important;
+        height: 72px !important;
+        min-height: 72px !important;
+        padding: 0 18px !important;
+        border-radius: 16px !important;
+        font-size: 18px !important;
+        text-align: center !important;
+    }
+
+    #codigo::placeholder {
+        text-align: center !important;
+        font-size: 16px !important;
+    }
+
+    .campo-codigo .icono-id {
+        left: 18px !important;
+    }
+
+    .ayuda {
+        margin-top: 11px !important;
+        font-size: 13px !important;
+        line-height: 1.5 !important;
+        text-align: left !important;
+    }
+}
+
+/* CELULAR PEQUEÑO */
 @media (max-width: 390px) {
 
     .encabezado {
@@ -4801,11 +4956,8 @@ button:active .icono {
 
     .encabezado .logo {
         width: 52px !important;
-
         height: 52px !important;
-
         min-width: 52px !important;
-
         font-size: 15px !important;
     }
 
@@ -4816,3 +4968,28 @@ button:active .icono {
     .encabezado .empresa p {
         font-size: 9px !important;
     }
+
+    .campo-codigo {
+        height: 70px !important;
+        min-height: 70px !important;
+        border-radius: 15px !important;
+    }
+
+    #codigo {
+        height: 70px !important;
+        min-height: 70px !important;
+        padding: 0 16px !important;
+        border-radius: 15px !important;
+        font-size: 17px !important;
+    }
+
+    #codigo::placeholder {
+        font-size: 15px !important;
+    }
+
+    .ayuda {
+        font-size: 12px !important;
+    }
+}
+
+/* FIN AJUSTE FINAL COA */

@@ -1554,3 +1554,189 @@ document
         );
 
     });
+// ======================================================
+// CENTRO DE INFORMACIÓN
+// ABRIR Y CERRAR VENTANAS
+// ======================================================
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function() {
+
+        const tarjetas =
+            document.querySelectorAll(
+                ".centro-card"
+            );
+
+        const modales =
+            document.querySelectorAll(
+                ".centro-modal"
+            );
+
+
+        // ==============================================
+        // ABRIR VENTANA
+        // ==============================================
+
+        tarjetas.forEach(
+            function(tarjeta) {
+
+                tarjeta.addEventListener(
+                    "click",
+                    function() {
+
+                        const idModal =
+                            tarjeta.dataset.modal;
+
+                        const modal =
+                            document.getElementById(
+                                idModal
+                            );
+
+
+                        if (!modal) {
+                            return;
+                        }
+
+
+                        // Cerrar cualquier otra ventana
+
+                        modales.forEach(
+                            function(otroModal) {
+
+                                otroModal.classList.add(
+                                    "oculto"
+                                );
+
+                            }
+                        );
+
+
+                        // Abrir la seleccionada
+
+                        modal.classList.remove(
+                            "oculto"
+                        );
+
+
+                        document.body.classList.add(
+                            "centro-modal-abierto"
+                        );
+
+                    }
+                );
+
+            }
+        );
+
+
+        // ==============================================
+        // BOTONES CERRAR
+        // ==============================================
+
+        modales.forEach(
+            function(modal) {
+
+                const botonCerrar =
+                    modal.querySelector(
+                        "[data-cerrar-modal]"
+                    );
+
+
+                if (botonCerrar) {
+
+                    botonCerrar.addEventListener(
+                        "click",
+                        function() {
+
+                            cerrarModal(
+                                modal
+                            );
+
+                        }
+                    );
+
+                }
+
+
+                // ==========================================
+                // CERRAR AL HACER CLIC EN EL FONDO
+                // ==========================================
+
+                modal.addEventListener(
+                    "click",
+                    function(evento) {
+
+                        if (
+                            evento.target === modal
+                        ) {
+
+                            cerrarModal(
+                                modal
+                            );
+
+                        }
+
+                    }
+                );
+
+            }
+        );
+
+
+        // ==============================================
+        // CERRAR CON ESC
+        // ==============================================
+
+        document.addEventListener(
+            "keydown",
+            function(evento) {
+
+                if (
+                    evento.key === "Escape"
+                ) {
+
+                    modales.forEach(
+                        function(modal) {
+
+                            if (
+                                !modal.classList.contains(
+                                    "oculto"
+                                )
+                            ) {
+
+                                cerrarModal(
+                                    modal
+                                );
+
+                            }
+
+                        }
+                    );
+
+                }
+
+            }
+        );
+
+
+        // ==============================================
+        // FUNCIÓN CERRAR
+        // ==============================================
+
+        function cerrarModal(
+            modal
+        ) {
+
+            modal.classList.add(
+                "oculto"
+            );
+
+            document.body.classList.remove(
+                "centro-modal-abierto"
+            );
+
+        }
+
+    }
+);

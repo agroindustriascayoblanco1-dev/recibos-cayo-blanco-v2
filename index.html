@@ -868,138 +868,431 @@
 
             </div>
 
+        /* =========================================================
+   CONTACTO CON RECURSOS HUMANOS
+========================================================= */
 
-            <!-- ==========================================
-                 CONTACTO
-            =========================================== -->
+.centro-contacto {
 
-         <div class="centro-contacto">
+    margin-top:
+        22px;
 
-    <div class="contacto-cabecera">
+    padding:
+        18px;
 
-        <div class="contacto-icono">
-            📞
-        </div>
+    background:
+        #f8fbf9;
 
-        <div>
+    border:
+        1px solid #dce9e2;
 
-            <strong>
-                Contacto con Recursos Humanos
-            </strong>
+    border-radius:
+        17px;
 
-            <p>
-                Para recibir asistencia puedes comunicarte
-                a cualquiera de los siguientes números:
-            </p>
-
-        </div>
-
-    </div>
+}
 
 
-    <div class="contacto-telefonos">
+/* CABECERA */
+
+.contacto-cabecera {
+
+    display:
+        flex;
+
+    align-items:
+        flex-start;
+
+    gap:
+        12px;
+
+    margin-bottom:
+        16px;
+
+}
 
 
-        <a
-            href="tel:+50432857896"
-            class="contacto-telefono"
-        >
+.contacto-icono {
 
-            <span class="telefono-icono">
-                📞
-            </span>
+    width:
+        42px;
 
-            <span class="telefono-numero">
-                +504 3285-7896
-            </span>
+    height:
+        42px;
 
-            <span class="telefono-llamar">
-                ☎
-            </span>
+    flex:
+        0 0 42px;
 
-        </a>
+    display:
+        flex;
 
+    align-items:
+        center;
 
+    justify-content:
+        center;
 
-        <a
-            href="tel:+50431623652"
-            class="contacto-telefono"
-        >
+    border-radius:
+        12px;
 
-            <span class="telefono-icono">
-                📞
-            </span>
+    background:
+        var(--yellow-soft);
 
-            <span class="telefono-numero">
-                +504 3162-3652
-            </span>
+    font-size:
+        19px;
 
-            <span class="telefono-llamar">
-                ☎
-            </span>
-
-        </a>
+}
 
 
+.contacto-cabecera strong {
 
-        <a
-            href="tel:+50488633324"
-            class="contacto-telefono"
-        >
+    display:
+        block;
 
-            <span class="telefono-icono">
-                📞
-            </span>
+    margin:
+        0 0 4px;
 
-            <span class="telefono-numero">
-                +504 8863-3324
-            </span>
+    color:
+        var(--navy);
 
-            <span class="telefono-llamar">
-                ☎
-            </span>
+    font-size:
+        13px;
 
-        </a>
+}
 
 
+.contacto-cabecera p {
 
-        <a
-            href="tel:+50432258230"
-            class="contacto-telefono"
-        >
+    margin:
+        0;
 
-            <span class="telefono-icono">
-                📞
-            </span>
+    color:
+        var(--text-soft);
 
-            <span class="telefono-numero">
-                +504 3225-8230
-            </span>
+    font-size:
+        10px;
 
-            <span class="telefono-llamar">
-                ☎
-            </span>
+    line-height:
+        1.45;
 
-        </a>
+}
 
 
-    </div>
+/* =========================================================
+   TELÉFONOS
+========================================================= */
+
+.contacto-telefonos {
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    gap:
+        8px;
+
+}
 
 
-    <div class="contacto-nota">
+.contacto-telefono {
 
-        <span>
-            ✓
-        </span>
+    display:
+        flex;
 
-        <p>
-            Nuestro equipo de Recursos Humanos está
-            disponible para ayudarte en lo que necesites.
-        </p>
+    align-items:
+        center;
 
-    </div>
+    gap:
+        11px;
 
-</div>
+    width:
+        100%;
+
+    min-height:
+        49px;
+
+    padding:
+        7px 9px;
+
+    box-sizing:
+        border-box;
+
+    border:
+        1px solid #dce7e1;
+
+    border-radius:
+        11px;
+
+    background:
+        #ffffff;
+
+    color:
+        var(--green-dark);
+
+    text-decoration:
+        none;
+
+    transition:
+        .2s ease;
+
+}
+
+
+.contacto-telefono:hover {
+
+    border-color:
+        var(--green);
+
+    box-shadow:
+        0 5px 15px rgba(14,45,58,.08);
+
+    transform:
+        translateY(-1px);
+
+}
+
+
+.telefono-icono {
+
+    width:
+        34px;
+
+    height:
+        34px;
+
+    flex:
+        0 0 34px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    border-radius:
+        50%;
+
+    background:
+        var(--yellow-soft);
+
+    font-size:
+        15px;
+
+}
+
+
+.telefono-numero {
+
+    flex:
+        1;
+
+    color:
+        var(--green-dark);
+
+    font-size:
+        12px;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        .2px;
+
+}
+
+
+.telefono-llamar {
+
+    width:
+        34px;
+
+    height:
+        34px;
+
+    flex:
+        0 0 34px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    border-radius:
+        9px;
+
+    background:
+        var(--green);
+
+    color:
+        #ffffff;
+
+    font-size:
+        15px;
+
+}
+
+
+/* =========================================================
+   NOTA FINAL
+========================================================= */
+
+.contacto-nota {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        10px;
+
+    margin-top:
+        14px;
+
+    padding:
+        11px 12px;
+
+    border-radius:
+        11px;
+
+    background:
+        #edf7f1;
+
+}
+
+
+.contacto-nota > span {
+
+    width:
+        30px;
+
+    height:
+        30px;
+
+    flex:
+        0 0 30px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    border-radius:
+        50%;
+
+    background:
+        var(--green);
+
+    color:
+        #ffffff;
+
+    font-size:
+        15px;
+
+    font-weight:
+        900;
+
+}
+
+
+.contacto-nota p {
+
+    margin:
+        0;
+
+    color:
+        var(--green-dark);
+
+    font-size:
+        10px;
+
+    line-height:
+        1.45;
+
+}
+
+
+/* =========================================================
+   CELULAR
+========================================================= */
+
+@media (max-width: 700px) {
+
+    .centro-contacto {
+
+        padding:
+            15px;
+
+    }
+
+
+    .contacto-cabecera {
+
+        gap:
+            10px;
+
+    }
+
+
+    .contacto-icono {
+
+        width:
+            39px;
+
+        height:
+            39px;
+
+        flex-basis:
+            39px;
+
+    }
+
+
+    .contacto-cabecera strong {
+
+        font-size:
+            12px;
+
+    }
+
+
+    .contacto-cabecera p {
+
+        font-size:
+            10px;
+
+    }
+
+
+    .contacto-telefono {
+
+        min-height:
+            47px;
+
+    }
+
+
+    .telefono-numero {
+
+        font-size:
+            11px;
+
+    }
+
+}
     <!-- ==================================================
          FOOTER
     =================================================== -->

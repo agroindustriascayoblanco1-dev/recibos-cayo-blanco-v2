@@ -482,7 +482,6 @@ function limpiarConsulta() {
 // ======================================================
 // OBTENER PDF
 // ======================================================
-
 async function obtenerPDF(
     archivo
 ) {
@@ -590,12 +589,10 @@ async function consultarEmpleado() {
     }
 
 
-    if (
-        codigo.length < 6
-    ) {
+    if (!/^CBEP\d{4}$/.test(codigo)) {
 
         mostrarMensaje(
-            "⚠️ Debes escribir el código completo.",
+            "⚠️ Ingresa tu código completo de 8 caracteres. Ejemplo: CBEP1272.",
             true
         );
 
@@ -735,13 +732,30 @@ async function consultarEmpleado() {
 
 
             // ==================================================
-            // COINCIDENCIA
+            // COINCIDENCIA EXACTA
             // ==================================================
 
+            const codigosEncontrados =
+                textoNormalizado.match(
+                    /CBEP\d+/g
+                ) || [];
+
+
+            const coincidenciaExacta =
+                codigosEncontrados.some(
+                    function(codigoPDF) {
+
+                        return (
+                            codigoPDF ===
+                            codigoBuscado
+                        );
+
+                    }
+                );
+
+
             if (
-                textoNormalizado.includes(
-                    codigoBuscado
-                )
+                coincidenciaExacta
             ) {
 
                 encontrado = {
@@ -906,6 +920,13 @@ async function consultarEmpleado() {
         );
 
 
+        // ==================================================
+        // 🔊 SONIDO DE RECIBO ENCONTRADO
+        // ==================================================
+
+        reproducirSonidoEncontrado();
+
+
         resultado.scrollIntoView({
 
             behavior:
@@ -946,10 +967,113 @@ async function consultarEmpleado() {
                 "🔎 Consultar";
 
         }
+        
+    }
+
+}
+// ======================================================
+// 🔊 SONIDO DE RECIBO ENCONTRADO
+// ======================================================
+
+function reproducirSonidoEncontrado() {
+
+    try {
+
+        const AudioContext =
+            window.AudioContext ||
+            window.webkitAudioContext;
+
+
+        if (!AudioContext) {
+            return;
+        }
+
+
+        const audioCtx =
+            new AudioContext();
+
+
+        const oscillator =
+            audioCtx.createOscillator();
+
+
+        const gainNode =
+            audioCtx.createGain();
+
+
+        oscillator.type =
+            "sine";
+
+
+        oscillator.frequency.setValueAtTime(
+            880,
+            audioCtx.currentTime
+        );
+
+
+        oscillator.frequency.exponentialRampToValueAtTime(
+            1320,
+            audioCtx.currentTime + 0.15
+        );
+
+
+        gainNode.gain.setValueAtTime(
+            0.0001,
+            audioCtx.currentTime
+        );
+
+
+        gainNode.gain.exponentialRampToValueAtTime(
+            0.18,
+            audioCtx.currentTime + 0.02
+        );
+
+
+        gainNode.gain.exponentialRampToValueAtTime(
+            0.0001,
+            audioCtx.currentTime + 0.45
+        );
+
+
+        oscillator.connect(
+            gainNode
+        );
+
+
+        gainNode.connect(
+            audioCtx.destination
+        );
+
+
+        oscillator.start();
+
+
+        oscillator.stop(
+            audioCtx.currentTime + 0.45
+        );
+
+
+        oscillator.addEventListener(
+            "ended",
+            function() {
+
+                audioCtx.close();
+
+            }
+        );
+
+    } catch (error) {
+
+        console.warn(
+            "No se pudo reproducir el sonido de confirmación:",
+            error
+        );
 
     }
 
 }
+
+
 // ======================================================
 // OBTENER NOMBRE
 // ======================================================
@@ -1329,6 +1453,7 @@ async function guardarPDF() {
 
         return;
 
+    
     }
 
 

@@ -599,7 +599,9 @@ async function consultarEmpleado() {
 
     if (!/^CBEP\d{4}$/.test(codigo)) {
 
-        mostrarMensaje(
+        reproducirSonidoError();
+
+    mostrarMensaje(
             "⚠️ Ingresa tu código completo de 8 caracteres. Ejemplo: CBEP1272.",
             true
         );
@@ -625,7 +627,7 @@ async function consultarEmpleado() {
 
     if (!periodo) {
 
-        reproducirSonidoError();
+        
 
     mostrarMensaje(
             "❌ No se encontró la quincena.",
@@ -802,6 +804,8 @@ async function consultarEmpleado() {
             );
 
 
+            reproducirSonidoError();
+
             return;
 
         }
@@ -948,6 +952,8 @@ async function consultarEmpleado() {
             error
         );
 
+
+        reproducirSonidoError();
 
         mostrarMensaje(
 
@@ -1982,8 +1988,14 @@ function cerrarCentroModal(
 
 }
 
+
+
+
 // ======================================================
-// 🔊 SONIDO DE ERROR - RECIBO NO ENCONTRADO
+// 🔊 SONIDO DE ERROR
+// Se usa para cualquier resultado contrario a una
+// consulta exitosa: código incompleto, no encontrado,
+// PDF no disponible o error al procesar el PDF.
 // ======================================================
 
 function reproducirSonidoError() {
@@ -2000,41 +2012,65 @@ function reproducirSonidoError() {
 
         const tiempo = audioContextCOA.currentTime;
 
-        const oscillator = audioContextCOA.createOscillator();
-        const gainNode = audioContextCOA.createGain();
+        // Dos tonos descendentes suaves: "bip-bip"
+        const notas = [
+            {
+                frecuencia: 440,
+                inicio: 0,
+                duracion: 0.16
+            },
+            {
+                frecuencia: 330,
+                inicio: 0.18,
+                duracion: 0.20
+            }
+        ];
 
-        oscillator.type = "sine";
+        notas.forEach(function(nota) {
 
-        oscillator.frequency.setValueAtTime(440, tiempo);
-        oscillator.frequency.setValueAtTime(330, tiempo + 0.16);
+            const oscillator =
+                audioContextCOA.createOscillator();
 
-        gainNode.gain.setValueAtTime(0.0001, tiempo);
+            const gainNode =
+                audioContextCOA.createGain();
 
-        gainNode.gain.exponentialRampToValueAtTime(
-            0.16,
-            tiempo + 0.02
-        );
+            oscillator.type = "sine";
 
-        gainNode.gain.exponentialRampToValueAtTime(
-            0.0001,
-            tiempo + 0.14
-        );
+            const inicio =
+                tiempo + nota.inicio;
 
-        gainNode.gain.exponentialRampToValueAtTime(
-            0.16,
-            tiempo + 0.17
-        );
+            const final =
+                inicio + nota.duracion;
 
-        gainNode.gain.exponentialRampToValueAtTime(
-            0.0001,
-            tiempo + 0.32
-        );
+            oscillator.frequency.setValueAtTime(
+                nota.frecuencia,
+                inicio
+            );
 
-        oscillator.connect(gainNode);
-        gainNode.connect(audioContextCOA.destination);
+            gainNode.gain.setValueAtTime(
+                0.0001,
+                inicio
+            );
 
-        oscillator.start(tiempo);
-        oscillator.stop(tiempo + 0.35);
+            gainNode.gain.exponentialRampToValueAtTime(
+                0.14,
+                inicio + 0.015
+            );
+
+            gainNode.gain.exponentialRampToValueAtTime(
+                0.0001,
+                final
+            );
+
+            oscillator.connect(gainNode);
+            gainNode.connect(
+                audioContextCOA.destination
+            );
+
+            oscillator.start(inicio);
+            oscillator.stop(final);
+
+        });
 
     } catch (error) {
 

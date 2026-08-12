@@ -1,1085 +1,2106 @@
-<!DOCTYPE html>
-<html lang="es">
+// ======================================================
+// COA - RECIBOS DE PAGO
+// SISTEMA NUEVO
+// ======================================================
 
-<head>
-
-    <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <title>
-        Recibos de Pago | Agroindustrias Cayo Blanco
-    </title>
-
-
-    <!-- PDF.JS -->
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
-
-
-    <!-- jsPDF -->
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-
-
-    <!-- ESTILOS -->
-
-    <link
-        rel="stylesheet"
-        href="style.css?v=22"
-    >
-
-</head>
-
-
-<body>
-
-
-    <!-- ==================================================
-         ENCABEZADO
-    =================================================== -->
-
-    <header class="encabezado">
-
-        <div class="marca">
-
-            <div class="empresa">
-
-                <h1>
-                    AGROINDUSTRIAS CAYO BLANCO
-                </h1>
-
-                <p>
-                    Portal de Recibos de Pago
-                </p>
-
-            </div>
-
-        </div>
-
-    </header>
-
-
-
-    <!-- ==================================================
-         CONTENIDO
-    =================================================== -->
-
-    <main class="contenedor">
-
-
-        <!-- ==================================================
-             BUSCADOR
-        =================================================== -->
-
-        <section class="bienvenida">
-
-
-            <div class="bienvenida-texto">
-
-                <span class="etiqueta">
-                    Recursos Humanos
-                </span>
-
-
-                <h2>
-                    Consulta tus<br>
-                    recibos de pago
-                </h2>
-
-
-                <p>
-                    Selecciona la quincena e ingresa
-                    tu código completo de empleado
-                    para consultar tu recibo de forma
-                    rápida y confidencial.
-                </p>
-
-
-            </div>
-
-
-
-            <div class="buscador">
-
-
-                <!-- QUINCENA -->
-
-                <div class="selector-quincena">
-
-                    <label class="titulo-selector">
-                        Selecciona la quincena
-                    </label>
-
-
-                    <div class="opciones-quincena">
-
-
-                        <label class="opcion-quincena">
-
-                            <input
-                                type="radio"
-                                name="quincena"
-                                value="q1"
-                                checked
-                            >
-
-                            <span>
-
-                                <strong id="nombreQ1">
-                                    Quincena 1
-                                </strong>
-
-                                <small id="mesQ1"></small>
-
-                            </span>
-
-                        </label>
-
-
-
-                        <label class="opcion-quincena">
-
-                            <input
-                                type="radio"
-                                name="quincena"
-                                value="q2"
-                            >
-
-                            <span>
-
-                                <strong id="nombreQ2">
-                                    Quincena 2
-                                </strong>
-
-                                <small id="mesQ2"></small>
-
-                            </span>
-
-                        </label>
-
-
-                    </div>
-
-                </div>
-
-
-
-                <!-- CÓDIGO -->
-
-                <label
-                    for="codigo"
-                    class="label-codigo"
-                >
-                    Código de empleado
-                </label>
-
-
-                <div class="fila-busqueda">
-
-
-                    <input
-                        type="text"
-                        id="codigo"
-                        placeholder="Ejemplo: CBEP0000"
-                        autocomplete="off"
-                        autocapitalize="characters"
-                        spellcheck="false"
-                    >
-
-
-                    <button
-                        id="buscar"
-                        type="button"
-                    >
-                        🔎 Consultar
-                    </button>
-
-
-                </div>
-
-
-                <p class="ayuda">
-                    Escribe tu código de empleado.
-                </p>
-
-
-                <div id="mensaje"></div>
-
-
-            </div>
-
-        </section>
-
-
-
-        <!-- ==================================================
-             RESULTADO DEL COLABORADOR
-        =================================================== -->
-
-        <section
-            id="resultado"
-            class="resultado oculto"
-        >
-
-
-            <div class="empleado">
-
-
-                <div class="avatar">
-                    👤
-                </div>
-
-
-                <div class="datos-empleado">
-
-                    <span>
-                        COLABORADOR ENCONTRADO
-                    </span>
-
-
-                    <h2 id="nombreEmpleado">
-                        —
-                    </h2>
-
-
-                    <p>
-                        Código de empleado:
-                        <strong id="codigoEmpleado">
-                            —
-                        </strong>
-                    </p>
-
-                </div>
-
-
-                <button
-                    id="nuevaConsulta"
-                    class="boton-secundario"
-                    type="button"
-                >
-                    Nueva consulta
-                </button>
-
-
-            </div>
-
-
-
-            <!-- RECIBO -->
-
-            <div class="titulo-seccion">
-
-                <div>
-
-                    <span class="etiqueta">
-                        DOCUMENTO DISPONIBLE
-                    </span>
-
-                    <h2>
-                        ¡Lo encontramos!
-                    </h2>
-
-                </div>
-
-
-                <span
-                    id="periodoSeleccionado"
-                    class="periodo"
-                ></span>
-
-                <small
-                    id="periodoPago"
-                    class="periodo-pago"
-                ></small>
-
-            </div>
-
-
-
-            <div class="recibos">
-
-
-                <article class="recibo">
-
-
-                    <div class="icono-recibo">
-                        👍
-                    </div>
-
-
-                    <div class="informacion-recibo">
-
-                        <span id="textoQuincena"></span>
-
-                        <h3>
-                            Recibo de pago
-                        </h3>
-
-                        <p>
-                            Consulta el detalle de tu recibo
-                            correspondiente al período seleccionado.
-                        </p>
-
-                    </div>
-
-
-                    <button
-                        id="verRecibo"
-                        class="ver-recibo"
-                        type="button"
-                    >
-                        Ver recibo
-                    </button>
-
-
-                </article>
-
-            </div>
-
-
-        </section>
-
-
-
-        <!-- ==================================================
-             VISOR PDF
-        =================================================== -->
-
-        <section
-            id="visor"
-            class="visor oculto"
-        >
-
-
-            <div class="cabecera-visor">
-
-
-                <div>
-
-                    <span class="etiqueta">
-                        RECIBO DE PAGO
-                    </span>
-
-                    <h2 id="visorTitulo">
-                        Recibo
-                    </h2>
-
-                </div>
-
-
-                <div class="acciones-visor">
-
-
-                    <button
-                        id="guardarRecibo"
-                        class="boton-secundario"
-                        type="button"
-                    >
-                        Guardar recibo
-                    </button>
-
-
-                    <button
-                        id="cerrarVisor"
-                        class="boton-secundario"
-                        type="button"
-                    >
-                        Cerrar
-                    </button>
-
-
-                </div>
-
-            </div>
-
-
-            <div class="visor-pdf">
-
-                <div class="visor-mensaje">
-                    Selecciona tu recibo para visualizarlo.
-                </div>
-
-            </div>
-
-
-        </section>
-                <!-- ==================================================
-             AVISO DE SEGURIDAD
-        =================================================== -->
-
-        <section class="aviso">
-
-
-            <div class="aviso-icono">
-                🔐
-            </div>
-
-
-            <div>
-
-                <h3>
-                    Tu información es confidencial
-                </h3>
-
-
-                <p>
-                    Los recibos de pago contienen información
-                    personal. Consulta únicamente tu propio
-                    recibo y no compartas tu código de empleado.
-                </p>
-
-            </div>
-
-
-        </section>
-
-
-
-        <!-- ==================================================
-             CENTRO DE INFORMACIÓN
-        =================================================== -->
-
-        <section class="centro-informacion">
-
-
-            <div class="centro-titulo">
-
-                <span class="etiqueta">
-                    CENTRO DE INFORMACIÓN
-                </span>
-
-
-                <h2>
-                    Información, seguridad y ayuda.  
-                </h2>
-
-
-                <p>
-                    Encuentra información útil para consultar
-                    y proteger tu recibo de pago.
-                </p>
-
-            </div>
-
-
-
-            <!-- ==================================================
-                 TARJETAS
-            =================================================== -->
-
-            <div class="centro-opciones">
-
-
-                <!-- ==================================================
-                     INFORMACIÓN
-                =================================================== -->
-
-                <button
-                    type="button"
-                    class="centro-card tarjeta-informacion"
-                    data-modal="modalInformacion"
-                >
-
-                    <span class="centro-texto">
-
-                        <strong>
-                            Información
-                        </strong>
-
-                        <small>
-                            Conoce cómo funciona el portal
-                        </small>
-
-                    </span>
-
-
-                    <span class="centro-flecha">
-                        →
-                    </span>
-
-
-                    <span class="centro-onda">
-                    </span>
-
-                </button>
-
-
-
-                <!-- ==================================================
-                     SEGURIDAD
-                =================================================== -->
-
-                <button
-                    type="button"
-                    class="centro-card tarjeta-seguridad"
-                    data-modal="modalSeguridad"
-                >
-
-                    <span class="centro-texto">
-
-                        <strong>
-                            Seguridad
-                        </strong>
-
-                        <small>
-                            Protege tu información personal
-                        </small>
-
-                    </span>
-
-
-                    <span class="centro-flecha">
-                        →
-                    </span>
-
-
-                    <span class="centro-onda">
-                    </span>
-
-                </button>
-
-
-
-                <!-- ==================================================
-                     AYUDA
-                =================================================== -->
-
-                <button
-                    type="button"
-                    class="centro-card tarjeta-ayuda"
-                    data-modal="modalAyuda"
-                >
-
-                    <span class="centro-texto">
-
-                        <strong>
-                            Ayuda
-                        </strong>
-
-                        <small>
-                            Resuelve tus dudas
-                        </small>
-
-                    </span>
-
-
-                    <span class="centro-flecha">
-                        →
-                    </span>
-
-
-                    <span class="centro-onda">
-                    </span>
-
-                </button>
-
-
-            </div>
-
-
-        </section>
-                <!-- ==================================================
-             MODAL — INFORMACIÓN
-        =================================================== -->
-
-        <div
-            id="modalInformacion"
-            class="centro-modal oculto"
-        >
-
-            <div class="centro-modal-ventana">
-
-
-                <button
-                    type="button"
-                    class="centro-modal-cerrar"
-                    data-cerrar-modal
-                    aria-label="Cerrar"
-                >
-                    ×
-                </button>
-
-
-                <div class="centro-modal-icono verde">
-                    💡
-                </div>
-
-
-                <span class="centro-modal-etiqueta">
-                    CENTRO DE INFORMACIÓN
-                </span>
-
-
-                <h2>
-                    Información
-                </h2>
-
-
-                <p class="centro-modal-intro">
-                    Conoce cómo utilizar correctamente el portal
-                    de recibos de pago.
-                </p>
-
-
-                <div class="centro-modal-seccion">
-
-                    <h3>
-                        ¿Cómo consultar mi recibo?
-                    </h3>
-
-
-                    <div class="centro-paso">
-
-                        <span>
-                            1️⃣
-                        </span>
-
-                        <p>
-                            Selecciona la quincena que deseas consultar.
-                        </p>
-
-                    </div>
-
-
-                    <div class="centro-paso">
-
-                        <span>
-                            2️⃣
-                        </span>
-
-                        <p>
-                            Ingresa tu código completo de empleado.
-                        </p>
-
-                    </div>
-
-
-                    <div class="centro-paso">
-
-                        <span>
-                            3️⃣
-                        </span>
-
-                        <p>
-                            Presiona el botón <strong>Consultar</strong>.
-                        </p>
-
-                    </div>
-
-
-                    <div class="centro-paso">
-
-                        <span>
-                            4️⃣
-                        </span>
-
-                        <p>
-                            Visualiza tu recibo y, si lo necesitas,
-                            puedes guardarlo.
-                        </p>
-
-                    </div>
-
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-
-        <!-- ==================================================
-             MODAL — SEGURIDAD
-        =================================================== -->
-
-        <div
-            id="modalSeguridad"
-            class="centro-modal oculto"
-        >
-
-            <div class="centro-modal-ventana">
-
-
-                <button
-                    type="button"
-                    class="centro-modal-cerrar"
-                    data-cerrar-modal
-                    aria-label="Cerrar"
-                >
-                    ×
-                </button>
-
-
-                <div class="centro-modal-icono azul">
-                    🔑
-                </div>
-
-
-                <span class="centro-modal-etiqueta">
-                    PROTECCIÓN DE INFORMACIÓN
-                </span>
-
-
-                <h2>
-                    Seguridad
-                </h2>
-
-
-                <p class="centro-modal-intro">
-                    Tu recibo contiene información personal.
-                    Utiliza el portal de forma responsable.
-                </p>
-
-
-                <div class="centro-modal-seccion">
-
-
-                    <div class="centro-seguridad">
-
-                        <span>
-                            🔐
-                        </span>
-
-                        <p>
-                            Utiliza únicamente tu propio código
-                            de empleado.
-                        </p>
-
-                    </div>
-
-
-                    <div class="centro-seguridad">
-
-                        <span>
-                            🚫
-                        </span>
-
-                        <p>
-                            No compartas tu código de empleado
-                            con otras personas.
-                        </p>
-
-                    </div>
-
-
-                    <div class="centro-seguridad">
-
-                        <span>
-                            📄
-                        </span>
-
-                        <p>
-                            Evita compartir públicamente tu
-                            recibo de pago.
-                        </p>
-
-                    </div>
-
-
-                    <div class="centro-seguridad">
-
-                        <span>
-                            🔒
-                        </span>
-
-                        <p>
-                            Cuando termines tu consulta,
-                            puedes cerrar la página.
-                        </p>
-
-                    </div>
-
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-
-        <!-- ==================================================
-             MODAL — AYUDA
-        =================================================== -->
-
-        <div
-            id="modalAyuda"
-            class="centro-modal oculto"
-        >
-
-            <div class="centro-modal-ventana">
-
-
-                <button
-                    type="button"
-                    class="centro-modal-cerrar"
-                    data-cerrar-modal
-                    aria-label="Cerrar"
-                >
-                    ×
-                </button>
-
-
-                <div class="centro-modal-icono amarillo">
-                    💬
-                </div>
-
-
-                <span class="centro-modal-etiqueta">
-                    ASISTENCIA
-                </span>
-
-
-                <h2>
-                    Ayuda
-                </h2>
-
-
-                <p class="centro-modal-intro">
-                    Si tienes problemas para consultar tu recibo,
-                    revisa estas recomendaciones o comunícate
-                    con Recursos Humanos.
-                </p>
-
-
-                <div class="centro-modal-seccion">
-
-
-                    <div class="centro-ayuda">
-
-                        <strong>
-                            ¿No encuentra mi recibo?
-                        </strong>
-
-                        <p>
-                            Comprueba que seleccionaste la quincena
-                            correcta y que tu código está completo.
-                        </p>
-
-                    </div>
-
-
-                    <div class="centro-ayuda">
-
-                        <strong>
-                            ¿El código no funciona?
-                        </strong>
-
-                        <p>
-                            Escribe el código exactamente como aparece
-                            en tu documentación de empleado.
-                        </p>
-
-                    </div>
-
-
-                    <div class="centro-ayuda">
-
-                        <strong>
-                            ¿El problema continúa?
-                        </strong>
-
-                        <p>
-                            Comunícate con Recursos Humanos para
-                            recibir asistencia.
-                        </p>
-
-                    </div>
-                    <div class="centro-ayuda">
-
-                        <strong>
-                            ¿Qué hago si mi pago está incompleto?
-                        </strong>
-
-                        <p>
-                            Comuníquese con Recursos Humanos inmediatamente para presentar su reclamo. 
-                            Recuerde que tiene un plazo máximo de 3 días después de recibir su recibo 
-                            de pago para realizar el reclamo.
-                        </p>
-
-                    </div>
-
-
-
-                    <!-- CONTACTO -->
-
-                    <div class="centro-contacto">
-
-
-                        <div class="contacto-cabecera">
-
-                            <div class="contacto-icono">
-                                👤
-                            </div>
-
-
-                            <div>
-
-                                <strong>
-                                    Contacto con Recursos Humanos
-                                </strong>
-
-                                <p>
-                                    Para recibir asistencia puedes comunicarte
-                                    a cualquiera de los siguientes números:
-                                </p>
-
-                            </div>
-
-                        </div>
-
-
-
-                        <div class="contacto-telefonos">
-
-
-                            <a
-                                href="tel:+50432857896"
-                                class="contacto-telefono"
-                            >
-
-                                <span class="telefono-icono">
-                                    📞
-                                </span>
-
-                                <span class="telefono-numero">
-                                    +504 3285-7896
-                                </span>
-
-                                <span class="telefono-llamar">
-                                    👤
-                                </span>
-
-                            </a>
-
-
-
-                            <a
-                                href="tel:+50431623652"
-                                class="contacto-telefono"
-                            >
-
-                                <span class="telefono-icono">
-                                    📞
-                                </span>
-
-                                <span class="telefono-numero">
-                                    +504 3162-3652
-                                </span>
-
-                                <span class="telefono-llamar">
-                                    👤
-                                </span>
-
-                            </a>
-
-
-
-                            <a
-                                href="tel:+50488633324"
-                                class="contacto-telefono"
-                            >
-
-                                <span class="telefono-icono">
-                                    📞
-                                </span>
-
-                                <span class="telefono-numero">
-                                    +504 8863-3324
-                                </span>
-
-                                <span class="telefono-llamar">
-                                    👤
-                                </span>
-
-                            </a>
-
-
-
-                            <a
-                                href="tel:+50432258230"
-                                class="contacto-telefono"
-                            >
-
-                                <span class="telefono-icono">
-                                    📞
-                                </span>
-
-                                <span class="telefono-numero">
-                                    +504 3225-8230
-                                </span>
-
-                                <span class="telefono-llamar">
-                                    👤
-                                </span>
-
-                            </a>
-
-
-                        </div>
-
-
-
-                        <div class="contacto-nota">
-
-                            <span>
-                                ✓
-                            </span>
-
-                            <p>
-                                Nuestro equipo de Recursos Humanos está
-                                disponible para ayudarte en lo que necesites.
-                            </p>
-
-                        </div>
-
-
-                    </div>
-
-
-                </div>
-
-            </div>
-
-        </div>
-            </main>
-
-
-
-    <!-- ==================================================
-         FOOTER
-    =================================================== -->
-
-    <footer>
-
-        RRHH · Agroindustrias Cayo Blanco · COA
-
-    </footer>
-
-
-
-    <!-- ==================================================
-         SCRIPT
-    =================================================== -->
-
-    <script src="script.js?v=23"></script>
-
-
-</body>
-
-</html>
 
 // ======================================================
-// 🔘 SONIDO SUAVE DE INTERACCIÓN
-// Funciona en botones y selección de quincenas.
+// CONFIGURACIÓN
+// ======================================================
+
+const PERIODOS = {
+
+    q1: {
+
+        nombre: "Quincena 1",
+
+        mes: "Julio 2026",
+
+        periodoPago:
+            "11 de Junio al 25 de Junio de 2026",
+
+        archivo:
+            "RECIBOS QUINCENA 1.pdf"
+
+    },
+
+
+    q2: {
+
+        nombre: "Quincena 2",
+
+        mes: "Julio 2026",
+
+        periodoPago:
+            "26 de Junio al 10 de julio de 2026",
+
+        archivo:
+            "RECIBOS QUINCENA 2.pdf"
+
+    }
+
+};
+
+
+// ======================================================
+// VARIABLES
+// ======================================================
+
+let empleadoActual = null;
+
+let paginaEncontrada = null;
+
+let pdfActual = null;
+
+let paginaActual = null;
+
+let quincenaSeleccionada = "q1";
+
+
+// ======================================================
+// ACTUALIZAR SELECTOR DE QUINCENAS
+// ======================================================
+
+function actualizarSelectorQuincenas() {
+
+    const q1 = PERIODOS.q1;
+
+    const q2 = PERIODOS.q2;
+
+
+    const nombreQ1 =
+        document.getElementById(
+            "nombreQ1"
+        );
+
+
+    const mesQ1 =
+        document.getElementById(
+            "mesQ1"
+        );
+
+
+    const nombreQ2 =
+        document.getElementById(
+            "nombreQ2"
+        );
+
+
+    const mesQ2 =
+        document.getElementById(
+            "mesQ2"
+        );
+
+
+    if (nombreQ1) {
+
+        nombreQ1.textContent =
+            q1.nombre;
+
+    }
+
+
+    if (mesQ1) {
+
+        mesQ1.textContent =
+            q1.mes;
+
+    }
+
+
+    if (nombreQ2) {
+
+        nombreQ2.textContent =
+            q2.nombre;
+
+    }
+
+
+    if (mesQ2) {
+
+        mesQ2.textContent =
+            q2.mes;
+
+    }
+
+}
+
+
+// ======================================================
+// INICIAR CUANDO EL HTML ESTÉ LISTO
+// ======================================================
+
+document.addEventListener(
+    "DOMContentLoaded",
+    iniciarSistema
+);
+
+
+// ======================================================
+// INICIO
+// ======================================================
+
+function iniciarSistema() {
+
+    actualizarSelectorQuincenas();
+
+
+    console.log(
+        "COA: sistema iniciado"
+    );
+
+
+    // --------------------------------------------------
+    // CONFIGURAR PDF.JS
+    // --------------------------------------------------
+
+    if (
+        typeof pdfjsLib === "undefined"
+    ) {
+
+        console.error(
+            "PDF.js no está cargado."
+        );        reproducirSonidoError();
+
+
+
+
+        mostrarMensaje(
+            "❌ No se pudo cargar el sistema de recibos.",
+            true
+        );
+
+
+        return;
+
+    }
+
+
+    pdfjsLib.GlobalWorkerOptions.workerSrc =
+        "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+
+
+    // --------------------------------------------------
+    // BOTÓN BUSCAR
+    // --------------------------------------------------
+
+    const boton =
+        document.getElementById(
+            "buscar"
+        );
+
+
+    if (!boton) {
+
+        console.error(
+            "No existe el botón buscar."
+        );
+
+
+        return;
+
+    }
+
+
+    boton.addEventListener(
+        "click",
+        consultarEmpleado
+    );
+
+
+    // --------------------------------------------------
+    // ENTER
+    // --------------------------------------------------
+
+    const codigo =
+        document.getElementById(
+            "codigo"
+        );
+
+
+    if (codigo) {
+
+        codigo.addEventListener(
+            "keydown",
+            function(evento) {
+
+                if (
+                    evento.key === "Enter"
+                ) {
+
+                    evento.preventDefault();
+
+                    consultarEmpleado();
+
+                }
+
+            }
+        );
+
+    }
+
+
+    // --------------------------------------------------
+    // QUINCENAS
+    // --------------------------------------------------
+
+    document
+        .querySelectorAll(
+            'input[name="quincena"]'
+        )
+        .forEach(
+            function(radio) {
+
+                radio.addEventListener(
+                    "change",
+                    cambiarQuincena
+                );
+
+            }
+        );
+
+
+    // --------------------------------------------------
+    // 🔘 SONIDO SUAVE DE INTERACCIÓN
+    // Botones + quincenas
+    // --------------------------------------------------
+
+    document.addEventListener(
+        "pointerdown",
+        function(evento) {
+
+            const control =
+                evento.target.closest(
+                    "button, input[name='quincena']"
+                );
+
+            if (!control) {
+                return;
+            }
+
+            reproducirSonidoBoton();
+
+        },
+        false
+    );
+
+
+    // --------------------------------------------------
+    // VER RECIBO
+    // --------------------------------------------------
+
+    const ver =
+        document.getElementById(
+            "verRecibo"
+        );
+
+
+    if (ver) {
+
+        ver.addEventListener(
+            "click",
+            mostrarRecibo
+        );
+
+    }
+
+
+    // --------------------------------------------------
+    // CERRAR
+    // --------------------------------------------------
+
+    const cerrar =
+        document.getElementById(
+            "cerrarVisor"
+        );
+
+
+    if (cerrar) {
+
+        cerrar.addEventListener(
+            "click",
+            cerrarRecibo
+        );
+
+    }
+
+
+    // --------------------------------------------------
+    // NUEVA CONSULTA
+    // --------------------------------------------------
+
+    const nueva =
+        document.getElementById(
+            "nuevaConsulta"
+        );
+
+
+    if (nueva) {
+
+        nueva.addEventListener(
+            "click",
+            nuevaConsulta
+        );
+
+    }
+
+
+    // --------------------------------------------------
+    // GUARDAR
+    // --------------------------------------------------
+
+    const guardar =
+        document.getElementById(
+            "guardarRecibo"
+        );
+
+
+    if (guardar) {
+
+        guardar.addEventListener(
+            "click",
+            guardarPDF
+        );
+
+    }
+
+
+    // --------------------------------------------------
+    // CENTRO DE INFORMACIÓN
+    // --------------------------------------------------
+
+    iniciarCentroInformacion();
+
+
+    console.log(
+        "COA: eventos configurados correctamente"
+    );
+
+}
+// ======================================================
+// MENSAJE
+// ======================================================
+
+function mostrarMensaje(
+    texto,
+    error = false
+) {
+
+    const elemento =
+        document.getElementById(
+            "mensaje"
+        );
+
+
+    if (!elemento) {
+        return;
+    }
+
+
+    elemento.textContent =
+        texto;
+
+
+    elemento.style.color =
+        error
+            ? "#c62828"
+            : "#087a3f";
+
+}
+
+
+// ======================================================
+// NORMALIZAR
+// ======================================================
+
+function normalizar(
+    texto
+) {
+
+    return String(
+        texto || ""
+    )
+        .toUpperCase()
+        .replace(
+            /\s+/g,
+            ""
+        )
+        .replace(
+            /[^A-Z0-9]/g,
+            ""
+        );
+
+}
+
+
+// ======================================================
+// CAMBIAR QUINCENA
+// ======================================================
+
+function cambiarQuincena() {
+
+    const seleccion =
+        document.querySelector(
+            'input[name="quincena"]:checked'
+        );
+
+
+    quincenaSeleccionada =
+        seleccion
+            ? seleccion.value
+            : "q1";
+
+
+    limpiarConsulta();
+
+
+    mostrarMensaje("");
+
+}
+
+
+// ======================================================
+// LIMPIAR CONSULTA
+// ======================================================
+
+function limpiarConsulta() {
+
+    empleadoActual = null;
+
+    paginaEncontrada = null;
+
+    pdfActual = null;
+
+    paginaActual = null;
+
+
+    const resultado =
+        document.getElementById(
+            "resultado"
+        );
+
+
+    const visor =
+        document.getElementById(
+            "visor"
+        );
+
+
+    if (resultado) {
+
+        resultado.classList.add(
+            "oculto"
+        );
+
+    }
+
+
+    if (visor) {
+
+        visor.classList.add(
+            "oculto"
+        );
+
+    }
+
+}
+
+
+// ======================================================
+// OBTENER PDF
+// ======================================================
+
+async function obtenerPDF(
+    archivo
+) {
+
+    console.log(
+        "Cargando PDF:",
+        archivo
+    );
+
+
+    const pdf =
+        await pdfjsLib.getDocument(
+            {
+                url: archivo
+            }
+        ).promise;
+
+
+    console.log(
+        "PDF cargado:",
+        pdf.numPages,
+        "páginas"
+    );
+
+
+    return pdf;
+
+}
+
+
+// ======================================================
+// BUSCAR EMPLEADO
+// ======================================================
+
+async function consultarEmpleado() {
+
+    // ==================================================
+    // 🔊 PREPARAR AUDIO DESDE LA ACCIÓN DEL USUARIO
+    // ==================================================
+
+    prepararAudio();
+
+
+    console.log(
+        "================================"
+    );
+
+
+    console.log(
+        "CONSULTA INICIADA"
+    );
+
+
+    console.log(
+        "================================"
+    );
+
+
+    const codigoInput =
+        document.getElementById(
+            "codigo"
+        );
+
+
+    const boton =
+        document.getElementById(
+            "buscar"
+        );
+
+
+    if (!codigoInput) {
+
+        console.error(
+            "No existe el campo código."
+        );
+
+
+        return;
+
+    }
+
+
+    const codigo =
+        codigoInput.value
+            .trim()
+            .toUpperCase();
+
+
+    console.log(
+        "Código:",
+        codigo
+    );
+
+
+    // ==================================================
+    // VALIDAR
+    // ==================================================
+
+    if (!codigo) {
+
+                reproducirSonidoError();
+
+mostrarMensaje(
+            "⚠️ Escribe tu código completo.",
+            true
+        );
+
+
+        codigoInput.focus();
+
+
+        return;
+
+    }
+
+
+    if (!/^CBEP\d{4}$/.test(codigo)) {
+
+        reproducirSonidoError();
+
+        mostrarMensaje(
+            "⚠️ Ingresa tu código completo de 8 caracteres. Ejemplo: CBEP1272.",
+            true
+        );
+
+
+        codigoInput.focus();
+
+
+        return;
+
+    }
+
+
+    // ==================================================
+    // OBTENER PERIODO
+    // ==================================================
+
+    const periodo =
+        PERIODOS[
+            quincenaSeleccionada
+        ];
+
+
+    if (!periodo) {
+
+        
+
+            reproducirSonidoError();
+
+mostrarMensaje(
+            "❌ No se encontró la quincena.",
+            true
+        );
+
+
+        return;
+
+    }
+
+
+    // ==================================================
+    // LIMPIAR
+    // ==================================================
+
+    limpiarConsulta();
+
+
+    // ==================================================
+    // BOTÓN
+    // ==================================================
+
+    if (boton) {
+
+        boton.disabled =
+            true;
+
+
+        boton.textContent =
+            "Buscando...";
+
+    }
+
+
+    mostrarMensaje(
+        "🔎 Buscando en " +
+        periodo.nombre +
+        "..."
+    );
+
+
+    try {
+
+        // ==================================================
+        // CARGAR PDF
+        // ==================================================
+
+        const pdf =
+            await obtenerPDF(
+                periodo.archivo
+            );
+
+
+        // ==================================================
+        // CÓDIGO NORMALIZADO
+        // ==================================================
+
+        const codigoBuscado =
+            normalizar(
+                codigo
+            );
+
+
+        let encontrado =
+            null;
+
+
+        // ==================================================
+        // RECORRER PÁGINAS
+        // ==================================================
+
+        for (
+            let numero = 1;
+            numero <= pdf.numPages;
+            numero++
+        ) {
+
+            mostrarMensaje(
+                "🔎 Revisando página " +
+                numero +
+                " de " +
+                pdf.numPages +
+                "..."
+            );
+
+
+            const pagina =
+                await pdf.getPage(
+                    numero
+                );
+
+
+            const contenido =
+                await pagina.getTextContent();
+
+
+            const texto =
+                contenido.items
+                    .map(
+                        function(item) {
+
+                            return item.str || "";
+
+                        }
+                    )
+                    .join(" ");
+
+
+            const textoNormalizado =
+                normalizar(
+                    texto
+                );
+
+
+            // ==================================================
+            // ==================================================
+            // COINCIDENCIA EXACTA DEL CÓDIGO
+            // ==================================================
+            // PDF.js puede separar CBEP y los números con espacios.
+            // Permitimos esos espacios, pero exigimos exactamente 4 dígitos.
+
+            const codigosEnPagina =
+                texto.match(
+                    /CBEP\s*([0-9]{4})/gi
+                ) || [];
+
+            const coincidenciaExacta =
+                codigosEnPagina.some(
+                    function(codigoPDF) {
+
+                        return (
+                            normalizar(codigoPDF) ===
+                            codigoBuscado
+                        );
+
+                    }
+                );
+
+            if (coincidenciaExacta) {
+
+                encontrado = {
+
+                    pagina:
+                        numero,
+
+                    texto:
+                        texto
+
+                };
+
+                break;
+            }
+
+        }
+
+
+        // ==================================================
+        // NO ENCONTRADO
+        // ==================================================
+
+        if (!encontrado) {
+
+                    reproducirSonidoError();
+
+mostrarMensaje(
+
+                "❌ El código " +
+                codigo +
+                " no fue encontrado en " +
+                periodo.nombre +
+                ".",
+
+                true
+
+            );
+
+
+            return;
+
+        }
+
+
+        // ==================================================
+        // OBTENER NOMBRE
+        // ==================================================
+
+        let nombre =
+            obtenerNombre(
+                encontrado.texto
+            );
+
+
+        // ==================================================
+        // GUARDAR DATOS
+        // ==================================================
+
+        empleadoActual = {
+
+            codigo:
+                codigo,
+
+            nombre:
+                nombre,
+
+            periodo:
+                periodo.nombre,
+
+            mes:
+                periodo.mes,
+
+            archivo:
+                periodo.archivo
+
+        };
+
+
+        paginaEncontrada =
+            encontrado.pagina;
+
+
+        pdfActual =
+            pdf;
+
+
+        // ==================================================
+        // MOSTRAR DATOS
+        // ==================================================
+
+        document
+            .getElementById(
+                "nombreEmpleado"
+            )
+            .textContent =
+                nombre;
+
+
+        document
+            .getElementById(
+                "codigoEmpleado"
+            )
+            .textContent =
+                codigo;
+
+
+        document
+            .getElementById(
+                "textoQuincena"
+            )
+            .textContent =
+                (
+                    periodo.nombre +
+                    " · " +
+                    periodo.mes
+                ).toUpperCase();
+
+
+        document
+            .getElementById(
+                "periodoSeleccionado"
+            )
+            .textContent =
+                (
+                    periodo.nombre +
+                    " · " +
+                    periodo.mes
+                ).toUpperCase();
+
+
+        const periodoPagoElemento =
+            document.getElementById(
+                "periodoPago"
+            );
+
+
+        if (periodoPagoElemento) {
+
+            periodoPagoElemento.textContent =
+                periodo.periodoPago || "";
+
+        }
+
+
+        // ==================================================
+        // MOSTRAR TARJETA
+        // ==================================================
+
+        const resultado =
+            document.getElementById(
+                "resultado"
+            );
+
+
+        resultado.classList.remove(
+            "oculto"
+        );
+
+
+        mostrarMensaje(
+            "✓ Colaborador encontrado correctamente."
+        );
+
+        // 🔊 SONIDO DE RECIBO ENCONTRADO
+        reproducirSonidoEncontrado();
+
+
+        resultado.scrollIntoView({
+
+            behavior:
+                "smooth",
+
+            block:
+                "start"
+
+        });
+
+
+    } catch (error) {
+
+        console.error(
+            "ERROR:",
+            error
+        );
+
+
+                reproducirSonidoError();
+
+mostrarMensaje(
+
+            "❌ No se pudo cargar el recibo. Verifica que el PDF esté disponible.",
+
+            true
+
+        );
+
+
+    } finally {
+
+        if (boton) {
+
+            boton.disabled =
+                false;
+
+
+            boton.textContent =
+                "🔎 Consultar";
+
+        }
+
+    }
+
+}
+// ======================================================
+// 🔊 AUDIO DE CONFIRMACIÓN
+// ======================================================
+
+let audioContextCOA = null;
+
+function prepararAudio() {
+
+    try {
+
+        const AudioContext =
+            window.AudioContext ||
+            window.webkitAudioContext;
+
+        if (!AudioContext) {
+            return;
+        }
+
+        if (!audioContextCOA) {
+            audioContextCOA =
+                new AudioContext();
+        }
+
+        if (
+            audioContextCOA.state ===
+            "suspended"
+        ) {
+            audioContextCOA.resume();
+        }
+
+    } catch (error) {
+
+        console.warn(
+            "No se pudo preparar el audio:",
+            error
+        );
+
+    }
+
+}
+
+
+function reproducirSonidoEncontrado() {
+
+    try {
+
+        if (!audioContextCOA) {
+            return;
+        }
+
+        if (
+            audioContextCOA.state ===
+            "suspended"
+        ) {
+            audioContextCOA.resume();
+        }
+
+        const tiempo =
+            audioContextCOA.currentTime;
+
+        // ==================================================
+        // 📄 SONIDO DE CONFIRMACIÓN DE DOCUMENTO
+        // Dos tonos suaves: "tin... ding"
+        // ==================================================
+
+        const notas = [
+            {
+                frecuencia: 660,
+                inicio: 0,
+                duracion: 0.22
+            },
+            {
+                frecuencia: 990,
+                inicio: 0.16,
+                duracion: 0.48
+            }
+        ];
+
+        notas.forEach(function(nota) {
+
+            const oscillator =
+                audioContextCOA.createOscillator();
+
+            const gainNode =
+                audioContextCOA.createGain();
+
+            oscillator.type =
+                "sine";
+
+            const inicio =
+                tiempo + nota.inicio;
+
+            const final =
+                inicio + nota.duracion;
+
+            oscillator.frequency.setValueAtTime(
+                nota.frecuencia,
+                inicio
+            );
+
+            // Entrada suave
+            gainNode.gain.setValueAtTime(
+                0.0001,
+                inicio
+            );
+
+            gainNode.gain.exponentialRampToValueAtTime(
+                0.12,
+                inicio + 0.025
+            );
+
+            // Salida suave
+            gainNode.gain.exponentialRampToValueAtTime(
+                0.0001,
+                final
+            );
+
+            oscillator.connect(
+                gainNode
+            );
+
+            gainNode.connect(
+                audioContextCOA.destination
+            );
+
+            oscillator.start(
+                inicio
+            );
+
+            oscillator.stop(
+                final
+            );
+
+        });
+
+    } catch (error) {
+
+        console.warn(
+            "No se pudo reproducir el sonido de confirmación:",
+            error
+        );
+
+    }
+
+}
+
+// ======================================================
+// OBTENER NOMBRE
+// ======================================================
+
+function obtenerNombre(
+    texto
+) {
+
+    // --------------------------------------------------
+    // MÉTODO 1
+    // --------------------------------------------------
+
+    const resultado1 =
+        texto.match(
+            /Empleado\s*:\s*(.*?)\s+Sueldo\s+Mensual/i
+        );
+
+
+    if (
+        resultado1 &&
+        resultado1[1]
+    ) {
+
+        return resultado1[1]
+            .trim();
+
+    }
+
+
+    // --------------------------------------------------
+    // MÉTODO 2
+    // --------------------------------------------------
+
+    const resultado2 =
+        texto.match(
+            /Empleado\s*:\s*(.*)/i
+        );
+
+
+    if (
+        resultado2 &&
+        resultado2[1]
+    ) {
+
+        return resultado2[1]
+            .split(
+                "Sueldo"
+            )[0]
+            .trim();
+
+    }
+
+
+    return "Colaborador";
+
+}
+
+
+// ======================================================
+// MOSTRAR RECIBO
+// ======================================================
+
+async function mostrarRecibo() {
+
+    if (
+        !empleadoActual ||
+        !paginaEncontrada
+    ) {
+
+        return;
+
+    }
+
+
+    const visor =
+        document.getElementById(
+            "visor"
+        );
+
+
+    const resultado =
+        document.getElementById(
+            "resultado"
+        );
+
+
+    const titulo =
+        document.getElementById(
+            "visorTitulo"
+        );
+
+
+    const visorPDF =
+        document.querySelector(
+            ".visor-pdf"
+        );
+
+
+    // ==================================================
+    // MOSTRAR VISOR
+    // ==================================================
+
+    visor.classList.remove(
+        "oculto"
+    );
+
+
+    // ==================================================
+    // OCULTAR TARJETA
+    // ==================================================
+
+    resultado.classList.add(
+        "oculto"
+    );
+
+
+    titulo.textContent =
+        empleadoActual.periodo +
+        " · " +
+        empleadoActual.mes;
+
+
+    visorPDF.innerHTML = `
+
+        <div class="visor-mensaje">
+
+            🔄 Cargando recibo...
+
+        </div>
+
+    `;
+
+
+    visor.scrollIntoView({
+
+        behavior:
+            "smooth",
+
+        block:
+            "start"
+
+    });
+
+
+    try {
+
+        // ==================================================
+        // CARGAR PÁGINA
+        // ==================================================
+
+        const pagina =
+            await pdfActual.getPage(
+                paginaEncontrada
+            );
+
+
+        paginaActual =
+            pagina;
+
+
+        // ==================================================
+        // ESCALA
+        // ==================================================
+
+        const viewportBase =
+            pagina.getViewport({
+
+                scale:
+                    1
+
+            });
+
+
+        const ancho =
+            visorPDF.clientWidth ||
+            900;
+
+
+        const escala =
+            Math.min(
+
+                2,
+
+                Math.max(
+
+                    1,
+
+                    ancho /
+                    viewportBase.width
+
+                )
+
+            );
+
+
+        const viewport =
+            pagina.getViewport({
+
+                scale:
+                    escala
+
+            });
+
+
+        // ==================================================
+        // CANVAS
+        // ==================================================
+
+        const canvas =
+            document.createElement(
+                "canvas"
+            );
+
+
+        const contexto =
+            canvas.getContext(
+                "2d"
+            );
+
+
+        canvas.width =
+            viewport.width;
+
+
+        canvas.height =
+            viewport.height;
+
+
+        canvas.style.width =
+            "100%";
+
+
+        canvas.style.height =
+            "auto";
+
+
+        visorPDF.innerHTML =
+            "";
+
+
+        visorPDF.appendChild(
+            canvas
+        );
+
+
+        // ==================================================
+        // RENDER
+        // ==================================================
+
+        await pagina.render({
+
+            canvasContext:
+                contexto,
+
+            viewport:
+                viewport
+
+        }).promise;
+
+
+    } catch (error) {
+
+        console.error(
+            "Error mostrando PDF:",
+            error
+        );
+
+
+                reproducirSonidoError();
+
+visorPDF.innerHTML = `
+
+            <div
+                class="visor-mensaje"
+                style="color:#c62828;"
+            >
+
+                ❌ No se pudo mostrar el recibo.
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+// ======================================================
+// CERRAR RECIBO
+// ======================================================
+
+function cerrarRecibo() {
+
+    const visor =
+        document.getElementById(
+            "visor"
+        );
+
+
+    const resultado =
+        document.getElementById(
+            "resultado"
+        );
+
+
+    visor.classList.add(
+        "oculto"
+    );
+
+
+    if (empleadoActual) {
+
+        resultado.classList.remove(
+            "oculto"
+        );
+
+    }
+
+
+    paginaActual =
+        null;
+
+}
+
+
+// ======================================================
+// NUEVA CONSULTA
+// ======================================================
+
+function nuevaConsulta() {
+
+    const codigo =
+        document.getElementById(
+            "codigo"
+        );
+
+
+    limpiarConsulta();
+
+
+    codigo.value =
+        "";
+
+
+    mostrarMensaje("");
+
+
+    codigo.focus();
+
+
+    window.scrollTo({
+
+        top:
+            0,
+
+        behavior:
+            "smooth"
+
+    });
+
+}
+
+
+// ======================================================
+// GUARDAR RECIBO
+// ======================================================
+
+async function guardarPDF() {
+
+    if (
+        !paginaActual
+    ) {
+
+        alert(
+            "Primero abre el recibo."
+        );
+
+
+        return;
+
+    }
+
+
+    if (
+        !window.jspdf
+    ) {
+
+        alert(
+            "No se pudo cargar la función para guardar el PDF."
+        );
+
+
+        return;
+
+    }
+
+
+    const boton =
+        document.getElementById(
+            "guardarRecibo"
+        );
+
+
+    try {
+
+        boton.disabled =
+            true;
+
+
+        boton.textContent =
+            "Guardando...";
+
+
+        // ==================================================
+        // CREAR CANVAS
+        // ==================================================
+
+        const viewport =
+            paginaActual.getViewport({
+
+                scale:
+                    2
+
+            });
+
+
+        const canvas =
+            document.createElement(
+                "canvas"
+            );
+
+
+        const contexto =
+            canvas.getContext(
+                "2d"
+            );
+
+
+        canvas.width =
+            viewport.width;
+
+
+        canvas.height =
+            viewport.height;
+
+
+        await paginaActual.render({
+
+            canvasContext:
+                contexto,
+
+            viewport:
+                viewport
+
+        }).promise;
+
+
+        // ==================================================
+        // CONVERTIR A IMAGEN
+        // ==================================================
+
+        const imagen =
+            canvas.toDataURL(
+                "image/jpeg",
+                0.95
+            );
+
+
+        // ==================================================
+        // CREAR PDF
+        // ==================================================
+
+        const {
+            jsPDF
+        } =
+            window.jspdf;
+
+
+        const pdf =
+            new jsPDF({
+
+                orientation:
+                    viewport.width >
+                    viewport.height
+                        ? "landscape"
+                        : "portrait",
+
+                unit:
+                    "mm",
+
+                format:
+                    "a4"
+
+            });
+
+
+        // ==================================================
+        // TAMAÑO DE PÁGINA
+        // ==================================================
+
+        const anchoPagina =
+            pdf.internal.pageSize.getWidth();
+
+
+        const altoPagina =
+            pdf.internal.pageSize.getHeight();
+
+
+        const margen =
+            8;
+
+
+        const anchoDisponible =
+            anchoPagina -
+            margen * 2;
+
+
+        const altoDisponible =
+            altoPagina -
+            margen * 2;
+
+
+        const escala =
+            Math.min(
+
+                anchoDisponible /
+                viewport.width,
+
+                altoDisponible /
+                viewport.height
+
+            );
+
+
+        const anchoImagen =
+            viewport.width *
+            escala;
+
+
+        const altoImagen =
+            viewport.height *
+            escala;
+
+
+        const x =
+            (
+                anchoPagina -
+                anchoImagen
+            ) / 2;
+
+
+        const y =
+            (
+                altoPagina -
+                altoImagen
+            ) / 2;
+
+
+        // ==================================================
+        // AGREGAR IMAGEN
+        // ==================================================
+
+        pdf.addImage(
+
+            imagen,
+
+            "JPEG",
+
+            x,
+
+            y,
+
+            anchoImagen,
+
+            altoImagen,
+
+            undefined,
+
+            "FAST"
+
+        );
+
+
+        // ==================================================
+        // NOMBRE DEL ARCHIVO
+        // ==================================================
+
+        const nombre =
+            empleadoActual.nombre
+                .replace(
+                    /[\\/:*?"<>|]/g,
+                    ""
+                );
+
+
+        const archivo =
+            "Recibo - " +
+            nombre +
+            " - " +
+            empleadoActual.periodo +
+            ".pdf";
+
+
+        pdf.save(
+            archivo
+        );
+
+
+        boton.textContent =
+            "✓ Guardado";
+
+
+        setTimeout(
+            function() {
+
+                boton.textContent =
+                    "📥 Guardar recibo";
+
+            },
+            2000
+        );
+
+
+    } catch (error) {
+
+        console.error(
+            "Error guardando:",
+            error
+        );
+
+
+        alert(
+            "No se pudo guardar el recibo."
+        );
+
+
+    } finally {
+
+        boton.disabled =
+            false;
+
+    }
+
+}
+// ======================================================
+// CENTRO DE INFORMACIÓN
+// VENTANAS MODALES
+// ======================================================
+
+function iniciarCentroInformacion() {
+
+    const tarjetas =
+        document.querySelectorAll(
+            ".centro-card"
+        );
+
+
+    const modales =
+        document.querySelectorAll(
+            ".centro-modal"
+        );
+
+
+    // ==================================================
+    // ABRIR VENTANA
+    // ==================================================
+
+    tarjetas.forEach(
+        function(tarjeta) {
+
+            tarjeta.addEventListener(
+                "click",
+                function() {
+
+                    const idModal =
+                        tarjeta.dataset.modal;
+
+
+                    const modal =
+                        document.getElementById(
+                            idModal
+                        );
+
+
+                    if (!modal) {
+
+                        console.warn(
+                            "No se encontró el modal:",
+                            idModal
+                        );
+
+                        return;
+
+                    }
+
+
+                    // ------------------------------------------
+                    // CERRAR TODAS LAS VENTANAS
+                    // ------------------------------------------
+
+                    modales.forEach(
+                        function(otroModal) {
+
+                            otroModal.classList.add(
+                                "oculto"
+                            );
+
+                        }
+                    );
+
+
+                    // ------------------------------------------
+                    // ABRIR LA SELECCIONADA
+                    // ------------------------------------------
+
+                    modal.classList.remove(
+                        "oculto"
+                    );
+
+
+                    // ------------------------------------------
+                    // BLOQUEAR SCROLL
+                    // ------------------------------------------
+
+                    document.body.classList.add(
+                        "centro-modal-abierto"
+                    );
+
+                }
+            );
+
+        }
+    );
+
+
+    // ==================================================
+    // CONFIGURAR CADA MODAL
+    // ==================================================
+
+    modales.forEach(
+        function(modal) {
+
+            // ----------------------------------------------
+            // BOTÓN CERRAR
+            // ----------------------------------------------
+
+            const botonCerrar =
+                modal.querySelector(
+                    "[data-cerrar-modal]"
+                );
+
+
+            if (botonCerrar) {
+
+                botonCerrar.addEventListener(
+                    "click",
+                    function() {
+
+                        cerrarCentroModal(
+                            modal
+                        );
+
+                    }
+                );
+
+            }
+
+
+            // ----------------------------------------------
+            // CERRAR AL TOCAR EL FONDO
+            // ----------------------------------------------
+
+            modal.addEventListener(
+                "click",
+                function(evento) {
+
+                    if (
+                        evento.target === modal
+                    ) {
+
+                        cerrarCentroModal(
+                            modal
+                        );
+
+                    }
+
+                }
+            );
+
+        }
+    );
+
+
+    // ==================================================
+    // CERRAR CON ESC
+    // ==================================================
+
+    document.addEventListener(
+        "keydown",
+        function(evento) {
+
+            if (
+                evento.key !== "Escape"
+            ) {
+
+                return;
+
+            }
+
+
+            modales.forEach(
+                function(modal) {
+
+                    if (
+                        !modal.classList.contains(
+                            "oculto"
+                        )
+                    ) {
+
+                        cerrarCentroModal(
+                            modal
+                        );
+
+                    }
+
+                }
+            );
+
+        }
+    );
+
+
+    console.log(
+        "COA: Centro de Información iniciado"
+    );
+
+}
+
+
+// ======================================================
+// CERRAR MODAL
+// ======================================================
+
+function cerrarCentroModal(
+    modal
+) {
+
+    if (!modal) {
+        return;
+    }
+
+
+    modal.classList.add(
+        "oculto"
+    );
+
+
+    document.body.classList.remove(
+        "centro-modal-abierto"
+    );
+
+}
+
+
+// ======================================================
+// 🔘 SONIDO SUAVE DE BOTÓN
+// Se activa con la interacción real del usuario.
 // ======================================================
 
 function reproducirSonidoBoton() {
+
+    try {
+
+        // El primer toque/clic del usuario habilita el audio.
+        prepararAudio();
+
+        if (!audioContextCOA) {
+            return;
+        }
+
+        if (audioContextCOA.state === "suspended") {
+            audioContextCOA.resume();
+        }
+
+        const tiempo =
+            audioContextCOA.currentTime;
+
+        const oscillator =
+            audioContextCOA.createOscillator();
+
+        const gainNode =
+            audioContextCOA.createGain();
+
+        oscillator.type = "sine";
+
+        // Clic corto y discreto
+        oscillator.frequency.setValueAtTime(
+            720,
+            tiempo
+        );
+
+        gainNode.gain.setValueAtTime(
+            0.0001,
+            tiempo
+        );
+
+        gainNode.gain.exponentialRampToValueAtTime(
+            0.075,
+            tiempo + 0.004
+        );
+
+        gainNode.gain.exponentialRampToValueAtTime(
+            0.0001,
+            tiempo + 0.085
+        );
+
+        oscillator.connect(gainNode);
+        gainNode.connect(
+            audioContextCOA.destination
+        );
+
+        oscillator.start(tiempo);
+        oscillator.stop(
+            tiempo + 0.09
+        );
+
+    } catch (error) {
+
+        console.warn(
+            "No se pudo reproducir el sonido del botón:",
+            error
+        );
+
+    }
+
+}
+
+
+// ======================================================
+// 🔊 SONIDO DE ERROR - RECIBO NO ENCONTRADO
+// ======================================================
+
+function reproducirSonidoError() {
 
     try {
 
@@ -1095,44 +2116,46 @@ function reproducirSonidoBoton() {
 
         const tiempo = audioContextCOA.currentTime;
 
-        const oscillator =
-            audioContextCOA.createOscillator();
-
-        const gainNode =
-            audioContextCOA.createGain();
+        const oscillator = audioContextCOA.createOscillator();
+        const gainNode = audioContextCOA.createGain();
 
         oscillator.type = "sine";
 
-        oscillator.frequency.setValueAtTime(
-            700,
-            tiempo
-        );
+        oscillator.frequency.setValueAtTime(440, tiempo);
+        oscillator.frequency.setValueAtTime(330, tiempo + 0.16);
 
-        gainNode.gain.setValueAtTime(
-            0.0001,
-            tiempo
-        );
+        gainNode.gain.setValueAtTime(0.0001, tiempo);
 
         gainNode.gain.exponentialRampToValueAtTime(
-            0.06,
-            tiempo + 0.004
+            0.16,
+            tiempo + 0.02
         );
 
         gainNode.gain.exponentialRampToValueAtTime(
             0.0001,
-            tiempo + 0.075
+            tiempo + 0.14
+        );
+
+        gainNode.gain.exponentialRampToValueAtTime(
+            0.16,
+            tiempo + 0.17
+        );
+
+        gainNode.gain.exponentialRampToValueAtTime(
+            0.0001,
+            tiempo + 0.32
         );
 
         oscillator.connect(gainNode);
         gainNode.connect(audioContextCOA.destination);
 
         oscillator.start(tiempo);
-        oscillator.stop(tiempo + 0.08);
+        oscillator.stop(tiempo + 0.35);
 
     } catch (error) {
 
         console.warn(
-            "No se pudo reproducir el sonido de interacción:",
+            "No se pudo reproducir el sonido de error:",
             error
         );
 
@@ -1140,27 +2163,5 @@ function reproducirSonidoBoton() {
 
 }
 
-// ======================================================
-// 🔘 INTERACCIONES
-// Botones + etiquetas + quincenas (radio)
-// ======================================================
 
-document.addEventListener(
-    "pointerdown",
-    function(event) {
-
-        const elemento =
-            event.target.closest(
-                "button, label, input[type='radio'], [role='button']"
-            );
-
-        if (!elemento) {
-            return;
-        }
-
-        reproducirSonidoBoton();
-
-    },
-    true
-);
 

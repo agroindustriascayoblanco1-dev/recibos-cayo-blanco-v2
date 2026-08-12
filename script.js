@@ -1996,6 +1996,74 @@ function cerrarCentroModal(
 
 }
 
+
+// ======================================================
+// 🔘 SONIDO SUAVE DE BOTÓN
+// ======================================================
+
+function reproducirSonidoBoton() {
+
+    try {
+
+        if (!audioContextCOA) {
+            prepararAudio();
+        }
+
+        if (!audioContextCOA) {
+            return;
+        }
+
+        if (audioContextCOA.state === "suspended") {
+            audioContextCOA.resume();
+        }
+
+        const tiempo = audioContextCOA.currentTime;
+
+        const oscillator =
+            audioContextCOA.createOscillator();
+
+        const gainNode =
+            audioContextCOA.createGain();
+
+        oscillator.type = "sine";
+
+        oscillator.frequency.setValueAtTime(
+            650,
+            tiempo
+        );
+
+        gainNode.gain.setValueAtTime(
+            0.0001,
+            tiempo
+        );
+
+        gainNode.gain.exponentialRampToValueAtTime(
+            0.035,
+            tiempo + 0.005
+        );
+
+        gainNode.gain.exponentialRampToValueAtTime(
+            0.0001,
+            tiempo + 0.07
+        );
+
+        oscillator.connect(gainNode);
+        gainNode.connect(audioContextCOA.destination);
+
+        oscillator.start(tiempo);
+        oscillator.stop(tiempo + 0.08);
+
+    } catch (error) {
+
+        console.warn(
+            "No se pudo reproducir el sonido del botón:",
+            error
+        );
+
+    }
+
+}
+
 // ======================================================
 // 🔊 SONIDO DE ERROR - RECIBO NO ENCONTRADO
 // ======================================================
@@ -2060,4 +2128,22 @@ function reproducirSonidoError() {
     }
 
 }
+
+
+
+// ======================================================
+// 🔘 CLIC SUAVE EN BOTONES
+// ======================================================
+
+document.querySelectorAll("button").forEach(function(boton) {
+
+    boton.addEventListener("click", function() {
+
+        // El botón Consultar ya prepara el audio desde
+        // su propio evento; el clic suave se reproduce aquí.
+        reproducirSonidoBoton();
+
+    });
+
+});
 

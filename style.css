@@ -417,11 +417,13 @@ body {
 
 .etiqueta {
 
-    display: inline-flex;
+    display: flex;
 
     align-items: center;
 
     width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
 
     padding: 7px 11px;
 

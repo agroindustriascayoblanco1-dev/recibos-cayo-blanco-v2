@@ -1032,46 +1032,80 @@ function reproducirSonidoEncontrado() {
         const tiempo =
             audioContextCOA.currentTime;
 
-        const oscillator =
-            audioContextCOA.createOscillator();
+        // ==================================================
+        // 📄 SONIDO DE CONFIRMACIÓN DE DOCUMENTO
+        // Dos tonos suaves: "tin... ding"
+        // ==================================================
 
-        const gainNode =
-            audioContextCOA.createGain();
+        const notas = [
+            {
+                frecuencia: 660,
+                inicio: 0,
+                duracion: 0.22
+            },
+            {
+                frecuencia: 990,
+                inicio: 0.16,
+                duracion: 0.48
+            }
+        ];
 
-        oscillator.type = "sine";
+        notas.forEach(function(nota) {
 
-        oscillator.frequency.setValueAtTime(
-            880,
-            tiempo
-        );
+            const oscillator =
+                audioContextCOA.createOscillator();
 
-        oscillator.frequency.exponentialRampToValueAtTime(
-            1320,
-            tiempo + 0.15
-        );
+            const gainNode =
+                audioContextCOA.createGain();
 
-        gainNode.gain.setValueAtTime(
-            0.0001,
-            tiempo
-        );
+            oscillator.type =
+                "sine";
 
-        gainNode.gain.exponentialRampToValueAtTime(
-            0.20,
-            tiempo + 0.02
-        );
+            const inicio =
+                tiempo + nota.inicio;
 
-        gainNode.gain.exponentialRampToValueAtTime(
-            0.0001,
-            tiempo + 0.50
-        );
+            const final =
+                inicio + nota.duracion;
 
-        oscillator.connect(gainNode);
-        gainNode.connect(
-            audioContextCOA.destination
-        );
+            oscillator.frequency.setValueAtTime(
+                nota.frecuencia,
+                inicio
+            );
 
-        oscillator.start(tiempo);
-        oscillator.stop(tiempo + 0.50);
+            // Entrada suave
+            gainNode.gain.setValueAtTime(
+                0.0001,
+                inicio
+            );
+
+            gainNode.gain.exponentialRampToValueAtTime(
+                0.12,
+                inicio + 0.025
+            );
+
+            // Salida suave
+            gainNode.gain.exponentialRampToValueAtTime(
+                0.0001,
+                final
+            );
+
+            oscillator.connect(
+                gainNode
+            );
+
+            gainNode.connect(
+                audioContextCOA.destination
+            );
+
+            oscillator.start(
+                inicio
+            );
+
+            oscillator.stop(
+                final
+            );
+
+        });
 
     } catch (error) {
 
@@ -1083,7 +1117,6 @@ function reproducirSonidoEncontrado() {
     }
 
 }
-
 
 // ======================================================
 // OBTENER NOMBRE

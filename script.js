@@ -1999,15 +1999,15 @@ function cerrarCentroModal(
 
 // ======================================================
 // 🔘 SONIDO SUAVE DE BOTÓN
+// Se activa con la interacción real del usuario.
 // ======================================================
 
 function reproducirSonidoBoton() {
 
     try {
 
-        if (!audioContextCOA) {
-            prepararAudio();
-        }
+        // El primer toque/clic del usuario habilita el audio.
+        prepararAudio();
 
         if (!audioContextCOA) {
             return;
@@ -2017,7 +2017,8 @@ function reproducirSonidoBoton() {
             audioContextCOA.resume();
         }
 
-        const tiempo = audioContextCOA.currentTime;
+        const tiempo =
+            audioContextCOA.currentTime;
 
         const oscillator =
             audioContextCOA.createOscillator();
@@ -2027,8 +2028,9 @@ function reproducirSonidoBoton() {
 
         oscillator.type = "sine";
 
+        // Clic corto y discreto
         oscillator.frequency.setValueAtTime(
-            650,
+            720,
             tiempo
         );
 
@@ -2038,20 +2040,24 @@ function reproducirSonidoBoton() {
         );
 
         gainNode.gain.exponentialRampToValueAtTime(
-            0.035,
-            tiempo + 0.005
+            0.075,
+            tiempo + 0.004
         );
 
         gainNode.gain.exponentialRampToValueAtTime(
             0.0001,
-            tiempo + 0.07
+            tiempo + 0.085
         );
 
         oscillator.connect(gainNode);
-        gainNode.connect(audioContextCOA.destination);
+        gainNode.connect(
+            audioContextCOA.destination
+        );
 
         oscillator.start(tiempo);
-        oscillator.stop(tiempo + 0.08);
+        oscillator.stop(
+            tiempo + 0.09
+        );
 
     } catch (error) {
 
@@ -2063,6 +2069,7 @@ function reproducirSonidoBoton() {
     }
 
 }
+
 
 // ======================================================
 // 🔊 SONIDO DE ERROR - RECIBO NO ENCONTRADO
@@ -2135,15 +2142,22 @@ function reproducirSonidoError() {
 // 🔘 CLIC SUAVE EN BOTONES
 // ======================================================
 
-document.querySelectorAll("button").forEach(function(boton) {
+document.addEventListener(
+    "pointerdown",
+    function(event) {
 
-    boton.addEventListener("click", function() {
+        const control =
+            event.target.closest(
+                "button, input[name=\"quincena\"]"
+            );
 
-        // El botón Consultar ya prepara el audio desde
-        // su propio evento; el clic suave se reproduce aquí.
+        if (!control) {
+            return;
+        }
+
         reproducirSonidoBoton();
 
-    });
-
-});
+    },
+    true
+);
 

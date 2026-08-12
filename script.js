@@ -475,13 +475,13 @@ function limpiarConsulta() {
         );
 
     }
-
-}
+    }
 
 
 // ======================================================
 // OBTENER PDF
 // ======================================================
+
 async function obtenerPDF(
     archivo
 ) {
@@ -626,6 +626,13 @@ async function consultarEmpleado() {
         return;
 
     }
+
+
+    // ==================================================
+    // 🔊 PREPARAR AUDIO
+    // ==================================================
+
+    prepararAudio();
 
 
     // ==================================================
@@ -944,8 +951,7 @@ async function consultarEmpleado() {
             "ERROR:",
             error
         );
-
-
+        
         mostrarMensaje(
 
             "❌ No se pudo cargar el recibo. Verifica que el PDF esté disponible.",
@@ -967,10 +973,52 @@ async function consultarEmpleado() {
                 "🔎 Consultar";
 
         }
-        
+
     }
 
 }
+// ======================================================
+// 🔊 SONIDO DE RECIBO ENCONTRADO
+// ======================================================
+// 🔊 PREPARAR AUDIO
+// ======================================================
+
+let audioContextCOA = null;
+
+function prepararAudio() {
+
+    try {
+
+        const AudioContext =
+            window.AudioContext ||
+            window.webkitAudioContext;
+
+        if (!AudioContext) {
+            return;
+        }
+
+        if (!audioContextCOA) {
+            audioContextCOA = new AudioContext();
+        }
+
+        if (
+            audioContextCOA.state ===
+            "suspended"
+        ) {
+            audioContextCOA.resume();
+        }
+
+    } catch (error) {
+
+        console.warn(
+            "No se pudo preparar el audio:",
+            error
+        );
+
+    }
+}
+
+
 // ======================================================
 // 🔊 SONIDO DE RECIBO ENCONTRADO
 // ======================================================
@@ -979,156 +1027,78 @@ function reproducirSonidoEncontrado() {
 
     try {
 
-        const AudioContext =
-            window.AudioContext ||
-            window.webkitAudioContext;
-
-
-        if (!AudioContext) {
+        if (!audioContextCOA) {
             return;
         }
 
+        if (
+            audioContextCOA.state ===
+            "suspended"
+        ) {
+            audioContextCOA.resume();
+        }
 
-        const audioCtx =
-            new AudioContext();
-
+        const tiempo =
+            audioContextCOA.currentTime;
 
         const oscillator =
-            audioCtx.createOscillator();
-
+            audioContextCOA.createOscillator();
 
         const gainNode =
-            audioCtx.createGain();
-
+            audioContextCOA.createGain();
 
         oscillator.type =
             "sine";
 
-
         oscillator.frequency.setValueAtTime(
             880,
-            audioCtx.currentTime
+            tiempo
         );
-
 
         oscillator.frequency.exponentialRampToValueAtTime(
             1320,
-            audioCtx.currentTime + 0.15
+            tiempo + 0.15
         );
-
 
         gainNode.gain.setValueAtTime(
             0.0001,
-            audioCtx.currentTime
+            tiempo
         );
-
 
         gainNode.gain.exponentialRampToValueAtTime(
-            0.18,
-            audioCtx.currentTime + 0.02
+            0.20,
+            tiempo + 0.02
         );
-
 
         gainNode.gain.exponentialRampToValueAtTime(
             0.0001,
-            audioCtx.currentTime + 0.45
+            tiempo + 0.50
         );
-
 
         oscillator.connect(
             gainNode
         );
 
-
         gainNode.connect(
-            audioCtx.destination
+            audioContextCOA.destination
         );
 
-
-        oscillator.start();
-
+        oscillator.start(
+            tiempo
+        );
 
         oscillator.stop(
-            audioCtx.currentTime + 0.45
-        );
-
-
-        oscillator.addEventListener(
-            "ended",
-            function() {
-
-                audioCtx.close();
-
-            }
+            tiempo + 0.50
         );
 
     } catch (error) {
 
         console.warn(
-            "No se pudo reproducir el sonido de confirmación:",
+            "No se pudo reproducir el sonido:",
             error
         );
 
     }
-
-}
-
-
-// ======================================================
-// OBTENER NOMBRE
-// ======================================================
-
-function obtenerNombre(
-    texto
-) {
-
-    // --------------------------------------------------
-    // MÉTODO 1
-    // --------------------------------------------------
-
-    const resultado1 =
-        texto.match(
-            /Empleado\s*:\s*(.*?)\s+Sueldo\s+Mensual/i
-        );
-
-
-    if (
-        resultado1 &&
-        resultado1[1]
-    ) {
-
-        return resultado1[1]
-            .trim();
-
-    }
-
-
-    // --------------------------------------------------
-    // MÉTODO 2
-    // --------------------------------------------------
-
-    const resultado2 =
-        texto.match(
-            /Empleado\s*:\s*(.*)/i
-        );
-
-
-    if (
-        resultado2 &&
-        resultado2[1]
-    ) {
-
-        return resultado2[1]
-            .split(
-                "Sueldo"
-            )[0]
-            .trim();
-
-    }
-
-
-    return "Colaborador";
-
 }
 
 
@@ -1453,12 +1423,11 @@ async function guardarPDF() {
 
         return;
 
-    
     }
 
 
     if (
-        !window.jspdf
+         !window.jspdf
     ) {
 
         alert(

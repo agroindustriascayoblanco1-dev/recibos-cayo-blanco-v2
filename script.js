@@ -160,7 +160,9 @@ function iniciarSistema() {
 
         console.error(
             "PDF.js no está cargado."
-        );
+        );        reproducirSonidoError();
+
+
 
 
         mostrarMensaje(
@@ -583,7 +585,9 @@ async function consultarEmpleado() {
 
     if (!codigo) {
 
-        mostrarMensaje(
+                reproducirSonidoError();
+
+mostrarMensaje(
             "⚠️ Escribe tu código completo.",
             true
         );
@@ -601,7 +605,7 @@ async function consultarEmpleado() {
 
         reproducirSonidoError();
 
-    mostrarMensaje(
+        mostrarMensaje(
             "⚠️ Ingresa tu código completo de 8 caracteres. Ejemplo: CBEP1272.",
             true
         );
@@ -629,7 +633,9 @@ async function consultarEmpleado() {
 
         
 
-    mostrarMensaje(
+            reproducirSonidoError();
+
+mostrarMensaje(
             "❌ No se encontró la quincena.",
             true
         );
@@ -791,7 +797,9 @@ async function consultarEmpleado() {
 
         if (!encontrado) {
 
-            mostrarMensaje(
+                    reproducirSonidoError();
+
+mostrarMensaje(
 
                 "❌ El código " +
                 codigo +
@@ -803,8 +811,6 @@ async function consultarEmpleado() {
 
             );
 
-
-            reproducirSonidoError();
 
             return;
 
@@ -953,9 +959,9 @@ async function consultarEmpleado() {
         );
 
 
-        reproducirSonidoError();
+                reproducirSonidoError();
 
-        mostrarMensaje(
+mostrarMensaje(
 
             "❌ No se pudo cargar el recibo. Verifica que el PDF esté disponible.",
 
@@ -1394,7 +1400,9 @@ async function mostrarRecibo() {
         );
 
 
-        visorPDF.innerHTML = `
+                reproducirSonidoError();
+
+visorPDF.innerHTML = `
 
             <div
                 class="visor-mensaje"
@@ -1988,14 +1996,8 @@ function cerrarCentroModal(
 
 }
 
-
-
-
 // ======================================================
-// 🔊 SONIDO DE ERROR
-// Se usa para cualquier resultado contrario a una
-// consulta exitosa: código incompleto, no encontrado,
-// PDF no disponible o error al procesar el PDF.
+// 🔊 SONIDO DE ERROR - RECIBO NO ENCONTRADO
 // ======================================================
 
 function reproducirSonidoError() {
@@ -2012,65 +2014,41 @@ function reproducirSonidoError() {
 
         const tiempo = audioContextCOA.currentTime;
 
-        // Dos tonos descendentes suaves: "bip-bip"
-        const notas = [
-            {
-                frecuencia: 440,
-                inicio: 0,
-                duracion: 0.16
-            },
-            {
-                frecuencia: 330,
-                inicio: 0.18,
-                duracion: 0.20
-            }
-        ];
+        const oscillator = audioContextCOA.createOscillator();
+        const gainNode = audioContextCOA.createGain();
 
-        notas.forEach(function(nota) {
+        oscillator.type = "sine";
 
-            const oscillator =
-                audioContextCOA.createOscillator();
+        oscillator.frequency.setValueAtTime(440, tiempo);
+        oscillator.frequency.setValueAtTime(330, tiempo + 0.16);
 
-            const gainNode =
-                audioContextCOA.createGain();
+        gainNode.gain.setValueAtTime(0.0001, tiempo);
 
-            oscillator.type = "sine";
+        gainNode.gain.exponentialRampToValueAtTime(
+            0.16,
+            tiempo + 0.02
+        );
 
-            const inicio =
-                tiempo + nota.inicio;
+        gainNode.gain.exponentialRampToValueAtTime(
+            0.0001,
+            tiempo + 0.14
+        );
 
-            const final =
-                inicio + nota.duracion;
+        gainNode.gain.exponentialRampToValueAtTime(
+            0.16,
+            tiempo + 0.17
+        );
 
-            oscillator.frequency.setValueAtTime(
-                nota.frecuencia,
-                inicio
-            );
+        gainNode.gain.exponentialRampToValueAtTime(
+            0.0001,
+            tiempo + 0.32
+        );
 
-            gainNode.gain.setValueAtTime(
-                0.0001,
-                inicio
-            );
+        oscillator.connect(gainNode);
+        gainNode.connect(audioContextCOA.destination);
 
-            gainNode.gain.exponentialRampToValueAtTime(
-                0.14,
-                inicio + 0.015
-            );
-
-            gainNode.gain.exponentialRampToValueAtTime(
-                0.0001,
-                final
-            );
-
-            oscillator.connect(gainNode);
-            gainNode.connect(
-                audioContextCOA.destination
-            );
-
-            oscillator.start(inicio);
-            oscillator.stop(final);
-
-        });
+        oscillator.start(tiempo);
+        oscillator.stop(tiempo + 0.35);
 
     } catch (error) {
 

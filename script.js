@@ -475,7 +475,8 @@ function limpiarConsulta() {
         );
 
     }
-    }
+
+}
 
 
 // ======================================================
@@ -517,6 +518,13 @@ async function obtenerPDF(
 // ======================================================
 
 async function consultarEmpleado() {
+
+    // ==================================================
+    // 🔊 PREPARAR AUDIO DESDE LA ACCIÓN DEL USUARIO
+    // ==================================================
+
+    prepararAudio();
+
 
     console.log(
         "================================"
@@ -629,13 +637,6 @@ async function consultarEmpleado() {
 
 
     // ==================================================
-    // 🔊 PREPARAR AUDIO
-    // ==================================================
-
-    prepararAudio();
-
-
-    // ==================================================
     // LIMPIAR
     // ==================================================
 
@@ -739,31 +740,30 @@ async function consultarEmpleado() {
 
 
             // ==================================================
-            // COINCIDENCIA EXACTA
             // ==================================================
+            // COINCIDENCIA EXACTA DEL CÓDIGO
+            // ==================================================
+            // PDF.js puede separar CBEP y los números con espacios.
+            // Permitimos esos espacios, pero exigimos exactamente 4 dígitos.
 
-            const codigosEncontrados =
-                textoNormalizado.match(
-                    /CBEP\d+/g
+            const codigosEnPagina =
+                texto.match(
+                    /CBEP\s*([0-9]{4})/gi
                 ) || [];
 
-
             const coincidenciaExacta =
-                codigosEncontrados.some(
+                codigosEnPagina.some(
                     function(codigoPDF) {
 
                         return (
-                            codigoPDF ===
+                            normalizar(codigoPDF) ===
                             codigoBuscado
                         );
 
                     }
                 );
 
-
-            if (
-                coincidenciaExacta
-            ) {
+            if (coincidenciaExacta) {
 
                 encontrado = {
 
@@ -775,9 +775,7 @@ async function consultarEmpleado() {
 
                 };
 
-
                 break;
-
             }
 
         }
@@ -926,11 +924,7 @@ async function consultarEmpleado() {
             "✓ Colaborador encontrado correctamente."
         );
 
-
-        // ==================================================
         // 🔊 SONIDO DE RECIBO ENCONTRADO
-        // ==================================================
-
         reproducirSonidoEncontrado();
 
 
@@ -951,7 +945,8 @@ async function consultarEmpleado() {
             "ERROR:",
             error
         );
-        
+
+
         mostrarMensaje(
 
             "❌ No se pudo cargar el recibo. Verifica que el PDF esté disponible.",
@@ -978,9 +973,7 @@ async function consultarEmpleado() {
 
 }
 // ======================================================
-// 🔊 SONIDO DE RECIBO ENCONTRADO
-// ======================================================
-// 🔊 PREPARAR AUDIO
+// 🔊 AUDIO DE CONFIRMACIÓN
 // ======================================================
 
 let audioContextCOA = null;
@@ -998,7 +991,8 @@ function prepararAudio() {
         }
 
         if (!audioContextCOA) {
-            audioContextCOA = new AudioContext();
+            audioContextCOA =
+                new AudioContext();
         }
 
         if (
@@ -1016,12 +1010,9 @@ function prepararAudio() {
         );
 
     }
+
 }
 
-
-// ======================================================
-// 🔊 SONIDO DE RECIBO ENCONTRADO
-// ======================================================
 
 function reproducirSonidoEncontrado() {
 
@@ -1047,8 +1038,7 @@ function reproducirSonidoEncontrado() {
         const gainNode =
             audioContextCOA.createGain();
 
-        oscillator.type =
-            "sine";
+        oscillator.type = "sine";
 
         oscillator.frequency.setValueAtTime(
             880,
@@ -1075,30 +1065,81 @@ function reproducirSonidoEncontrado() {
             tiempo + 0.50
         );
 
-        oscillator.connect(
-            gainNode
-        );
-
+        oscillator.connect(gainNode);
         gainNode.connect(
             audioContextCOA.destination
         );
 
-        oscillator.start(
-            tiempo
-        );
-
-        oscillator.stop(
-            tiempo + 0.50
-        );
+        oscillator.start(tiempo);
+        oscillator.stop(tiempo + 0.50);
 
     } catch (error) {
 
         console.warn(
-            "No se pudo reproducir el sonido:",
+            "No se pudo reproducir el sonido de confirmación:",
             error
         );
 
     }
+
+}
+
+
+// ======================================================
+// OBTENER NOMBRE
+// ======================================================
+
+function obtenerNombre(
+    texto
+) {
+
+    // --------------------------------------------------
+    // MÉTODO 1
+    // --------------------------------------------------
+
+    const resultado1 =
+        texto.match(
+            /Empleado\s*:\s*(.*?)\s+Sueldo\s+Mensual/i
+        );
+
+
+    if (
+        resultado1 &&
+        resultado1[1]
+    ) {
+
+        return resultado1[1]
+            .trim();
+
+    }
+
+
+    // --------------------------------------------------
+    // MÉTODO 2
+    // --------------------------------------------------
+
+    const resultado2 =
+        texto.match(
+            /Empleado\s*:\s*(.*)/i
+        );
+
+
+    if (
+        resultado2 &&
+        resultado2[1]
+    ) {
+
+        return resultado2[1]
+            .split(
+                "Sueldo"
+            )[0]
+            .trim();
+
+    }
+
+
+    return "Colaborador";
+
 }
 
 
@@ -1427,7 +1468,7 @@ async function guardarPDF() {
 
 
     if (
-         !window.jspdf
+        !window.jspdf
     ) {
 
         alert(

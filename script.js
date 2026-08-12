@@ -625,7 +625,9 @@ async function consultarEmpleado() {
 
     if (!periodo) {
 
-        mostrarMensaje(
+        reproducirSonidoError();
+
+    mostrarMensaje(
             "❌ No se encontró la quincena.",
             true
         );
@@ -1979,3 +1981,69 @@ function cerrarCentroModal(
     );
 
 }
+
+// ======================================================
+// 🔊 SONIDO DE ERROR - RECIBO NO ENCONTRADO
+// ======================================================
+
+function reproducirSonidoError() {
+
+    try {
+
+        if (!audioContextCOA) {
+            return;
+        }
+
+        if (audioContextCOA.state === "suspended") {
+            audioContextCOA.resume();
+        }
+
+        const tiempo = audioContextCOA.currentTime;
+
+        const oscillator = audioContextCOA.createOscillator();
+        const gainNode = audioContextCOA.createGain();
+
+        oscillator.type = "sine";
+
+        oscillator.frequency.setValueAtTime(440, tiempo);
+        oscillator.frequency.setValueAtTime(330, tiempo + 0.16);
+
+        gainNode.gain.setValueAtTime(0.0001, tiempo);
+
+        gainNode.gain.exponentialRampToValueAtTime(
+            0.16,
+            tiempo + 0.02
+        );
+
+        gainNode.gain.exponentialRampToValueAtTime(
+            0.0001,
+            tiempo + 0.14
+        );
+
+        gainNode.gain.exponentialRampToValueAtTime(
+            0.16,
+            tiempo + 0.17
+        );
+
+        gainNode.gain.exponentialRampToValueAtTime(
+            0.0001,
+            tiempo + 0.32
+        );
+
+        oscillator.connect(gainNode);
+        gainNode.connect(audioContextCOA.destination);
+
+        oscillator.start(tiempo);
+        oscillator.stop(tiempo + 0.35);
+
+    } catch (error) {
+
+        console.warn(
+            "No se pudo reproducir el sonido de error:",
+            error
+        );
+
+    }
+
+}
+

@@ -261,31 +261,6 @@ function iniciarSistema() {
 
 
     // --------------------------------------------------
-    // 🔘 SONIDO SUAVE DE INTERACCIÓN
-    // Botones + quincenas
-    // --------------------------------------------------
-
-    document.addEventListener(
-        "pointerdown",
-        function(evento) {
-
-            const control =
-                evento.target.closest(
-                    "button, input[name='quincena']"
-                );
-
-            if (!control) {
-                return;
-            }
-
-            reproducirSonidoBoton();
-
-        },
-        false
-    );
-
-
-    // --------------------------------------------------
     // VER RECIBO
     // --------------------------------------------------
 
@@ -631,7 +606,7 @@ mostrarMensaje(
         reproducirSonidoError();
 
         mostrarMensaje(
-            "⚠️ Ingresa tu código completo de 8 caracteres. Ejemplo: CBEP1272.",
+            "⚠️ Ingresa tu código completo de 8 caracteres. Ejemplo: CBEP0000.",
             true
         );
 
@@ -661,7 +636,7 @@ mostrarMensaje(
             reproducirSonidoError();
 
 mostrarMensaje(
-            "❌ No se encontró la quincena.",
+            "⚠️No se encontró la quincena.",
             true
         );
 
@@ -826,7 +801,7 @@ mostrarMensaje(
 
 mostrarMensaje(
 
-                "❌ El código " +
+                "⚠️ El código " +
                 codigo +
                 " no fue encontrado en " +
                 periodo.nombre +
@@ -2021,81 +1996,6 @@ function cerrarCentroModal(
 
 }
 
-
-// ======================================================
-// 🔘 SONIDO SUAVE DE BOTÓN
-// Se activa con la interacción real del usuario.
-// ======================================================
-
-function reproducirSonidoBoton() {
-
-    try {
-
-        // El primer toque/clic del usuario habilita el audio.
-        prepararAudio();
-
-        if (!audioContextCOA) {
-            return;
-        }
-
-        if (audioContextCOA.state === "suspended") {
-            audioContextCOA.resume();
-        }
-
-        const tiempo =
-            audioContextCOA.currentTime;
-
-        const oscillator =
-            audioContextCOA.createOscillator();
-
-        const gainNode =
-            audioContextCOA.createGain();
-
-        oscillator.type = "sine";
-
-        // Clic corto y discreto
-        oscillator.frequency.setValueAtTime(
-            720,
-            tiempo
-        );
-
-        gainNode.gain.setValueAtTime(
-            0.0001,
-            tiempo
-        );
-
-        gainNode.gain.exponentialRampToValueAtTime(
-            0.075,
-            tiempo + 0.004
-        );
-
-        gainNode.gain.exponentialRampToValueAtTime(
-            0.0001,
-            tiempo + 0.085
-        );
-
-        oscillator.connect(gainNode);
-        gainNode.connect(
-            audioContextCOA.destination
-        );
-
-        oscillator.start(tiempo);
-        oscillator.stop(
-            tiempo + 0.09
-        );
-
-    } catch (error) {
-
-        console.warn(
-            "No se pudo reproducir el sonido del botón:",
-            error
-        );
-
-    }
-
-}
-
-
 // ======================================================
 // 🔊 SONIDO DE ERROR - RECIBO NO ENCONTRADO
 // ======================================================
@@ -2103,8 +2003,6 @@ function reproducirSonidoBoton() {
 function reproducirSonidoError() {
 
     try {
-
-        prepararAudio();
 
         if (!audioContextCOA) {
             return;
@@ -2162,6 +2060,4 @@ function reproducirSonidoError() {
     }
 
 }
-
-
 

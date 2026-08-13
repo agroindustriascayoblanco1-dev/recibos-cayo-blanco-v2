@@ -97,281 +97,70 @@
     <main class="contenedor">
 
 
-        <!-- ==================================================
-             BUSCADOR
-        =================================================== -->
+            <!-- ==================================================
+         BIENVENIDA Y ACCESO
+    =================================================== -->
 
-        <section class="bienvenida">
+    <main class="contenedor">
 
-
-            <div class="bienvenida-texto">
-
-                <span class="etiqueta">
-                    RECURSOS HUMANOS
-                </span>
-
-
-                <h2>
-                    Consulta tus<br>
-                    recibos de pago
-                </h2>
-
-
-                <p>
-                    Selecciona la quincena e ingresa
-                    tu código completo de empleado
-                    para consultar tu recibo de forma
-                    rápida y confidencial.
-                </p>
-
-
+        <section class="acceso-principal">
+            <div class="acceso-logo">
+                <img src="logo-cayo-blanco.png" alt="Agroindustrias Cayo Blanco">
             </div>
-
-
-
-            <div class="buscador">
-
-
-                <!-- QUINCENA -->
-
-                <div class="selector-quincena">
-
-                    <label class="titulo-selector">
-                        Selecciona la quincena
-                    </label>
-
-
-                    <div class="opciones-quincena">
-
-
-                        <label class="opcion-quincena">
-
-                            <input
-                                type="radio"
-                                name="quincena"
-                                value="q1"
-                                checked
-                            >
-
-                            <span>
-
-                                <strong id="nombreQ1">
-                                    Quincena 1
-                                </strong>
-
-                                <small id="mesQ1"></small>
-
-                            </span>
-
-                        </label>
-
-
-
-                        <label class="opcion-quincena">
-
-                            <input
-                                type="radio"
-                                name="quincena"
-                                value="q2"
-                            >
-
-                            <span>
-
-                                <strong id="nombreQ2">
-                                    Quincena 2
-                                </strong>
-
-                                <small id="mesQ2"></small>
-
-                            </span>
-
-                        </label>
-
-
-                    </div>
-
-                </div>
-
-
-
-                <!-- CÓDIGO -->
-
-                <label
-                    for="codigo"
-                    class="label-codigo"
-                >
-                    Código de empleado
-                </label>
-
-
+            <span class="etiqueta">PORTAL DE RECURSOS HUMANOS</span>
+            <h2>Bienvenido</h2>
+            <p class="acceso-descripcion">Ingresa tu código de empleado para acceder a tus documentos.</p>
+            <div class="acceso-formulario">
+                <label for="codigo" class="label-codigo">Código de empleado</label>
                 <div class="fila-busqueda">
-
-
-                    <input
-                        type="text"
-                        id="codigo"
-                        placeholder="Ejemplo: CBEP0000"
-                        autocomplete="off"
-                        autocapitalize="characters"
-                        spellcheck="false"
-                    >
-
-
-                    <button
-                        id="buscar"
-                        type="button"
-                    >
-                        🔎 Consultar
-                    </button>
-
-
+                    <input type="text" id="codigo" placeholder="Ejemplo: CBEP0000" autocomplete="off" autocapitalize="characters" spellcheck="false" maxlength="8">
+                    <button id="buscar" type="button">Continuar</button>
                 </div>
-
-
-                <p class="ayuda">
-                    Escribe tu código de empleado.
-                </p>
-
-
+                <p class="ayuda">Escribe tu código completo de empleado.</p>
                 <div id="mensaje"></div>
-
-
             </div>
-
         </section>
 
-
-
-        <!-- ==================================================
-             RESULTADO DEL COLABORADOR
-        =================================================== -->
-
-        <section
-            id="resultado"
-            class="resultado oculto"
-        >
-
-
+        <section id="resultado" class="resultado oculto">
             <div class="empleado">
-
-
-                <div class="avatar">
-                    👤
-                </div>
-
-
+                <div class="avatar">👤</div>
                 <div class="datos-empleado">
-
-                    <span>
-                        COLABORADOR ENCONTRADO
-                    </span>
-
-
-                    <h2 id="nombreEmpleado">
-                        —
-                    </h2>
-
-
-                    <p>
-                        Código de empleado:
-                        <strong id="codigoEmpleado">
-                            —
-                        </strong>
-                    </p>
-
+                    <span>BIENVENIDO</span>
+                    <h2 id="nombreEmpleado">—</h2>
+                    <p>Código de empleado: <strong id="codigoEmpleado">—</strong></p>
                 </div>
-
-
-                <button
-                    id="nuevaConsulta"
-                    class="boton-secundario"
-                    type="button"
-                >
-                    Nueva consulta
-                </button>
-
-
+                <button id="nuevaConsulta" class="boton-secundario" type="button">Cambiar código</button>
             </div>
 
-
-
-            <!-- RECIBO -->
-
-            <div class="titulo-seccion">
-
-                <div>
-
-                    <span class="etiqueta">
-                        DOCUMENTO DISPONIBLE
-                    </span>
-
-                    <h2>
-                        ¡Lo encontramos!
-                    </h2>
-
+            <div class="opciones-documentos">
+                <div class="titulo-seccion">
+                    <div>
+                        <span class="etiqueta">MIS DOCUMENTOS</span>
+                        <h2>¿Qué deseas consultar?</h2>
+                    </div>
                 </div>
 
-
-                <span
-                    id="periodoSeleccionado"
-                    class="periodo"
-                ></span>
-
-                <small
-                    id="periodoPago"
-                    class="periodo-pago"
-                ></small>
-
-            </div>
-
-
-
-            <div class="recibos">
-
-
-                <article class="recibo">
-
-
-                    <div class="icono-recibo">
-                        👍
-                    </div>
-
-
-                    <div class="informacion-recibo">
-
-                        <span id="textoQuincena"></span>
-
-                        <h3>
-                            Recibo de pago
-                        </h3>
-
-                        <p>
-                            Consulta el detalle de tu recibo
-                            correspondiente al período seleccionado.
-                        </p>
-
-                    </div>
-
-
-                    <button
-                        id="verRecibo"
-                        class="ver-recibo"
-                        type="button"
-                    >
-                        Ver recibo
+                <div class="documentos-grid">
+                    <button id="abrirCarnet" class="documento-card carnet-card" type="button">
+                        <span class="documento-icono">🪪</span>
+                        <span class="documento-contenido"><strong>Ver mi carnet</strong><small>Consulta tu carnet de empleado</small></span>
+                        <span class="documento-flecha">→</span>
                     </button>
-
-
-                </article>
-
+                    <button id="verQ1" class="documento-card recibo-card" type="button">
+                        <span class="documento-icono">🧾</span>
+                        <span class="documento-contenido"><strong>Recibo Quincena 1</strong><small>Consultar recibo de la primera quincena</small></span>
+                        <span class="documento-flecha">→</span>
+                    </button>
+                    <button id="verQ2" class="documento-card recibo-card" type="button">
+                        <span class="documento-icono">🧾</span>
+                        <span class="documento-contenido"><strong>Recibo Quincena 2</strong><small>Consultar recibo de la segunda quincena</small></span>
+                        <span class="documento-flecha">→</span>
+                    </button>
+                </div>
             </div>
-
-
         </section>
 
-
-
-        <!-- ==================================================
+<!-- ==================================================
              VISOR PDF
         =================================================== -->
 

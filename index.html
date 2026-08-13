@@ -29,7 +29,7 @@
 
     <link
         rel="stylesheet"
-        href="style.css?v=23"
+        href="style.css?v=24"
     >
 
     <style>
@@ -102,111 +102,38 @@
         =================================================== -->
 
         <section class="bienvenida">
-
-
             <div class="bienvenida-texto">
-
-                <span class="etiqueta">
-                    RECURSOS HUMANOS
-                </span>
-
-
-                <h2>
-                    Consulta tus<br>
-                    recibos de pago
-                </h2>
-
-
+                <span class="etiqueta">RECURSOS HUMANOS</span>
+                <h2>Bienvenido al<br>Portal de Personal</h2>
+                <div class="linea-destacada"></div>
                 <p>
-                    Selecciona la quincena e ingresa
-                    tu código completo de empleado
-                    para consultar tu recibo de forma
-                    rápida y confidencial.
+                    Consulta de forma rápida y confidencial tu carnet de empleado
+                    y tus recibos de pago.
                 </p>
-
-
             </div>
 
-
-
             <div class="buscador">
+                <div class="acceso-icono">👤</div>
 
-
-                <!-- QUINCENA -->
-
-                <div class="selector-quincena">
-
-                    <label class="titulo-selector">
-                        Selecciona la quincena
-                    </label>
-
-
-                    <div class="opciones-quincena">
-
-
-                        <label class="opcion-quincena">
-
-                            <input
-                                type="radio"
-                                name="quincena"
-                                value="q1"
-                                checked
-                            >
-
-                            <span>
-
-                                <strong id="nombreQ1">
-                                    Quincena 1
-                                </strong>
-
-                                <small id="mesQ1"></small>
-
-                            </span>
-
-                        </label>
-
-
-
-                        <label class="opcion-quincena">
-
-                            <input
-                                type="radio"
-                                name="quincena"
-                                value="q2"
-                            >
-
-                            <span>
-
-                                <strong id="nombreQ2">
-                                    Quincena 2
-                                </strong>
-
-                                <small id="mesQ2"></small>
-
-                            </span>
-
-                        </label>
-
-
-                    </div>
-
+                <div class="cabecera-buscador">
+                    <span class="mini-etiqueta">IDENTIFICACIÓN</span>
+                    <h2>Ingresa tu código</h2>
+                    <p>Utiliza tu código completo de empleado para continuar.</p>
                 </div>
 
+                <!-- Radios ocultos: el motor actual los utiliza internamente. -->
+                <div class="selector-quincena selector-interno" aria-hidden="true">
+                    <input type="radio" name="quincena" value="q1" checked>
+                    <input type="radio" name="quincena" value="q2">
+                    <span id="nombreQ1">Quincena 1</span>
+                    <span id="mesQ1"></span>
+                    <span id="nombreQ2">Quincena 2</span>
+                    <span id="mesQ2"></span>
+                </div>
 
-
-                <!-- CÓDIGO -->
-
-                <label
-                    for="codigo"
-                    class="label-codigo"
-                >
-                    Código de empleado
-                </label>
-
+                <label for="codigo" class="label-codigo">Código de empleado</label>
 
                 <div class="fila-busqueda">
-
-
                     <input
                         type="text"
                         id="codigo"
@@ -215,31 +142,16 @@
                         autocapitalize="characters"
                         spellcheck="false"
                     >
-
-
-                    <button
-                        id="buscar"
-                        type="button"
-                    >
-                        🔎 Consultar
-                    </button>
-
-
+                    <button id="buscar" type="button">Continuar</button>
                 </div>
 
-
                 <p class="ayuda">
-                    Escribe tu código de empleado.
+                    Tu información será utilizada únicamente para mostrar tus documentos.
                 </p>
 
-
                 <div id="mensaje"></div>
-
-
             </div>
-
         </section>
-
 
 
         <!-- ==================================================
@@ -250,125 +162,94 @@
             id="resultado"
             class="resultado oculto"
         >
-
-
-            <div class="empleado">
-
-
-                <div class="avatar">
-                    👤
-                </div>
-
+            <div class="perfil-confirmado">
+                <div class="perfil-icono">✓</div>
 
                 <div class="datos-empleado">
-
-                    <span>
-                        COLABORADOR ENCONTRADO
-                    </span>
-
-
-                    <h2 id="nombreEmpleado">
-                        —
-                    </h2>
-
-
+                    <span>COLABORADOR IDENTIFICADO</span>
+                    <h2 id="nombreEmpleado">—</h2>
                     <p>
                         Código de empleado:
-                        <strong id="codigoEmpleado">
-                            —
-                        </strong>
+                        <strong id="codigoEmpleado">—</strong>
                     </p>
-
                 </div>
 
-
-                <button
-                    id="nuevaConsulta"
-                    class="boton-secundario"
-                    type="button"
-                >
-                    Nueva consulta
+                <button id="nuevaConsulta" class="boton-secundario" type="button">
+                    Cambiar código
                 </button>
-
-
             </div>
 
-
-
-            <!-- RECIBO -->
-
-            <div class="titulo-seccion">
-
-                <div>
-
-                    <span class="etiqueta">
-                        DOCUMENTO DISPONIBLE
-                    </span>
-
-                    <h2>
-                        ¡Lo encontramos!
-                    </h2>
-
+            <div class="opciones-personales">
+                <div class="opciones-titulo">
+                    <span class="mini-etiqueta">SERVICIOS DISPONIBLES</span>
+                    <h2>¿Qué deseas consultar?</h2>
+                    <p>Selecciona una de las opciones para continuar.</p>
                 </div>
 
+                <div class="servicios-grid">
+                    <article class="servicio-card servicio-carnet">
+                        <div class="servicio-icono">🪪</div>
+                        <div>
+                            <span>IDENTIFICACIÓN</span>
+                            <h3>Ver mi carnet</h3>
+                            <p>Consulta tu identificación como colaborador.</p>
+                        </div>
+                        <button id="verCarnet" type="button" class="servicio-boton">
+                            Ver carnet <span>→</span>
+                        </button>
+                    </article>
 
-                <span
-                    id="periodoSeleccionado"
-                    class="periodo"
-                ></span>
+                    <article class="servicio-card servicio-recibo">
+                        <div class="servicio-icono">🧾</div>
+                        <div>
+                            <span>RECIBO DE PAGO</span>
+                            <h3>Quincena 1</h3>
+                            <p>Consulta tu recibo correspondiente a la primera quincena.</p>
+                        </div>
+                        <button id="verQuincena1" type="button" class="servicio-boton">
+                            Ver recibo <span>→</span>
+                        </button>
+                    </article>
 
-                <small
-                    id="periodoPago"
-                    class="periodo-pago"
-                ></small>
-
+                    <article class="servicio-card servicio-recibo">
+                        <div class="servicio-icono">🧾</div>
+                        <div>
+                            <span>RECIBO DE PAGO</span>
+                            <h3>Quincena 2</h3>
+                            <p>Consulta tu recibo correspondiente a la segunda quincena.</p>
+                        </div>
+                        <button id="verQuincena2" type="button" class="servicio-boton">
+                            Ver recibo <span>→</span>
+                        </button>
+                    </article>
+                </div>
             </div>
 
+            <div id="carnetModal" class="carnet-modal oculto">
+                <div class="carnet-modal-contenido">
+                    <button id="cerrarCarnet" class="carnet-cerrar" type="button">×</button>
+                    <span class="mini-etiqueta">AGROINDUSTRIAS CAYO BLANCO</span>
+                    <h2>Mi carnet de empleado</h2>
 
-
-            <div class="recibos">
-
-
-                <article class="recibo">
-
-
-                    <div class="icono-recibo">
-                        👍
+                    <div class="carnet-preview">
+                        <div class="carnet-franja"></div>
+                        <div class="carnet-logo">AGROINDUSTRIAS<br><strong>CAYO BLANCO</strong></div>
+                        <div class="carnet-nombre" id="carnetNombre">—</div>
+                        <div class="carnet-datos">
+                            <div>
+                                <small>CÓDIGO DE EMPLEADO</small>
+                                <strong id="carnetCodigo">—</strong>
+                            </div>
+                            <div>
+                                <small>IDENTIDAD</small>
+                                <strong id="carnetIdentidad">Pendiente de base de empleados</strong>
+                            </div>
+                        </div>
+                        <div class="carnet-footer">CARNET DE EMPLEADO</div>
                     </div>
-
-
-                    <div class="informacion-recibo">
-
-                        <span id="textoQuincena"></span>
-
-                        <h3>
-                            Recibo de pago
-                        </h3>
-
-                        <p>
-                            Consulta el detalle de tu recibo
-                            correspondiente al período seleccionado.
-                        </p>
-
-                    </div>
-
-
-                    <button
-                        id="verRecibo"
-                        class="ver-recibo"
-                        type="button"
-                    >
-                        Ver recibo
-                    </button>
-
-
-                </article>
-
+                </div>
             </div>
-
-
         </section>
-
 
 
         <!-- ==================================================

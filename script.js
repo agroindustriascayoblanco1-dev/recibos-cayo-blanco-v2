@@ -2118,3 +2118,84 @@ document.addEventListener("keydown", function (event) {
     }
 }, true);
 
+
+// ======================================================
+// CARNET DE EMPLEADO
+// Base cargada desde la hoja RH_MAESTRO_EMPLEADOS
+// ======================================================
+
+const BASE_EMPLEADOS_CARNET = {"CBEP1392":{"nombre":"Andres Misael Zelaya Rodriguez","identidad":"0603-1974-00130","puesto":"Gerente de Producción","departamento":"ADMINISTRACION","division":"ADMINISTRACIÓN"}};
+
+function normalizarCodigoCarnet(valor) {
+    return String(valor || "")
+        .trim()
+        .toUpperCase()
+        .replace(/\s+/g, "");
+}
+
+function mostrarCarnetEmpleado() {
+    const input = document.getElementById("codigoCarnet");
+    const resultado = document.getElementById("carnetResultado");
+    const mensaje = document.getElementById("carnetMensaje");
+
+    if (!input || !resultado || !mensaje) {
+        return;
+    }
+
+    const codigo = normalizarCodigoCarnet(input.value);
+    input.value = codigo;
+    mensaje.textContent = "";
+
+    if (!codigo) {
+        resultado.classList.add("oculto");
+        mensaje.textContent = "Ingresa tu código de empleado.";
+        return;
+    }
+
+    const empleado = BASE_EMPLEADOS_CARNET[codigo];
+
+    if (!empleado) {
+        resultado.classList.add("oculto");
+        mensaje.textContent = "No se encontró un empleado con ese código.";
+        return;
+    }
+
+    const nombre = empleado.nombre || "SIN NOMBRE";
+
+    document.getElementById("carnetNombre").textContent = nombre;
+    document.getElementById("carnetCodigo").textContent = codigo;
+    document.getElementById("carnetIdentidad").textContent =
+        empleado.identidad || "—";
+    document.getElementById("carnetPuesto").textContent =
+        empleado.puesto || "—";
+    document.getElementById("carnetDepartamento").textContent =
+        empleado.departamento || "—";
+    document.getElementById("carnetDivision").textContent =
+        empleado.division || "—";
+
+    resultado.classList.remove("oculto");
+}
+
+function iniciarCarnetEmpleado() {
+    const boton = document.getElementById("btnConsultarCarnet");
+    const input = document.getElementById("codigoCarnet");
+
+    if (!boton || !input) {
+        return;
+    }
+
+    boton.addEventListener("click", mostrarCarnetEmpleado);
+
+    input.addEventListener("keydown", function(evento) {
+        if (evento.key === "Enter") {
+            evento.preventDefault();
+            mostrarCarnetEmpleado();
+        }
+    });
+}
+
+document.addEventListener(
+    "DOMContentLoaded",
+    iniciarCarnetEmpleado
+);
+

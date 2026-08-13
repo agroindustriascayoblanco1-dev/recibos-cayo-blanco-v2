@@ -6383,3 +6383,362 @@ body.centro-modal-abierto {
         flex-basis: 33px;
     }
 }
+
+/* =========================================================
+   CARNET DE EMPLEADO
+   ========================================================= */
+
+.tarjeta-carnet {
+    background:
+        linear-gradient(
+            135deg,
+            #0e2d3a 0%,
+            #153c4d 60%,
+            #07966f 100%
+        );
+    color: #fff;
+}
+
+.tarjeta-carnet .centro-texto strong,
+.tarjeta-carnet .centro-texto small,
+.tarjeta-carnet .centro-flecha {
+    color: #fff;
+}
+
+.carnet-modal-ventana {
+    width: min(96vw, 980px);
+    max-height: 94vh;
+    overflow-y: auto;
+}
+
+.carnet-consulta {
+    padding: 6px;
+}
+
+.carnet-consulta-cabecera {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 18px;
+}
+
+.carnet-mini-icono {
+    width: 48px;
+    height: 48px;
+    display: grid;
+    place-items: center;
+    border-radius: 15px;
+    background: var(--green-soft);
+    font-size: 25px;
+}
+
+.carnet-buscador {
+    display: flex;
+    gap: 9px;
+    margin-bottom: 20px;
+}
+
+.carnet-buscador input {
+    flex: 1;
+    min-width: 0;
+    height: 46px;
+    padding: 0 14px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    color: var(--text);
+    background: #fff;
+    font-size: 14px;
+    font-weight: 800;
+    text-transform: uppercase;
+    outline: none;
+}
+
+.carnet-buscador input:focus {
+    border-color: var(--green);
+    box-shadow: 0 0 0 3px rgba(23,184,137,.12);
+}
+
+.carnet-buscador button {
+    height: 46px;
+    padding: 0 20px;
+    border: 0;
+    border-radius: 12px;
+    background: var(--green-dark);
+    color: #fff;
+    font-weight: 900;
+    cursor: pointer;
+}
+
+.carnet-resultado.oculto {
+    display: none;
+}
+
+.carnet-documento {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    min-height: 470px;
+    border-radius: 24px;
+    background:
+        radial-gradient(circle at 88% 58%, rgba(23,184,137,.09) 0 9%, transparent 10%),
+        radial-gradient(circle at 80% 60%, rgba(244,201,40,.06) 0 20%, transparent 21%),
+        linear-gradient(135deg, #ffffff 0%, #f7fbfa 62%, #eef8f3 100%);
+    border: 1px solid #dbe8e3;
+    box-shadow: var(--shadow-large);
+}
+
+.carnet-documento::after {
+    content: "";
+    position: absolute;
+    width: 260px;
+    height: 260px;
+    right: -100px;
+    top: 125px;
+    border-radius: 50%;
+    border: 35px solid rgba(21,60,77,.045);
+    box-shadow:
+        0 0 0 35px rgba(21,60,77,.025),
+        0 0 0 70px rgba(21,60,77,.015);
+    pointer-events: none;
+}
+
+.carnet-documento-superior {
+    position: relative;
+    z-index: 2;
+    min-height: 112px;
+    display: flex;
+    align-items: center;
+    padding: 18px 7%;
+    background: #fff;
+    border-bottom: 2px solid var(--green-dark);
+}
+
+.carnet-logo {
+    display: block;
+    width: min(330px, 62%);
+    height: auto;
+    max-height: 92px;
+    object-fit: contain;
+    object-position: left center;
+}
+
+.carnet-documento-cuerpo {
+    position: relative;
+    z-index: 2;
+    padding: 28px 7% 100px;
+}
+
+.carnet-nombre {
+    width: 75%;
+    color: #12395f;
+    font-size: clamp(25px, 4vw, 48px);
+    line-height: 1.02;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+.carnet-linea {
+    width: 75%;
+    height: 2px;
+    margin: 13px 0 22px;
+    background: #238c46;
+}
+
+.carnet-datos-principales {
+    width: 78%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+}
+
+.carnet-dato {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.carnet-icono {
+    width: 48px;
+    height: 48px;
+    flex: 0 0 48px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: #238c46;
+    color: #fff;
+    font-weight: 900;
+}
+
+.carnet-dato small,
+.carnet-datos-secundarios small {
+    display: block;
+    margin-bottom: 5px;
+    color: #173b61;
+    font-size: 10px;
+    font-weight: 900;
+}
+
+.carnet-dato strong {
+    display: block;
+    color: #238c46;
+    font-size: clamp(18px, 2.3vw, 31px);
+    line-height: 1.05;
+    font-weight: 900;
+}
+
+.carnet-datos-secundarios {
+    width: 78%;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 1fr;
+    gap: 0;
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid #b8c8c0;
+}
+
+.carnet-datos-secundarios > div {
+    padding: 0 18px;
+    border-right: 1px solid #b8c4c8;
+}
+
+.carnet-datos-secundarios > div:first-child {
+    padding-left: 0;
+}
+
+.carnet-datos-secundarios > div:last-child {
+    padding-right: 0;
+    border-right: 0;
+}
+
+.carnet-datos-secundarios strong {
+    display: block;
+    color: #12395f;
+    font-size: clamp(13px, 1.6vw, 20px);
+    line-height: 1.15;
+    font-weight: 900;
+}
+
+.carnet-documento-pie {
+    position: absolute;
+    z-index: 3;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 78px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    background: #062b57;
+    color: #fff;
+    font-size: clamp(16px, 2.3vw, 28px);
+    font-weight: 900;
+    letter-spacing: .3px;
+}
+
+.carnet-documento-pie::before {
+    content: "";
+    position: absolute;
+    left: -5%;
+    bottom: -50px;
+    width: 35%;
+    height: 75px;
+    border-radius: 50%;
+    background: #238c46;
+    transform: rotate(7deg);
+}
+
+.carnet-documento-pie::after {
+    content: "";
+    position: absolute;
+    right: -3%;
+    bottom: -45px;
+    width: 22%;
+    height: 70px;
+    border-radius: 50%;
+    background: #f4c928;
+    transform: rotate(-8deg);
+}
+
+.carnet-documento-pie span,
+.carnet-documento-pie {
+    isolation: isolate;
+}
+
+.carnet-mensaje {
+    min-height: 18px;
+    margin-top: 10px;
+    color: var(--danger);
+    text-align: center;
+    font-size: 12px;
+    font-weight: 800;
+}
+
+@media (max-width: 700px) {
+    .carnet-modal-ventana {
+        width: 96vw;
+    }
+
+    .carnet-documento {
+        min-height: 430px;
+        border-radius: 18px;
+    }
+
+    .carnet-documento-superior {
+        min-height: 85px;
+        padding: 12px 5%;
+    }
+
+    .carnet-logo {
+        width: 58%;
+        max-height: 65px;
+    }
+
+    .carnet-documento-cuerpo {
+        padding: 22px 5% 88px;
+    }
+
+    .carnet-nombre,
+    .carnet-linea,
+    .carnet-datos-principales {
+        width: 100%;
+    }
+
+    .carnet-nombre {
+        font-size: clamp(22px, 7vw, 34px);
+    }
+
+    .carnet-datos-principales {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .carnet-datos-secundarios {
+        width: 100%;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+    }
+
+    .carnet-datos-secundarios > div {
+        padding: 0 9px;
+    }
+
+    .carnet-datos-secundarios > div:first-child {
+        padding-left: 0;
+    }
+
+    .carnet-datos-secundarios > div:last-child {
+        grid-column: 1 / -1;
+        padding-left: 0;
+        border-right: 0;
+    }
+
+    .carnet-buscador {
+        flex-direction: column;
+    }
+
+    .carnet-buscador button {
+        width: 100%;
+    }
+}
+

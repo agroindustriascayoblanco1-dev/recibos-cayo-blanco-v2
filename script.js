@@ -12,7 +12,7 @@
 // Reemplaza únicamente SUPABASE_URL por la URL de TU proyecto.
 //
 // Ejemplo:
-// const SUPABASE_URL = "https://xxxxxxxxxxxx.supabase.co";
+// const SUPABASE_URL = "https://bbvposlhygsuijyuchxo.supabase.co";
 
 const SUPABASE_URL = "PON_AQUI_TU_URL_DE_SUPABASE";
 

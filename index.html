@@ -536,6 +536,38 @@
 
 
                 <!-- ==================================================
+                     CARNET DE EMPLEADO
+                =================================================== -->
+
+                <button
+                    type="button"
+                    class="centro-card tarjeta-carnet"
+                    data-modal="modalCarnet"
+                >
+
+                    <span class="centro-texto">
+
+                        <strong>
+                            Mi Carnet
+                        </strong>
+
+                        <small>
+                            Consulta tu carnet de empleado
+                        </small>
+
+                    </span>
+
+                    <span class="centro-flecha">
+                        →
+                    </span>
+
+                    <span class="centro-onda">
+                    </span>
+
+                </button>
+
+
+                <!-- ==================================================
                      SEGURIDAD
                 =================================================== -->
 
@@ -608,7 +640,153 @@
 
 
         </section>
-                <!-- ==================================================
+
+        <!-- ==================================================
+             MODAL — CARNET DE EMPLEADO
+        =================================================== -->
+
+        <div
+            id="modalCarnet"
+            class="centro-modal oculto"
+        >
+
+            <div class="centro-modal-ventana carnet-modal-ventana">
+
+                <button
+                    type="button"
+                    class="centro-modal-cerrar"
+                    data-cerrar-modal
+                    aria-label="Cerrar"
+                >
+                    ×
+                </button>
+
+                <div class="carnet-consulta">
+
+                    <div class="carnet-consulta-cabecera">
+                        <span class="carnet-mini-icono">🪪</span>
+
+                        <div>
+                            <span class="centro-modal-etiqueta">
+                                RECURSOS HUMANOS
+                            </span>
+
+                            <h2>Mi Carnet de Empleado</h2>
+
+                            <p class="centro-modal-intro">
+                                Ingresa tu código de empleado para consultar tu carnet.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="carnet-buscador">
+                        <input
+                            id="codigoCarnet"
+                            type="text"
+                            inputmode="text"
+                            autocomplete="off"
+                            maxlength="20"
+                            placeholder="Ej. CBEP1392"
+                            aria-label="Código de empleado"
+                        >
+
+                        <button
+                            type="button"
+                            id="btnConsultarCarnet"
+                        >
+                            Consultar
+                        </button>
+                    </div>
+
+                    <div
+                        id="carnetResultado"
+                        class="carnet-resultado oculto"
+                    >
+
+                        <div class="carnet-documento">
+
+                            <div class="carnet-documento-superior">
+                                <img
+                                    src="logo-cayo-blanco.png"
+                                    alt="Agroindustrias Cayo Blanco"
+                                    class="carnet-logo"
+                                >
+                            </div>
+
+                            <div class="carnet-documento-cuerpo">
+
+                                <div
+                                    id="carnetNombre"
+                                    class="carnet-nombre"
+                                ></div>
+
+                                <div class="carnet-linea"></div>
+
+                                <div class="carnet-datos-principales">
+
+                                    <div class="carnet-dato">
+                                        <span class="carnet-icono">▣</span>
+
+                                        <div>
+                                            <small>CÓDIGO DE EMPLEADO</small>
+                                            <strong id="carnetCodigo"></strong>
+                                        </div>
+                                    </div>
+
+                                    <div class="carnet-dato">
+                                        <span class="carnet-icono">●</span>
+
+                                        <div>
+                                            <small>IDENTIDAD</small>
+                                            <strong id="carnetIdentidad"></strong>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="carnet-datos-secundarios">
+
+                                    <div>
+                                        <small>PUESTO</small>
+                                        <strong id="carnetPuesto"></strong>
+                                    </div>
+
+                                    <div>
+                                        <small>DEPARTAMENTO</small>
+                                        <strong id="carnetDepartamento"></strong>
+                                    </div>
+
+                                    <div>
+                                        <small>FINCA / DIVISIÓN</small>
+                                        <strong id="carnetDivision"></strong>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="carnet-documento-pie">
+                                <span>🌿</span>
+                                CARNET DE EMPLEADO
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <p
+                        id="carnetMensaje"
+                        class="carnet-mensaje"
+                        aria-live="polite"
+                    ></p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- ==================================================
              MODAL — INFORMACIÓN
         =================================================== -->
 

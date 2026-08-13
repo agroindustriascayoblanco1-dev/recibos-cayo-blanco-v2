@@ -471,14 +471,32 @@ function consultarQuincenaDesdePanel(quincena){
     consultarEmpleado();
 }
 function abrirCarnetDesdePanel(){
-    if(!empleadoActual||!empleadoActual.codigo){mostrarMensaje("⚠️ Primero ingresa tu código de empleado.",true);return;}
+    if(!empleadoActual||!empleadoActual.codigo){
+        mostrarMensaje("⚠️ Primero ingresa tu código de empleado.",true);
+        return;
+    }
+
     const modal=document.getElementById("modalCarnet");
-    const input=document.getElementById("codigoCarnet");
-    if(!modal||!input)return;
-    input.value=empleadoActual.codigo;
+    const resultado=document.getElementById("carnetResultado");
+    const mensaje=document.getElementById("carnetMensaje");
+    const empleado=BASE_EMPLEADOS_CARNET[empleadoActual.codigo];
+
+    if(!modal||!resultado||!empleado){
+        mostrarMensaje("⚠️ No se pudo cargar el carnet del colaborador.",true);
+        return;
+    }
+
+    document.getElementById("carnetNombre").textContent=empleado.nombre||"—";
+    document.getElementById("carnetCodigo").textContent=empleadoActual.codigo;
+    document.getElementById("carnetIdentidad").textContent=empleado.identidad||"—";
+    document.getElementById("carnetPuesto").textContent=empleado.puesto||"—";
+    document.getElementById("carnetDepartamento").textContent=empleado.departamento||"—";
+    document.getElementById("carnetDivision").textContent=empleado.division||"—";
+
+    if(mensaje) mensaje.textContent="";
+    resultado.classList.remove("oculto");
     modal.classList.remove("oculto");
     document.body.classList.add("centro-modal-abierto");
-    mostrarCarnetEmpleado();
 }
 
 // ======================================================

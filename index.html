@@ -637,11 +637,102 @@ body{
 }
 </style>
 
+
+<style id="mejora-apariencia-v3">
+/* ===== AJUSTES V3: LOGO, MÓVIL Y EFECTOS TÁCTILES ===== */
+.logo-marco{
+  width:58px;height:58px;min-width:58px;
+  border-radius:16px;
+  background:#fff;
+  display:flex;align-items:center;justify-content:center;
+  padding:7px;
+  box-sizing:border-box;
+  box-shadow:0 5px 14px rgba(0,0,0,.13);
+  border:1px solid rgba(255,255,255,.9);
+}
+.logo-marco .logo-img{
+  width:100%;height:100%;
+  object-fit:contain;
+  border-radius:10px;
+  display:block;
+}
+
+/* Evita que un campo de texto pequeño provoque zoom automático en iPhone/iPad. */
+input,button,select,textarea{font-size:16px}
+
+/* Contactos: desplazamiento interno siempre disponible. */
+#modalContactos .modal-box,
+.modal-box.contactos-rrhh{
+  max-height:78vh;
+  overflow-y:auto;
+  overflow-x:hidden;
+  overscroll-behavior:contain;
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width:thin;
+}
+
+/* Efecto de pulsación táctil: equivalente al hover de computadora. */
+@media (hover:none) and (pointer:coarse){
+  .menu-card,
+  .info-card,
+  .contacto-card,
+  .boton-secundario,
+  .volver,
+  #buscar{
+    -webkit-tap-highlight-color:transparent;
+  }
+
+  .menu-card:active,
+  .info-card:active,
+  .contacto-card:active{
+    transform:translateY(-2px) scale(.992);
+    border-color:rgba(17,169,120,.72) !important;
+    box-shadow:0 0 0 2px rgba(17,169,120,.10),0 10px 25px rgba(17,169,120,.13) !important;
+    transition:transform .08s ease,box-shadow .08s ease,border-color .08s ease;
+  }
+
+  .menu-card:active::after,
+  .info-card:active::after{
+    opacity:1 !important;
+    transform:scaleX(1) !important;
+  }
+
+  .contacto-card:active .contacto-llamar{
+    box-shadow:0 0 0 5px rgba(19,185,137,.14);
+    transform:scale(1.04);
+  }
+}
+
+@media (max-width:600px){
+  html,body{width:100%;max-width:100%;overflow-x:hidden}
+  body{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+  .encabezado{padding:10px 15px;min-height:72px}
+  .marca{gap:10px;min-width:0}
+  .logo-marco{width:50px;height:50px;min-width:50px;border-radius:14px;padding:6px}
+  .empresa{min-width:0}
+  .empresa h1{font-size:14px;line-height:1.1;white-space:nowrap}
+  .empresa p{font-size:9px;margin-top:3px}
+  .confidencial-top{font-size:9px;white-space:nowrap}
+
+  .contenedor{width:calc(100% - 24px);margin:16px auto 32px}
+  .hero-acceso{width:100%;box-sizing:border-box;padding:22px;gap:21px}
+  .hero-texto h2{font-size:clamp(38px,11vw,48px);line-height:.96;letter-spacing:-2px}
+  .hero-texto>p{font-size:13px;line-height:1.5}
+  .acceso-card{width:100%;box-sizing:border-box;padding:21px;border-radius:21px}
+  .fila-codigo{gap:10px}
+  .fila-codigo input{min-width:0;width:100%;font-size:16px !important}
+  #buscar{width:100%;min-width:0;font-size:16px;min-height:46px}
+
+  .perfil-barra{width:100%;box-sizing:border-box}
+  .menu-card,.info-card,.contacto-card{touch-action:manipulation}
+}
+</style>
+
 </head>
 <body>
 <header class="encabezado">
     <div class="marca">
-        <img src="logo-cayo-blanco.png" class="logo-img" alt="Agroindustrias Cayo Blanco">
+        <div class="logo-marco"><img src="logo-cayo-blanco.png" class="logo-img" alt="Agroindustrias Cayo Blanco"></div>
         <div class="empresa">
             <h1>AGROINDUSTRIAS CAYO BLANCO</h1>
             <p>Portal de Empleados</p>

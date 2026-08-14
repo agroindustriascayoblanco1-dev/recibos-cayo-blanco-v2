@@ -4,13 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portal de Empleados | Agroindustrias Cayo Blanco</title>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-
     <link rel="stylesheet" href="style.css?v=40">
 </head>
-
 <body>
 <header class="encabezado">
     <div class="marca">
@@ -24,284 +21,125 @@
 </header>
 
 <main class="contenedor">
-
-    <!-- ACCESO -->
-    <section id="pantallaAcceso" class="pantalla activa">
-        <div class="hero-acceso">
-            <div class="hero-texto">
-                <span class="etiqueta">RECURSOS HUMANOS</span>
-                <h2>Portal de<br><span>Empleados</span></h2>
-                <div class="linea-destacada"></div>
-                <p>Consulta tus recibos, carnet y documentos laborales desde un solo lugar.</p>
-
-                <div class="mini-beneficios">
-                    <span>🔐 Seguro</span>
-                    <span>⚡ Rápido</span>
-                    <span>📱 Fácil</span>
-                </div>
+<section id="pantallaAcceso" class="pantalla activa">
+    <div class="hero-acceso">
+        <div class="hero-texto">
+            <span class="etiqueta">RECURSOS HUMANOS</span>
+            <h2>Portal de<br><span>Empleados</span></h2>
+            <div class="linea-destacada"></div>
+            <p>Consulta tus recibos, carnet y documentos laborales desde un solo lugar.</p>
+            <div class="mini-beneficios"><span>🔐 Seguro</span><span>⚡ Rápido</span><span>📱 Fácil</span></div>
+        </div>
+        <div class="acceso-card">
+            <div class="icono-acceso">👤</div>
+            <span class="etiqueta">ACCESO PERSONAL</span>
+            <h3>Ingresa a tu portal</h3>
+            <p>Escribe tu código de empleado para continuar.</p>
+            <label for="codigo">Código de empleado</label>
+            <div class="fila-codigo">
+                <input id="codigo" type="text" placeholder="Ejemplo: CBEP0000" autocomplete="off" autocapitalize="characters" spellcheck="false">
+                <button id="buscar" type="button">Continuar</button>
             </div>
+            <p id="mensaje" class="mensaje"></p>
+        </div>
+    </div>
+</section>
 
-            <div class="acceso-card">
-                <div class="icono-acceso">👤</div>
-                <span class="etiqueta">ACCESO PERSONAL</span>
-                <h3>Ingresa a tu portal</h3>
-                <p>Escribe tu código de empleado para continuar.</p>
+<section id="pantallaPortal" class="pantalla oculto">
+    <div class="perfil-barra">
+        <div class="perfil-identidad">
+            <div class="avatar-mini">👤</div>
+            <div><span>PORTAL PERSONAL</span><h2 id="nombreEmpleado">—</h2><small>Código: <strong id="codigoEmpleado">—</strong></small></div>
+        </div>
+        <button id="cerrarSesion" class="boton-secundario">Salir</button>
+    </div>
+    <div class="portal-titulo">
+        <span class="etiqueta">MENÚ PRINCIPAL</span><h2>¿Qué deseas consultar?</h2>
+        <p>Selecciona una opción para acceder a tu información.</p>
+    </div>
+    <div class="menu-grid">
+        <button class="menu-card verde" id="btnRecibos" type="button"><span class="menu-icon">🧾</span><span><strong>Ver recibos</strong><small>Consulta tus recibos de pago</small></span><b>→</b></button>
+        <button class="menu-card azul" id="btnCarnet" type="button"><span class="menu-icon">🪪</span><span><strong>Ver carnet</strong><small>Consulta tu carnet de empleado</small></span><b>→</b></button>
+        <button class="menu-card amarillo" id="btnSolicitudes" type="button"><span class="menu-icon">📁</span><span><strong>Ver solicitudes</strong><small>Constancias y otros documentos</small></span><b>→</b></button>
+    </div>
 
-                <label for="codigo">Código de empleado</label>
-                <div class="fila-codigo">
-                    <input id="codigo" type="text" placeholder="Ejemplo: CBEP0000"
-                           autocomplete="off" autocapitalize="characters" spellcheck="false">
-                    <button id="buscar" type="button">Continuar</button>
-                </div>
-
-                <p id="mensaje" class="mensaje"></p>
-            </div>
+    <section class="informacion-final">
+        <span class="etiqueta">INFORMACIÓN</span>
+        <h2>Información adicional</h2>
+        <p>Consulta información, comunicados y material que Recursos Humanos publique posteriormente.</p>
+        <div class="info-grid">
+            <button class="info-card" data-modal="modalComunicados" type="button"><span>📢</span><strong>Comunicados de Recursos Humanos</strong><small>Noticias y avisos importantes</small></button>
+            <button class="info-card" data-modal="modalProcedimientos" type="button"><span>📋</span><strong>Procedimientos</strong><small>Guías y procedimientos disponibles</small></button>
+            <button class="info-card" data-modal="modalContactos" type="button"><span>📞</span><strong>Contactos de Recursos Humanos</strong><small>Canales de atención y soporte</small></button>
+            <button class="info-card" data-modal="modalImportante" type="button"><span>ℹ️</span><strong>Información importante</strong><small>Información que Recursos Humanos publique</small></button>
         </div>
     </section>
+</section>
 
-    <!-- PORTAL PERSONAL -->
-    <section id="pantallaPortal" class="pantalla oculto">
-        <div class="perfil-barra">
-            <div class="perfil-identidad">
-                <div class="avatar-mini">👤</div>
-                <div>
-                    <span>PORTAL PERSONAL</span>
-                    <h2 id="nombreEmpleado">—</h2>
-                    <small>Código: <strong id="codigoEmpleado">—</strong></small>
-                </div>
-            </div>
-            <button id="cerrarSesion" class="boton-secundario">Salir</button>
-        </div>
+<section id="pantallaRecibos" class="pantalla oculto">
+    <div class="subcabecera"><button class="volver" data-volver="pantallaPortal">← Volver</button><div><span class="etiqueta">MIS RECIBOS</span><h2>Recibos de pago</h2></div></div>
+    <div class="periodos-grid">
+        <button class="periodo-card" data-q="q1" type="button"><span class="periodo-icon">01</span><strong>Quincena 1</strong><small id="mesQ1">—</small><b>Ver recibo →</b></button>
+        <button class="periodo-card" data-q="q2" type="button"><span class="periodo-icon">02</span><strong>Quincena 2</strong><small id="mesQ2">—</small><b>Ver recibo →</b></button>
+    </div>
+</section>
 
-        <div class="portal-titulo">
-            <span class="etiqueta">MENÚ PRINCIPAL</span>
-            <h2>¿Qué deseas consultar?</h2>
-            <p>Selecciona una opción para acceder a tu información.</p>
-        </div>
+<section id="pantallaRecibo" class="pantalla oculto">
+    <div class="subcabecera"><button class="volver" id="volverRecibos">← Recibos</button><div><span class="etiqueta">RECIBO DE PAGO</span><h2 id="visorTitulo">Recibo</h2></div></div>
+    <div class="visor-acciones"><button id="guardarRecibo" class="boton-secundario" type="button">Guardar recibo</button></div>
+    <div class="visor-pdf"><div class="visor-mensaje">Selecciona una quincena para visualizar tu recibo.</div></div>
+</section>
 
-        <div class="menu-grid">
-            <button class="menu-card verde" id="btnRecibos" type="button">
-                <span class="menu-icon">🧾</span>
-                <span>
-                    <strong>Ver recibos</strong>
-                    <small>Consulta tus recibos de pago</small>
-                </span>
-                <b>→</b>
-            </button>
-
-            <button class="menu-card azul" id="btnCarnet" type="button">
-                <span class="menu-icon">🪪</span>
-                <span>
-                    <strong>Ver carnet</strong>
-                    <small>Consulta tu carnet de empleado</small>
-                </span>
-                <b>→</b>
-            </button>
-
-            <button class="menu-card amarillo" id="btnSolicitudes" type="button">
-                <span class="menu-icon">📁</span>
-                <span>
-                    <strong>Ver solicitudes</strong>
-                    <small>Constancias y otros documentos</small>
-                </span>
-                <b>→</b>
-            </button>
-        </div>
-
-        <section class="informacion-final">
-            <span class="etiqueta">INFORMACIÓN</span>
-            <h2>Información adicional</h2>
-            <p>Consulta información, comunicados y material que Recursos Humanos publique posteriormente.</p>
-
-            <div class="info-grid">
-                <button class="info-card" data-modal="modalComunicados" type="button">
-                    <span>📢</span>
-                    <strong>Comunicados de Recursos Humanos</strong>
-                    <small>Noticias y avisos importantes</small>
-                </button>
-                <button class="info-card" data-modal="modalProcedimientos" type="button">
-                    <span>📋</span>
-                    <strong>Procedimientos</strong>
-                    <small>Guías y procedimientos disponibles</small>
-                </button>
-                <button class="info-card" data-modal="modalContactos" type="button">
-                    <span>📞</span>
-                    <strong>Contactos de Recursos Humanos</strong>
-                    <small>Canales de atención y soporte</small>
-                </button>
-                <button class="info-card" data-modal="modalImportante" type="button">
-                    <span>ℹ️</span>
-                    <strong>Información importante</strong>
-                    <small>Información que Recursos Humanos publique</small>
-                </button>
-            </div>
-        </section>
-    </section>
-
-    <!-- RECIBOS -->
-    <section id="pantallaRecibos" class="pantalla oculto">
-        <div class="subcabecera">
-            <button class="volver" data-volver="pantallaPortal">← Volver</button>
-            <div>
-                <span class="etiqueta">MIS RECIBOS</span>
-                <h2>Recibos de pago</h2>
-            </div>
-        </div>
-
-        <div class="periodos-grid">
-            <button class="periodo-card" data-q="q1" type="button">
-                <span class="periodo-icon">01</span>
-                <strong>Quincena 1</strong>
-                <small id="mesQ1">—</small>
-                <b>Ver recibo →</b>
-            </button>
-
-            <button class="periodo-card" data-q="q2" type="button">
-                <span class="periodo-icon">02</span>
-                <strong>Quincena 2</strong>
-                <small id="mesQ2">—</small>
-                <b>Ver recibo →</b>
-            </button>
-        </div>
-    </section>
-
-    <!-- VISOR RECIBO -->
-    <section id="pantallaRecibo" class="pantalla oculto">
-        <div class="subcabecera">
-            <button class="volver" id="volverRecibos">← Recibos</button>
-            <div>
-                <span class="etiqueta">RECIBO DE PAGO</span>
-                <h2 id="visorTitulo">Recibo</h2>
-            </div>
-        </div>
-
-        <div class="visor-acciones">
-            <button id="guardarRecibo" class="boton-secundario" type="button">Guardar recibo</button>
-        </div>
-
-        <div class="visor-pdf">
-            <div class="visor-mensaje">Selecciona una quincena para visualizar tu recibo.</div>
-        </div>
-    </section>
-
-    <!-- CARNET -->
-    <section id="pantallaCarnet" class="pantalla oculto">
-        <div class="subcabecera">
-            <button class="volver" data-volver="pantallaPortal">← Volver</button>
-            <div>
-                <span class="etiqueta">IDENTIFICACIÓN</span>
-                <h2>Mi carnet</h2>
-            </div>
-        </div>
-
-        <div class="carnet-wrap">
-            <article class="carnet">
-                <div class="carnet-top">
-                    <img src="logo-cayo-blanco.png" alt="Logo" class="carnet-logo">
-                    <span>AGROINDUSTRIAS<br><strong>CAYO BLANCO</strong></span>
-                </div>
-
-                <div class="carnet-body">
-                    <div class="foto-box" id="fotoCarnet">
-                        <div class="silueta" aria-label="Sin fotografía">
-                            <span>👤</span>
-                        </div>
+<section id="pantallaCarnet" class="pantalla oculto">
+    <div class="subcabecera"><button class="volver" data-volver="pantallaPortal">← Volver</button><div><span class="etiqueta">IDENTIFICACIÓN</span><h2>Mi carnet</h2></div></div>
+    <div class="carnet-wrap">
+        <article class="carnet">
+            <div class="carnet-top"><img src="logo-cayo-blanco.png" alt="Logo" class="carnet-logo"><span>AGROINDUSTRIAS<br><strong>CAYO BLANCO</strong></span></div>
+            <div class="carnet-body">
+                <div class="foto-box" id="fotoCarnet"><div class="silueta" aria-label="Sin fotografía"><span>👤</span></div></div>
+                <div class="carnet-datos">
+                    <span class="carnet-label">NOMBRE DEL COLABORADOR</span><h3 id="carnetNombre">—</h3>
+                    <div class="carnet-linea">
+                        <div><span class="carnet-label">CÓDIGO</span><strong id="carnetCodigo">—</strong></div>
+                        <div><span class="carnet-label">DEPARTAMENTO</span><strong id="carnetDepartamento">—</strong></div>
                     </div>
-
-                    <div class="carnet-datos">
-                        <span class="carnet-label">NOMBRE DEL COLABORADOR</span>
-                        <h3 id="carnetNombre">—</h3>
-
-                        <div class="carnet-linea">
-                            <div>
-                                <span class="carnet-label">CÓDIGO</span>
-                                <strong id="carnetCodigo">—</strong>
-                            </div>
-                            <div>
-                                <span class="carnet-label">DEPARTAMENTO</span>
-                                <strong id="carnetDepartamento">—</strong>
-                            </div>
-                        </div>
-
-                        <div class="carnet-puesto">
-                            <span class="carnet-label">PUESTO</span>
-                            <strong id="carnetPuesto">—</strong>
-                        </div>
-                    </div>
+                    <div class="carnet-puesto"><span class="carnet-label">PUESTO</span><strong id="carnetPuesto">—</strong></div>
                 </div>
-
-                <div class="carnet-footer">
-                    <span>RECURSOS HUMANOS</span>
-                    <strong>IDENTIFICACIÓN DE EMPLEADO</strong>
-                </div>
-            </article>
-
-        </div>
-    </section>
-
-    <!-- SOLICITUDES -->
-    <section id="pantallaSolicitudes" class="pantalla oculto">
-        <div class="subcabecera">
-            <button class="volver" data-volver="pantallaPortal">← Volver</button>
-            <div>
-                <span class="etiqueta">MIS DOCUMENTOS</span>
-                <h2>Solicitudes y constancias</h2>
             </div>
-        </div>
+            <div class="carnet-footer"><span>RECURSOS HUMANOS</span><strong>IDENTIFICACIÓN DE EMPLEADO</strong></div>
+        </article>
+    </div>
+</section>
 
-        <p class="descripcion-seccion">Aquí aparecerán los documentos que Recursos Humanos publique para tu código de empleado.</p>
-
-        <div id="listaDocumentos" class="documentos-grid"></div>
-    </section>
-
+<section id="pantallaSolicitudes" class="pantalla oculto">
+    <div class="subcabecera"><button class="volver" data-volver="pantallaPortal">← Volver</button><div><span class="etiqueta">MIS DOCUMENTOS</span><h2>Solicitudes y constancias</h2></div></div>
+    <p class="descripcion-seccion">Aquí aparecerán los documentos que Recursos Humanos publique para tu código de empleado.</p>
+    <div id="listaDocumentos" class="documentos-grid"></div>
+</section>
 </main>
 
-<!-- MODALES -->
 <div id="modalComunicados" class="modal oculto">
     <div class="modal-box">
         <button class="modal-cerrar" data-cerrar-modal>×</button>
         <span class="modal-icon">📢</span>
         <span class="etiqueta">RECURSOS HUMANOS</span>
         <h2>Comunicados</h2>
-        <p>Aquí aparecerán los comunicados y avisos que Recursos Humanos publique para los colaboradores.</p>
+        <p>Consulta los comunicados y avisos publicados por Recursos Humanos.</p>
+        <div class="comunicado-lista">
+            <a href="Informacion/Comunicados/Comunicado%20Sitio%20Web%20-%20Recibos%20de%20pago.pdf" target="_blank" rel="noopener" class="documento-card comunicado-enlace">
+                <span class="documento-icon">📄</span>
+                <div><strong>Comunicado Sitio Web - Recibos de pago</strong><small>Comunicado de Recursos Humanos</small></div>
+                <span class="documento-boton">Abrir</span>
+            </a>
+        </div>
     </div>
 </div>
 
-<div id="modalProcedimientos" class="modal oculto">
-    <div class="modal-box">
-        <button class="modal-cerrar" data-cerrar-modal>×</button>
-        <span class="modal-icon">📋</span>
-        <span class="etiqueta">RECURSOS HUMANOS</span>
-        <h2>Procedimientos</h2>
-        <p>Aquí estarán disponibles las guías y procedimientos que Recursos Humanos publique posteriormente.</p>
-    </div>
-</div>
+<div id="modalProcedimientos" class="modal oculto"><div class="modal-box"><button class="modal-cerrar" data-cerrar-modal>×</button><span class="modal-icon">📋</span><span class="etiqueta">RECURSOS HUMANOS</span><h2>Procedimientos</h2><p>Aquí estarán disponibles las guías y procedimientos que Recursos Humanos publique posteriormente.</p></div></div>
+<div id="modalContactos" class="modal oculto"><div class="modal-box"><button class="modal-cerrar" data-cerrar-modal>×</button><span class="modal-icon">📞</span><span class="etiqueta">RECURSOS HUMANOS</span><h2>Contactos de Recursos Humanos</h2><p>Aquí se podrán agregar posteriormente los canales y datos de contacto de Recursos Humanos.</p></div></div>
+<div id="modalImportante" class="modal oculto"><div class="modal-box"><button class="modal-cerrar" data-cerrar-modal>×</button><span class="modal-icon">ℹ️</span><span class="etiqueta">INFORMACIÓN</span><h2>Información importante</h2><p>Aquí aparecerá la información importante que Recursos Humanos publique para los colaboradores.</p></div></div>
 
-<div id="modalContactos" class="modal oculto">
-    <div class="modal-box">
-        <button class="modal-cerrar" data-cerrar-modal>×</button>
-        <span class="modal-icon">📞</span>
-        <span class="etiqueta">RECURSOS HUMANOS</span>
-        <h2>Contactos de Recursos Humanos</h2>
-        <p>Aquí se podrán agregar posteriormente los canales y datos de contacto de Recursos Humanos.</p>
-    </div>
-</div>
-
-<div id="modalImportante" class="modal oculto">
-    <div class="modal-box">
-        <button class="modal-cerrar" data-cerrar-modal>×</button>
-        <span class="modal-icon">ℹ️</span>
-        <span class="etiqueta">INFORMACIÓN</span>
-        <h2>Información importante</h2>
-        <p>Aquí aparecerá la información importante que Recursos Humanos publique para los colaboradores.</p>
-    </div>
-</div>
-
-<footer>
-    <span>Agroindustrias Cayo Blanco</span>
-    <span>Portal de Empleados · Recursos Humanos</span>
-</footer>
-
+<footer><span>Agroindustrias Cayo Blanco</span><span>Portal de Empleados · Recursos Humanos</span></footer>
 <script src="script.js?v=40"></script>
 </body>
 </html>

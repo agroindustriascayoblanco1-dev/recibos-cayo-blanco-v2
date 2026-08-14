@@ -114,20 +114,25 @@
             <p>Consulta información, comunicados y material que Recursos Humanos publique posteriormente.</p>
 
             <div class="info-grid">
-                <button class="info-card" data-modal="modalInformacion" type="button">
+                <button class="info-card" data-modal="modalComunicados" type="button">
+                    <span>📢</span>
+                    <strong>Comunicados de Recursos Humanos</strong>
+                    <small>Noticias y avisos importantes</small>
+                </button>
+                <button class="info-card" data-modal="modalProcedimientos" type="button">
+                    <span>📋</span>
+                    <strong>Procedimientos</strong>
+                    <small>Guías y procedimientos disponibles</small>
+                </button>
+                <button class="info-card" data-modal="modalContactos" type="button">
+                    <span>📞</span>
+                    <strong>Contactos de Recursos Humanos</strong>
+                    <small>Canales de atención y soporte</small>
+                </button>
+                <button class="info-card" data-modal="modalImportante" type="button">
                     <span>ℹ️</span>
-                    <strong>Información del portal</strong>
-                    <small>Cómo utilizar este servicio</small>
-                </button>
-                <button class="info-card" data-modal="modalSeguridad" type="button">
-                    <span>🔐</span>
-                    <strong>Seguridad</strong>
-                    <small>Recomendaciones para proteger tus datos</small>
-                </button>
-                <button class="info-card" data-modal="modalAyuda" type="button">
-                    <span>💬</span>
-                    <strong>Ayuda</strong>
-                    <small>Soporte de Recursos Humanos</small>
+                    <strong>Información importante</strong>
+                    <small>Información que Recursos Humanos publique</small>
                 </button>
             </div>
         </section>
@@ -232,13 +237,6 @@
                 </div>
             </article>
 
-            <div class="carnet-nota" id="carnetNotaFoto">
-                <span>📷</span>
-                <div>
-                    <strong>Fotografía pendiente</strong>
-                    <p>La silueta se mostrará hasta que Recursos Humanos agregue la fotografía del colaborador.</p>
-                </div>
-            </div>
         </div>
     </section>
 
@@ -260,33 +258,43 @@
 </main>
 
 <!-- MODALES -->
-<div id="modalInformacion" class="modal oculto">
+<div id="modalComunicados" class="modal oculto">
+    <div class="modal-box">
+        <button class="modal-cerrar" data-cerrar-modal>×</button>
+        <span class="modal-icon">📢</span>
+        <span class="etiqueta">RECURSOS HUMANOS</span>
+        <h2>Comunicados</h2>
+        <p>Aquí aparecerán los comunicados y avisos que Recursos Humanos publique para los colaboradores.</p>
+    </div>
+</div>
+
+<div id="modalProcedimientos" class="modal oculto">
+    <div class="modal-box">
+        <button class="modal-cerrar" data-cerrar-modal>×</button>
+        <span class="modal-icon">📋</span>
+        <span class="etiqueta">RECURSOS HUMANOS</span>
+        <h2>Procedimientos</h2>
+        <p>Aquí estarán disponibles las guías y procedimientos que Recursos Humanos publique posteriormente.</p>
+    </div>
+</div>
+
+<div id="modalContactos" class="modal oculto">
+    <div class="modal-box">
+        <button class="modal-cerrar" data-cerrar-modal>×</button>
+        <span class="modal-icon">📞</span>
+        <span class="etiqueta">RECURSOS HUMANOS</span>
+        <h2>Contactos de Recursos Humanos</h2>
+        <p>Aquí se podrán agregar posteriormente los canales y datos de contacto de Recursos Humanos.</p>
+    </div>
+</div>
+
+<div id="modalImportante" class="modal oculto">
     <div class="modal-box">
         <button class="modal-cerrar" data-cerrar-modal>×</button>
         <span class="modal-icon">ℹ️</span>
         <span class="etiqueta">INFORMACIÓN</span>
-        <h2>¿Cómo funciona el portal?</h2>
-        <p>Ingresa con tu código de empleado y utiliza las opciones disponibles para consultar tus recibos, carnet y documentos.</p>
-    </div>
-</div>
-
-<div id="modalSeguridad" class="modal oculto">
-    <div class="modal-box">
-        <button class="modal-cerrar" data-cerrar-modal>×</button>
-        <span class="modal-icon">🔐</span>
-        <span class="etiqueta">SEGURIDAD</span>
-        <h2>Protege tu información</h2>
-        <p>No compartas tu código de empleado ni tus recibos de pago con otras personas.</p>
-    </div>
-</div>
-
-<div id="modalAyuda" class="modal oculto">
-    <div class="modal-box">
-        <button class="modal-cerrar" data-cerrar-modal>×</button>
-        <span class="modal-icon">💬</span>
-        <span class="etiqueta">RECURSOS HUMANOS</span>
-        <h2>¿Necesitas ayuda?</h2>
-        <p>Si no encuentras un recibo, carnet o documento, comunícate con Recursos Humanos para recibir asistencia.</p>
+        <h2>Información importante</h2>
+        <p>Aquí aparecerá la información importante que Recursos Humanos publique para los colaboradores.</p>
     </div>
 </div>
 

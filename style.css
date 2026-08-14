@@ -881,3 +881,26 @@ footer {
         gap: 6px;
     }
 }
+
+
+.cargando-documentos {
+    min-height: 180px;
+    display: grid;
+    place-items: center;
+    align-content: center;
+    gap: 8px;
+    border: 1px dashed #c9d7db;
+    border-radius: 20px;
+    background: rgba(255,255,255,.7);
+    text-align: center;
+}
+
+.cargando-documentos span {
+    font-size: 28px;
+}
+
+.cargando-documentos p {
+    color: var(--text-soft);
+    font-size: 10px;
+    font-weight: 800;
+}

@@ -333,11 +333,31 @@ function obtenerNombre(texto) {
 }
 
 function obtenerCampo(texto, campo) {
-    const siguiente = "(?=\\s+(?:Departamento|Puesto|Sueldo\\s+Mensual|Salario|Ingreso|Deducciones|Total|$))";
-    const regex = new RegExp(`${campo}\\s*:\\s*(.*?)${siguiente}`, "i");
-    const match = texto.match(regex);
+    // En el carnet SOLO necesitamos información laboral básica.
+    // El recibo contiene información de nómina después del puesto,
+    // por lo que cortamos el texto antes de cualquier dato de pago.
+    if (campo.toLowerCase() === "puesto") {
+        const regex = /Puesto\s*:\s*(.*?)(?=\s+(?:D[ií]as?\s+Trabajados?|D[ií]as?\s+Incapacidad|Falt\.?\s+Remunerados?|D[ií]as?\s+Vacaciones?|D[ií]as?\s+Feriados?|D[ií]as?\s+Septimo|D[ií]as?\s+Domingo|Sueldo|Salario|Pago|Total|Deducciones|Bonos?|Horas?\s+Extra|$))/i;
+        const match = texto.match(regex);
+        return limpiarDatoLaboral(match?.[1] || "");
+    }
 
-    return match?.[1]?.trim() || "";
+    if (campo.toLowerCase() === "departamento") {
+        const regex = /Departamento\s*:\s*(.*?)(?=\s+(?:Puesto|Sueldo|Salario|Ingreso|Deducciones|Total|$))/i;
+        const match = texto.match(regex);
+        return limpiarDatoLaboral(match?.[1] || "");
+    }
+
+    const regex = new RegExp(`${campo}\\s*:\\s*(.*?)(?=\\s+(?:Departamento|Puesto|Sueldo|Salario|Ingreso|Deducciones|Total|$))`, "i");
+    const match = texto.match(regex);
+    return limpiarDatoLaboral(match?.[1] || "");
+}
+
+function limpiarDatoLaboral(valor) {
+    return String(valor || "")
+        .replace(/\s+/g, " ")
+        .replace(/\b(?:D[ií]as?\s+Trabajados?|D[ií]as?\s+Incapacidad|Falt\.?\s+Remunerados?|D[ií]as?\s+Vacaciones?|D[ií]as?\s+Feriados?|D[ií]as?\s+Septimo|D[ií]as?\s+Domingo|Sueldo|Salario|Pago|Total|Deducciones|Bonos?|Horas?\s+Extra)\b.*$/i, "")
+        .trim();
 }
 
 function normalizar(texto) {

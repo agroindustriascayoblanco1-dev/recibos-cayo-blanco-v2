@@ -257,8 +257,6 @@ function cargarDatosCarnet() {
 
 function cargarFotoCarnet(codigo) {
     const fotoBox = document.querySelector(".foto-box");
-    const notaFoto = $("carnetNotaFoto");
-
     if (!fotoBox || !codigo) return;
 
     // Estado inicial: silueta y aviso mientras no exista una fotografía.
@@ -268,8 +266,6 @@ function cargarFotoCarnet(codigo) {
         </div>
         <small>FOTO</small>
     `;
-
-    if (notaFoto) notaFoto.style.display = "";
 
     const extensiones = ["png", "jpg", "jpeg"];
     let indice = 0;
@@ -293,9 +289,6 @@ function cargarFotoCarnet(codigo) {
             etiqueta.textContent = "FOTO";
             fotoBox.appendChild(etiqueta);
 
-            // Con fotografía cargada, desaparece por completo el mensaje
-            // "Fotografía pendiente" y su descripción.
-            if (notaFoto) notaFoto.style.display = "none";
         };
 
         imagen.onerror = function() {
@@ -388,11 +381,13 @@ function obtenerNombre(texto) {
 }
 
 function obtenerCampo(texto, campo) {
-    const siguiente = "(?=\\s+(?:Departamento|Puesto|Sueldo\\s+Mensual|Salario|Ingreso|Deducciones|Total|$))";
+    // Los recibos contienen información de nómina inmediatamente después
+    // del puesto. Para el carnet solo queremos el texto real del puesto.
+    const siguiente = "(?=\\s+(?:Departamento|Puesto|Días\\s+Trabajados|Días\\s+Incapacidad|Faltas|Renumerados|Vacaciones|Feriados|Séptimo|Sueldo\\s+Base|Sueldo\\s+Mensual|Salario|Ingreso|Deducciones|Total|Nombre\\s+Pago|Valor|SUELDOS|$))";
     const regex = new RegExp(`${campo}\\s*:\\s*(.*?)${siguiente}`, "i");
     const match = texto.match(regex);
 
-    return match?.[1]?.trim() || "";
+    return match?.[1]?.trim().replace(/\\s+/g, " ") || "";
 }
 
 function normalizar(texto) {

@@ -312,7 +312,7 @@ function mostrarSolicitudes() {
     cargarDocumentos();
 }
 
-function cargarDocumentos() {
+async function cargarDocumentos() {
     const contenedor = $("listaDocumentos");
     const codigo = empleadoActual?.codigo;
 
@@ -321,36 +321,33 @@ function cargarDocumentos() {
         return;
     }
 
-    contenedor.innerHTML = "";
+    contenedor.innerHTML = `<div class="visor-mensaje">🔄 Buscando tus documentos...</div>`;
 
-    TIPOS_DOCUMENTO.forEach(doc => {
-        const archivo = `Documentos/${codigo}_${doc.clave}.pdf`;
+    // Esperamos a comprobar TODOS los documentos antes de mostrar
+    // el mensaje de "sin documentos". Así un PDF válido no desaparece
+    // por culpa de otro archivo que todavía no existe.
+    const encontrados = await Promise.all(
+        TIPOS_DOCUMENTO.map(async doc => {
+            const archivo = `Documentos/${codigo}_${doc.clave}.pdf`;
 
-        fetch(archivo, { method: "GET", cache: "no-store" })
-            .then(respuesta => {
-                if (!respuesta.ok) return;
+            try {
+                const respuesta = await fetch(archivo, {
+                    method: "GET",
+                    cache: "no-store"
+                });
 
-                const card = document.createElement("article");
-                card.className = "documento-card";
-                card.innerHTML = `
-                    <span class="documento-icon">${doc.icono}</span>
-                    <div>
-                        <strong>${escaparHTML(doc.nombre)}</strong>
-                        <small>Documento asociado a ${escaparHTML(codigo)}</small>
-                    </div>
-                    <a href="${archivo}" target="_blank" rel="noopener" class="documento-boton">Abrir</a>
-                `;
-                contenedor.appendChild(card);
-            })
-            .catch(() => {})
-            .finally(() => actualizarEstadoDocumentos());
-    });
-}
+                if (!respuesta.ok) return null;
 
-function actualizarEstadoDocumentos() {
-    const contenedor = $("listaDocumentos");
+                return { doc, archivo };
+            } catch (error) {
+                return null;
+            }
+        })
+    );
 
-    if (!contenedor.querySelector(".documento-card")) {
+    const documentosDisponibles = encontrados.filter(Boolean);
+
+    if (!documentosDisponibles.length) {
         contenedor.innerHTML = `
             <div class="sin-documentos">
                 <span>📂</span>
@@ -358,7 +355,19 @@ function actualizarEstadoDocumentos() {
                 <p>Cuando Recursos Humanos publique una constancia, solicitud u otro documento para tu código, aparecerá aquí.</p>
             </div>
         `;
+        return;
     }
+
+    contenedor.innerHTML = documentosDisponibles.map(({ doc, archivo }) => `
+        <article class="documento-card">
+            <span class="documento-icon">${doc.icono}</span>
+            <div>
+                <strong>${escaparHTML(doc.nombre)}</strong>
+                <small>Documento asociado a ${escaparHTML(codigo)}</small>
+            </div>
+            <a href="${archivo}" target="_blank" rel="noopener" class="documento-boton">Abrir</a>
+        </article>
+    `).join("");
 }
 
 function obtenerPDF(archivo) {

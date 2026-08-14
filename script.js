@@ -247,10 +247,64 @@ function mostrarCarnet() {
 function cargarDatosCarnet() {
     if (!empleadoActual) return;
 
-    $("carnetNombre").textContent = empleadoActual.nombre || "Colaborador";
-    $("carnetCodigo").textContent = empleadoActual.codigo || "—";
-    $("carnetDepartamento").textContent = empleadoActual.departamento || "—";
-    $("carnetPuesto").textContent = empleadoActual.puesto || "—";
+    // El carnet queda limitado estrictamente a: nombre, código, departamento y puesto.
+    const datos = document.querySelector(".carnet-datos");
+    if (datos) {
+        datos.innerHTML = `
+            <span class="carnet-label">NOMBRE DEL COLABORADOR</span>
+            <h3 id="carnetNombre">${escaparHTML(empleadoActual.nombre || "Colaborador")}</h3>
+            <div class="carnet-linea">
+                <div>
+                    <span class="carnet-label">CÓDIGO</span>
+                    <strong id="carnetCodigo">${escaparHTML(empleadoActual.codigo || "—")}</strong>
+                </div>
+                <div>
+                    <span class="carnet-label">DEPARTAMENTO</span>
+                    <strong id="carnetDepartamento">${escaparHTML(empleadoActual.departamento || "—")}</strong>
+                </div>
+            </div>
+            <div class="carnet-puesto">
+                <span class="carnet-label">PUESTO</span>
+                <strong id="carnetPuesto">${escaparHTML(empleadoActual.puesto || "—")}</strong>
+            </div>
+        `;
+    }
+
+    cargarFotoCarnet(empleadoActual.codigo);
+}
+
+function cargarFotoCarnet(codigo) {
+    const fotoBox = $("fotoCarnet") || document.querySelector(".foto-box");
+    if (!fotoBox || !codigo) return;
+
+    // Estado inicial: solo silueta. No se muestra ningún mensaje de "foto pendiente".
+    fotoBox.innerHTML = `
+        <div class="silueta" aria-label="Sin fotografía">
+            <span>👤</span>
+        </div>
+    `;
+
+    const extensiones = ["png", "jpg", "jpeg"];
+    let indice = 0;
+
+    function probarSiguiente() {
+        if (indice >= extensiones.length) return;
+
+        const imagen = new Image();
+        const extension = extensiones[indice++];
+        imagen.className = "foto-empleado";
+        imagen.alt = `Fotografía de ${codigo}`;
+        imagen.onload = () => {
+            // Al existir la foto, reemplaza por completo la silueta.
+            // No queda texto ni aviso debajo de la fotografía.
+            fotoBox.innerHTML = "";
+            fotoBox.appendChild(imagen);
+        };
+        imagen.onerror = probarSiguiente;
+        imagen.src = `fotos/${encodeURIComponent(codigo)}.${extension}?v=40`;
+    }
+
+    probarSiguiente();
 }
 
 function mostrarSolicitudes() {
@@ -267,34 +321,29 @@ function cargarDocumentos() {
         return;
     }
 
-    contenedor.innerHTML = TIPOS_DOCUMENTO.map(doc => {
+    contenedor.innerHTML = "";
+
+    TIPOS_DOCUMENTO.forEach(doc => {
         const archivo = `Documentos/${codigo}_${doc.clave}.pdf`;
 
-        return `
-            <article class="documento-card">
-                <span class="documento-icon">${doc.icono}</span>
-                <div>
-                    <strong>${doc.nombre}</strong>
-                    <small>Documento asociado a ${codigo}</small>
-                </div>
-                <a href="${archivo}" target="_blank" rel="noopener" class="documento-boton"
-                   onclick="manejarDocumento(event, '${archivo}')">Abrir</a>
-            </article>
-        `;
-    }).join("");
-
-    // Comprobamos cuáles existen y ocultamos los que todavía no han sido subidos.
-    contenedor.querySelectorAll(".documento-card").forEach(card => {
-        const enlace = card.querySelector("a");
-        fetch(enlace.href, { method: "HEAD" })
+        fetch(archivo, { method: "GET", cache: "no-store" })
             .then(respuesta => {
-                if (!respuesta.ok) card.remove();
-                actualizarEstadoDocumentos();
+                if (!respuesta.ok) return;
+
+                const card = document.createElement("article");
+                card.className = "documento-card";
+                card.innerHTML = `
+                    <span class="documento-icon">${doc.icono}</span>
+                    <div>
+                        <strong>${escaparHTML(doc.nombre)}</strong>
+                        <small>Documento asociado a ${escaparHTML(codigo)}</small>
+                    </div>
+                    <a href="${archivo}" target="_blank" rel="noopener" class="documento-boton">Abrir</a>
+                `;
+                contenedor.appendChild(card);
             })
-            .catch(() => {
-                card.remove();
-                actualizarEstadoDocumentos();
-            });
+            .catch(() => {})
+            .finally(() => actualizarEstadoDocumentos());
     });
 }
 
@@ -310,11 +359,6 @@ function actualizarEstadoDocumentos() {
             </div>
         `;
     }
-}
-
-function manejarDocumento(evento, archivo) {
-    // El navegador abrirá el PDF si existe.
-    // Si GitHub Pages bloquea HEAD para el recurso, el enlace seguirá funcionando.
 }
 
 function obtenerPDF(archivo) {
@@ -333,11 +377,19 @@ function obtenerNombre(texto) {
 }
 
 function obtenerCampo(texto, campo) {
-    const siguiente = "(?=\\s+(?:Departamento|Puesto|Sueldo\\s+Mensual|Salario|Ingreso|Deducciones|Total|$))";
+    const siguiente = "(?=\\s+(?:Departamento|Puesto|Días\\s+Trabajados|Días\\s+Incapacidad|Faltas|Renumerados|Vacaciones|Feriados|Séptimo|Sueldo\\s+Base|Sueldo\\s+Mensual|Salario|Ingreso|Deducciones|Total|Nombre\\s+Pago|Valor|$))";
     const regex = new RegExp(`${campo}\\s*:\\s*(.*?)${siguiente}`, "i");
     const match = texto.match(regex);
+    return match?.[1]?.trim().replace(/\\s+/g, " ") || "";
+}
 
-    return match?.[1]?.trim() || "";
+function escaparHTML(texto) {
+    return String(texto ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
 }
 
 function normalizar(texto) {

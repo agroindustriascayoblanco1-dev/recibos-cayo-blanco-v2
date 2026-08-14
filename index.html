@@ -21,11 +21,15 @@
 .contactos-disponibles{display:flex;align-items:center;gap:10px;margin-top:14px;padding:11px;border:1px solid #d5eee5;border-radius:13px;background:#f0faf6;color:#009b72}
 .contactos-disponibles>span{width:28px;height:28px;border-radius:50%;background:#14b88a;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700}
 .contactos-disponibles small{color:#27806b;font-size:11px;line-height:1.35}
+
+.informacion-importante{overscroll-behavior:contain;-webkit-overflow-scrolling:touch;scrollbar-width:thin}
+.informacion-importante .modal-cerrar{position:sticky;top:0;z-index:5;margin-left:auto;display:block}
+
 </style>
 
 
 <style>
-.informacion-importante{max-width:720px}
+.informacion-importante{max-width:720px;max-height:78vh;overflow-y:auto;box-sizing:border-box}
 .intro-importante{color:#667780;line-height:1.5;margin-bottom:18px}
 .importante-lista{display:flex;flex-direction:column;gap:10px}
 .importante-card{display:flex;gap:12px;align-items:flex-start;padding:13px;border:1px solid #dce9e5;border-radius:14px;background:#fff}

@@ -23,6 +23,20 @@
 .contactos-disponibles small{color:#27806b;font-size:11px;line-height:1.35}
 </style>
 
+
+<style>
+.informacion-importante{max-width:720px}
+.intro-importante{color:#667780;line-height:1.5;margin-bottom:18px}
+.importante-lista{display:flex;flex-direction:column;gap:10px}
+.importante-card{display:flex;gap:12px;align-items:flex-start;padding:13px;border:1px solid #dce9e5;border-radius:14px;background:#fff}
+.importante-icono{width:38px;height:38px;min-width:38px;border-radius:11px;background:#eaf8f3;display:flex;align-items:center;justify-content:center;font-size:18px}
+.importante-card strong{display:block;color:#173e50;font-size:14px;margin-bottom:4px}
+.importante-card p{margin:0;color:#687981;font-size:11px;line-height:1.45}
+.aviso-importante{display:flex;align-items:flex-start;gap:10px;margin-top:15px;padding:12px;border:1px solid #f0e2b5;border-radius:13px;background:#fff9e7}
+.aviso-importante>span{font-size:18px}
+.aviso-importante small{color:#76652f;font-size:11px;line-height:1.4}
+</style>
+
 </head>
 <body>
 <header class="encabezado">
@@ -208,7 +222,62 @@
         </div>
     </div>
 </div>
-<div id="modalImportante" class="modal oculto"><div class="modal-box"><button class="modal-cerrar" data-cerrar-modal>×</button><span class="modal-icon">ℹ️</span><span class="etiqueta">INFORMACIÓN</span><h2>Información importante</h2><p>Aquí aparecerá la información importante que Recursos Humanos publique para los colaboradores.</p></div></div>
+<div id="modalImportante" class="modal oculto">
+    <div class="modal-box informacion-importante">
+        <button class="modal-cerrar" data-cerrar-modal>×</button>
+        <span class="modal-icon">ℹ️</span>
+        <span class="etiqueta">RECURSOS HUMANOS</span>
+        <h2>Información importante</h2>
+        <p class="intro-importante">Ten en cuenta las siguientes indicaciones para mantener en orden tus procesos laborales:</p>
+
+        <div class="importante-lista">
+            <div class="importante-card">
+                <span class="importante-icono">🕐</span>
+                <div>
+                    <strong>Control de asistencia</strong>
+                    <p>Recuerda registrar correctamente tu entrada y salida. Si tienes algún inconveniente con tu marcación, comunícalo oportunamente a Recursos Humanos.</p>
+                </div>
+            </div>
+
+            <div class="importante-card">
+                <span class="importante-icono">🧾</span>
+                <div>
+                    <strong>Reclamos de pago</strong>
+                    <p>Cualquier diferencia o inconveniente relacionado con tu pago debe ser reportado a Recursos Humanos para su revisión.</p>
+                </div>
+            </div>
+
+            <div class="importante-card">
+                <span class="importante-icono">📄</span>
+                <div>
+                    <strong>Documentación laboral</strong>
+                    <p>Mantén actualizada tu documentación personal y laboral cuando Recursos Humanos solicite alguna actualización.</p>
+                </div>
+            </div>
+
+            <div class="importante-card">
+                <span class="importante-icono">🏖️</span>
+                <div>
+                    <strong>Permisos y vacaciones</strong>
+                    <p>Las solicitudes de permisos y vacaciones deben realizarse mediante los canales establecidos por Recursos Humanos.</p>
+                </div>
+            </div>
+
+            <div class="importante-card">
+                <span class="importante-icono">📢</span>
+                <div>
+                    <strong>Comunicaciones oficiales</strong>
+                    <p>Consulta periódicamente este portal para conocer comunicados, avisos y documentos publicados por Recursos Humanos.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="aviso-importante">
+            <span>⚠️</span>
+            <small><strong>Importante:</strong> La información publicada en este apartado puede actualizarse cuando Recursos Humanos lo considere necesario.</small>
+        </div>
+    </div>
+</div>
 
 <footer><span>Agroindustrias Cayo Blanco</span><span>Portal de Empleados · Recursos Humanos</span></footer>
 <script src="script.js?v=40"></script>

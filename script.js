@@ -257,8 +257,11 @@ function cargarDatosCarnet() {
 
 function cargarFotoCarnet(codigo) {
     const fotoBox = document.querySelector(".foto-box");
+    const notaFoto = $("carnetNotaFoto");
+
     if (!fotoBox || !codigo) return;
 
+    // Estado inicial: silueta y aviso mientras no exista una fotografía.
     fotoBox.innerHTML = `
         <div class="silueta" aria-label="Fotografía pendiente">
             <span>👤</span>
@@ -266,13 +269,13 @@ function cargarFotoCarnet(codigo) {
         <small>FOTO</small>
     `;
 
+    if (notaFoto) notaFoto.style.display = "";
+
     const extensiones = ["png", "jpg", "jpeg"];
     let indice = 0;
 
     function probarSiguienteFoto() {
-        if (indice >= extensiones.length) {
-            return;
-        }
+        if (indice >= extensiones.length) return;
 
         const extension = extensiones[indice++];
         const imagen = new Image();
@@ -282,19 +285,24 @@ function cargarFotoCarnet(codigo) {
         imagen.loading = "eager";
 
         imagen.onload = function() {
+            // La fotografía ocupa EXACTAMENTE el lugar de la silueta.
             fotoBox.innerHTML = "";
             fotoBox.appendChild(imagen);
 
             const etiqueta = document.createElement("small");
             etiqueta.textContent = "FOTO";
             fotoBox.appendChild(etiqueta);
+
+            // Con fotografía cargada, desaparece por completo el mensaje
+            // "Fotografía pendiente" y su descripción.
+            if (notaFoto) notaFoto.style.display = "none";
         };
 
         imagen.onerror = function() {
             probarSiguienteFoto();
         };
 
-        imagen.src = `fotos/${encodeURIComponent(codigo)}.${extension}?v=31`;
+        imagen.src = `fotos/${encodeURIComponent(codigo)}.${extension}?v=1`;
     }
 
     probarSiguienteFoto();

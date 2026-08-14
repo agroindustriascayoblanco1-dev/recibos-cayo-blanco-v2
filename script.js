@@ -328,20 +328,27 @@ async function cargarDocumentos() {
     // por culpa de otro archivo que todavía no existe.
     const encontrados = await Promise.all(
         TIPOS_DOCUMENTO.map(async doc => {
-            const archivo = `Documentos/${codigo}_${doc.clave}.pdf`;
+            const rutas = [
+                `Documentos/${codigo}_${doc.clave}.pdf`,
+                `documentos/${codigo}_${doc.clave}.pdf`
+            ];
 
-            try {
-                const respuesta = await fetch(archivo, {
-                    method: "GET",
-                    cache: "no-store"
-                });
+            for (const archivo of rutas) {
+                try {
+                    const respuesta = await fetch(archivo, {
+                        method: "GET",
+                        cache: "no-store"
+                    });
 
-                if (!respuesta.ok) return null;
-
-                return { doc, archivo };
-            } catch (error) {
-                return null;
+                    if (respuesta.ok) {
+                        return { doc, archivo };
+                    }
+                } catch (error) {
+                    // Probar la siguiente ruta.
+                }
             }
+
+            return null;
         })
     );
 

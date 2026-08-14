@@ -317,6 +317,326 @@ body{
 }
 </style>
 
+
+<style id="mejora-apariencia-v2">
+/* =========================================================
+   APARIENCIA V2 — MÁS COLOR, MENOS ESPACIO EN BLANCO
+   NO MODIFICA LA LÓGICA NI LOS ID EXISTENTES
+   ========================================================= */
+
+:root{
+  --cb-navy:#123e50;
+  --cb-navy-2:#0b2f3d;
+  --cb-green:#11a978;
+  --cb-green-2:#0a8f69;
+  --cb-mint:#e5f6f0;
+  --cb-bg:#edf4f5;
+  --cb-card:#ffffff;
+  --cb-line:#d3e1e5;
+  --cb-muted:#6e8088;
+}
+
+/* Fondo general */
+body{
+  background:
+    radial-gradient(circle at 8% 8%,rgba(17,169,120,.13),transparent 24%),
+    radial-gradient(circle at 92% 18%,rgba(18,62,80,.10),transparent 27%),
+    linear-gradient(135deg,#e9f2f3 0%,#f5f9f9 52%,#e9f3f1 100%);
+  color:var(--cb-navy);
+}
+
+/* Encabezado más presente */
+.encabezado{
+  background:linear-gradient(115deg,var(--cb-navy-2),var(--cb-navy));
+  color:#fff;
+  border-bottom:0;
+  box-shadow:0 10px 30px rgba(11,47,61,.16);
+}
+.encabezado::after{
+  background:linear-gradient(90deg,var(--cb-green),#63d7b1);
+  height:4px;
+}
+.empresa h1{color:#fff}
+.empresa p{color:#cce3e5}
+.confidencial-top{color:#d8efea}
+
+/* CONTENEDOR DE ACCESO: menos blanco y más personalidad */
+.hero-acceso{
+  position:relative;
+  overflow:hidden;
+  grid-template-columns:minmax(0,1.08fr) minmax(360px,.92fr);
+  gap:34px;
+  padding:48px;
+  background:
+    linear-gradient(125deg,#dfeeed 0%,#f4f8f8 54%,#e7f2f0 100%);
+  border:1px solid rgba(180,208,207,.75);
+  box-shadow:0 24px 55px rgba(18,62,80,.12);
+}
+.hero-acceso::before{
+  content:"";
+  position:absolute;
+  width:310px;height:310px;
+  border-radius:50%;
+  right:33%;top:-190px;
+  background:rgba(17,169,120,.10);
+  pointer-events:none;
+}
+.hero-acceso::after{
+  content:"";
+  position:absolute;
+  width:230px;height:230px;
+  border-radius:50%;
+  left:-130px;bottom:-150px;
+  background:rgba(18,62,80,.08);
+  pointer-events:none;
+}
+.hero-texto,.acceso-card{position:relative;z-index:1}
+
+/* Título: un solo color */
+.hero-texto h2{
+  color:var(--cb-navy) !important;
+  font-size:clamp(44px,5.5vw,68px);
+  line-height:.94;
+  letter-spacing:-2.7px;
+  margin:18px 0 20px;
+}
+.hero-texto h2 span{
+  color:inherit !important;
+}
+.linea-destacada{
+  width:86px;
+  height:5px;
+  border-radius:99px;
+  background:var(--cb-green);
+  margin:0 0 20px;
+}
+.hero-texto>p{
+  max-width:560px;
+  color:#526d77;
+  font-size:13px;
+  line-height:1.65;
+}
+.mini-beneficios{
+  gap:18px;
+  margin-top:25px;
+}
+.mini-beneficios span{
+  color:var(--cb-navy);
+  background:rgba(255,255,255,.66);
+  border:1px solid rgba(197,216,216,.9);
+  padding:7px 10px;
+  border-radius:10px;
+}
+
+/* Tarjeta de acceso */
+.acceso-card{
+  background:rgba(255,255,255,.94);
+  border:1px solid #d1e1e4;
+  box-shadow:0 18px 38px rgba(18,62,80,.11);
+  border-radius:25px;
+  padding:32px;
+}
+.acceso-card h3{
+  color:var(--cb-navy);
+  font-size:25px;
+  letter-spacing:-.7px;
+}
+.acceso-card p{color:#6d7f87}
+.icono-acceso{
+  background:var(--cb-mint);
+  box-shadow:inset 0 0 0 1px #cce9df;
+}
+
+/* Input y botón */
+#codigo{
+  background:#fbfdfd;
+  border:1.5px solid #bfd6d7;
+  box-shadow:0 4px 12px rgba(18,62,80,.04);
+}
+#codigo:focus{
+  border-color:var(--cb-green);
+  box-shadow:0 0 0 4px rgba(17,169,120,.11);
+}
+#buscar{
+  background:var(--cb-navy);
+  border-color:var(--cb-navy);
+  box-shadow:0 8px 18px rgba(18,62,80,.16);
+}
+#buscar:hover{
+  background:#0a2e3b;
+  transform:translateY(-1px);
+}
+
+/* Después del acceso: fondo con profundidad */
+#pantallaPrincipal{
+  padding-top:8px;
+}
+.perfil-barra{
+  background:rgba(255,255,255,.92);
+  border:1px solid var(--cb-line);
+  box-shadow:0 10px 28px rgba(18,62,80,.07);
+}
+.portal-titulo{
+  padding:25px 4px 5px;
+}
+.portal-titulo h2{
+  color:var(--cb-navy);
+  font-size:clamp(30px,4vw,38px);
+}
+.portal-titulo p{color:var(--cb-muted)}
+
+/* Tarjetas principales */
+.menu-grid{
+  gap:17px;
+}
+.menu-card{
+  background:rgba(255,255,255,.94);
+  border-color:#d1e0e4;
+  min-height:142px;
+  box-shadow:0 8px 24px rgba(18,62,80,.065);
+}
+.menu-card:hover{
+  border-color:#b9d4d4;
+  box-shadow:0 18px 38px rgba(18,62,80,.12);
+}
+.menu-card strong{
+  color:var(--cb-navy);
+  font-size:16px;
+}
+.menu-card small{color:#73858d}
+.menu-card b{
+  background:#eef5f4;
+  color:var(--cb-navy);
+}
+.menu-card:hover b{
+  background:var(--cb-green);
+  color:#fff;
+}
+.menu-icon{
+  box-shadow:0 5px 12px rgba(18,62,80,.06);
+}
+
+/* Información adicional: menos plana */
+.informacion-final{
+  margin-top:38px;
+  padding:30px 0 8px;
+  border-top:1px solid rgba(188,207,211,.8);
+}
+.informacion-final h2{
+  color:var(--cb-navy);
+}
+.informacion-final>p{color:var(--cb-muted)}
+.info-grid{gap:15px}
+.info-card{
+  background:rgba(255,255,255,.90);
+  border-color:#d3e1e5;
+  box-shadow:0 7px 20px rgba(18,62,80,.05);
+}
+.info-card:hover{
+  background:#fff;
+  box-shadow:0 16px 32px rgba(18,62,80,.10);
+}
+.info-card strong{color:var(--cb-navy)}
+.info-card small{color:#77888f}
+
+/* MODALES */
+.modal-box{
+  background:#f8fbfb !important;
+}
+.modal-box>h2{
+  color:var(--cb-navy);
+}
+.modal-box>p{
+  color:#687b83;
+}
+
+/* Contactos: vuelve a tener desplazamiento interno */
+#modalContactos .modal-box.contactos-rrhh{
+  max-height:78vh !important;
+  overflow-y:auto !important;
+  overflow-x:hidden !important;
+  overscroll-behavior:contain;
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width:thin;
+  scrollbar-color:#b7d2ce transparent;
+}
+#modalContactos .modal-box.contactos-rrhh::-webkit-scrollbar{
+  width:7px;
+}
+#modalContactos .modal-box.contactos-rrhh::-webkit-scrollbar-track{
+  background:transparent;
+}
+#modalContactos .modal-box.contactos-rrhh::-webkit-scrollbar-thumb{
+  background:#b7d2ce;
+  border-radius:20px;
+}
+#modalContactos .modal-cerrar{
+  position:sticky !important;
+  top:0;
+  z-index:10;
+}
+
+/* Información importante conserva su scroll */
+#modalImportante .modal-box.informacion-importante{
+  max-height:78vh !important;
+  overflow-y:auto !important;
+  overflow-x:hidden !important;
+  overscroll-behavior:contain;
+  -webkit-overflow-scrolling:touch;
+}
+
+/* En pantallas grandes: composición más equilibrada */
+@media (min-width:1100px){
+  .hero-acceso{min-height:390px;align-items:center}
+  .menu-grid{grid-template-columns:repeat(3,1fr)}
+}
+
+/* Tablet */
+@media (max-width:900px){
+  .hero-acceso{
+    grid-template-columns:1fr;
+    padding:35px;
+  }
+}
+
+/* Celular */
+@media (max-width:600px){
+  .encabezado{border-radius:0 0 18px 18px}
+  .contenedor{
+    width:94%;
+    margin-top:18px;
+  }
+  .hero-acceso{
+    padding:24px;
+    gap:24px;
+    border-radius:23px;
+  }
+  .hero-texto h2{
+    font-size:43px;
+    letter-spacing:-2px;
+    line-height:.95;
+  }
+  .hero-texto>p{font-size:12px}
+  .mini-beneficios{
+    flex-wrap:wrap;
+    gap:7px;
+  }
+  .acceso-card{
+    padding:23px;
+    border-radius:20px;
+  }
+  .portal-titulo{padding-top:18px}
+  .menu-card{
+    min-height:118px;
+    padding:19px;
+  }
+  .informacion-final{
+    margin-top:30px;
+    padding-top:25px;
+  }
+}
+</style>
+
 </head>
 <body>
 <header class="encabezado">

@@ -316,7 +316,7 @@ function cargarDocumentos() {
     }
 
     contenedor.innerHTML = TIPOS_DOCUMENTO.map(doc => {
-        const archivo = `documentos/${codigo}_${doc.clave}.pdf`;
+        const archivo = `Documentos/${codigo}_${doc.clave}.pdf`;
 
         return `
             <article class="documento-card">

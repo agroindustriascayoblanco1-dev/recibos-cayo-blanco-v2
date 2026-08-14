@@ -611,6 +611,22 @@ button { cursor: pointer; }
     filter: grayscale(1);
 }
 
+.silueta span {
+    font-size: 46px;
+}
+
+.carnet-foto {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 16px;
+    display: block;
+}
+
+.carnet-foto[hidden] {
+    display: none;
+}
+
 .foto-box small {
     color: var(--text-light);
     font-size: 7px;
@@ -880,27 +896,4 @@ footer {
         flex-direction: column;
         gap: 6px;
     }
-}
-
-
-.cargando-documentos {
-    min-height: 180px;
-    display: grid;
-    place-items: center;
-    align-content: center;
-    gap: 8px;
-    border: 1px dashed #c9d7db;
-    border-radius: 20px;
-    background: rgba(255,255,255,.7);
-    text-align: center;
-}
-
-.cargando-documentos span {
-    font-size: 28px;
-}
-
-.cargando-documentos p {
-    color: var(--text-soft);
-    font-size: 10px;
-    font-weight: 800;
 }

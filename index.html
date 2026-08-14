@@ -7,6 +7,22 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <link rel="stylesheet" href="style.css?v=40">
+
+<style>
+.contactos-lista{display:flex;flex-direction:column;gap:10px;margin-top:18px}
+.contacto-card{display:flex;align-items:center;gap:12px;padding:12px 10px;border:1px solid #dbe8e4;border-radius:15px;background:#fff;text-decoration:none;color:inherit;transition:transform .15s ease,box-shadow .15s ease}
+.contacto-card:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(0,0,0,.08)}
+.contacto-icono{width:38px;height:38px;border-radius:11px;background:#e8f8f2;display:flex;align-items:center;justify-content:center;font-size:18px}
+.contacto-datos{display:flex;flex-direction:column;flex:1;min-width:0}
+.contacto-datos strong{font-size:15px;color:#173e50}
+.contacto-datos small{font-size:11px;color:#71808a;margin-top:2px}
+.contacto-datos b{font-size:13px;color:#009b72;margin-top:2px}
+.contacto-llamar{width:38px;height:38px;border-radius:11px;background:#13b989;color:#fff;display:flex;align-items:center;justify-content:center;font-size:17px}
+.contactos-disponibles{display:flex;align-items:center;gap:10px;margin-top:14px;padding:11px;border:1px solid #d5eee5;border-radius:13px;background:#f0faf6;color:#009b72}
+.contactos-disponibles>span{width:28px;height:28px;border-radius:50%;background:#14b88a;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700}
+.contactos-disponibles small{color:#27806b;font-size:11px;line-height:1.35}
+</style>
+
 </head>
 <body>
 <header class="encabezado">
@@ -136,7 +152,62 @@
 </div>
 
 <div id="modalProcedimientos" class="modal oculto"><div class="modal-box"><button class="modal-cerrar" data-cerrar-modal>×</button><span class="modal-icon">📋</span><span class="etiqueta">RECURSOS HUMANOS</span><h2>Procedimientos</h2><p>Aquí estarán disponibles las guías y procedimientos que Recursos Humanos publique posteriormente.</p></div></div>
-<div id="modalContactos" class="modal oculto"><div class="modal-box"><button class="modal-cerrar" data-cerrar-modal>×</button><span class="modal-icon">📞</span><span class="etiqueta">RECURSOS HUMANOS</span><h2>Contactos de Recursos Humanos</h2><p>Aquí se podrán agregar posteriormente los canales y datos de contacto de Recursos Humanos.</p></div></div>
+<div id="modalContactos" class="modal oculto">
+    <div class="modal-box contactos-rrhh">
+        <button class="modal-cerrar" data-cerrar-modal>×</button>
+        <span class="modal-icon">📞</span>
+        <span class="etiqueta">RECURSOS HUMANOS</span>
+        <h2>Contactos de Recursos Humanos</h2>
+        <p>Para recibir asistencia puedes comunicarte con cualquiera de los siguientes números:</p>
+
+        <div class="contactos-lista">
+            <a class="contacto-card" href="tel:+50438833324">
+                <span class="contacto-icono">📞</span>
+                <span class="contacto-datos">
+                    <strong>Tirsa Lizeth Paz</strong>
+                    <small>Coordinadora de RRHH</small>
+                    <b>+504 3883-3324</b>
+                </span>
+                <span class="contacto-llamar">📞</span>
+            </a>
+
+            <a class="contacto-card" href="tel:+50432258230">
+                <span class="contacto-icono">📞</span>
+                <span class="contacto-datos">
+                    <strong>Cristhian Osorio Acosta</strong>
+                    <small>Auxiliar de RRHH</small>
+                    <b>+504 3225-8230</b>
+                </span>
+                <span class="contacto-llamar">📞</span>
+            </a>
+
+            <a class="contacto-card" href="tel:+50431623652">
+                <span class="contacto-icono">📞</span>
+                <span class="contacto-datos">
+                    <strong>Mayda Yanely Palma</strong>
+                    <small>Auxiliar de RRHH</small>
+                    <b>+504 3162-3652</b>
+                </span>
+                <span class="contacto-llamar">📞</span>
+            </a>
+
+            <a class="contacto-card" href="tel:+50432857896">
+                <span class="contacto-icono">📞</span>
+                <span class="contacto-datos">
+                    <strong>Mariano Alejandro Perez</strong>
+                    <small>Auxiliar de RRHH</small>
+                    <b>+504 3285-7896</b>
+                </span>
+                <span class="contacto-llamar">📞</span>
+            </a>
+        </div>
+
+        <div class="contactos-disponibles">
+            <span>✓</span>
+            <small>Nuestro equipo de Recursos Humanos está disponible para ayudarte en lo que necesites.</small>
+        </div>
+    </div>
+</div>
 <div id="modalImportante" class="modal oculto"><div class="modal-box"><button class="modal-cerrar" data-cerrar-modal>×</button><span class="modal-icon">ℹ️</span><span class="etiqueta">INFORMACIÓN</span><h2>Información importante</h2><p>Aquí aparecerá la información importante que Recursos Humanos publique para los colaboradores.</p></div></div>
 
 <footer><span>Agroindustrias Cayo Blanco</span><span>Portal de Empleados · Recursos Humanos</span></footer>

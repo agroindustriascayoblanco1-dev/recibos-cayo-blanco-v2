@@ -21,9 +21,9 @@ const PERIODOS = {
 // Ejemplo: documentos/CBEP1341_constancia.pdf
 const TIPOS_DOCUMENTO = [
     { clave: "constancia", nombre: "Constancia de trabajo", icono: "📄" },
-    { clave: "solicitud", nombre: "Solicitud", icono: "📝" },
     { clave: "salario", nombre: "Constancia de salario", icono: "💰" },
-    { clave: "otros", nombre: "Otros documentos", icono: "📁" }
+    { clave: "solicitud", nombre: "Solicitud", icono: "📝" },
+    { clave: "otros", nombre: "Otro documento", icono: "📁" }
 ];
 
 let empleadoActual = null;
@@ -267,51 +267,67 @@ function cargarDocumentos() {
         return;
     }
 
-    contenedor.innerHTML = TIPOS_DOCUMENTO.map(doc => {
+    // No necesitamos JSON ni una base de datos.
+    // Cada PDF se identifica directamente por el código del empleado.
+    contenedor.innerHTML = `
+        <div class="cargando-documentos">
+            <span>🔎</span>
+            <p>Buscando tus documentos...</p>
+        </div>
+    `;
+
+    const comprobaciones = TIPOS_DOCUMENTO.map(async doc => {
         const archivo = `documentos/${codigo}_${doc.clave}.pdf`;
 
-        return `
+        try {
+            const respuesta = await fetch(archivo, {
+                method: "HEAD",
+                cache: "no-store"
+            });
+
+            if (!respuesta.ok) return null;
+
+            return { ...doc, archivo };
+        } catch (error) {
+            return null;
+        }
+    });
+
+    Promise.all(comprobaciones).then(documentos => {
+        const disponibles = documentos.filter(Boolean);
+
+        if (!disponibles.length) {
+            contenedor.innerHTML = `
+                <div class="sin-documentos">
+                    <span>📂</span>
+                    <h3>No tienes documentos disponibles</h3>
+                    <p>
+                        Cuando Recursos Humanos publique una constancia,
+                        solicitud u otro documento asociado a tu código,
+                        aparecerá automáticamente aquí.
+                    </p>
+                </div>
+            `;
+            return;
+        }
+
+        contenedor.innerHTML = disponibles.map(doc => `
             <article class="documento-card">
                 <span class="documento-icon">${doc.icono}</span>
                 <div>
                     <strong>${doc.nombre}</strong>
-                    <small>Documento asociado a ${codigo}</small>
+                    <small>Documento disponible para ${codigo}</small>
                 </div>
-                <a href="${archivo}" target="_blank" rel="noopener" class="documento-boton"
-                   onclick="manejarDocumento(event, '${archivo}')">Abrir</a>
+                <a
+                    href="${doc.archivo}"
+                    target="_blank"
+                    rel="noopener"
+                    class="documento-boton"
+                >Abrir PDF</a>
             </article>
-        `;
-    }).join("");
-
-    // Comprobamos cuáles existen y ocultamos los que todavía no han sido subidos.
-    contenedor.querySelectorAll(".documento-card").forEach(card => {
-        const enlace = card.querySelector("a");
-        fetch(enlace.href, { method: "HEAD" })
-            .then(respuesta => {
-                if (!respuesta.ok) card.remove();
-                actualizarEstadoDocumentos();
-            })
-            .catch(() => {
-                card.remove();
-                actualizarEstadoDocumentos();
-            });
+        `).join("");
     });
 }
-
-function actualizarEstadoDocumentos() {
-    const contenedor = $("listaDocumentos");
-
-    if (!contenedor.querySelector(".documento-card")) {
-        contenedor.innerHTML = `
-            <div class="sin-documentos">
-                <span>📂</span>
-                <h3>No tienes documentos disponibles</h3>
-                <p>Cuando Recursos Humanos publique una constancia, solicitud u otro documento para tu código, aparecerá aquí.</p>
-            </div>
-        `;
-    }
-}
-
 function manejarDocumento(evento, archivo) {
     // El navegador abrirá el PDF si existe.
     // Si GitHub Pages bloquea HEAD para el recurso, el enlace seguirá funcionando.
@@ -333,31 +349,11 @@ function obtenerNombre(texto) {
 }
 
 function obtenerCampo(texto, campo) {
-    // En el carnet SOLO necesitamos información laboral básica.
-    // El recibo contiene información de nómina después del puesto,
-    // por lo que cortamos el texto antes de cualquier dato de pago.
-    if (campo.toLowerCase() === "puesto") {
-        const regex = /Puesto\s*:\s*(.*?)(?=\s+(?:D[ií]as?\s+Trabajados?|D[ií]as?\s+Incapacidad|Falt\.?\s+Remunerados?|D[ií]as?\s+Vacaciones?|D[ií]as?\s+Feriados?|D[ií]as?\s+Septimo|D[ií]as?\s+Domingo|Sueldo|Salario|Pago|Total|Deducciones|Bonos?|Horas?\s+Extra|$))/i;
-        const match = texto.match(regex);
-        return limpiarDatoLaboral(match?.[1] || "");
-    }
-
-    if (campo.toLowerCase() === "departamento") {
-        const regex = /Departamento\s*:\s*(.*?)(?=\s+(?:Puesto|Sueldo|Salario|Ingreso|Deducciones|Total|$))/i;
-        const match = texto.match(regex);
-        return limpiarDatoLaboral(match?.[1] || "");
-    }
-
-    const regex = new RegExp(`${campo}\\s*:\\s*(.*?)(?=\\s+(?:Departamento|Puesto|Sueldo|Salario|Ingreso|Deducciones|Total|$))`, "i");
+    const siguiente = "(?=\\s+(?:Departamento|Puesto|Sueldo\\s+Mensual|Salario|Ingreso|Deducciones|Total|$))";
+    const regex = new RegExp(`${campo}\\s*:\\s*(.*?)${siguiente}`, "i");
     const match = texto.match(regex);
-    return limpiarDatoLaboral(match?.[1] || "");
-}
 
-function limpiarDatoLaboral(valor) {
-    return String(valor || "")
-        .replace(/\s+/g, " ")
-        .replace(/\b(?:D[ií]as?\s+Trabajados?|D[ií]as?\s+Incapacidad|Falt\.?\s+Remunerados?|D[ií]as?\s+Vacaciones?|D[ií]as?\s+Feriados?|D[ií]as?\s+Septimo|D[ií]as?\s+Domingo|Sueldo|Salario|Pago|Total|Deducciones|Bonos?|Horas?\s+Extra)\b.*$/i, "")
-        .trim();
+    return match?.[1]?.trim() || "";
 }
 
 function normalizar(texto) {

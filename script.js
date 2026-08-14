@@ -256,40 +256,48 @@ function cargarDatosCarnet() {
 }
 
 function cargarFotoCarnet(codigo) {
-    const foto = $("carnetFoto");
-    const placeholder = $("fotoPlaceholder");
+    const fotoBox = document.querySelector(".foto-box");
+    if (!fotoBox || !codigo) return;
 
-    if (!foto || !placeholder || !codigo) return;
+    fotoBox.innerHTML = `
+        <div class="silueta" aria-label="Fotografía pendiente">
+            <span>👤</span>
+        </div>
+        <small>FOTO</small>
+    `;
 
-    // Las fotografías se irán agregando poco a poco en /fotos/.
-    // Se aceptan JPG, JPEG, PNG y WEBP.
-    const extensiones = ["jpg", "jpeg", "png", "webp"];
+    const extensiones = ["png", "jpg", "jpeg"];
     let indice = 0;
 
-    foto.hidden = true;
-    placeholder.hidden = false;
-    foto.removeAttribute("src");
-
-    const probarSiguiente = () => {
+    function probarSiguienteFoto() {
         if (indice >= extensiones.length) {
-            foto.hidden = true;
-            placeholder.hidden = false;
             return;
         }
 
         const extension = extensiones[indice++];
-        const ruta = `fotos/${codigo}.${extension}`;
+        const imagen = new Image();
 
-        foto.onload = () => {
-            foto.hidden = false;
-            placeholder.hidden = true;
+        imagen.className = "foto-empleado";
+        imagen.alt = `Fotografía de ${codigo}`;
+        imagen.loading = "eager";
+
+        imagen.onload = function() {
+            fotoBox.innerHTML = "";
+            fotoBox.appendChild(imagen);
+
+            const etiqueta = document.createElement("small");
+            etiqueta.textContent = "FOTO";
+            fotoBox.appendChild(etiqueta);
         };
 
-        foto.onerror = probarSiguiente;
-        foto.src = ruta;
-    };
+        imagen.onerror = function() {
+            probarSiguienteFoto();
+        };
 
-    probarSiguiente();
+        imagen.src = `fotos/${encodeURIComponent(codigo)}.${extension}?v=31`;
+    }
+
+    probarSiguienteFoto();
 }
 
 function mostrarSolicitudes() {
@@ -372,61 +380,13 @@ function obtenerNombre(texto) {
 }
 
 function obtenerCampo(texto, campo) {
-    const fuente = String(texto || "").replace(/\s+/g, " ").trim();
+    const siguiente = "(?=\\s+(?:Departamento|Puesto|Sueldo\\s+Mensual|Salario|Ingreso|Deducciones|Total|$))";
+    const regex = new RegExp(`${campo}\\s*:\\s*(.*?)${siguiente}`, "i");
+    const match = texto.match(regex);
 
-    // IMPORTANTE: el carnet solo muestra datos de identificación laboral.
-    // Cada campo se corta en el siguiente campo del encabezado del recibo,
-    // antes de llegar a cualquier información de nómina.
-    const limites = [
-        "Departamento",
-        "Puesto",
-        "Días Trabajados",
-        "Días Feriados",
-        "Días Incapacidad",
-        "Días Septimo Día",
-        "Días Séptimo Día",
-        "Días Falt. Renumerados",
-        "Días Falt. Remunerados",
-        "Días Vacaciones",
-        "Sueldo Base",
-        "Detalle de Ingresos",
-        "Detalle de Deducciones",
-        "Nombre Deducción",
-        "Nombre Pago",
-        "Total Devengado",
-        "Total",
-        "Firma del Empleado",
-        "Impresión",
-        "Página"
-    ];
-
-    const limiteRegex = limites
-        .filter(limite => limite.toLowerCase() !== campo.toLowerCase())
-        .map(limite => limite.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"))
-        .join("|");
-
-    const regex = new RegExp(
-        `${escapeRegExp(campo)}\\s*:\\s*(.*?)(?=\\s+(?:${limiteRegex})\\s*:|\\s+(?:${limiteRegex})\\b|$)`,
-        "i"
-    );
-
-    const match = fuente.match(regex);
-    if (!match?.[1]) return "";
-
-    return limpiarDatoCarnet(match[1]);
+    return match?.[1]?.trim() || "";
 }
 
-function limpiarDatoCarnet(valor) {
-    return String(valor || "")
-        .replace(/\s+/g, " ")
-        // Cortafuegos adicional: ningún dato de nómina puede llegar al carnet.
-        .replace(/\b(?:Días?|Sueldo|Salario|Pago|Total|Deducciones?|Devengado|Ingresos?|Vacaciones|Incapacidad|Feriados?|Septimo|Séptimo|Falt\.?\s*Remunerados?|Falt\.?\s*Renumerados?)\b.*$/i, "")
-        .trim();
-}
-
-function escapeRegExp(valor) {
-    return String(valor).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-}
 function normalizar(texto) {
     return String(texto || "")
         .toUpperCase()

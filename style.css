@@ -611,6 +611,16 @@ button { cursor: pointer; }
     filter: grayscale(1);
 }
 
+.foto-empleado {
+    display: block;
+    width: 135px;
+    height: 165px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 16px;
+    background: #f4f8f9;
+}
+
 .foto-box small {
     color: var(--text-light);
     font-size: 7px;

@@ -251,54 +251,6 @@ function cargarDatosCarnet() {
     $("carnetCodigo").textContent = empleadoActual.codigo || "—";
     $("carnetDepartamento").textContent = empleadoActual.departamento || "—";
     $("carnetPuesto").textContent = empleadoActual.puesto || "—";
-
-    cargarFotoCarnet(empleadoActual.codigo);
-}
-
-function cargarFotoCarnet(codigo) {
-    const fotoBox = document.querySelector(".foto-box");
-    if (!fotoBox || !codigo) return;
-
-    // Estado inicial: silueta y aviso mientras no exista una fotografía.
-    fotoBox.innerHTML = `
-        <div class="silueta" aria-label="Fotografía pendiente">
-            <span>👤</span>
-        </div>
-        <small>FOTO</small>
-    `;
-
-    const extensiones = ["png", "jpg", "jpeg"];
-    let indice = 0;
-
-    function probarSiguienteFoto() {
-        if (indice >= extensiones.length) return;
-
-        const extension = extensiones[indice++];
-        const imagen = new Image();
-
-        imagen.className = "foto-empleado";
-        imagen.alt = `Fotografía de ${codigo}`;
-        imagen.loading = "eager";
-
-        imagen.onload = function() {
-            // La fotografía ocupa EXACTAMENTE el lugar de la silueta.
-            fotoBox.innerHTML = "";
-            fotoBox.appendChild(imagen);
-
-            const etiqueta = document.createElement("small");
-            etiqueta.textContent = "FOTO";
-            fotoBox.appendChild(etiqueta);
-
-        };
-
-        imagen.onerror = function() {
-            probarSiguienteFoto();
-        };
-
-        imagen.src = `fotos/${encodeURIComponent(codigo)}.${extension}?v=1`;
-    }
-
-    probarSiguienteFoto();
 }
 
 function mostrarSolicitudes() {
@@ -381,13 +333,11 @@ function obtenerNombre(texto) {
 }
 
 function obtenerCampo(texto, campo) {
-    // Los recibos contienen información de nómina inmediatamente después
-    // del puesto. Para el carnet solo queremos el texto real del puesto.
-    const siguiente = "(?=\\s+(?:Departamento|Puesto|Días\\s+Trabajados|Días\\s+Incapacidad|Faltas|Renumerados|Vacaciones|Feriados|Séptimo|Sueldo\\s+Base|Sueldo\\s+Mensual|Salario|Ingreso|Deducciones|Total|Nombre\\s+Pago|Valor|SUELDOS|$))";
+    const siguiente = "(?=\\s+(?:Departamento|Puesto|Sueldo\\s+Mensual|Salario|Ingreso|Deducciones|Total|$))";
     const regex = new RegExp(`${campo}\\s*:\\s*(.*?)${siguiente}`, "i");
     const match = texto.match(regex);
 
-    return match?.[1]?.trim().replace(/\\s+/g, " ") || "";
+    return match?.[1]?.trim() || "";
 }
 
 function normalizar(texto) {

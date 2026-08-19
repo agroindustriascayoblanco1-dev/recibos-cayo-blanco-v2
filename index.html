@@ -7,20 +7,135 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <link rel="stylesheet" href="style.css?v=60">
 <link rel="stylesheet" href="mobile-enhancements.css?v=1">
+<style>
+/* Mejoras de inicio y navegación móvil - Cayo Blanco */
+.portal-mobile-v2 .welcome-title{letter-spacing:-.035em}
+.portal-mobile-v2 .welcome-subtitle{max-width:620px}
+.portal-mobile-v2 .menu-grid{gap:14px}
+.portal-mobile-v2 .menu-card{
+  position:relative; overflow:hidden; transform:translateZ(0);
+  transition:transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+  -webkit-tap-highlight-color:transparent;
+}
+.portal-mobile-v2 .menu-card::after{
+  content:""; position:absolute; inset:0; pointer-events:none;
+  background:linear-gradient(120deg,transparent 35%,rgba(255,255,255,.20),transparent 65%);
+  transform:translateX(-120%); transition:transform .55s ease;
+}
+.portal-mobile-v2 .menu-card:hover{transform:translateY(-3px)}
+.portal-mobile-v2 .menu-card:hover::after{transform:translateX(120%)}
+.portal-mobile-v2 .menu-card:active{transform:scale(.985)}
+.portal-mobile-v2 .menu-card > span{
+  transition:transform .22s ease;
+}
+.portal-mobile-v2 .menu-card:hover > span{transform:scale(1.08)}
+.portal-mobile-v2 .portal-greeting{
+  display:flex; align-items:center; justify-content:space-between; gap:16px;
+  margin:0 0 18px; padding:16px 18px; border-radius:20px;
+  background:linear-gradient(135deg,rgba(255,255,255,.98),rgba(246,250,247,.96));
+  border:1px solid rgba(26,92,58,.10);
+  box-shadow:0 10px 30px rgba(16,52,34,.07);
+}
+.portal-mobile-v2 .portal-greeting-main{min-width:0}
+.portal-mobile-v2 .portal-greeting-kicker{
+  display:block; margin-bottom:4px; font-size:.72rem; font-weight:800;
+  letter-spacing:.11em; color:#62806f; text-transform:uppercase;
+}
+.portal-mobile-v2 .portal-greeting h2{
+  margin:0; font-size:clamp(1.2rem,4.8vw,1.65rem); line-height:1.15;
+}
+.portal-mobile-v2 .portal-greeting p{
+  margin:6px 0 0; color:#66746d; font-size:.9rem;
+}
+.portal-mobile-v2 .portal-badge{
+  flex:0 0 auto; width:48px; height:48px; display:grid; place-items:center;
+  border-radius:15px; background:#eef7f1; font-size:1.35rem;
+}
+@media (max-width:700px){
+  .portal-mobile-v2 .profile{position:relative}
+  .portal-mobile-v2 .welcome{margin-top:10px}
+  .portal-mobile-v2 .welcome-title{font-size:clamp(1.65rem,7.2vw,2.2rem)}
+  .portal-mobile-v2 .menu-grid{
+    grid-template-columns:1fr 1fr;
+    gap:11px;
+  }
+  .portal-mobile-v2 .menu-card{
+    min-height:142px; padding:16px 14px; align-items:flex-start;
+  }
+  .portal-mobile-v2 .menu-card > span{font-size:1.7rem}
+  .portal-mobile-v2 .menu-card > div{align-self:flex-end; width:100%}
+  .portal-mobile-v2 .menu-card strong{font-size:.98rem}
+  .portal-mobile-v2 .menu-card small{
+    display:block; margin-top:4px; line-height:1.3; font-size:.74rem;
+  }
+  .portal-mobile-v2 .menu-card > b{
+    position:absolute; right:12px; top:13px; font-size:1rem; opacity:.55;
+  }
+  .portal-mobile-v2 .portal-greeting{padding:14px 15px; border-radius:17px}
+  .portal-mobile-v2 .portal-greeting p{font-size:.82rem}
+}
+@media (max-width:390px){
+  .portal-mobile-v2 .menu-grid{grid-template-columns:1fr}
+  .portal-mobile-v2 .menu-card{min-height:96px; display:flex; align-items:center}
+  .portal-mobile-v2 .menu-card > div{align-self:center}
+  .portal-mobile-v2 .menu-card > span{font-size:1.55rem}
+}
+@media (prefers-reduced-motion:reduce){
+  .portal-mobile-v2 .menu-card,
+  .portal-mobile-v2 .menu-card::after,
+  .portal-mobile-v2 .menu-card > span{transition:none}
+}
+</style>
 </head>
 <body>
 <header class="topbar">
   <div class="brand"><img src="logo-cayo-blanco.png" alt="Agroindustrias Cayo Blanco"><div><strong>AGROINDUSTRIAS CAYO BLANCO</strong><span>Portal de Empleados</span></div></div>
   <span class="confidential">🔒 Información confidencial</span>
 </header>
-<main class="container">
+
+<main class="container portal-mobile-v2">
 <section id="pantallaAcceso" class="screen active">
-  <div class="access"><div class="access-copy"><span class="eyebrow">RECURSOS HUMANOS</span><h1>Tu información laboral,<br><em>en un solo lugar.</em></h1><p>Consulta tus recibos de pago, carné, documentos, comunicados y la información que Recursos Humanos ha preparado para ti.</p><div class="chips"><span>🔐 Seguro</span><span>⚡ Rápido</span><span>📱 Fácil</span></div></div>
-  <div class="login-card"><div class="login-icon">👤</div><span class="eyebrow">ACCESO PERSONAL</span><h2>Ingresa a tu portal</h2><p>Escribe tu código de empleado para continuar.</p><label for="codigo">Código de empleado</label><div class="login-row"><input id="codigo" autocomplete="off" placeholder="Ejemplo: CBEP0000"><button id="buscar">Continuar</button></div><div id="mensajeAcceso" class="message"></div></div></div>
+  <div class="access">
+    <div class="access-copy">
+      <span class="eyebrow">RECURSOS HUMANOS</span>
+      <h1>Tu información laboral,<br><em>en un solo lugar.</em></h1>
+      <p>Consulta tus recibos de pago, carné, documentos, comunicados y la información que Recursos Humanos ha preparado para ti.</p>
+      <div class="chips"><span>🔐 Seguro</span><span>⚡ Rápido</span><span>📱 Fácil</span></div>
+    </div>
+    <div class="login-card">
+      <div class="login-icon">👤</div><span class="eyebrow">ACCESO PERSONAL</span>
+      <h2>Ingresa a tu portal</h2><p>Escribe tu código de empleado para continuar.</p>
+      <label for="codigo">Código de empleado</label>
+      <div class="login-row"><input id="codigo" autocomplete="off" placeholder="Ejemplo: CBEP0000"><button id="buscar">Continuar</button></div>
+      <div id="mensajeAcceso" class="message"></div>
+    </div>
+  </div>
 </section>
+
 <section id="pantallaPortal" class="screen">
-  <div class="profile"><div class="profile-main"><div id="avatarMini" class="avatar">👤</div><div><span>PORTAL PERSONAL</span><h2 id="nombreEmpleado">—</h2><small>Código: <b id="codigoEmpleado">—</b></small></div></div><button id="cerrarSesion" class="secondary">Salir</button></div>
-  <div class="welcome"><span class="eyebrow">MENÚ PRINCIPAL</span><h1>¿Qué deseas consultar?</h1><p>Todo lo que necesitas consultar de Recursos Humanos, organizado en un solo lugar.</p></div>
+  <div class="profile">
+    <div class="profile-main">
+      <div id="avatarMini" class="avatar">👤</div>
+      <div><span>PORTAL PERSONAL</span><h2 id="nombreEmpleado">—</h2><small>Código: <b id="codigoEmpleado">—</b></small></div>
+    </div>
+    <button id="cerrarSesion" class="secondary">Salir</button>
+  </div>
+
+  <div class="portal-greeting">
+    <div class="portal-greeting-main">
+      <span class="portal-greeting-kicker">Tu espacio de Recursos Humanos</span>
+      <h2>¿Qué necesitas consultar hoy?</h2>
+      <p>Accede rápidamente a tu información laboral.</p>
+    </div>
+    <div class="portal-badge" aria-hidden="true">✨</div>
+  </div>
+
+  <div class="welcome">
+    <span class="eyebrow">MENÚ PRINCIPAL</span>
+    <h1 class="welcome-title">Todo en un solo lugar</h1>
+    <p class="welcome-subtitle">Consulta tus pagos, documentos, procedimientos e información importante.</p>
+  </div>
+
   <div class="menu-grid">
     <button class="menu-card green" id="btnRecibos"><span>🧾</span><div><strong>Mis recibos</strong><small>Consulta tus recibos de pago por quincena</small></div><b>→</b></button>
     <button class="menu-card blue" id="btnCarnet"><span>🪪</span><div><strong>Mi carné</strong><small>Consulta tu identificación de empleado</small></div><b>→</b></button>
@@ -30,35 +145,40 @@
     <button class="menu-card navy" data-screen="pantallaInformacion"><span>ℹ️</span><div><strong>Información para empleados</strong><small>RAP, IHSS y contactos de RRHH</small></div><b>→</b></button>
   </div>
 </section>
+
 <section id="pantallaRecibos" class="screen">
   <div class="subhead"><button class="back" data-screen="pantallaPortal">← Volver</button><div><span class="eyebrow">MIS RECIBOS</span><h2>Recibos de pago</h2><p>Selecciona la quincena que deseas consultar.</p></div></div>
   <div class="period-grid"><button class="period-card" data-q="q1"><span>01</span><div><strong>Quincena 1</strong><small id="mesQ1">—</small><small>Consultar recibo →</small></div></button><button class="period-card" data-q="q2"><span>02</span><div><strong>Quincena 2</strong><small id="mesQ2">—</small><small>Consultar recibo →</small></div></button></div>
 </section>
+
 <section id="pantallaRecibo" class="screen">
   <div class="subhead"><button class="back" data-screen="pantallaRecibos">← Recibos</button><div><span class="eyebrow">RECIBO DE PAGO</span><h2 id="visorTitulo">Recibo</h2></div><button id="guardarRecibo" class="primary">Guardar recibo</button></div>
   <div class="pdf-viewer"><div class="viewer-message">Selecciona una quincena para visualizar tu recibo.</div></div>
 </section>
+
 <section id="pantallaCarnet" class="screen">
   <div class="subhead"><button class="back" data-screen="pantallaPortal">← Volver</button><div><span class="eyebrow">IDENTIFICACIÓN</span><h2>Mi carné</h2><p>Tu identificación digital como empleado.</p></div></div>
   <div class="id-wrap"><div class="id-card"><div class="id-top"><img src="logo-cayo-blanco.png" alt="Logo"><div><strong>AGROINDUSTRIAS</strong><span>CAYO BLANCO</span></div></div><div class="id-body"><div id="fotoCarnet" class="photo-box"><span>👤</span></div><div class="carnet-datos"><span class="label">NOMBRE DEL COLABORADOR</span><h3 id="carnetNombre">—</h3><div class="two"><div><span class="label">CÓDIGO</span><strong id="carnetCodigo">—</strong></div><div><span class="label">DEPARTAMENTO</span><strong id="carnetDepartamento">—</strong></div></div><div><span class="label">PUESTO</span><strong id="carnetPuesto">—</strong></div></div></div><div class="id-footer">RECURSOS HUMANOS · IDENTIFICACIÓN DE EMPLEADO</div></div></div>
 </section>
+
 <section id="pantallaDocumentos" class="screen">
   <div class="subhead"><button class="back" data-screen="pantallaPortal">← Volver</button><div><span class="eyebrow">DOCUMENTOS</span><h2>Documentos laborales</h2><p>Consulta documentos generales y documentos publicados para tu código.</p></div></div>
   <div class="section-title">📘 Documentos generales</div>
-  <div id="listaDocumentosGenerales" class="cards-list">
-    <div class="empty">🔄 Cargando documentos generales...</div>
-  </div>
+  <div id="listaDocumentosGenerales" class="cards-list"><div class="empty">🔄 Cargando documentos generales...</div></div>
   <div class="section-title spaced">📁 Mis documentos</div>
   <div id="listaDocumentos" class="cards-list"><div class="empty">Los documentos asociados a tu código aparecerán aquí.</div></div>
 </section>
+
 <section id="pantallaComunicados" class="screen">
   <div class="subhead"><button class="back" data-screen="pantallaPortal">← Volver</button><div><span class="eyebrow">RECURSOS HUMANOS</span><h2>Comunicados</h2><p>Consulta avisos e información oficial publicada por RRHH.</p></div></div>
   <div class="cards-list"><article class="doc-card"><span>📢</span><div><strong>Comunicado Sitio Web - Recibos de pago</strong><small>Información sobre el portal de recibos.</small></div><a class="outline link" href="Informacion/Comunicados/Comunicado Sitio Web - Recibos de pago.pdf" target="_blank">Abrir</a></article></div>
 </section>
+
 <section id="pantallaProcedimientos" class="screen">
   <div class="subhead"><button class="back" data-screen="pantallaPortal">← Volver</button><div><span class="eyebrow">RECURSOS HUMANOS</span><h2>Procedimientos</h2><p>Guías rápidas para saber qué hacer en cada situación.</p></div></div>
   <div class="guide-grid"><article class="guide"><span>🏥</span><h3>Visitar enfermería</h3><ol><li>Informa a tu supervisor antes de retirarte de tu área.</li><li>Dirígete a enfermería y sigue las indicaciones del personal.</li><li>Presenta tu carné cuando sea requerido.</li><li>Entrega a RRHH la documentación correspondiente cuando aplique.</li></ol></article><article class="guide"><span>📝</span><h3>Solicitar un permiso</h3><ol><li>Comunica la necesidad a tu supervisor.</li><li>Utiliza el canal establecido por RRHH para realizar la solicitud.</li><li>Indica fecha, horario y motivo del permiso.</li><li>Espera la autorización correspondiente antes de retirarte.</li></ol></article><article class="guide"><span>💰</span><h3>Reclamo de pago</h3><ol><li>Revisa tu recibo y verifica el período.</li><li>Identifica la diferencia o concepto que deseas aclarar.</li><li>Comunícate con RRHH por los canales establecidos.</li><li>Proporciona la información necesaria para la revisión.</li></ol></article><article class="guide"><span>🏖️</span><h3>Permisos y vacaciones</h3><ol><li>Consulta con tu supervisor el proceso aplicable.</li><li>Realiza la solicitud por el medio autorizado.</li><li>Espera la aprobación correspondiente.</li><li>Conserva la constancia de autorización.</li></ol></article></div>
 </section>
+
 <section id="pantallaInformacion" class="screen">
   <div class="subhead"><button class="back" data-screen="pantallaPortal">← Volver</button><div><span class="eyebrow">INFORMACIÓN PARA EMPLEADOS</span><h2>Información importante</h2><p>Conoce instituciones y canales que pueden ayudarte.</p></div></div>
   <div class="info-grid">
@@ -68,7 +188,9 @@
   </div>
 </section>
 </main>
+
 <div id="sheetOverlay" class="sheet-overlay" aria-hidden="true"><div class="info-sheet" role="dialog" aria-modal="true"><div class="sheet-handle"></div><div class="sheet-head"><div id="sheetTitleWrap"></div><button id="sheetClose" class="sheet-close" aria-label="Cerrar">×</button></div><div id="sheetContent" class="sheet-content"></div></div></div>
+
 <footer>Agroindustrias Cayo Blanco · Recursos Humanos · Portal de Empleados</footer>
 <script src="script.js?v=61"></script>
 <script src="mobile-enhancements.js?v=1"></script>

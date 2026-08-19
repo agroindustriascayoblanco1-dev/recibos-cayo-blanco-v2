@@ -1,0 +1,175 @@
+
+/* Cayo Blanco — Mobile Experience */
+:root{
+  --mobile-navy:#08384a;
+  --mobile-blue:#0b5870;
+  --mobile-green:#12a879;
+  --mobile-mint:#e7f8f2;
+  --mobile-ink:#123b4a;
+}
+html{scroll-behavior:smooth}
+body{
+  -webkit-tap-highlight-color:transparent;
+  overscroll-behavior-x:none;
+}
+button,a,input{-webkit-tap-highlight-color:transparent}
+button{touch-action:manipulation}
+.topbar{
+  background:linear-gradient(135deg,#062f40 0%,#0a4b60 58%,#0c6b70 100%);
+}
+.brand img{box-shadow:0 5px 18px rgba(0,0,0,.12)}
+.menu-card,.period-card,.doc-card,.guide,.info-panel,.login-card,.profile{
+  transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease;
+}
+.menu-card:active,.period-card:active,.doc-card:active,.guide:active,.info-panel:active{
+  transform:scale(.985);
+}
+.primary,.login-row button,.more,.outline,.secondary,.back,.sheet-close{
+  transition:transform .16s ease,filter .16s ease,box-shadow .16s ease;
+}
+.primary:active,.login-row button:active,.more:active,.outline:active,.secondary:active,.back:active,.sheet-close:active{
+  transform:scale(.96);
+}
+.menu-card:hover{border-color:#b9ddd5}
+.menu-card>span{transition:transform .25s ease}
+.menu-card:hover>span{transform:scale(1.05) rotate(-2deg)}
+.screen.active{
+  animation:screenIn .28s cubic-bezier(.2,.8,.2,1) both;
+}
+@keyframes screenIn{
+  from{opacity:0;transform:translateY(10px)}
+  to{opacity:1;transform:translateY(0)}
+}
+.sheet-overlay{
+  position:fixed;
+  inset:0;
+  z-index:1000;
+  display:flex;
+  align-items:flex-end;
+  justify-content:center;
+  background:rgba(4,25,34,.42);
+  backdrop-filter:blur(7px);
+  -webkit-backdrop-filter:blur(7px);
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+  transition:opacity .24s ease,visibility .24s ease;
+}
+.sheet-overlay.open{
+  opacity:1;
+  visibility:visible;
+  pointer-events:auto;
+}
+.info-sheet{
+  width:min(760px,100%);
+  max-height:min(88vh,760px);
+  overflow:hidden;
+  background:rgba(250,253,253,.96);
+  border:1px solid rgba(255,255,255,.72);
+  border-bottom:0;
+  border-radius:28px 28px 0 0;
+  box-shadow:0 -20px 70px rgba(3,34,45,.28);
+  transform:translateY(100%);
+  transition:transform .34s cubic-bezier(.2,.8,.2,1);
+  padding-bottom:env(safe-area-inset-bottom);
+}
+.sheet-overlay.open .info-sheet{transform:translateY(0)}
+.sheet-handle{
+  width:42px;height:5px;border-radius:99px;
+  background:#b7c9cd;margin:10px auto 4px;
+}
+.sheet-head{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:12px;padding:10px 18px 12px;
+  border-bottom:1px solid #dfeaec;
+}
+.sheet-title-kicker{font-size:9px;font-weight:800;letter-spacing:1.2px;color:var(--mobile-green)}
+.sheet-title{margin:3px 0 0;font-size:22px;letter-spacing:-.5px;color:var(--mobile-ink)}
+.sheet-close{
+  width:40px;height:40px;border:0;border-radius:50%;
+  background:#edf4f5;color:#163f4d;font-size:27px;line-height:1;cursor:pointer;
+}
+.sheet-content{
+  overflow:auto;
+  max-height:calc(min(88vh,760px) - 90px);
+  padding:18px 20px 28px;
+  -webkit-overflow-scrolling:touch;
+}
+.sheet-content h4{margin:20px 0 8px;color:#123e50;font-size:15px}
+.sheet-content p,.sheet-content li{font-size:12px;line-height:1.65;color:#536a73}
+.sheet-content ul,.sheet-content ol{padding-left:21px}
+.contact-card{
+  display:flex;align-items:center;gap:12px;
+  padding:14px;margin:10px 0;
+  background:#fff;border:1px solid #dce8ea;border-radius:17px;
+  box-shadow:0 6px 18px rgba(15,59,72,.06);
+}
+.contact-avatar{
+  width:44px;height:44px;flex:0 0 44px;border-radius:14px;
+  display:grid;place-items:center;background:var(--mobile-mint);font-size:20px;
+}
+.contact-main{min-width:0;flex:1}
+.contact-main strong,.contact-main small{display:block}
+.contact-main strong{font-size:12px;color:#123e50}
+.contact-main small{font-size:10px;color:#6c8088;margin-top:3px}
+.contact-actions{display:flex;gap:7px}
+.contact-actions a{
+  text-decoration:none;font-size:10px;font-weight:800;
+  padding:9px 10px;border-radius:10px;white-space:nowrap;
+}
+.contact-call{background:#e8f6ef;color:#087b56}
+.contact-wa{background:#e7f7f0;color:#087b56}
+.sheet-document{
+  width:100%;border:0;border-radius:16px;overflow:hidden;
+  background:#e8eff1;margin-top:8px;
+}
+.sheet-document iframe{display:block;width:100%;height:62vh;border:0;background:white}
+.sheet-open-link{
+  display:inline-flex;margin-top:12px;text-decoration:none;
+  background:#0a5064;color:#fff;padding:11px 15px;border-radius:12px;font-size:11px;font-weight:800;
+}
+.mobile-hint{
+  padding:11px 13px;border-radius:13px;background:#eef8f5;
+  border:1px solid #d3ece3;color:#4d686f;font-size:10px;line-height:1.5;
+}
+@media(max-width:600px){
+  .topbar{position:sticky;top:0;z-index:50;height:68px}
+  .container{width:calc(100% - 24px);margin:16px auto 34px}
+  .access{padding:22px;border-radius:23px;gap:18px}
+  .access-copy p{font-size:13px;line-height:1.6}
+  .chips span{padding:8px 10px}
+  .login-card{padding:22px;border-radius:20px}
+  .login-row input,.login-row button{min-height:50px}
+  .menu-grid{gap:11px}
+  .menu-card{min-height:112px;padding:15px;grid-template-columns:47px 1fr 27px;border-radius:18px}
+  .menu-card>span{width:47px;height:47px;border-radius:14px;font-size:20px}
+  .menu-card strong{font-size:14px}
+  .menu-card small{font-size:10px}
+  .profile{padding:11px 12px;border-radius:17px;margin-bottom:24px}
+  .profile .secondary{padding:9px 11px}
+  .welcome{margin-bottom:16px}
+  .period-card{min-height:86px;padding:15px}
+  .period-card>span{width:50px;height:50px}
+  .pdf-viewer{min-height:calc(100vh - 190px);padding:8px;border-radius:14px}
+  .subhead{gap:10px;margin-bottom:18px}
+  .subhead h2{font-size:27px}
+  .subhead p{font-size:11px}
+  .id-card{border-radius:21px}
+  .id-body{padding:20px;gap:17px}
+  .photo-box{width:118px;height:145px}
+  .doc-card{padding:12px;border-radius:15px}
+  .doc-card>span{width:40px;height:40px}
+  .guide,.info-panel{padding:16px;border-radius:17px}
+  .sheet-overlay{align-items:flex-end}
+  .info-sheet{max-height:91vh;border-radius:25px 25px 0 0}
+  .sheet-content{max-height:calc(91vh - 88px);padding:16px 16px 25px}
+  .sheet-title{font-size:20px}
+  .contact-card{align-items:flex-start}
+  .contact-main strong{font-size:11px}
+  .contact-actions{flex-direction:column}
+  .contact-actions a{text-align:center;padding:9px 8px}
+  .sheet-document iframe{height:65vh}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+}

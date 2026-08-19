@@ -15,13 +15,21 @@ function init(){
  $("btnCarnet").onclick=()=>{cargarCarnet();show("pantallaCarnet")};
  $("btnRecibos").onclick=()=>show("pantallaRecibos");
  $("cerrarSesion").onclick=logout;
- document.querySelectorAll("[data-open]").forEach(b=>b.onclick=()=>window.open(b.dataset.open,"_blank"));
- $("btnContrato").onclick=buscarContrato;
+ $("guardarRecibo").onclick=guardarRecibo;
+ document.querySelectorAll("[data-open-sheet]").forEach(b=>b.onclick=()=>abrirSheet(b.dataset.openSheet));
  document.querySelectorAll("[data-info]").forEach(b=>b.onclick=()=>mostrarInfo(b.dataset.info));
+ $("sheetClose").onclick=closeSheet;
+ $("sheetOverlay").addEventListener("click",e=>{if(e.target===$("sheetOverlay"))closeSheet()});
+ document.addEventListener("keydown",e=>{if(e.key==="Escape")closeSheet()});
 }
 
-function show(id){document.querySelectorAll(".screen").forEach(s=>s.classList.remove("active"));$(id).classList.add("active");window.scrollTo({top:0,behavior:"smooth"});if(id==="pantallaDocumentos")cargarDocumentos()}
+function show(id){
+ document.querySelectorAll(".screen").forEach(s=>s.classList.remove("active"));
+ $(id).classList.add("active");window.scrollTo({top:0,behavior:"smooth"});
+ if(id==="pantallaDocumentos")cargarDocumentos();
+}
 function msg(t,error=false){$("mensajeAcceso").textContent=t;$("mensajeAcceso").className="message"+(error?" error":"")}
+
 async function acceder(){
  const codigo=normalizar($("codigo").value);
  if(!codigo){msg("Escribe tu código de empleado.",true);return}
@@ -39,27 +47,35 @@ async function acceder(){
 async function buscarEmpleado(periodo,codigo){
  const pdf=await pdfjsLib.getDocument({url:periodo.archivo}).promise;
  for(let n=1;n<=pdf.numPages;n++){const p=await pdf.getPage(n),c=await p.getTextContent(),texto=c.items.map(x=>x.str||"").join(" ");if(normalizar(texto).includes(normalizar(codigo)))return{pdf,pagina:n,texto}}
- return null
+ return null;
 }
 async function abrirRecibo(key){
- if(!empleadoActual)return;quincenaActual=key;const periodo=PERIODOS[key];show("pantallaRecibo");$("visorTitulo").textContent=`${periodo.nombre} · ${periodo.mes}`;const v=document.querySelector(".pdf-viewer");v.innerHTML='<div class="viewer-message">🔄 Buscando tu recibo...</div>';
- try{const r=await buscarEmpleado(periodo,empleadoActual.codigo);if(!r){v.innerHTML=`<div class="viewer-message">No hay un recibo disponible para tu código en ${periodo.nombre}.</div>`;return}pdfActual=r.pdf;paginaEncontrada=r.pagina;await renderPage(r.pdf,r.pagina)}catch(e){console.error(e);v.innerHTML='<div class="viewer-message">No se pudo cargar el recibo.</div>'}
+ if(!empleadoActual)return;quincenaActual=key;const periodo=PERIODOS[key];show("pantallaRecibo");$("visorTitulo").textContent=`${periodo.nombre} · ${periodo.mes}`;
+ const v=document.querySelector(".pdf-viewer");v.innerHTML='<div class="viewer-message">🔄 Buscando tu recibo...</div>';
+ try{const r=await buscarEmpleado(periodo,empleadoActual.codigo);if(!r){v.innerHTML=`<div class="viewer-message">No hay un recibo disponible para tu código en ${periodo.nombre}.</div>`;return}pdfActual=r.pdf;paginaEncontrada=r.pagina;await renderPage(r.pdf,r.pagina)}
+ catch(e){console.error(e);v.innerHTML='<div class="viewer-message">No se pudo cargar el recibo.</div>'}
 }
-async function renderPage(pdf,n){const p=await pdf.getPage(n),v=document.querySelector(".pdf-viewer"),base=p.getViewport({scale:1}),scale=Math.min(2,Math.max(1,(v.clientWidth||900)/base.width)),vp=p.getViewport({scale}),c=document.createElement("canvas");c.width=vp.width;c.height=vp.height;c.style.width="100%";v.innerHTML="";v.appendChild(c);await p.render({canvasContext:c.getContext("2d"),viewport:vp}).promise}
+async function renderPage(pdf,n){
+ const p=await pdf.getPage(n),v=document.querySelector(".pdf-viewer"),base=p.getViewport({scale:1}),scale=Math.min(2,Math.max(1,(v.clientWidth||900)/base.width)),vp=p.getViewport({scale}),c=document.createElement("canvas");
+ c.width=vp.width;c.height=vp.height;c.style.width="100%";v.innerHTML="";v.appendChild(c);
+ await p.render({canvasContext:c.getContext("2d"),viewport:vp}).promise
+}
 async function guardarRecibo(){
  if(!pdfActual||!paginaEncontrada||!empleadoActual)return;
- try{const p=await pdfActual.getPage(paginaEncontrada),vp=p.getViewport({scale:2}),c=document.createElement("canvas");c.width=vp.width;c.height=vp.height;await p.render({canvasContext:c.getContext("2d"),viewport:vp}).promise;const a=document.createElement("a");a.href=c.toDataURL("image/jpeg",.95);a.download=`${empleadoActual.codigo}_${quincenaActual}.jpg`;a.click()}catch(e){alert("No fue posible guardar el recibo.")}
+ try{const p=await pdfActual.getPage(paginaEncontrada),vp=p.getViewport({scale:2}),c=document.createElement("canvas");c.width=vp.width;c.height=vp.height;await p.render({canvasContext:c.getContext("2d"),viewport:vp}).promise;const a=document.createElement("a");a.href=c.toDataURL("image/jpeg",.95);a.download=`${empleadoActual.codigo}_${quincenaActual}.jpg`;a.click()}
+ catch(e){alert("No fue posible guardar el recibo.")}
 }
-$("guardarRecibo").onclick=guardarRecibo;
 
 function cargarCarnet(){
  if(!empleadoActual)return;
  $("carnetNombre").textContent=empleadoActual.nombre||"Colaborador";$("carnetCodigo").textContent=empleadoActual.codigo||"—";$("carnetDepartamento").textContent=empleadoActual.departamento||"—";$("carnetPuesto").textContent=empleadoActual.puesto||"—";cargarFoto(empleadoActual.codigo)
 }
-function cargarAvatar(){const a=$("avatarMini");const img=new Image();img.onload=()=>{a.innerHTML="";a.appendChild(img)};img.onerror=()=>{a.textContent="👤"};img.src=`fotos/${encodeURIComponent(empleadoActual.codigo)}.png?v=50`}
+function cargarAvatar(){
+ const a=$("avatarMini"),img=new Image();img.onload=()=>{a.innerHTML="";a.appendChild(img)};img.onerror=()=>{a.textContent="👤"};img.src=`fotos/${encodeURIComponent(empleadoActual.codigo)}.png?v=60`
+}
 function cargarFoto(codigo){
- const box=$("fotoCarnet");box.innerHTML='<span>👤</span>';let i=0;
- const probar=()=>{if(i>=3)return;const ext=["png","jpg","jpeg"][i++],img=new Image();img.className="foto-empleado";img.alt="Fotografía del empleado";img.onload=()=>{box.innerHTML="";box.appendChild(img)};img.onerror=probar;img.src=`fotos/${encodeURIComponent(codigo)}.${ext}?v=50`};probar();
+ const box=$("fotoCarnet");box.innerHTML="<span>👤</span>";let i=0;
+ const probar=()=>{if(i>=3)return;const ext=["png","jpg","jpeg"][i++],img=new Image();img.className="foto-empleado";img.alt="Fotografía del empleado";img.onload=()=>{box.innerHTML="";box.appendChild(img)};img.onerror=probar;img.src=`fotos/${encodeURIComponent(codigo)}.${ext}?v=60`};probar()
 }
 async function cargarDocumentos(){
  const box=$("listaDocumentos");if(!empleadoActual)return;
@@ -70,42 +86,55 @@ async function cargarDocumentos(){
  if(!found.length){box.innerHTML='<div class="empty">📂 No tienes documentos personales disponibles por ahora.</div>';return}
  box.innerHTML=found.map(x=>`<article class="doc-card"><span>${x.icon}</span><div><strong>${x.name}</strong><small>Documento asociado a ${esc(empleadoActual.codigo)}</small></div><a class="outline link" href="${x.path}" target="_blank">Abrir</a></article>`).join("")
 }
-async function buscarContrato(){
- if(!empleadoActual)return;
- const rutas=[`documentos/${empleadoActual.codigo}_contrato.pdf`,`Documentos/${empleadoActual.codigo}_contrato.pdf`];
- for(const p of rutas){try{const r=await fetch(p,{cache:"no-store"});if(r.ok){window.open(p,"_blank");return}}catch(e){}}
- alert("Tu contrato todavía no está disponible en el portal.")
+
+function abrirSheet(tipo){
+ const data=contenidoSheet(tipo);if(!data)return;
+ $("sheetTitleWrap").innerHTML=`<span class="eyebrow">${data.eyebrow}</span><h2>${data.title}</h2>`;
+ $("sheetContent").innerHTML=data.html;
+ $("sheetOverlay").classList.add("open");$("sheetOverlay").setAttribute("aria-hidden","false");document.body.classList.add("sheet-open");
 }
-function mostrarInfo(tipo){
- const d=$("infoDetalle");d.classList.remove("hidden");
+function closeSheet(){
+ $("sheetOverlay").classList.remove("open");$("sheetOverlay").setAttribute("aria-hidden","true");document.body.classList.remove("sheet-open")
+}
+function mostrarInfo(tipo){abrirSheet(tipo)}
+
+function contenidoSheet(tipo){
  const data={
-  rap:{title:"RAP",html:`
-   <div class="detail-head"><span>🏛️</span><div><h3>Régimen de Aportaciones Privadas</h3><p>Información sencilla para conocer tus aportaciones y los servicios disponibles.</p></div></div>
-   <h4>¿Qué es el RAP?</h4>
-   <p>El Régimen de Aportaciones Privadas (RAP) es una institución hondureña que ofrece servicios relacionados con el ahorro, vivienda y financiamiento para sus afiliados.</p>
-   <h4>¿Para qué sirve?</h4>
-   <ul><li>Ahorro para el trabajador.</li><li>Opciones de financiamiento para vivienda.</li><li>Préstamos y productos financieros, según los requisitos aplicables.</li><li>Administración de las aportaciones registradas a nombre del afiliado.</li></ul>
-   <h4>Recuerda</h4>
-   <ul><li>Revisa que tus datos personales estén correctos.</li><li>Conserva tus documentos laborales.</li><li>Consulta periódicamente la información de tus aportaciones.</li><li>Para conocer montos, requisitos y condiciones, consulta la información oficial del RAP o solicita orientación a RRHH.</li></ul>`},
-  ihss:{title:"IHSS",html:`
-   <div class="detail-head"><span>🏥</span><div><h3>Instituto Hondureño de Seguridad Social</h3><p>Conoce qué hacer cuando necesites utilizar los servicios del Seguro Social.</p></div></div>
-   <h4>¿Qué es el IHSS?</h4>
-   <p>El Instituto Hondureño de Seguridad Social (IHSS) brinda servicios de seguridad social a los trabajadores afiliados y sus beneficiarios, de acuerdo con la cobertura y condiciones establecidas.</p>
-   <h4>Servicios y prestaciones</h4>
-   <ul><li>Atención médica y consultas.</li><li>Atención por enfermedad y maternidad.</li><li>Servicios relacionados con accidentes y otras situaciones cubiertas.</li><li>Prestaciones económicas cuando corresponda.</li><li>Atención para beneficiarios que cumplan los requisitos establecidos.</li></ul>
-   <h4>🏥 Si necesitas atención médica</h4>
-   <ol><li>Informa a tu jefe inmediato cuando corresponda.</li><li>Acude al centro de atención del IHSS que corresponda.</li><li>Presenta tu identificación y la documentación requerida.</li><li>Recibe la atención médica y sigue las indicaciones del personal.</li></ol>
-   <h4>📄 Si recibes una incapacidad</h4>
-   <p>Presenta la documentación correspondiente a Recursos Humanos dentro del plazo y siguiendo el procedimiento establecido por la empresa, para que pueda registrarse correctamente.</p>
-   <div class="notice">⚠️ Los procedimientos, requisitos y cobertura pueden variar según el tipo de atención y las disposiciones vigentes. Si tienes dudas, consulta con Recursos Humanos.</div>`},
-  contactos:{title:"Contactos de Recursos Humanos",html:`<h3>Contactos de Recursos Humanos</h3><p>Para consultas sobre recibos, permisos, documentación u otros procesos laborales, utiliza los canales de atención establecidos por Recursos Humanos.</p>`}
+  reglamento:{eyebrow:"DOCUMENTO GENERAL",title:"Reglamento Interno de Trabajo",html:`
+   <div class="sheet-document">
+    <div class="sheet-icon">📕</div><div><h3>Reglamento Interno de Trabajo</h3><p>Consulta el Reglamento Interno de Trabajo de Agroindustrias Cayo Blanco.</p></div>
+   </div>
+   <p>Este documento contiene las normas y disposiciones internas aplicables al personal.</p>
+   <a class="sheet-action" href="DocumentosGenerales/reglamento-interno.pdf" target="_blank" rel="noopener">📖 Abrir reglamento</a>
+  `},
+  rap:{eyebrow:"INFORMACIÓN PARA EMPLEADOS",title:"RAP",html:`
+   <div class="sheet-document"><div class="sheet-icon">🏛️</div><div><h3>Régimen de Aportaciones Privadas</h3><p>Información sencilla para conocer tus aportaciones y los servicios disponibles.</p></div></div>
+   <h4>¿Qué es el RAP?</h4><p>El Régimen de Aportaciones Privadas (RAP) es una institución hondureña que ofrece servicios relacionados con el ahorro, vivienda y financiamiento para sus afiliados.</p>
+   <h4>¿Para qué sirve?</h4><ul><li>Ahorro para el trabajador.</li><li>Opciones de financiamiento para vivienda.</li><li>Préstamos y productos financieros, según los requisitos aplicables.</li><li>Administración de las aportaciones registradas a nombre del afiliado.</li></ul>
+   <h4>Recuerda</h4><ul><li>Revisa que tus datos personales estén correctos.</li><li>Conserva tus documentos laborales.</li><li>Consulta periódicamente la información de tus aportaciones.</li><li>Para conocer montos, requisitos y condiciones, consulta la información oficial del RAP o solicita orientación a RRHH.</li></ul>
+  `},
+  ihss:{eyebrow:"INFORMACIÓN PARA EMPLEADOS",title:"IHSS",html:`
+   <div class="sheet-document"><div class="sheet-icon">🏥</div><div><h3>Instituto Hondureño de Seguridad Social</h3><p>Conoce qué hacer cuando necesites utilizar los servicios del Seguro Social.</p></div></div>
+   <h4>¿Qué es el IHSS?</h4><p>El Instituto Hondureño de Seguridad Social (IHSS) brinda servicios de seguridad social a los trabajadores afiliados y sus beneficiarios, de acuerdo con la cobertura y condiciones establecidas.</p>
+   <h4>Servicios y prestaciones</h4><ul><li>Atención médica y consultas.</li><li>Atención por enfermedad y maternidad.</li><li>Servicios relacionados con accidentes y otras situaciones cubiertas.</li><li>Prestaciones económicas cuando corresponda.</li><li>Atención para beneficiarios que cumplan los requisitos establecidos.</li></ul>
+   <h4>🏥 Si necesitas atención médica</h4><ol><li>Informa a tu jefe inmediato cuando corresponda.</li><li>Acude al centro de atención del IHSS que corresponda.</li><li>Presenta tu identificación y la documentación requerida.</li><li>Recibe la atención médica y sigue las indicaciones del personal.</li></ol>
+   <h4>📄 Si recibes una incapacidad</h4><p>Presenta la documentación correspondiente a Recursos Humanos dentro del plazo y siguiendo el procedimiento establecido por la empresa, para que pueda registrarse correctamente.</p>
+   <div class="notice">⚠️ Los procedimientos, requisitos y cobertura pueden variar según el tipo de atención y las disposiciones vigentes. Si tienes dudas, consulta con Recursos Humanos.</div>
+  `},
+  contactos:{eyebrow:"RECURSOS HUMANOS",title:"Contactos",html:`
+   <p>Utiliza estos canales para recibir orientación sobre tus procesos laborales.</p>
+   <div class="contact-sheet">
+    <div class="contact-item"><span>👥</span><div><strong>Recursos Humanos</strong><small>Recibos de pago · permisos · documentación · reclamos</small></div></div>
+    <div class="contact-item"><span>🏥</span><div><strong>Enfermería</strong><small>Atención y orientación relacionada con salud dentro de la empresa.</small></div></div>
+    <div class="contact-item"><span>👤</span><div><strong>Supervisor inmediato</strong><small>Comunicación de permisos, ausencias y situaciones de la jornada.</small></div></div>
+   </div>
+   <div class="notice">📌 Si quieres que mostremos nombres, teléfonos o WhatsApp específicos de cada contacto, podemos agregarlos sin cambiar el diseño.</div>
+  `}
  };
- const item=data[tipo];if(!item)return;
- d.innerHTML=`${item.html}<button class="back-detail" type="button" onclick="document.getElementById('infoDetalle').classList.add('hidden')">Cerrar información</button>`;
- d.scrollIntoView({behavior:"smooth",block:"start"});
+ return data[tipo]
 }
 function obtenerNombre(t){let m=t.match(/Empleado\s*:\s*(.*?)\s+Sueldo\s+Mensual/i);if(m?.[1])return m[1].trim();m=t.match(/Empleado\s*:\s*(.*?)(?=\s+(?:Departamento|Puesto|Sueldo))/i);return m?.[1]?.trim()||"Colaborador"}
 function obtenerCampo(t,campo){const next="(?=\\s+(?:Departamento|Puesto|Días\\s+Trabajados|Días\\s+Incapacidad|Faltas|Vacaciones|Feriados|Sueldo\\s+Base|Sueldo\\s+Mensual|Salario|Ingreso|Deducciones|Total|$))";const m=t.match(new RegExp(`${campo}\\s*:\\s*(.*?)${next}`,"i"));return m?.[1]?.trim().replace(/\s+/g," ")||""}
 function normalizar(t){return String(t||"").toUpperCase().replace(/\s+/g,"").replace(/[^A-Z0-9]/g,"")}
 function esc(t){return String(t??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
-function logout(){empleadoActual=null;pdfActual=null;paginaEncontrada=null;$("codigo").value="";msg("");show("pantallaAcceso")}
+function logout(){empleadoActual=null;pdfActual=null;paginaEncontrada=null;$("codigo").value="";msg("");closeSheet();show("pantallaAcceso")}

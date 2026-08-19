@@ -45,8 +45,8 @@
 <section id="pantallaDocumentos" class="screen">
   <div class="subhead"><button class="back" data-screen="pantallaPortal">← Volver</button><div><span class="eyebrow">DOCUMENTOS</span><h2>Documentos laborales</h2><p>Consulta documentos generales y documentos publicados para tu código.</p></div></div>
   <div class="section-title">📘 Documentos generales</div>
-  <div class="cards-list">
-    <article class="doc-card"><span>📕</span><div><strong>Reglamento Interno de Trabajo</strong><small>Normas y disposiciones aplicables al personal.</small></div><button class="outline" data-open-sheet="reglamento">Ver documento</button></article>
+  <div id="listaDocumentosGenerales" class="cards-list">
+    <div class="empty">🔄 Cargando documentos generales...</div>
   </div>
   <div class="section-title spaced">📁 Mis documentos</div>
   <div id="listaDocumentos" class="cards-list"><div class="empty">Los documentos asociados a tu código aparecerán aquí.</div></div>
@@ -70,7 +70,7 @@
 </main>
 <div id="sheetOverlay" class="sheet-overlay" aria-hidden="true"><div class="info-sheet" role="dialog" aria-modal="true"><div class="sheet-handle"></div><div class="sheet-head"><div id="sheetTitleWrap"></div><button id="sheetClose" class="sheet-close" aria-label="Cerrar">×</button></div><div id="sheetContent" class="sheet-content"></div></div></div>
 <footer>Agroindustrias Cayo Blanco · Recursos Humanos · Portal de Empleados</footer>
-<script src="script.js?v=60"></script>
+<script src="script.js?v=61"></script>
 <script src="mobile-enhancements.js?v=1"></script>
 </body>
 </html>

@@ -98,6 +98,18 @@ function closeSheet(){
 }
 function mostrarInfo(tipo){abrirSheet(tipo)}
 
+function contactCard(icon,nombre,cargo,telefono,area){
+ const digits=telefono.replace(/\D/g,"");
+ const full=`+504 ${telefono}`;
+ const wa=`https://wa.me/504${digits}`;
+ const tel=`tel:+504${digits}`;
+ return `<article class="contact-item contact-item-rich">
+   <span>${icon}</span>
+   <div class="contact-main"><strong>${esc(nombre)}</strong><small>${esc(cargo)} · ${esc(area)}</small><a class="contact-phone" href="${tel}">${full}</a></div>
+   <div class="contact-actions"><a class="contact-call" href="${tel}" aria-label="Llamar a ${esc(nombre)}">📞 <b>Llamar</b></a><a class="contact-whatsapp" href="${wa}" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp a ${esc(nombre)}">💬 <b>WhatsApp</b></a></div>
+ </article>`
+}
+
 function contenidoSheet(tipo){
  const data={
   reglamento:{eyebrow:"DOCUMENTO GENERAL",title:"Reglamento Interno de Trabajo",html:`
@@ -122,13 +134,15 @@ function contenidoSheet(tipo){
    <div class="notice">⚠️ Los procedimientos, requisitos y cobertura pueden variar según el tipo de atención y las disposiciones vigentes. Si tienes dudas, consulta con Recursos Humanos.</div>
   `},
   contactos:{eyebrow:"RECURSOS HUMANOS",title:"Contactos",html:`
-   <p>Utiliza estos canales para recibir orientación sobre tus procesos laborales.</p>
+   <p>Comunícate directamente con el área o persona que necesites. Puedes <strong>llamar</strong> o abrir una conversación por <strong>WhatsApp</strong>.</p>
    <div class="contact-sheet">
-    <div class="contact-item"><span>👥</span><div><strong>Recursos Humanos</strong><small>Recibos de pago · permisos · documentación · reclamos</small></div></div>
-    <div class="contact-item"><span>🏥</span><div><strong>Enfermería</strong><small>Atención y orientación relacionada con salud dentro de la empresa.</small></div></div>
-    <div class="contact-item"><span>👤</span><div><strong>Supervisor inmediato</strong><small>Comunicación de permisos, ausencias y situaciones de la jornada.</small></div></div>
+    ${contactCard("👤","Cristhian Osorio Acosta","Auxiliar de RRHH","3225-8230","Recursos Humanos")}
+    ${contactCard("👤","Mayda Yanely Palma","Auxiliar de RRHH","3162-3652","Recursos Humanos")}
+    ${contactCard("👤","Mariano Alejandro Perez","Auxiliar de RRHH","3285-7896","Recursos Humanos")}
+    ${contactCard("👩‍💼","Tirsa Lizeht Paz","Coordinadora de RRHH","8863-3324","Recursos Humanos")}
+    ${contactCard("🏥","Dilcia Maribel Vazques","Enfermera","8756-2088","Enfermería")}
    </div>
-   <div class="notice">📌 Si quieres que mostremos nombres, teléfonos o WhatsApp específicos de cada contacto, podemos agregarlos sin cambiar el diseño.</div>
+   <div class="notice">🇭🇳 Todos los números corresponden a Honduras (+504). Para WhatsApp se utiliza el mismo número.</div>
   `}
  };
  return data[tipo]

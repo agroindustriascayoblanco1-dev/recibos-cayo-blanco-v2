@@ -79,11 +79,30 @@ async function buscarContrato(){
 function mostrarInfo(tipo){
  const d=$("infoDetalle");d.classList.remove("hidden");
  const data={
- rap:["RAP","El Régimen de Aportaciones Privadas (RAP) administra aportaciones y servicios destinados a apoyar a los trabajadores. Consulta con Recursos Humanos si necesitas información sobre tus aportaciones, beneficios o trámites."],
- ihss:["IHSS","El Instituto Hondureño de Seguridad Social (IHSS) brinda servicios de seguridad social. Si necesitas orientación sobre atención, afiliación o trámites relacionados, consulta los canales oficiales o solicita apoyo a Recursos Humanos."],
- contactos:["Contactos de Recursos Humanos","Para consultas sobre recibos, permisos, documentación u otros procesos laborales, utiliza los canales de atención establecidos por Recursos Humanos. Esta sección puede actualizarse cuando RRHH publique nuevos contactos."]
+  rap:{title:"RAP",html:`
+   <div class="detail-head"><span>🏛️</span><div><h3>Régimen de Aportaciones Privadas</h3><p>Información sencilla para conocer tus aportaciones y los servicios disponibles.</p></div></div>
+   <h4>¿Qué es el RAP?</h4>
+   <p>El Régimen de Aportaciones Privadas (RAP) es una institución hondureña que ofrece servicios relacionados con el ahorro, vivienda y financiamiento para sus afiliados.</p>
+   <h4>¿Para qué sirve?</h4>
+   <ul><li>Ahorro para el trabajador.</li><li>Opciones de financiamiento para vivienda.</li><li>Préstamos y productos financieros, según los requisitos aplicables.</li><li>Administración de las aportaciones registradas a nombre del afiliado.</li></ul>
+   <h4>Recuerda</h4>
+   <ul><li>Revisa que tus datos personales estén correctos.</li><li>Conserva tus documentos laborales.</li><li>Consulta periódicamente la información de tus aportaciones.</li><li>Para conocer montos, requisitos y condiciones, consulta la información oficial del RAP o solicita orientación a RRHH.</li></ul>`},
+  ihss:{title:"IHSS",html:`
+   <div class="detail-head"><span>🏥</span><div><h3>Instituto Hondureño de Seguridad Social</h3><p>Conoce qué hacer cuando necesites utilizar los servicios del Seguro Social.</p></div></div>
+   <h4>¿Qué es el IHSS?</h4>
+   <p>El Instituto Hondureño de Seguridad Social (IHSS) brinda servicios de seguridad social a los trabajadores afiliados y sus beneficiarios, de acuerdo con la cobertura y condiciones establecidas.</p>
+   <h4>Servicios y prestaciones</h4>
+   <ul><li>Atención médica y consultas.</li><li>Atención por enfermedad y maternidad.</li><li>Servicios relacionados con accidentes y otras situaciones cubiertas.</li><li>Prestaciones económicas cuando corresponda.</li><li>Atención para beneficiarios que cumplan los requisitos establecidos.</li></ul>
+   <h4>🏥 Si necesitas atención médica</h4>
+   <ol><li>Informa a tu jefe inmediato cuando corresponda.</li><li>Acude al centro de atención del IHSS que corresponda.</li><li>Presenta tu identificación y la documentación requerida.</li><li>Recibe la atención médica y sigue las indicaciones del personal.</li></ol>
+   <h4>📄 Si recibes una incapacidad</h4>
+   <p>Presenta la documentación correspondiente a Recursos Humanos dentro del plazo y siguiendo el procedimiento establecido por la empresa, para que pueda registrarse correctamente.</p>
+   <div class="notice">⚠️ Los procedimientos, requisitos y cobertura pueden variar según el tipo de atención y las disposiciones vigentes. Si tienes dudas, consulta con Recursos Humanos.</div>`},
+  contactos:{title:"Contactos de Recursos Humanos",html:`<h3>Contactos de Recursos Humanos</h3><p>Para consultas sobre recibos, permisos, documentación u otros procesos laborales, utiliza los canales de atención establecidos por Recursos Humanos.</p>`}
  };
- const [title,text]=data[tipo]||[];d.innerHTML=`<h3>${title}</h3><p>${text}</p>`;
+ const item=data[tipo];if(!item)return;
+ d.innerHTML=`${item.html}<button class="back-detail" type="button" onclick="document.getElementById('infoDetalle').classList.add('hidden')">Cerrar información</button>`;
+ d.scrollIntoView({behavior:"smooth",block:"start"});
 }
 function obtenerNombre(t){let m=t.match(/Empleado\s*:\s*(.*?)\s+Sueldo\s+Mensual/i);if(m?.[1])return m[1].trim();m=t.match(/Empleado\s*:\s*(.*?)(?=\s+(?:Departamento|Puesto|Sueldo))/i);return m?.[1]?.trim()||"Colaborador"}
 function obtenerCampo(t,campo){const next="(?=\\s+(?:Departamento|Puesto|Días\\s+Trabajados|Días\\s+Incapacidad|Faltas|Vacaciones|Feriados|Sueldo\\s+Base|Sueldo\\s+Mensual|Salario|Ingreso|Deducciones|Total|$))";const m=t.match(new RegExp(`${campo}\\s*:\\s*(.*?)${next}`,"i"));return m?.[1]?.trim().replace(/\s+/g," ")||""}

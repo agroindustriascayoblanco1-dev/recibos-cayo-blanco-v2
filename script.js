@@ -109,20 +109,10 @@ async function cargarDocumentosGenerales(){
 
 function abrirDocumentoGeneral(doc){
  if(!doc)return;
- const nombre=esc(doc.nombre||"Documento general");
- const descripcion=esc(doc.descripcion||"Documento publicado por Recursos Humanos.");
- const icono=esc(doc.icono||"📄");
  const archivo=String(doc.archivo||"");
+ if(!archivo)return;
  const url="DocumentosGenerales/"+encodeURIComponent(archivo).replace(/%2F/g,"/");
- $("sheetTitleWrap").innerHTML=`<span class="eyebrow">DOCUMENTO GENERAL</span><h2>${nombre}</h2>`;
- $("sheetContent").innerHTML=`
-  <div class="sheet-document"><div class="sheet-icon">${icono}</div><div><h3>${nombre}</h3><p>${descripcion}</p></div></div>
-  <p>Este documento está publicado por Recursos Humanos para consulta de los empleados.</p>
-  <a class="sheet-action" href="${esc(url)}" target="_blank" rel="noopener">📖 Abrir documento</a>
- `;
- $("sheetOverlay").classList.add("open");
- $("sheetOverlay").setAttribute("aria-hidden","false");
- document.body.classList.add("sheet-open");
+ window.open(url,"_blank","noopener");
 }
 
 async function cargarDocumentosPersonales(){

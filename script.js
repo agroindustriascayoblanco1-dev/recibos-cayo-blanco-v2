@@ -109,17 +109,42 @@ async function cargarDocumentosGenerales(){
 
 function abrirDocumentoGeneral(doc){
  if(!doc)return;
+
  const nombre=esc(doc.nombre||"Documento general");
  const descripcion=esc(doc.descripcion||"Documento publicado por Recursos Humanos.");
  const icono=esc(doc.icono||"📄");
  const archivo=String(doc.archivo||"");
  const url="DocumentosGenerales/"+encodeURIComponent(archivo).replace(/%2F/g,"/");
- $("sheetTitleWrap").innerHTML=`<span class="eyebrow">DOCUMENTO GENERAL</span><h2>${nombre}</h2>`;
- $("sheetContent").innerHTML=`
-  <div class="sheet-document"><div class="sheet-icon">${icono}</div><div><h3>${nombre}</h3><p>${descripcion}</p></div></div>
-  <p>Este documento está publicado por Recursos Humanos para consulta de los empleados.</p>
-  <a class="sheet-action" href="${esc(url)}" target="_blank" rel="noopener">📖 Abrir documento</a>
+
+ $("sheetTitleWrap").innerHTML=`
+  <span class="eyebrow">DOCUMENTO GENERAL</span>
+  <h2>${nombre}</h2>
  `;
+
+ $("sheetContent").innerHTML=`
+  <div class="sheet-document">
+   <div class="sheet-icon">${icono}</div>
+   <div>
+    <h3>${nombre}</h3>
+    <p>${descripcion}</p>
+   </div>
+  </div>
+
+  <div class="pdf-sheet-viewer">
+   <iframe
+    src="${esc(url)}#toolbar=1&navpanes=0&scrollbar=1"
+    title="${nombre}"
+    loading="lazy">
+   </iframe>
+  </div>
+
+  <div class="sheet-document-actions">
+   <a class="sheet-action" href="${esc(url)}" target="_blank" rel="noopener">
+    ↗ Abrir en pantalla completa
+   </a>
+  </div>
+ `;
+
  $("sheetOverlay").classList.add("open");
  $("sheetOverlay").setAttribute("aria-hidden","false");
  document.body.classList.add("sheet-open");

@@ -1,448 +1,92 @@
-// ======================================================
-// COA - PORTAL DE EMPLEADOS
-// ======================================================
-
-const PERIODOS = {
-    q1: {
-        nombre: "Quincena 1",
-        mes: "Agosto 2026",
-        periodoPago: "11 de julio al 25 de julio de 2026",
-        archivo: "RECIBOS QUINCENA 1.pdf"
-    },
-    q2: {
-        nombre: "Quincena 2",
-        mes: "Julio 2026",
-        periodoPago: "26 de junio al 10 de julio de 2026",
-        archivo: "RECIBOS QUINCENA 2.pdf"
-    }
+const PERIODOS={
+ q1:{nombre:"Quincena 1",mes:"Agosto 2026",archivo:"RECIBOS QUINCENA 1.pdf"},
+ q2:{nombre:"Quincena 2",mes:"Julio 2026",archivo:"RECIBOS QUINCENA 2.pdf"}
 };
+let empleadoActual=null,pdfActual=null,paginaEncontrada=null,quincenaActual=null;
+const $=id=>document.getElementById(id);
+document.addEventListener("DOMContentLoaded",init);
 
-// Documentos futuros. El nombre debe incluir el código.
-// Ejemplo: documentos/CBEP1341_constancia.pdf
-const TIPOS_DOCUMENTO = [
-    { clave: "constancia", nombre: "Constancia de trabajo", icono: "📄" },
-    { clave: "solicitud", nombre: "Solicitud", icono: "📝" },
-    { clave: "salario", nombre: "Constancia de salario", icono: "💰" },
-    { clave: "otros", nombre: "Otros documentos", icono: "📁" }
-];
-
-let empleadoActual = null;
-let pdfActual = null;
-let paginaEncontrada = null;
-let quincenaActual = null;
-
-const $ = id => document.getElementById(id);
-
-document.addEventListener("DOMContentLoaded", iniciar);
-
-function iniciar() {
-    if (window.pdfjsLib) {
-        pdfjsLib.GlobalWorkerOptions.workerSrc =
-            "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
-    }
-
-    $("mesQ1").textContent = PERIODOS.q1.mes;
-    $("mesQ2").textContent = PERIODOS.q2.mes;
-
-    $("buscar").addEventListener("click", acceder);
-    $("codigo").addEventListener("keydown", e => {
-        if (e.key === "Enter") acceder();
-    });
-
-    document.querySelectorAll(".periodo-card").forEach(btn => {
-        btn.addEventListener("click", () => abrirRecibo(btn.dataset.q));
-    });
-
-    $("btnRecibos").addEventListener("click", () => mostrarPantalla("pantallaRecibos"));
-    $("btnCarnet").addEventListener("click", () => mostrarCarnet());
-    $("btnSolicitudes").addEventListener("click", () => mostrarSolicitudes());
-    $("cerrarSesion").addEventListener("click", cerrarSesion);
-
-    $("volverRecibos").addEventListener("click", () => mostrarPantalla("pantallaRecibos"));
-    $("guardarRecibo").addEventListener("click", guardarRecibo);
-
-    document.querySelectorAll("[data-volver]").forEach(btn => {
-        btn.addEventListener("click", () => mostrarPantalla(btn.dataset.volver));
-    });
-
-    document.querySelectorAll("[data-modal]").forEach(btn => {
-        btn.addEventListener("click", () => abrirModal(btn.dataset.modal));
-    });
-
-    document.querySelectorAll("[data-cerrar-modal]").forEach(btn => {
-        btn.addEventListener("click", () => btn.closest(".modal").classList.add("oculto"));
-    });
-
-    document.querySelectorAll(".modal").forEach(modal => {
-        modal.addEventListener("click", e => {
-            if (e.target === modal) modal.classList.add("oculto");
-        });
-    });
+function init(){
+ if(window.pdfjsLib) pdfjsLib.GlobalWorkerOptions.workerSrc="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+ $("mesQ1").textContent=PERIODOS.q1.mes;$("mesQ2").textContent=PERIODOS.q2.mes;
+ $("buscar").onclick=acceder;$("codigo").onkeydown=e=>{if(e.key==="Enter")acceder()};
+ document.querySelectorAll("[data-screen]").forEach(b=>b.onclick=()=>show(b.dataset.screen));
+ document.querySelectorAll(".period-card").forEach(b=>b.onclick=()=>abrirRecibo(b.dataset.q));
+ $("btnCarnet").onclick=()=>{cargarCarnet();show("pantallaCarnet")};
+ $("btnRecibos").onclick=()=>show("pantallaRecibos");
+ $("cerrarSesion").onclick=logout;
+ document.querySelectorAll("[data-open]").forEach(b=>b.onclick=()=>window.open(b.dataset.open,"_blank"));
+ $("btnContrato").onclick=buscarContrato;
+ document.querySelectorAll("[data-info]").forEach(b=>b.onclick=()=>mostrarInfo(b.dataset.info));
 }
 
-async function acceder() {
-    const input = $("codigo");
-    const codigo = normalizar(input.value);
-
-    if (!codigo) {
-        mostrarMensaje("Escribe tu código de empleado.", true);
-        input.focus();
-        return;
-    }
-
-    if (codigo.length < 6) {
-        mostrarMensaje("Debes escribir el código completo.", true);
-        input.focus();
-        return;
-    }
-
-    $("buscar").disabled = true;
-    $("buscar").textContent = "Buscando...";
-    mostrarMensaje("🔎 Verificando código...");
-
-    try {
-        // Se consulta primero Quincena 1 para obtener los datos del empleado.
-        // Si no está allí, se intenta Quincena 2.
-        let encontrado = await buscarEmpleadoEnPeriodo(PERIODOS.q1, codigo);
-
-        if (!encontrado) {
-            encontrado = await buscarEmpleadoEnPeriodo(PERIODOS.q2, codigo);
-        }
-
-        if (!encontrado) {
-            mostrarMensaje("El código no fue encontrado en los recibos disponibles.", true);
-            return;
-        }
-
-        empleadoActual = {
-            codigo,
-            nombre: obtenerNombre(encontrado.texto),
-            departamento: obtenerCampo(encontrado.texto, "Departamento"),
-            puesto: obtenerCampo(encontrado.texto, "Puesto")
-        };
-
-        $("nombreEmpleado").textContent = empleadoActual.nombre;
-        $("codigoEmpleado").textContent = empleadoActual.codigo;
-
-        cargarDatosCarnet();
-        mostrarPantalla("pantallaPortal");
-    } catch (error) {
-        console.error(error);
-        mostrarMensaje("No se pudo consultar la información. Verifica que los PDF estén disponibles.", true);
-    } finally {
-        $("buscar").disabled = false;
-        $("buscar").textContent = "Continuar";
-    }
+function show(id){document.querySelectorAll(".screen").forEach(s=>s.classList.remove("active"));$(id).classList.add("active");window.scrollTo({top:0,behavior:"smooth"});if(id==="pantallaDocumentos")cargarDocumentos()}
+function msg(t,error=false){$("mensajeAcceso").textContent=t;$("mensajeAcceso").className="message"+(error?" error":"")}
+async function acceder(){
+ const codigo=normalizar($("codigo").value);
+ if(!codigo){msg("Escribe tu código de empleado.",true);return}
+ if(codigo.length<6){msg("Debes escribir el código completo.",true);return}
+ $("buscar").disabled=true;$("buscar").textContent="Buscando...";msg("🔎 Verificando código...");
+ try{
+  let r=await buscarEmpleado(PERIODOS.q1,codigo);if(!r)r=await buscarEmpleado(PERIODOS.q2,codigo);
+  if(!r){msg("El código no fue encontrado en los recibos disponibles.",true);return}
+  empleadoActual={codigo,nombre:obtenerNombre(r.texto),departamento:obtenerCampo(r.texto,"Departamento"),puesto:obtenerCampo(r.texto,"Puesto")};
+  $("nombreEmpleado").textContent=empleadoActual.nombre;$("codigoEmpleado").textContent=codigo;
+  cargarAvatar();cargarCarnet();show("pantallaPortal");
+ }catch(e){console.error(e);msg("No se pudo consultar la información. Verifica que los PDF estén disponibles.",true)}
+ finally{$("buscar").disabled=false;$("buscar").textContent="Continuar"}
 }
-
-async function buscarEmpleadoEnPeriodo(periodo, codigo) {
-    const pdf = await obtenerPDF(periodo.archivo);
-    const buscado = normalizar(codigo);
-
-    for (let paginaNumero = 1; paginaNumero <= pdf.numPages; paginaNumero++) {
-        const pagina = await pdf.getPage(paginaNumero);
-        const contenido = await pagina.getTextContent();
-
-        const texto = contenido.items.map(item => item.str || "").join(" ");
-        const normalizado = normalizar(texto);
-
-        if (normalizado.includes(buscado)) {
-            return {
-                pdf,
-                pagina: paginaNumero,
-                texto,
-                periodo
-            };
-        }
-    }
-
-    return null;
+async function buscarEmpleado(periodo,codigo){
+ const pdf=await pdfjsLib.getDocument({url:periodo.archivo}).promise;
+ for(let n=1;n<=pdf.numPages;n++){const p=await pdf.getPage(n),c=await p.getTextContent(),texto=c.items.map(x=>x.str||"").join(" ");if(normalizar(texto).includes(normalizar(codigo)))return{pdf,pagina:n,texto}}
+ return null
 }
-
-async function abrirRecibo(clave) {
-    if (!empleadoActual) return;
-
-    const periodo = PERIODOS[clave];
-    quincenaActual = clave;
-
-    mostrarPantalla("pantallaRecibo");
-    $("visorTitulo").textContent = `${periodo.nombre} · ${periodo.mes}`;
-
-    const visor = document.querySelector(".visor-pdf");
-    visor.innerHTML = `<div class="visor-mensaje">🔄 Buscando tu recibo...</div>`;
-
-    try {
-        const encontrado = await buscarEmpleadoEnPeriodo(periodo, empleadoActual.codigo);
-
-        if (!encontrado) {
-            visor.innerHTML = `<div class="visor-mensaje error-box">No hay un recibo disponible para tu código en ${periodo.nombre}.</div>`;
-            return;
-        }
-
-        pdfActual = encontrado.pdf;
-        paginaEncontrada = encontrado.pagina;
-
-        await renderizarPagina(encontrado.pdf, encontrado.pagina);
-    } catch (error) {
-        console.error(error);
-        visor.innerHTML = `<div class="visor-mensaje error-box">No se pudo cargar el recibo.</div>`;
-    }
+async function abrirRecibo(key){
+ if(!empleadoActual)return;quincenaActual=key;const periodo=PERIODOS[key];show("pantallaRecibo");$("visorTitulo").textContent=`${periodo.nombre} · ${periodo.mes}`;const v=document.querySelector(".pdf-viewer");v.innerHTML='<div class="viewer-message">🔄 Buscando tu recibo...</div>';
+ try{const r=await buscarEmpleado(periodo,empleadoActual.codigo);if(!r){v.innerHTML=`<div class="viewer-message">No hay un recibo disponible para tu código en ${periodo.nombre}.</div>`;return}pdfActual=r.pdf;paginaEncontrada=r.pagina;await renderPage(r.pdf,r.pagina)}catch(e){console.error(e);v.innerHTML='<div class="viewer-message">No se pudo cargar el recibo.</div>'}
 }
-
-async function renderizarPagina(pdf, numeroPagina) {
-    const pagina = await pdf.getPage(numeroPagina);
-    const contenedor = document.querySelector(".visor-pdf");
-
-    const base = pagina.getViewport({ scale: 1 });
-    const ancho = Math.min(contenedor.clientWidth || 900, 1000);
-    const escala = Math.min(2, Math.max(1, ancho / base.width));
-    const viewport = pagina.getViewport({ scale: escala });
-
-    const canvas = document.createElement("canvas");
-    canvas.width = viewport.width;
-    canvas.height = viewport.height;
-    canvas.style.width = "100%";
-    canvas.style.height = "auto";
-
-    contenedor.innerHTML = "";
-    contenedor.appendChild(canvas);
-
-    await pagina.render({
-        canvasContext: canvas.getContext("2d"),
-        viewport
-    }).promise;
+async function renderPage(pdf,n){const p=await pdf.getPage(n),v=document.querySelector(".pdf-viewer"),base=p.getViewport({scale:1}),scale=Math.min(2,Math.max(1,(v.clientWidth||900)/base.width)),vp=p.getViewport({scale}),c=document.createElement("canvas");c.width=vp.width;c.height=vp.height;c.style.width="100%";v.innerHTML="";v.appendChild(c);await p.render({canvasContext:c.getContext("2d"),viewport:vp}).promise}
+async function guardarRecibo(){
+ if(!pdfActual||!paginaEncontrada||!empleadoActual)return;
+ try{const p=await pdfActual.getPage(paginaEncontrada),vp=p.getViewport({scale:2}),c=document.createElement("canvas");c.width=vp.width;c.height=vp.height;await p.render({canvasContext:c.getContext("2d"),viewport:vp}).promise;const a=document.createElement("a");a.href=c.toDataURL("image/jpeg",.95);a.download=`${empleadoActual.codigo}_${quincenaActual}.jpg`;a.click()}catch(e){alert("No fue posible guardar el recibo.")}
 }
+$("guardarRecibo").onclick=guardarRecibo;
 
-async function guardarRecibo() {
-    if (!pdfActual || !paginaEncontrada || !empleadoActual) return;
-
-    try {
-        const pagina = await pdfActual.getPage(paginaEncontrada);
-        const viewport = pagina.getViewport({ scale: 2 });
-
-        const canvas = document.createElement("canvas");
-        canvas.width = viewport.width;
-        canvas.height = viewport.height;
-
-        await pagina.render({
-            canvasContext: canvas.getContext("2d"),
-            viewport
-        }).promise;
-
-        const enlace = document.createElement("a");
-        enlace.href = canvas.toDataURL("image/jpeg", 0.95);
-        enlace.download = `${empleadoActual.codigo}_${quincenaActual}.jpg`;
-        enlace.click();
-    } catch (error) {
-        console.error(error);
-        alert("No fue posible guardar el recibo.");
-    }
+function cargarCarnet(){
+ if(!empleadoActual)return;
+ $("carnetNombre").textContent=empleadoActual.nombre||"Colaborador";$("carnetCodigo").textContent=empleadoActual.codigo||"—";$("carnetDepartamento").textContent=empleadoActual.departamento||"—";$("carnetPuesto").textContent=empleadoActual.puesto||"—";cargarFoto(empleadoActual.codigo)
 }
-
-function mostrarCarnet() {
-    cargarDatosCarnet();
-    mostrarPantalla("pantallaCarnet");
+function cargarAvatar(){const a=$("avatarMini");const img=new Image();img.onload=()=>{a.innerHTML="";a.appendChild(img)};img.onerror=()=>{a.textContent="👤"};img.src=`fotos/${encodeURIComponent(empleadoActual.codigo)}.png?v=50`}
+function cargarFoto(codigo){
+ const box=$("fotoCarnet");box.innerHTML='<span>👤</span>';let i=0;
+ const probar=()=>{if(i>=3)return;const ext=["png","jpg","jpeg"][i++],img=new Image();img.className="foto-empleado";img.alt="Fotografía del empleado";img.onload=()=>{box.innerHTML="";box.appendChild(img)};img.onerror=probar;img.src=`fotos/${encodeURIComponent(codigo)}.${ext}?v=50`};probar();
 }
-
-function cargarDatosCarnet() {
-    if (!empleadoActual) return;
-
-    // El carnet queda limitado estrictamente a: nombre, código, departamento y puesto.
-    const datos = document.querySelector(".carnet-datos");
-    if (datos) {
-        datos.innerHTML = `
-            <span class="carnet-label">NOMBRE DEL COLABORADOR</span>
-            <h3 id="carnetNombre">${escaparHTML(empleadoActual.nombre || "Colaborador")}</h3>
-            <div class="carnet-linea">
-                <div>
-                    <span class="carnet-label">CÓDIGO</span>
-                    <strong id="carnetCodigo">${escaparHTML(empleadoActual.codigo || "—")}</strong>
-                </div>
-                <div>
-                    <span class="carnet-label">DEPARTAMENTO</span>
-                    <strong id="carnetDepartamento">${escaparHTML(empleadoActual.departamento || "—")}</strong>
-                </div>
-            </div>
-            <div class="carnet-puesto">
-                <span class="carnet-label">PUESTO</span>
-                <strong id="carnetPuesto">${escaparHTML(empleadoActual.puesto || "—")}</strong>
-            </div>
-        `;
-    }
-
-    cargarFotoCarnet(empleadoActual.codigo);
+async function cargarDocumentos(){
+ const box=$("listaDocumentos");if(!empleadoActual)return;
+ box.innerHTML='<div class="empty">🔄 Buscando tus documentos...</div>';
+ const tipos=[["constancia","📄","Constancia de trabajo"],["solicitud","📝","Solicitud"],["salario","💰","Constancia de salario"],["otros","📁","Otros documentos"]];
+ const found=[];
+ for(const [key,icon,name] of tipos){for(const dir of ["documentos","Documentos"]){const path=`${dir}/${empleadoActual.codigo}_${key}.pdf`;try{const r=await fetch(path,{cache:"no-store"});if(r.ok){found.push({icon,name,path});break}}catch(e){}}}
+ if(!found.length){box.innerHTML='<div class="empty">📂 No tienes documentos personales disponibles por ahora.</div>';return}
+ box.innerHTML=found.map(x=>`<article class="doc-card"><span>${x.icon}</span><div><strong>${x.name}</strong><small>Documento asociado a ${esc(empleadoActual.codigo)}</small></div><a class="outline link" href="${x.path}" target="_blank">Abrir</a></article>`).join("")
 }
-
-function cargarFotoCarnet(codigo) {
-    const fotoBox = $("fotoCarnet") || document.querySelector(".foto-box");
-    if (!fotoBox || !codigo) return;
-
-    // Estado inicial: solo silueta. No se muestra ningún mensaje de "foto pendiente".
-    fotoBox.innerHTML = `
-        <div class="silueta" aria-label="Sin fotografía">
-            <span>👤</span>
-        </div>
-    `;
-
-    const extensiones = ["png", "jpg", "jpeg"];
-    let indice = 0;
-
-    function probarSiguiente() {
-        if (indice >= extensiones.length) return;
-
-        const imagen = new Image();
-        const extension = extensiones[indice++];
-        imagen.className = "foto-empleado";
-        imagen.alt = `Fotografía de ${codigo}`;
-        imagen.onload = () => {
-            // Al existir la foto, reemplaza por completo la silueta.
-            // No queda texto ni aviso debajo de la fotografía.
-            fotoBox.innerHTML = "";
-            fotoBox.appendChild(imagen);
-        };
-        imagen.onerror = probarSiguiente;
-        imagen.src = `fotos/${encodeURIComponent(codigo)}.${extension}?v=40`;
-    }
-
-    probarSiguiente();
+async function buscarContrato(){
+ if(!empleadoActual)return;
+ const rutas=[`documentos/${empleadoActual.codigo}_contrato.pdf`,`Documentos/${empleadoActual.codigo}_contrato.pdf`];
+ for(const p of rutas){try{const r=await fetch(p,{cache:"no-store"});if(r.ok){window.open(p,"_blank");return}}catch(e){}}
+ alert("Tu contrato todavía no está disponible en el portal.")
 }
-
-function mostrarSolicitudes() {
-    mostrarPantalla("pantallaSolicitudes");
-    cargarDocumentos();
+function mostrarInfo(tipo){
+ const d=$("infoDetalle");d.classList.remove("hidden");
+ const data={
+ rap:["RAP","El Régimen de Aportaciones Privadas (RAP) administra aportaciones y servicios destinados a apoyar a los trabajadores. Consulta con Recursos Humanos si necesitas información sobre tus aportaciones, beneficios o trámites."],
+ ihss:["IHSS","El Instituto Hondureño de Seguridad Social (IHSS) brinda servicios de seguridad social. Si necesitas orientación sobre atención, afiliación o trámites relacionados, consulta los canales oficiales o solicita apoyo a Recursos Humanos."],
+ contactos:["Contactos de Recursos Humanos","Para consultas sobre recibos, permisos, documentación u otros procesos laborales, utiliza los canales de atención establecidos por Recursos Humanos. Esta sección puede actualizarse cuando RRHH publique nuevos contactos."]
+ };
+ const [title,text]=data[tipo]||[];d.innerHTML=`<h3>${title}</h3><p>${text}</p>`;
 }
-
-async function cargarDocumentos() {
-    const contenedor = $("listaDocumentos");
-    const codigo = empleadoActual?.codigo;
-
-    if (!codigo) {
-        contenedor.innerHTML = "";
-        return;
-    }
-
-    contenedor.innerHTML = `<div class="visor-mensaje">🔄 Buscando tus documentos...</div>`;
-
-    // Esperamos a comprobar TODOS los documentos antes de mostrar
-    // el mensaje de "sin documentos". Así un PDF válido no desaparece
-    // por culpa de otro archivo que todavía no existe.
-    const encontrados = await Promise.all(
-        TIPOS_DOCUMENTO.map(async doc => {
-            const rutas = [
-                `Documentos/${codigo}_${doc.clave}.pdf`,
-                `documentos/${codigo}_${doc.clave}.pdf`
-            ];
-
-            for (const archivo of rutas) {
-                try {
-                    const respuesta = await fetch(archivo, {
-                        method: "GET",
-                        cache: "no-store"
-                    });
-
-                    if (respuesta.ok) {
-                        return { doc, archivo };
-                    }
-                } catch (error) {
-                    // Probar la siguiente ruta.
-                }
-            }
-
-            return null;
-        })
-    );
-
-    const documentosDisponibles = encontrados.filter(Boolean);
-
-    if (!documentosDisponibles.length) {
-        contenedor.innerHTML = `
-            <div class="sin-documentos">
-                <span>📂</span>
-                <h3>No tienes documentos disponibles</h3>
-                <p>Cuando Recursos Humanos publique una constancia, solicitud u otro documento para tu código, aparecerá aquí.</p>
-            </div>
-        `;
-        return;
-    }
-
-    contenedor.innerHTML = documentosDisponibles.map(({ doc, archivo }) => `
-        <article class="documento-card">
-            <span class="documento-icon">${doc.icono}</span>
-            <div>
-                <strong>${escaparHTML(doc.nombre)}</strong>
-                <small>Documento asociado a ${escaparHTML(codigo)}</small>
-            </div>
-            <a href="${archivo}" target="_blank" rel="noopener" class="documento-boton">Abrir</a>
-        </article>
-    `).join("");
-}
-
-function obtenerPDF(archivo) {
-    if (!window.pdfjsLib) throw new Error("PDF.js no está disponible.");
-    return pdfjsLib.getDocument({ url: archivo }).promise;
-}
-
-function obtenerNombre(texto) {
-    const m1 = texto.match(/Empleado\s*:\s*(.*?)\s+Sueldo\s+Mensual/i);
-    if (m1?.[1]) return m1[1].trim();
-
-    const m2 = texto.match(/Empleado\s*:\s*(.*?)(?=\s+(?:Departamento|Puesto|Sueldo))/i);
-    if (m2?.[1]) return m2[1].trim();
-
-    return "Colaborador";
-}
-
-function obtenerCampo(texto, campo) {
-    const siguiente = "(?=\\s+(?:Departamento|Puesto|Días\\s+Trabajados|Días\\s+Incapacidad|Faltas|Renumerados|Vacaciones|Feriados|Séptimo|Sueldo\\s+Base|Sueldo\\s+Mensual|Salario|Ingreso|Deducciones|Total|Nombre\\s+Pago|Valor|$))";
-    const regex = new RegExp(`${campo}\\s*:\\s*(.*?)${siguiente}`, "i");
-    const match = texto.match(regex);
-    return match?.[1]?.trim().replace(/\\s+/g, " ") || "";
-}
-
-function escaparHTML(texto) {
-    return String(texto ?? "")
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
-}
-
-function normalizar(texto) {
-    return String(texto || "")
-        .toUpperCase()
-        .replace(/\s+/g, "")
-        .replace(/[^A-Z0-9]/g, "");
-}
-
-function mostrarMensaje(texto, error = false) {
-    const elemento = $("mensaje");
-    elemento.textContent = texto;
-    elemento.className = `mensaje ${error ? "error" : "ok"}`;
-}
-
-function mostrarPantalla(id) {
-    document.querySelectorAll(".pantalla").forEach(p => p.classList.add("oculto"));
-    const pantalla = $(id);
-    if (pantalla) {
-        pantalla.classList.remove("oculto");
-        window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-}
-
-function cerrarSesion() {
-    empleadoActual = null;
-    pdfActual = null;
-    paginaEncontrada = null;
-    quincenaActual = null;
-
-    $("codigo").value = "";
-    $("mensaje").textContent = "";
-    mostrarPantalla("pantallaAcceso");
-    $("codigo").focus();
-}
-
-function abrirModal(id) {
-    const modal = $(id);
-    if (modal) modal.classList.remove("oculto");
-}
+function obtenerNombre(t){let m=t.match(/Empleado\s*:\s*(.*?)\s+Sueldo\s+Mensual/i);if(m?.[1])return m[1].trim();m=t.match(/Empleado\s*:\s*(.*?)(?=\s+(?:Departamento|Puesto|Sueldo))/i);return m?.[1]?.trim()||"Colaborador"}
+function obtenerCampo(t,campo){const next="(?=\\s+(?:Departamento|Puesto|Días\\s+Trabajados|Días\\s+Incapacidad|Faltas|Vacaciones|Feriados|Sueldo\\s+Base|Sueldo\\s+Mensual|Salario|Ingreso|Deducciones|Total|$))";const m=t.match(new RegExp(`${campo}\\s*:\\s*(.*?)${next}`,"i"));return m?.[1]?.trim().replace(/\s+/g," ")||""}
+function normalizar(t){return String(t||"").toUpperCase().replace(/\s+/g,"").replace(/[^A-Z0-9]/g,"")}
+function esc(t){return String(t??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
+function logout(){empleadoActual=null;pdfActual=null;paginaEncontrada=null;$("codigo").value="";msg("");show("pantallaAcceso")}

@@ -78,7 +78,55 @@ function cargarFoto(codigo){
  const probar=()=>{if(i>=3)return;const ext=["png","jpg","jpeg"][i++],img=new Image();img.className="foto-empleado";img.alt="Fotografía del empleado";img.onload=()=>{box.innerHTML="";box.appendChild(img)};img.onerror=probar;img.src=`fotos/${encodeURIComponent(codigo)}.${ext}?v=60`};probar()
 }
 async function cargarDocumentos(){
- const box=$("listaDocumentos");if(!empleadoActual)return;
+ if(!empleadoActual)return;
+ await Promise.all([cargarDocumentosGenerales(),cargarDocumentosPersonales()]);
+}
+
+async function cargarDocumentosGenerales(){
+ const box=$("listaDocumentosGenerales");if(!box)return;
+ box.innerHTML='<div class="empty">🔄 Cargando documentos generales...</div>';
+ try{
+  const r=await fetch("DocumentosGenerales/documentos.json",{cache:"no-store"});
+  if(!r.ok)throw new Error("No se pudo cargar documentos.json");
+  const docs=await r.json();
+  if(!Array.isArray(docs)||!docs.length){
+   box.innerHTML='<div class="empty">📂 No hay documentos generales publicados por ahora.</div>';return;
+  }
+  box.innerHTML=docs.map((doc,index)=>{
+   const nombre=esc(doc.nombre||"Documento general");
+   const descripcion=esc(doc.descripcion||"Documento publicado por Recursos Humanos.");
+   const icono=esc(doc.icono||"📄");
+   return `<article class="doc-card"><span>${icono}</span><div><strong>${nombre}</strong><small>${descripcion}</small></div><button class="outline general-doc-btn" data-general-doc="${index}">Ver documento</button></article>`;
+  }).join("");
+  box.querySelectorAll("[data-general-doc]").forEach(btn=>{
+   btn.onclick=()=>abrirDocumentoGeneral(docs[Number(btn.dataset.generalDoc)]);
+  });
+ }catch(e){
+  console.error(e);
+  box.innerHTML='<div class="empty">⚠️ No se pudieron cargar los documentos generales.</div>';
+ }
+}
+
+function abrirDocumentoGeneral(doc){
+ if(!doc)return;
+ const nombre=esc(doc.nombre||"Documento general");
+ const descripcion=esc(doc.descripcion||"Documento publicado por Recursos Humanos.");
+ const icono=esc(doc.icono||"📄");
+ const archivo=String(doc.archivo||"");
+ const url="DocumentosGenerales/"+encodeURIComponent(archivo).replace(/%2F/g,"/");
+ $("sheetTitleWrap").innerHTML=`<span class="eyebrow">DOCUMENTO GENERAL</span><h2>${nombre}</h2>`;
+ $("sheetContent").innerHTML=`
+  <div class="sheet-document"><div class="sheet-icon">${icono}</div><div><h3>${nombre}</h3><p>${descripcion}</p></div></div>
+  <p>Este documento está publicado por Recursos Humanos para consulta de los empleados.</p>
+  <a class="sheet-action" href="${esc(url)}" target="_blank" rel="noopener">📖 Abrir documento</a>
+ `;
+ $("sheetOverlay").classList.add("open");
+ $("sheetOverlay").setAttribute("aria-hidden","false");
+ document.body.classList.add("sheet-open");
+}
+
+async function cargarDocumentosPersonales(){
+ const box=$("listaDocumentos");if(!box)return;
  box.innerHTML='<div class="empty">🔄 Buscando tus documentos...</div>';
  const tipos=[["constancia","📄","Constancia de trabajo"],["solicitud","📝","Solicitud"],["salario","💰","Constancia de salario"],["otros","📁","Otros documentos"]];
  const found=[];

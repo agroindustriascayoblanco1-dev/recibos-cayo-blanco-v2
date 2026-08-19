@@ -1,976 +1,121 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portal de Empleados | Agroindustrias Cayo Blanco</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <link rel="stylesheet" href="style.css?v=40">
-
-<style>
-.contactos-lista{display:flex;flex-direction:column;gap:10px;margin-top:18px}
-.contacto-card{display:flex;align-items:center;gap:12px;padding:12px 10px;border:1px solid #dbe8e4;border-radius:15px;background:#fff;text-decoration:none;color:inherit;transition:transform .15s ease,box-shadow .15s ease}
-.contacto-card:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(0,0,0,.08)}
-.contacto-icono{width:38px;height:38px;border-radius:11px;background:#e8f8f2;display:flex;align-items:center;justify-content:center;font-size:18px}
-.contacto-datos{display:flex;flex-direction:column;flex:1;min-width:0}
-.contacto-datos strong{font-size:15px;color:#173e50}
-.contacto-datos small{font-size:11px;color:#71808a;margin-top:2px}
-.contacto-datos b{font-size:13px;color:#009b72;margin-top:2px}
-.contacto-llamar{width:38px;height:38px;border-radius:11px;background:#13b989;color:#fff;display:flex;align-items:center;justify-content:center;font-size:17px}
-.contactos-disponibles{display:flex;align-items:center;gap:10px;margin-top:14px;padding:11px;border:1px solid #d5eee5;border-radius:13px;background:#f0faf6;color:#009b72}
-.contactos-disponibles>span{width:28px;height:28px;border-radius:50%;background:#14b88a;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700}
-.contactos-disponibles small{color:#27806b;font-size:11px;line-height:1.35}
-
-.informacion-importante{overscroll-behavior:contain;-webkit-overflow-scrolling:touch;scrollbar-width:thin}
-.informacion-importante .modal-cerrar{position:sticky;top:0;z-index:5;margin-left:auto;display:block}
-
-</style>
-
-
-<style>
-.informacion-importante{max-width:720px;max-height:78vh;overflow-y:auto;box-sizing:border-box}
-.intro-importante{color:#667780;line-height:1.5;margin-bottom:18px}
-.importante-lista{display:flex;flex-direction:column;gap:10px}
-.importante-card{display:flex;gap:12px;align-items:flex-start;padding:13px;border:1px solid #dce9e5;border-radius:14px;background:#fff}
-.importante-icono{width:38px;height:38px;min-width:38px;border-radius:11px;background:#eaf8f3;display:flex;align-items:center;justify-content:center;font-size:18px}
-.importante-card strong{display:block;color:#173e50;font-size:14px;margin-bottom:4px}
-.importante-card p{margin:0;color:#687981;font-size:11px;line-height:1.45}
-.aviso-importante{display:flex;align-items:flex-start;gap:10px;margin-top:15px;padding:12px;border:1px solid #f0e2b5;border-radius:13px;background:#fff9e7}
-.aviso-importante>span{font-size:18px}
-.aviso-importante small{color:#76652f;font-size:11px;line-height:1.4}
-</style>
-
-
-<style id="mejora-apariencia-v1">
-/* ===== RENOVACIÓN VISUAL — NO CAMBIA FUNCIONALIDAD ===== */
-:root{
-    --navy:#123b4d;
-    --navy-dark:#0b2d3a;
-    --navy-soft:#2b6278;
-    --green:#16b889;
-    --green-dark:#078f6b;
-    --green-soft:#e8f8f2;
-    --background:#f3f7f8;
-    --border:#dbe6ea;
-    --text:#183541;
-    --text-soft:#71828b;
-    --shadow:0 12px 32px rgba(15,53,68,.07);
-    --shadow-large:0 22px 55px rgba(15,53,68,.10);
-}
-
-/* Fondo y contenedor */
-body{
-    background:
-        radial-gradient(circle at 8% 0%,rgba(22,184,137,.07),transparent 27%),
-        radial-gradient(circle at 94% 8%,rgba(42,182,223,.06),transparent 24%),
-        linear-gradient(180deg,#f1f6f8 0%,#fafcfc 100%);
-}
-.contenedor{
-    width:min(1160px,92%);
-    margin:36px auto 58px;
-}
-
-/* Encabezado */
-.encabezado{
-    min-height:82px;
-    padding:11px clamp(18px,5vw,76px);
-    background:rgba(255,255,255,.92);
-    backdrop-filter:blur(12px);
-    box-shadow:0 8px 28px rgba(18,52,66,.055);
-}
-.encabezado::after{
-    height:3px;
-    opacity:.9;
-}
-.logo-img{
-    width:56px;
-    height:56px;
-    border-radius:16px;
-}
-.empresa h1{
-    font-size:17px;
-    letter-spacing:.15px;
-}
-.empresa p{
-    font-size:10px;
-}
-
-/* Acceso */
-.hero-acceso{
-    gap:48px;
-    padding:52px;
-    border-radius:32px;
-    border:1px solid rgba(219,230,234,.9);
-    box-shadow:var(--shadow-large);
-}
-.hero-texto h2{
-    font-size:clamp(45px,6vw,74px);
-    letter-spacing:-3.4px;
-}
-.acceso-card{
-    padding:34px;
-    border-radius:26px;
-    background:linear-gradient(145deg,#fff,#f7fbfa);
-    box-shadow:0 16px 38px rgba(18,52,66,.08);
-}
-.icono-acceso{
-    width:54px;height:54px;
-    border-radius:17px;
-}
-#buscar{
-    min-width:112px;
-}
-
-/* Barra del colaborador */
-.perfil-barra{
-    padding:18px 21px;
-    margin-bottom:34px;
-    border-radius:22px;
-    box-shadow:var(--shadow);
-    background:rgba(255,255,255,.94);
-}
-.avatar-mini{
-    width:54px;height:54px;
-    border-radius:17px;
-}
-.boton-secundario{
-    padding:10px 16px;
-    border-radius:12px;
-}
-
-/* Títulos */
-.portal-titulo{
-    margin-bottom:24px;
-}
-.portal-titulo h2,.subcabecera h2,.informacion-final h2{
-    font-size:clamp(29px,4vw,40px);
-    letter-spacing:-1.5px;
-}
-.portal-titulo p,.informacion-final>p,.descripcion-seccion{
-    max-width:680px;
-    font-size:12px;
-}
-
-/* Tarjetas principales */
-.menu-grid{
-    gap:18px;
-}
-.menu-card{
-    min-height:145px;
-    padding:24px;
-    border-radius:23px;
-    border:1px solid #d9e5e9;
-    box-shadow:0 9px 25px rgba(18,52,66,.055);
-    position:relative;
-    overflow:hidden;
-}
-.menu-card::after{
-    content:"";
-    position:absolute;
-    left:0;right:0;bottom:0;
-    height:3px;
-    opacity:0;
-    transform:scaleX(.7);
-    transition:.25s ease;
-}
-.menu-card.verde::after{background:var(--green)}
-.menu-card.azul::after{background:var(--blue)}
-.menu-card.amarillo::after{background:var(--yellow)}
-.menu-card:hover{
-    transform:translateY(-5px);
-    border-color:#cbdde2;
-    box-shadow:0 18px 40px rgba(18,52,66,.11);
-}
-.menu-card:hover::after{
-    opacity:1;
-    transform:scaleX(1);
-}
-.menu-icon{
-    width:56px;height:56px;
-    border-radius:17px;
-    font-size:25px;
-    transition:.25s ease;
-}
-.menu-card:hover .menu-icon{
-    transform:scale(1.05) rotate(-2deg);
-}
-.menu-card strong{
-    font-size:16px;
-    letter-spacing:-.15px;
-}
-.menu-card small{
-    margin-top:6px;
-    font-size:10px;
-}
-.menu-card b{
-    width:32px;height:32px;
-    display:grid;
-    place-items:center;
-    border-radius:50%;
-    background:#f2f7f8;
-    transition:.25s ease;
-}
-.menu-card:hover b{
-    background:var(--green-soft);
-    color:var(--green-dark);
-    transform:translateX(3px);
-}
-
-/* Información adicional */
-.informacion-final{
-    margin-top:46px;
-    padding-top:34px;
-}
-.info-grid{
-    grid-template-columns:repeat(4,1fr);
-    gap:14px;
-    margin-top:22px;
-}
-.info-card{
-    min-height:145px;
-    padding:19px;
-    border-radius:19px;
-    border:1px solid #dce7eb;
-    background:rgba(255,255,255,.88);
-    box-shadow:0 5px 17px rgba(18,52,66,.035);
-    position:relative;
-    overflow:hidden;
-}
-.info-card::after{
-    content:"";
-    position:absolute;
-    inset:auto 0 0;
-    height:2px;
-    background:linear-gradient(90deg,var(--green),var(--blue));
-    opacity:0;
-    transition:.2s ease;
-}
-.info-card:hover{
-    transform:translateY(-4px);
-    border-color:#cbdde2;
-    box-shadow:0 14px 30px rgba(18,52,66,.09);
-}
-.info-card:hover::after{opacity:1}
-.info-card>span{
-    width:42px;height:42px;
-    display:grid;
-    place-items:center;
-    border-radius:13px;
-    background:#f0f7f8;
-    font-size:20px;
-}
-.info-card strong{
-    font-size:11px;
-    line-height:1.35;
-}
-.info-card small{
-    font-size:9px;
-    line-height:1.4;
-}
-
-/* Subpantallas */
-.subcabecera{
-    padding-bottom:16px;
-    border-bottom:1px solid var(--border);
-}
-.volver{
-    border-radius:12px;
-    padding:10px 15px;
-    transition:.2s ease;
-}
-.volver:hover{
-    transform:translateX(-2px);
-    box-shadow:0 7px 18px rgba(18,52,66,.08);
-}
-
-/* Modales: más limpios sin cambiar su contenido */
-.modal-box{
-    border-radius:25px !important;
-    border:1px solid #dce7eb !important;
-    box-shadow:0 25px 70px rgba(10,43,57,.18) !important;
-}
-.modal-icon{
-    border-radius:16px !important;
-}
-
-/* Responsive */
-@media (max-width:900px){
-    .hero-acceso{grid-template-columns:1fr;gap:28px;padding:34px}
-    .menu-grid{grid-template-columns:1fr}
-    .info-grid{grid-template-columns:repeat(2,1fr)}
-}
-@media (max-width:600px){
-    .encabezado{min-height:72px}
-    .confidencial-top{display:none}
-    .contenedor{width:94%;margin:22px auto 38px}
-    .hero-acceso{padding:25px;border-radius:24px}
-    .hero-texto h2{font-size:45px;letter-spacing:-2.5px}
-    .acceso-card{padding:24px;border-radius:21px}
-    .fila-codigo{flex-direction:column}
-    #buscar{height:45px}
-    .perfil-barra{padding:15px;margin-bottom:25px}
-    .perfil-identidad h2{font-size:15px}
-    .menu-card{min-height:125px;padding:20px}
-    .info-grid{grid-template-columns:1fr}
-    .info-card{min-height:125px}
-}
-</style>
-
-
-<style id="mejora-apariencia-v2">
-/* =========================================================
-   APARIENCIA V2 — MÁS COLOR, MENOS ESPACIO EN BLANCO
-   NO MODIFICA LA LÓGICA NI LOS ID EXISTENTES
-   ========================================================= */
-
-:root{
-  --cb-navy:#123e50;
-  --cb-navy-2:#0b2f3d;
-  --cb-green:#11a978;
-  --cb-green-2:#0a8f69;
-  --cb-mint:#e5f6f0;
-  --cb-bg:#edf4f5;
-  --cb-card:#ffffff;
-  --cb-line:#d3e1e5;
-  --cb-muted:#6e8088;
-}
-
-/* Fondo general */
-body{
-  background:
-    radial-gradient(circle at 8% 8%,rgba(17,169,120,.13),transparent 24%),
-    radial-gradient(circle at 92% 18%,rgba(18,62,80,.10),transparent 27%),
-    linear-gradient(135deg,#e9f2f3 0%,#f5f9f9 52%,#e9f3f1 100%);
-  color:var(--cb-navy);
-}
-
-/* Encabezado más presente */
-.encabezado{
-  background:linear-gradient(115deg,var(--cb-navy-2),var(--cb-navy));
-  color:#fff;
-  border-bottom:0;
-  box-shadow:0 10px 30px rgba(11,47,61,.16);
-}
-.encabezado::after{
-  background:linear-gradient(90deg,var(--cb-green),#63d7b1);
-  height:4px;
-}
-.empresa h1{color:#fff}
-.empresa p{color:#cce3e5}
-.confidencial-top{color:#d8efea}
-
-/* CONTENEDOR DE ACCESO: menos blanco y más personalidad */
-.hero-acceso{
-  position:relative;
-  overflow:hidden;
-  grid-template-columns:minmax(0,1.08fr) minmax(360px,.92fr);
-  gap:34px;
-  padding:48px;
-  background:
-    linear-gradient(125deg,#dfeeed 0%,#f4f8f8 54%,#e7f2f0 100%);
-  border:1px solid rgba(180,208,207,.75);
-  box-shadow:0 24px 55px rgba(18,62,80,.12);
-}
-.hero-acceso::before{
-  content:"";
-  position:absolute;
-  width:310px;height:310px;
-  border-radius:50%;
-  right:33%;top:-190px;
-  background:rgba(17,169,120,.10);
-  pointer-events:none;
-}
-.hero-acceso::after{
-  content:"";
-  position:absolute;
-  width:230px;height:230px;
-  border-radius:50%;
-  left:-130px;bottom:-150px;
-  background:rgba(18,62,80,.08);
-  pointer-events:none;
-}
-.hero-texto,.acceso-card{position:relative;z-index:1}
-
-/* Título: un solo color */
-.hero-texto h2{
-  color:var(--cb-navy) !important;
-  font-size:clamp(44px,5.5vw,68px);
-  line-height:.94;
-  letter-spacing:-2.7px;
-  margin:18px 0 20px;
-}
-.hero-texto h2 span{
-  color:inherit !important;
-}
-.linea-destacada{
-  width:86px;
-  height:5px;
-  border-radius:99px;
-  background:var(--cb-green);
-  margin:0 0 20px;
-}
-.hero-texto>p{
-  max-width:560px;
-  color:#526d77;
-  font-size:13px;
-  line-height:1.65;
-}
-.mini-beneficios{
-  gap:18px;
-  margin-top:25px;
-}
-.mini-beneficios span{
-  color:var(--cb-navy);
-  background:rgba(255,255,255,.66);
-  border:1px solid rgba(197,216,216,.9);
-  padding:7px 10px;
-  border-radius:10px;
-}
-
-/* Tarjeta de acceso */
-.acceso-card{
-  background:rgba(255,255,255,.94);
-  border:1px solid #d1e1e4;
-  box-shadow:0 18px 38px rgba(18,62,80,.11);
-  border-radius:25px;
-  padding:32px;
-}
-.acceso-card h3{
-  color:var(--cb-navy);
-  font-size:25px;
-  letter-spacing:-.7px;
-}
-.acceso-card p{color:#6d7f87}
-.icono-acceso{
-  background:var(--cb-mint);
-  box-shadow:inset 0 0 0 1px #cce9df;
-}
-
-/* Input y botón */
-#codigo{
-  background:#fbfdfd;
-  border:1.5px solid #bfd6d7;
-  box-shadow:0 4px 12px rgba(18,62,80,.04);
-}
-#codigo:focus{
-  border-color:var(--cb-green);
-  box-shadow:0 0 0 4px rgba(17,169,120,.11);
-}
-#buscar{
-  background:var(--cb-navy);
-  border-color:var(--cb-navy);
-  box-shadow:0 8px 18px rgba(18,62,80,.16);
-}
-#buscar:hover{
-  background:#0a2e3b;
-  transform:translateY(-1px);
-}
-
-/* Después del acceso: fondo con profundidad */
-#pantallaPrincipal{
-  padding-top:8px;
-}
-.perfil-barra{
-  background:rgba(255,255,255,.92);
-  border:1px solid var(--cb-line);
-  box-shadow:0 10px 28px rgba(18,62,80,.07);
-}
-.portal-titulo{
-  padding:25px 4px 5px;
-}
-.portal-titulo h2{
-  color:var(--cb-navy);
-  font-size:clamp(30px,4vw,38px);
-}
-.portal-titulo p{color:var(--cb-muted)}
-
-/* Tarjetas principales */
-.menu-grid{
-  gap:17px;
-}
-.menu-card{
-  background:rgba(255,255,255,.94);
-  border-color:#d1e0e4;
-  min-height:142px;
-  box-shadow:0 8px 24px rgba(18,62,80,.065);
-}
-.menu-card:hover{
-  border-color:#b9d4d4;
-  box-shadow:0 18px 38px rgba(18,62,80,.12);
-}
-.menu-card strong{
-  color:var(--cb-navy);
-  font-size:16px;
-}
-.menu-card small{color:#73858d}
-.menu-card b{
-  background:#eef5f4;
-  color:var(--cb-navy);
-}
-.menu-card:hover b{
-  background:var(--cb-green);
-  color:#fff;
-}
-.menu-icon{
-  box-shadow:0 5px 12px rgba(18,62,80,.06);
-}
-
-/* Información adicional: menos plana */
-.informacion-final{
-  margin-top:38px;
-  padding:30px 0 8px;
-  border-top:1px solid rgba(188,207,211,.8);
-}
-.informacion-final h2{
-  color:var(--cb-navy);
-}
-.informacion-final>p{color:var(--cb-muted)}
-.info-grid{gap:15px}
-.info-card{
-  background:rgba(255,255,255,.90);
-  border-color:#d3e1e5;
-  box-shadow:0 7px 20px rgba(18,62,80,.05);
-}
-.info-card:hover{
-  background:#fff;
-  box-shadow:0 16px 32px rgba(18,62,80,.10);
-}
-.info-card strong{color:var(--cb-navy)}
-.info-card small{color:#77888f}
-
-/* MODALES */
-.modal-box{
-  background:#f8fbfb !important;
-}
-.modal-box>h2{
-  color:var(--cb-navy);
-}
-.modal-box>p{
-  color:#687b83;
-}
-
-/* Contactos: vuelve a tener desplazamiento interno */
-#modalContactos .modal-box.contactos-rrhh{
-  max-height:78vh !important;
-  overflow-y:auto !important;
-  overflow-x:hidden !important;
-  overscroll-behavior:contain;
-  -webkit-overflow-scrolling:touch;
-  scrollbar-width:thin;
-  scrollbar-color:#b7d2ce transparent;
-}
-#modalContactos .modal-box.contactos-rrhh::-webkit-scrollbar{
-  width:7px;
-}
-#modalContactos .modal-box.contactos-rrhh::-webkit-scrollbar-track{
-  background:transparent;
-}
-#modalContactos .modal-box.contactos-rrhh::-webkit-scrollbar-thumb{
-  background:#b7d2ce;
-  border-radius:20px;
-}
-#modalContactos .modal-cerrar{
-  position:sticky !important;
-  top:0;
-  z-index:10;
-}
-
-/* Información importante conserva su scroll */
-#modalImportante .modal-box.informacion-importante{
-  max-height:78vh !important;
-  overflow-y:auto !important;
-  overflow-x:hidden !important;
-  overscroll-behavior:contain;
-  -webkit-overflow-scrolling:touch;
-}
-
-/* En pantallas grandes: composición más equilibrada */
-@media (min-width:1100px){
-  .hero-acceso{min-height:390px;align-items:center}
-  .menu-grid{grid-template-columns:repeat(3,1fr)}
-}
-
-/* Tablet */
-@media (max-width:900px){
-  .hero-acceso{
-    grid-template-columns:1fr;
-    padding:35px;
-  }
-}
-
-/* Celular */
-@media (max-width:600px){
-  .encabezado{border-radius:0 0 18px 18px}
-  .contenedor{
-    width:94%;
-    margin-top:18px;
-  }
-  .hero-acceso{
-    padding:24px;
-    gap:24px;
-    border-radius:23px;
-  }
-  .hero-texto h2{
-    font-size:43px;
-    letter-spacing:-2px;
-    line-height:.95;
-  }
-  .hero-texto>p{font-size:12px}
-  .mini-beneficios{
-    flex-wrap:wrap;
-    gap:7px;
-  }
-  .acceso-card{
-    padding:23px;
-    border-radius:20px;
-  }
-  .portal-titulo{padding-top:18px}
-  .menu-card{
-    min-height:118px;
-    padding:19px;
-  }
-  .informacion-final{
-    margin-top:30px;
-    padding-top:25px;
-  }
-}
-</style>
-
-
-<style id="mejora-apariencia-v3">
-/* ===== AJUSTES V3: LOGO, MÓVIL Y EFECTOS TÁCTILES ===== */
-.logo-marco{
-  width:58px;height:58px;min-width:58px;
-  border-radius:16px;
-  background:#fff;
-  display:flex;align-items:center;justify-content:center;
-  padding:7px;
-  box-sizing:border-box;
-  box-shadow:0 5px 14px rgba(0,0,0,.13);
-  border:1px solid rgba(255,255,255,.9);
-}
-.logo-marco .logo-img{
-  width:100%;height:100%;
-  object-fit:contain;
-  border-radius:10px;
-  display:block;
-}
-
-/* Evita que un campo de texto pequeño provoque zoom automático en iPhone/iPad. */
-input,button,select,textarea{font-size:16px}
-
-/* Contactos: desplazamiento interno siempre disponible. */
-#modalContactos .modal-box,
-.modal-box.contactos-rrhh{
-  max-height:78vh;
-  overflow-y:auto;
-  overflow-x:hidden;
-  overscroll-behavior:contain;
-  -webkit-overflow-scrolling:touch;
-  scrollbar-width:thin;
-}
-
-/* Efecto de pulsación táctil: equivalente al hover de computadora. */
-@media (hover:none) and (pointer:coarse){
-  .menu-card,
-  .info-card,
-  .contacto-card,
-  .boton-secundario,
-  .volver,
-  #buscar{
-    -webkit-tap-highlight-color:transparent;
-  }
-
-  .menu-card:active,
-  .info-card:active,
-  .contacto-card:active{
-    transform:translateY(-2px) scale(.992);
-    border-color:rgba(17,169,120,.72) !important;
-    box-shadow:0 0 0 2px rgba(17,169,120,.10),0 10px 25px rgba(17,169,120,.13) !important;
-    transition:transform .08s ease,box-shadow .08s ease,border-color .08s ease;
-  }
-
-  .menu-card:active::after,
-  .info-card:active::after{
-    opacity:1 !important;
-    transform:scaleX(1) !important;
-  }
-
-  .contacto-card:active .contacto-llamar{
-    box-shadow:0 0 0 5px rgba(19,185,137,.14);
-    transform:scale(1.04);
-  }
-}
-
-@media (max-width:600px){
-  html,body{width:100%;max-width:100%;overflow-x:hidden}
-  body{-webkit-text-size-adjust:100%;text-size-adjust:100%}
-  .encabezado{padding:10px 15px;min-height:72px}
-  .marca{gap:10px;min-width:0}
-  .logo-marco{width:50px;height:50px;min-width:50px;border-radius:14px;padding:6px}
-  .empresa{min-width:0}
-  .empresa h1{font-size:14px;line-height:1.1;white-space:nowrap}
-  .empresa p{font-size:9px;margin-top:3px}
-  .confidencial-top{font-size:9px;white-space:nowrap}
-
-  .contenedor{width:calc(100% - 24px);margin:16px auto 32px}
-  .hero-acceso{width:100%;box-sizing:border-box;padding:22px;gap:21px}
-  .hero-texto h2{font-size:clamp(38px,11vw,48px);line-height:.96;letter-spacing:-2px}
-  .hero-texto>p{font-size:13px;line-height:1.5}
-  .acceso-card{width:100%;box-sizing:border-box;padding:21px;border-radius:21px}
-  .fila-codigo{gap:10px}
-  .fila-codigo input{min-width:0;width:100%;font-size:16px !important}
-  #buscar{width:100%;min-width:0;font-size:16px;min-height:46px}
-
-  .perfil-barra{width:100%;box-sizing:border-box}
-  .menu-card,.info-card,.contacto-card{touch-action:manipulation}
-}
-</style>
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Portal de Empleados | Agroindustrias Cayo Blanco</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<link rel="stylesheet" href="style.css?v=50">
 </head>
 <body>
-<header class="encabezado">
-    <div class="marca">
-        <div class="logo-marco"><img src="logo-cayo-blanco.png" class="logo-img" alt="Agroindustrias Cayo Blanco"></div>
-        <div class="empresa">
-            <h1>AGROINDUSTRIAS CAYO BLANCO</h1>
-            <p>Portal de Empleados</p>
-        </div>
-    </div>
-    <div class="confidencial-top">🔒 Información confidencial</div>
+<header class="topbar">
+  <div class="brand"><img src="logo-cayo-blanco.png" alt="Agroindustrias Cayo Blanco"><div><strong>AGROINDUSTRIAS CAYO BLANCO</strong><span>Portal de Empleados</span></div></div>
+  <span class="confidential">🔒 Información confidencial</span>
 </header>
 
-<main class="contenedor">
-<section id="pantallaAcceso" class="pantalla activa">
-    <div class="hero-acceso">
-        <div class="hero-texto">
-            <span class="etiqueta">RECURSOS HUMANOS</span>
-            <h2>Portal de<br><span>Empleados</span></h2>
-            <div class="linea-destacada"></div>
-            <p>Consulta tus recibos, carnet y documentos laborales desde un solo lugar.</p>
-            <div class="mini-beneficios"><span>🔐 Seguro</span><span>⚡ Rápido</span><span>📱 Fácil</span></div>
-        </div>
-        <div class="acceso-card">
-            <div class="icono-acceso">👤</div>
-            <span class="etiqueta">ACCESO PERSONAL</span>
-            <h3>Ingresa a tu portal</h3>
-            <p>Escribe tu código de empleado para continuar.</p>
-            <label for="codigo">Código de empleado</label>
-            <div class="fila-codigo">
-                <input id="codigo" type="text" placeholder="Ejemplo: CBEP0000" autocomplete="off" autocapitalize="characters" spellcheck="false">
-                <button id="buscar" type="button">Continuar</button>
-            </div>
-            <p id="mensaje" class="mensaje"></p>
-        </div>
+<main class="container">
+<section id="pantallaAcceso" class="screen active">
+  <div class="access">
+    <div class="access-copy">
+      <span class="eyebrow">RECURSOS HUMANOS</span>
+      <h1>Tu información laboral,<br><em>en un solo lugar.</em></h1>
+      <p>Consulta tus recibos de pago, carné, documentos, comunicados y la información que Recursos Humanos ha preparado para ti.</p>
+      <div class="chips"><span>🔐 Seguro</span><span>⚡ Rápido</span><span>📱 Fácil</span></div>
     </div>
+    <div class="login-card">
+      <div class="login-icon">👤</div>
+      <span class="eyebrow">ACCESO PERSONAL</span>
+      <h2>Ingresa a tu portal</h2>
+      <p>Escribe tu código de empleado para continuar.</p>
+      <label for="codigo">Código de empleado</label>
+      <div class="login-row"><input id="codigo" autocomplete="off" placeholder="Ejemplo: CBEP0000"><button id="buscar">Continuar</button></div>
+      <div id="mensajeAcceso" class="message"></div>
+    </div>
+  </div>
 </section>
 
-<section id="pantallaPortal" class="pantalla oculto">
-    <div class="perfil-barra">
-        <div class="perfil-identidad">
-            <div class="avatar-mini">👤</div>
-            <div><span>PORTAL PERSONAL</span><h2 id="nombreEmpleado">—</h2><small>Código: <strong id="codigoEmpleado">—</strong></small></div>
-        </div>
-        <button id="cerrarSesion" class="boton-secundario">Salir</button>
-    </div>
-    <div class="portal-titulo">
-        <span class="etiqueta">MENÚ PRINCIPAL</span><h2>¿Qué deseas consultar?</h2>
-        <p>Selecciona una opción para acceder a tu información.</p>
-    </div>
-    <div class="menu-grid">
-        <button class="menu-card verde" id="btnRecibos" type="button"><span class="menu-icon">🧾</span><span><strong>Ver recibos</strong><small>Consulta tus recibos de pago</small></span><b>→</b></button>
-        <button class="menu-card azul" id="btnCarnet" type="button"><span class="menu-icon">🪪</span><span><strong>Ver carnet</strong><small>Consulta tu carnet de empleado</small></span><b>→</b></button>
-        <button class="menu-card amarillo" id="btnSolicitudes" type="button"><span class="menu-icon">📁</span><span><strong>Ver solicitudes</strong><small>Constancias y otros documentos</small></span><b>→</b></button>
-    </div>
-
-    <section class="informacion-final">
-        <span class="etiqueta">INFORMACIÓN</span>
-        <h2>Información adicional</h2>
-        <p>Consulta información, comunicados y material que Recursos Humanos publique posteriormente.</p>
-        <div class="info-grid">
-            <button class="info-card" data-modal="modalComunicados" type="button"><span>📢</span><strong>Comunicados de Recursos Humanos</strong><small>Noticias y avisos importantes</small></button>
-            <button class="info-card" data-modal="modalProcedimientos" type="button"><span>📋</span><strong>Procedimientos</strong><small>Guías y procedimientos disponibles</small></button>
-            <button class="info-card" data-modal="modalContactos" type="button"><span>📞</span><strong>Contactos de Recursos Humanos</strong><small>Canales de atención y soporte</small></button>
-            <button class="info-card" data-modal="modalImportante" type="button"><span>ℹ️</span><strong>Información importante</strong><small>Información que Recursos Humanos publique</small></button>
-        </div>
-    </section>
+<section id="pantallaPortal" class="screen">
+  <div class="profile">
+    <div class="profile-main"><div id="avatarMini" class="avatar">👤</div><div><span>PORTAL PERSONAL</span><h2 id="nombreEmpleado">—</h2><small>Código: <b id="codigoEmpleado">—</b></small></div></div>
+    <button id="cerrarSesion" class="secondary">Salir</button>
+  </div>
+  <div class="welcome"><span class="eyebrow">MENÚ PRINCIPAL</span><h1>¿Qué deseas consultar?</h1><p>Todo lo que necesitas consultar de Recursos Humanos, organizado en un solo lugar.</p></div>
+  <div class="menu-grid">
+    <button class="menu-card green" id="btnRecibos"><span>🧾</span><div><strong>Mis recibos</strong><small>Consulta tus recibos de pago por quincena</small></div><b>→</b></button>
+    <button class="menu-card blue" id="btnCarnet"><span>🪪</span><div><strong>Mi carné</strong><small>Consulta tu identificación de empleado</small></div><b>→</b></button>
+    <button class="menu-card purple" data-screen="pantallaDocumentos"><span>📚</span><div><strong>Documentos</strong><small>Contrato, reglamento y documentos personales</small></div><b>→</b></button>
+    <button class="menu-card orange" data-screen="pantallaComunicados"><span>📢</span><div><strong>Comunicados</strong><small>Avisos e información publicada por RRHH</small></div><b>→</b></button>
+    <button class="menu-card teal" data-screen="pantallaProcedimientos"><span>📋</span><div><strong>Procedimientos</strong><small>Guías sencillas para realizar tus procesos</small></div><b>→</b></button>
+    <button class="menu-card navy" data-screen="pantallaInformacion"><span>ℹ️</span><div><strong>Información para empleados</strong><small>RAP, IHSS, permisos y contactos de RRHH</small></div><b>→</b></button>
+  </div>
 </section>
 
-<section id="pantallaRecibos" class="pantalla oculto">
-    <div class="subcabecera"><button class="volver" data-volver="pantallaPortal">← Volver</button><div><span class="etiqueta">MIS RECIBOS</span><h2>Recibos de pago</h2></div></div>
-    <div class="periodos-grid">
-        <button class="periodo-card" data-q="q1" type="button"><span class="periodo-icon">01</span><strong>Quincena 1</strong><small id="mesQ1">—</small><b>Ver recibo →</b></button>
-        <button class="periodo-card" data-q="q2" type="button"><span class="periodo-icon">02</span><strong>Quincena 2</strong><small id="mesQ2">—</small><b>Ver recibo →</b></button>
-    </div>
+<section id="pantallaRecibos" class="screen">
+  <div class="subhead"><button class="back" data-screen="pantallaPortal">← Volver</button><div><span class="eyebrow">MIS RECIBOS</span><h2>Recibos de pago</h2><p>Selecciona la quincena que deseas consultar.</p></div></div>
+  <div class="period-grid">
+    <button class="period-card" data-q="q1"><span>01</span><div><strong>Quincena 1</strong><small id="mesQ1">—</small><small>Consultar recibo →</small></div></button>
+    <button class="period-card" data-q="q2"><span>02</span><div><strong>Quincena 2</strong><small id="mesQ2">—</small><small>Consultar recibo →</small></div></button>
+  </div>
 </section>
 
-<section id="pantallaRecibo" class="pantalla oculto">
-    <div class="subcabecera"><button class="volver" id="volverRecibos">← Recibos</button><div><span class="etiqueta">RECIBO DE PAGO</span><h2 id="visorTitulo">Recibo</h2></div></div>
-    <div class="visor-acciones"><button id="guardarRecibo" class="boton-secundario" type="button">Guardar recibo</button></div>
-    <div class="visor-pdf"><div class="visor-mensaje">Selecciona una quincena para visualizar tu recibo.</div></div>
+<section id="pantallaRecibo" class="screen">
+  <div class="subhead"><button class="back" data-screen="pantallaRecibos">← Recibos</button><div><span class="eyebrow">RECIBO DE PAGO</span><h2 id="visorTitulo">Recibo</h2></div><button id="guardarRecibo" class="primary">Guardar recibo</button></div>
+  <div class="pdf-viewer"><div class="viewer-message">Selecciona una quincena para visualizar tu recibo.</div></div>
 </section>
 
-<section id="pantallaCarnet" class="pantalla oculto">
-    <div class="subcabecera"><button class="volver" data-volver="pantallaPortal">← Volver</button><div><span class="etiqueta">IDENTIFICACIÓN</span><h2>Mi carnet</h2></div></div>
-    <div class="carnet-wrap">
-        <article class="carnet">
-            <div class="carnet-top"><img src="logo-cayo-blanco.png" alt="Logo" class="carnet-logo"><span>AGROINDUSTRIAS<br><strong>CAYO BLANCO</strong></span></div>
-            <div class="carnet-body">
-                <div class="foto-box" id="fotoCarnet"><div class="silueta" aria-label="Sin fotografía"><span>👤</span></div></div>
-                <div class="carnet-datos">
-                    <span class="carnet-label">NOMBRE DEL COLABORADOR</span><h3 id="carnetNombre">—</h3>
-                    <div class="carnet-linea">
-                        <div><span class="carnet-label">CÓDIGO</span><strong id="carnetCodigo">—</strong></div>
-                        <div><span class="carnet-label">DEPARTAMENTO</span><strong id="carnetDepartamento">—</strong></div>
-                    </div>
-                    <div class="carnet-puesto"><span class="carnet-label">PUESTO</span><strong id="carnetPuesto">—</strong></div>
-                </div>
-            </div>
-            <div class="carnet-footer"><span>RECURSOS HUMANOS</span><strong>IDENTIFICACIÓN DE EMPLEADO</strong></div>
-        </article>
-    </div>
+<section id="pantallaCarnet" class="screen">
+  <div class="subhead"><button class="back" data-screen="pantallaPortal">← Volver</button><div><span class="eyebrow">IDENTIFICACIÓN</span><h2>Mi carné</h2><p>Tu identificación digital como empleado.</p></div></div>
+  <div class="id-wrap"><div class="id-card">
+    <div class="id-top"><img src="logo-cayo-blanco.png" alt="Logo"><div><strong>AGROINDUSTRIAS</strong><span>CAYO BLANCO</span></div></div>
+    <div class="id-body"><div id="fotoCarnet" class="photo-box"><span>👤</span></div><div class="carnet-datos">
+      <span class="label">NOMBRE DEL COLABORADOR</span><h3 id="carnetNombre">—</h3>
+      <div class="two"><div><span class="label">CÓDIGO</span><strong id="carnetCodigo">—</strong></div><div><span class="label">DEPARTAMENTO</span><strong id="carnetDepartamento">—</strong></div></div>
+      <div><span class="label">PUESTO</span><strong id="carnetPuesto">—</strong></div>
+    </div></div>
+    <div class="id-footer">RECURSOS HUMANOS · IDENTIFICACIÓN DE EMPLEADO</div>
+  </div></div>
 </section>
 
-<section id="pantallaSolicitudes" class="pantalla oculto">
-    <div class="subcabecera"><button class="volver" data-volver="pantallaPortal">← Volver</button><div><span class="etiqueta">MIS DOCUMENTOS</span><h2>Solicitudes y constancias</h2></div></div>
-    <p class="descripcion-seccion">Aquí aparecerán los documentos que Recursos Humanos publique para tu código de empleado.</p>
-    <div id="listaDocumentos" class="documentos-grid"></div>
+<section id="pantallaDocumentos" class="screen">
+  <div class="subhead"><button class="back" data-screen="pantallaPortal">← Volver</button><div><span class="eyebrow">DOCUMENTOS</span><h2>Documentos laborales</h2><p>Consulta documentos generales y documentos publicados para tu código.</p></div></div>
+  <div class="section-title">📘 Documentos generales</div>
+  <div class="cards-list">
+    <article class="doc-card"><span>📕</span><div><strong>Reglamento Interno de Trabajo</strong><small>Normas y disposiciones aplicables al personal.</small></div><button class="outline" data-open="documentos/reglamento-interno.pdf">Ver documento</button></article>
+    <article class="doc-card"><span>📄</span><div><strong>Contrato de trabajo</strong><small>Consulta tu contrato laboral cuando RRHH lo publique para tu código.</small></div><button class="outline" id="btnContrato">Buscar mi contrato</button></article>
+  </div>
+  <div class="section-title spaced">📁 Mis documentos</div>
+  <div id="listaDocumentos" class="cards-list"><div class="empty">Los documentos asociados a tu código aparecerán aquí.</div></div>
+</section>
+
+<section id="pantallaComunicados" class="screen">
+  <div class="subhead"><button class="back" data-screen="pantallaPortal">← Volver</button><div><span class="eyebrow">RECURSOS HUMANOS</span><h2>Comunicados</h2><p>Consulta avisos e información oficial publicada por RRHH.</p></div></div>
+  <div class="cards-list">
+    <article class="doc-card"><span>📢</span><div><strong>Comunicado Sitio Web - Recibos de pago</strong><small>Información sobre el portal de recibos.</small></div><a class="outline link" href="Informacion/Comunicados/Comunicado Sitio Web - Recibos de pago.pdf" target="_blank">Abrir</a></article>
+  </div>
+</section>
+
+<section id="pantallaProcedimientos" class="screen">
+  <div class="subhead"><button class="back" data-screen="pantallaPortal">← Volver</button><div><span class="eyebrow">RECURSOS HUMANOS</span><h2>Procedimientos</h2><p>Guías rápidas para saber qué hacer en cada situación.</p></div></div>
+  <div class="guide-grid">
+    <article class="guide"><span>🏥</span><h3>Visitar enfermería</h3><ol><li>Informa a tu supervisor antes de retirarte de tu área.</li><li>Dirígete a enfermería y sigue las indicaciones del personal.</li><li>Presenta tu carné cuando sea requerido.</li><li>Entrega a RRHH la documentación correspondiente cuando aplique.</li></ol></article>
+    <article class="guide"><span>📝</span><h3>Solicitar un permiso</h3><ol><li>Comunica la necesidad a tu supervisor.</li><li>Utiliza el canal establecido por RRHH para realizar la solicitud.</li><li>Indica fecha, horario y motivo del permiso.</li><li>Espera la autorización correspondiente antes de retirarte.</li></ol></article>
+    <article class="guide"><span>💰</span><h3>Reclamo de pago</h3><ol><li>Revisa tu recibo y verifica el período.</li><li>Identifica la diferencia o concepto que deseas aclarar.</li><li>Comunícate con RRHH por los canales establecidos.</li><li>Proporciona la información necesaria para la revisión.</li></ol></article>
+    <article class="guide"><span>🏖️</span><h3>Permisos y vacaciones</h3><ol><li>Consulta con tu supervisor el proceso aplicable.</li><li>Realiza la solicitud por el medio autorizado.</li><li>Espera la aprobación correspondiente.</li><li>Conserva la constancia de autorización.</li></ol></article>
+  </div>
+</section>
+
+<section id="pantallaInformacion" class="screen">
+  <div class="subhead"><button class="back" data-screen="pantallaPortal">← Volver</button><div><span class="eyebrow">INFORMACIÓN PARA EMPLEADOS</span><h2>Información importante</h2><p>Conoce instituciones, procesos y canales que pueden ayudarte.</p></div></div>
+  <div class="info-grid">
+    <article class="info-panel"><span>🏛️</span><h3>RAP</h3><p>Información general sobre el Régimen de Aportaciones Privadas, sus aportaciones y beneficios.</p><button class="more" data-info="rap">Ver información →</button></article>
+    <article class="info-panel"><span>🏥</span><h3>IHSS</h3><p>Información general sobre atención y servicios relacionados con el Instituto Hondureño de Seguridad Social.</p><button class="more" data-info="ihss">Ver información →</button></article>
+    <article class="info-panel"><span>🕐</span><h3>Asistencia</h3><p>Recuerda registrar correctamente tu entrada y salida. Reporta oportunamente cualquier inconveniente.</p></article>
+    <article class="info-panel"><span>📞</span><h3>Contactar a RRHH</h3><p>Consulta los canales de atención de Recursos Humanos.</p><button class="more" data-info="contactos">Ver contactos →</button></article>
+  </div>
+  <div id="infoDetalle" class="info-detail hidden"></div>
 </section>
 </main>
-
-<div id="modalComunicados" class="modal oculto">
-    <div class="modal-box">
-        <button class="modal-cerrar" data-cerrar-modal>×</button>
-        <span class="modal-icon">📢</span>
-        <span class="etiqueta">RECURSOS HUMANOS</span>
-        <h2>Comunicados</h2>
-        <p>Consulta los comunicados y avisos publicados por Recursos Humanos.</p>
-        <div class="comunicado-lista">
-            <a href="Informacion/Comunicados/Comunicado%20Sitio%20Web%20-%20Recibos%20de%20pago.pdf" target="_blank" rel="noopener" class="documento-card comunicado-enlace">
-                <span class="documento-icon">📄</span>
-                <div><strong>Comunicado Sitio Web - Recibos de pago</strong><small>Comunicado de Recursos Humanos</small></div>
-                <span class="documento-boton">Abrir</span>
-            </a>
-        </div>
-    </div>
-</div>
-
-<div id="modalProcedimientos" class="modal oculto"><div class="modal-box"><button class="modal-cerrar" data-cerrar-modal>×</button><span class="modal-icon">📋</span><span class="etiqueta">RECURSOS HUMANOS</span><h2>Procedimientos</h2><p>Aquí estarán disponibles las guías y procedimientos que Recursos Humanos publique posteriormente.</p></div></div>
-<div id="modalContactos" class="modal oculto">
-    <div class="modal-box contactos-rrhh">
-        <button class="modal-cerrar" data-cerrar-modal>×</button>
-        <span class="modal-icon">📞</span>
-        <span class="etiqueta">RECURSOS HUMANOS</span>
-        <h2>Contactos de Recursos Humanos</h2>
-        <p>Para recibir asistencia puedes comunicarte con cualquiera de los siguientes números:</p>
-
-        <div class="contactos-lista">
-            <a class="contacto-card" href="tel:+50438833324">
-                <span class="contacto-icono">📞</span>
-                <span class="contacto-datos">
-                    <strong>Tirsa Lizeth Paz</strong>
-                    <small>Coordinadora de RRHH</small>
-                    <b>+504 3883-3324</b>
-                </span>
-                <span class="contacto-llamar">📞</span>
-            </a>
-
-            <a class="contacto-card" href="tel:+50432258230">
-                <span class="contacto-icono">📞</span>
-                <span class="contacto-datos">
-                    <strong>Cristhian Osorio Acosta</strong>
-                    <small>Auxiliar de RRHH</small>
-                    <b>+504 3225-8230</b>
-                </span>
-                <span class="contacto-llamar">📞</span>
-            </a>
-
-            <a class="contacto-card" href="tel:+50431623652">
-                <span class="contacto-icono">📞</span>
-                <span class="contacto-datos">
-                    <strong>Mayda Yanely Palma</strong>
-                    <small>Auxiliar de RRHH</small>
-                    <b>+504 3162-3652</b>
-                </span>
-                <span class="contacto-llamar">📞</span>
-            </a>
-
-            <a class="contacto-card" href="tel:+50432857896">
-                <span class="contacto-icono">📞</span>
-                <span class="contacto-datos">
-                    <strong>Mariano Alejandro Perez</strong>
-                    <small>Auxiliar de RRHH</small>
-                    <b>+504 3285-7896</b>
-                </span>
-                <span class="contacto-llamar">📞</span>
-            </a>
-        </div>
-
-        <div class="contactos-disponibles">
-            <span>✓</span>
-            <small>Nuestro equipo de Recursos Humanos está disponible para ayudarte en lo que necesites.</small>
-        </div>
-    </div>
-</div>
-<div id="modalImportante" class="modal oculto">
-    <div class="modal-box informacion-importante">
-        <button class="modal-cerrar" data-cerrar-modal>×</button>
-        <span class="modal-icon">ℹ️</span>
-        <span class="etiqueta">RECURSOS HUMANOS</span>
-        <h2>Información importante</h2>
-        <p class="intro-importante">Ten en cuenta las siguientes indicaciones para mantener en orden tus procesos laborales:</p>
-
-        <div class="importante-lista">
-            <div class="importante-card">
-                <span class="importante-icono">🕐</span>
-                <div>
-                    <strong>Control de asistencia</strong>
-                    <p>Recuerda registrar correctamente tu entrada y salida. Si tienes algún inconveniente con tu marcación, comunícalo oportunamente a Recursos Humanos.</p>
-                </div>
-            </div>
-
-            <div class="importante-card">
-                <span class="importante-icono">🧾</span>
-                <div>
-                    <strong>Reclamos de pago</strong>
-                    <p>Cualquier diferencia o inconveniente relacionado con tu pago debe ser reportado a Recursos Humanos para su revisión.</p>
-                </div>
-            </div>
-
-            <div class="importante-card">
-                <span class="importante-icono">📄</span>
-                <div>
-                    <strong>Documentación laboral</strong>
-                    <p>Mantén actualizada tu documentación personal y laboral cuando Recursos Humanos solicite alguna actualización.</p>
-                </div>
-            </div>
-
-            <div class="importante-card">
-                <span class="importante-icono">🏖️</span>
-                <div>
-                    <strong>Permisos y vacaciones</strong>
-                    <p>Las solicitudes de permisos y vacaciones deben realizarse mediante los canales establecidos por Recursos Humanos.</p>
-                </div>
-            </div>
-
-            <div class="importante-card">
-                <span class="importante-icono">📢</span>
-                <div>
-                    <strong>Comunicaciones oficiales</strong>
-                    <p>Consulta periódicamente este portal para conocer comunicados, avisos y documentos publicados por Recursos Humanos.</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="aviso-importante">
-            <span>⚠️</span>
-            <small><strong>Importante:</strong> La información publicada en este apartado puede actualizarse cuando Recursos Humanos lo considere necesario.</small>
-        </div>
-    </div>
-</div>
-
-<footer><span>Agroindustrias Cayo Blanco</span><span>Portal de Empleados · Recursos Humanos</span></footer>
-<script src="script.js?v=40"></script>
+<footer>Agroindustrias Cayo Blanco · Recursos Humanos · Portal de Empleados</footer>
+<script src="script.js?v=50"></script>
 </body>
 </html>

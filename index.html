@@ -166,6 +166,21 @@
   .portal-mobile-v2 .portal-greeting p{font-size:.82rem}
 }
 
+/* Prevent mobile browser auto-zoom when focusing form fields */
+@media (max-width:700px){
+  .portal-mobile-v2 input,
+  .portal-mobile-v2 select,
+  .portal-mobile-v2 textarea{
+    font-size:16px !important;
+    -webkit-text-size-adjust:100%;
+  }
+
+  .portal-mobile-v2 .login-row input{
+    font-size:16px !important;
+    min-height:50px;
+  }
+}
+
 @media (max-width:390px){
   .portal-mobile-v2 .menu-grid{
     display:grid !important;

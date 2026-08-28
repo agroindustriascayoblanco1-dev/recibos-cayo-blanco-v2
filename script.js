@@ -37,7 +37,7 @@ async function acceder(){
  $("buscar").disabled=true;$("buscar").textContent="Buscando...";msg("🔎 Verificando código...");
  try{
   let r=await buscarEmpleado(PERIODOS.q1,codigo);if(!r)r=await buscarEmpleado(PERIODOS.q2,codigo);
-  if(!r){msg("El código no fue encontrado en los recibos disponibles.",true);return}
+  if(!r){msg("El código no fue encontrado en la información dispinible.",true);return}
   empleadoActual={codigo,nombre:obtenerNombre(r.texto),departamento:obtenerCampo(r.texto,"Departamento"),puesto:obtenerCampo(r.texto,"Puesto")};
   $("nombreEmpleado").textContent=empleadoActual.nombre;$("codigoEmpleado").textContent=codigo;
   cargarAvatar();cargarCarnet();show("pantallaPortal");

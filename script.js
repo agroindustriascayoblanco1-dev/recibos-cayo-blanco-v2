@@ -59,9 +59,7 @@ async function acceder(){
   if(!r){msg("El código no fue encontrado en la información dispinible.",true);return}
   empleadoActual={codigo,nombre:obtenerNombre(r.texto),departamento:obtenerCampo(r.texto,"Departamento"),puesto:obtenerCampo(r.texto,"Puesto")};
 
-  // Protección adicional para el área de Administración
-  const PIN_ADMIN="246813";
-  // En los recibos, "ADMINISTRACION" aparece en el campo DEPARTAMENTO.
+  // PIN personal para cada empleado de Administración.
   const departamentoAdmin=String(empleadoActual.departamento||"")
    .normalize("NFD")
    .replace(/[\u0300-\u036f]/g,"")
@@ -70,11 +68,43 @@ async function acceder(){
    .trim();
 
   if(departamentoAdmin==="ADMINISTRACION"){
-   const pin=window.prompt("🔐 ACCESO ADMINISTRATIVO\\n\\nEste recibo pertenece al área de Administración.\\nIngresa el PIN para continuar:");
-   if(pin!==PIN_ADMIN){
-    empleadoActual=null;
-    msg("❌ PIN incorrecto. Acceso denegado.",true);
-    return;
+   const clavePin=`pin_admin_${empleadoActual.codigo}`;
+   let pinGuardado=localStorage.getItem(clavePin);
+
+   if(!pinGuardado){
+    const nuevoPin=window.prompt(
+     "🔐 CREAR PIN ADMINISTRATIVO\n\nCrea tu PIN personal de 4 a 12 números:"
+    );
+
+    if(!/^\d{4,12}$/.test(nuevoPin||"")){
+     empleadoActual=null;
+     msg("❌ Debes crear un PIN de 4 a 12 números.",true);
+     return;
+    }
+
+    const confirmarPin=window.prompt(
+     "🔐 CONFIRMAR PIN\n\nVuelve a escribir tu PIN:"
+    );
+
+    if(confirmarPin!==nuevoPin){
+     empleadoActual=null;
+     msg("❌ Los PIN no coinciden. Acceso denegado.",true);
+     return;
+    }
+
+    localStorage.setItem(clavePin,nuevoPin);
+    pinGuardado=nuevoPin;
+    alert("✅ PIN creado correctamente. Guárdalo en un lugar seguro.");
+   }else{
+    const pin=window.prompt(
+     "🔐 ACCESO ADMINISTRATIVO\n\nIngresa tu PIN personal para continuar:"
+    );
+
+    if(pin!==pinGuardado){
+     empleadoActual=null;
+     msg("❌ PIN incorrecto. Acceso denegado.",true);
+     return;
+    }
    }
   }
 

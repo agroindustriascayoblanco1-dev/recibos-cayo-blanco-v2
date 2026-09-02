@@ -61,7 +61,6 @@ async function acceder(){
 
   // Protección PIN para Administración.
   // Los PIN se almacenan transformados; no se guardan como texto plano.
-  // Esto permite usar el mismo PIN en cualquier dispositivo.
   const pinesAdmin={
    "CBEP1392":[5,2,3,6,2,7],
    "CBEP0288":[5,0,4,2,3,9],
@@ -111,27 +110,21 @@ async function acceder(){
 
   if(departamentoAdmin==="ADMINISTRACION"){
    const datosPin=pinesAdmin[empleadoActual.codigo];
-
    if(!datosPin){
     empleadoActual=null;
     msg("❌ Este empleado no tiene un PIN administrativo configurado.",true);
     return;
    }
-
-   const pinEsperado=datosPin
-    .map(v=>String((Number(v)+3)%10))
-    .join("");
-
+   const pinEsperado=datosPin.map(v=>String((Number(v)+3)%10)).join("");
    const pinIngresado=window.prompt(
     "🔐 ACCESO ADMINISTRATIVO\n\nIngresa tu PIN personal para continuar:"
    );
-
    if(pinIngresado!==pinEsperado){
     empleadoActual=null;
     msg("❌ PIN incorrecto. Acceso denegado.",true);
     return;
    }
-  }}
+  }
 
   $("nombreEmpleado").textContent=empleadoActual.nombre;$("codigoEmpleado").textContent=codigo;
   cargarAvatar();cargarCarnet();show("pantallaPortal");

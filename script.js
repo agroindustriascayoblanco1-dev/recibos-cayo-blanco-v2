@@ -96,14 +96,57 @@ async function acceder(){
     pinGuardado=nuevoPin;
     alert("✅ PIN creado correctamente. Guárdalo en un lugar seguro.");
    }else{
-    const pin=window.prompt(
+    let pin=window.prompt(
      "🔐 ACCESO ADMINISTRATIVO\n\nIngresa tu PIN personal para continuar:"
     );
 
     if(pin!==pinGuardado){
-     empleadoActual=null;
-     msg("❌ PIN incorrecto. Acceso denegado.",true);
-     return;
+     const recuperar=window.confirm(
+      "❓ ¿Olvidaste tu PIN?\n\nSi necesitas restablecerlo, solicita autorización a RRHH."
+     );
+
+     if(!recuperar){
+      empleadoActual=null;
+      msg("❌ PIN incorrecto. Acceso denegado.",true);
+      return;
+     }
+
+     const pinMaestro="192837";
+     const autorizacion=window.prompt(
+      "🔑 AUTORIZACIÓN DE RRHH\n\nIngresa el PIN maestro para restablecer el PIN del empleado:"
+     );
+
+     if(autorizacion!==pinMaestro){
+      empleadoActual=null;
+      msg("❌ Autorización no válida. No se puede restablecer el PIN.",true);
+      return;
+     }
+
+     localStorage.removeItem(clavePin);
+
+     const nuevoPin=window.prompt(
+      "🔐 NUEVO PIN ADMINISTRATIVO\n\nCrea un nuevo PIN personal de 4 a 12 números:"
+     );
+
+     if(!/^\d{4,12}$/.test(nuevoPin||"")){
+      empleadoActual=null;
+      msg("❌ Debes crear un PIN de 4 a 12 números.",true);
+      return;
+     }
+
+     const confirmarPin=window.prompt(
+      "🔐 CONFIRMAR NUEVO PIN\n\nVuelve a escribir el nuevo PIN:"
+     );
+
+     if(confirmarPin!==nuevoPin){
+      empleadoActual=null;
+      msg("❌ Los PIN no coinciden. Acceso denegado.",true);
+      return;
+     }
+
+     localStorage.setItem(clavePin,nuevoPin);
+     pinGuardado=nuevoPin;
+     alert("✅ PIN restablecido correctamente. Guárdalo en un lugar seguro.");
     }
    }
   }

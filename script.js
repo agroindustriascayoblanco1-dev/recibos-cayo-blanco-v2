@@ -61,8 +61,14 @@ async function acceder(){
 
   // Protección adicional para el área de Administración
   const PIN_ADMIN="246813";
-  const puestoAdmin=normalizar(empleadoActual.puesto||"");
-  if(puestoAdmin.includes("ADMINISTRACION")){
+  const puestoAdmin=String(empleadoActual.puesto||"")
+   .normalize("NFD")
+   .replace(/[\u0300-\u036f]/g,"")
+   .toUpperCase()
+   .replace(/\s+/g," ")
+   .trim();
+
+  if(/ADMINISTRACION/.test(puestoAdmin)){
    const pin=window.prompt("🔐 ACCESO ADMINISTRATIVO\\n\\nEste recibo pertenece al área de Administración.\\nIngresa el PIN para continuar:");
    if(pin!==PIN_ADMIN){
     empleadoActual=null;

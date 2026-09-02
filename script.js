@@ -58,6 +58,19 @@ async function acceder(){
   let r=await buscarEmpleado(PERIODOS.q1,codigo);if(!r)r=await buscarEmpleado(PERIODOS.q2,codigo);
   if(!r){msg("El código no fue encontrado en la información dispinible.",true);return}
   empleadoActual={codigo,nombre:obtenerNombre(r.texto),departamento:obtenerCampo(r.texto,"Departamento"),puesto:obtenerCampo(r.texto,"Puesto")};
+
+  // Protección adicional para el área de Administración
+  const PIN_ADMIN="246813";
+  const puestoAdmin=normalizar(empleadoActual.puesto||"");
+  if(puestoAdmin.includes("ADMINISTRACION")){
+   const pin=window.prompt("🔐 ACCESO ADMINISTRATIVO\\n\\nEste recibo pertenece al área de Administración.\\nIngresa el PIN para continuar:");
+   if(pin!==PIN_ADMIN){
+    empleadoActual=null;
+    msg("❌ PIN incorrecto. Acceso denegado.",true);
+    return;
+   }
+  }
+
   $("nombreEmpleado").textContent=empleadoActual.nombre;$("codigoEmpleado").textContent=codigo;
   cargarAvatar();cargarCarnet();show("pantallaPortal");
  }catch(e){console.error(e);msg("No se pudo consultar la información. Verifica que los PDF estén disponibles.",true)}
